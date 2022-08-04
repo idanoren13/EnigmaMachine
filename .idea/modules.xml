@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Ex1/ConsoleUI/ConsoleUI.iml" filepath="$PROJECT_DIR$/Ex1/ConsoleUI/ConsoleUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex1/EnigmaEngine/EnigmaEngine.iml" filepath="$PROJECT_DIR$/Ex1/EnigmaEngine/EnigmaEngine.iml" />
       <module fileurl="file://$PROJECT_DIR$/EnigmaMachine.iml" filepath="$PROJECT_DIR$/EnigmaMachine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex1/Ex1.iml" filepath="$PROJECT_DIR$/Ex1/Ex1.iml" />
     </modules>
   </component>
 </project>
