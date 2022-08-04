@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="update rotor test">
+      <change afterPath="$PROJECT_DIR$/src/EngimaEngine/Factory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EngimaEngine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EngimaEngine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EngimaEngine/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EngimaEngine/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EngimaEngine/ReflectorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EngimaEngine/ReflectorFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EngimaEngine/RotorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EngimaEngine/RotorFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,13 @@
       <option name="presentableId" value="LOCAL‎00002" />
       <updated>1659608975600</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎00003" summary="update rotor test">
+      <created>1659619876038</created>
+      <option name="number" value="LOCAL‎00003" />
+      <option name="presentableId" value="LOCAL‎00003" />
+      <updated>1659619876038</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
