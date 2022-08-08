@@ -24,6 +24,8 @@ public class EnigmaEngine {
         this.reflectors = reflector;
         this.plugBoard = plugBoard;
         this.machineABC = abc;
+        this.rotorStackRightToLeft = new Stack<>();
+        this.rotorStackLeftToRight = new Stack<>();
     }
 
     public char activate(char input) {
@@ -56,6 +58,7 @@ public class EnigmaEngine {
 
         return out;
     }
+
 
     //creates the array of the selected rotors in order
     public void setSelectedRotors(List<Integer> rotorsID){
