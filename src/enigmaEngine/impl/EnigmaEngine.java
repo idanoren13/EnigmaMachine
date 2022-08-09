@@ -62,9 +62,9 @@ public class EnigmaEngine {
     }
 
     private int runRotorPipelineStack(Stack<Rotor> pipelineStack, Stack<Rotor> stackToBeFilled, int index,  Rotor.Direction dir) {
-        int outputIndex = -1;
+        int outputIndex = index;
         while (!pipelineStack.isEmpty()) {
-            outputIndex = pipelineStack.peek().getOutputIndex(index, dir);
+            outputIndex = pipelineStack.peek().getOutputIndex(outputIndex, dir);
             stackToBeFilled.push(pipelineStack.pop());
         }
         return outputIndex;
@@ -97,7 +97,7 @@ public class EnigmaEngine {
     }
 
     public void setSelectedReflector(int selectedReflectorID) {
-        this.selectedReflector = reflectors.get(selectedReflectorID);
+        this.selectedReflector = reflectors.get(selectedReflectorID + 1);
     }
 }
 

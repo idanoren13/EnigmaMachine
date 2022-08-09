@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added interfaces: get machine from source, &#10;rotate next RotorImpl, TODOs">
-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added Interfaces Package &#10;created Strategy for getting sources">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Engine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Factory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigmaComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Rotatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Rotatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Rotor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Tests" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Tests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/Engine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/Factory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/Rotor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,20 +40,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "openjdk-18",
-    "last_opened_file_path": "C:/Users/idano/IdeaProjects/EnigmaMachine",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/idano/IdeaProjects/EnigmaMachine&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="enigmaEngine" />
@@ -75,6 +61,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="enigmaEngine.Main" />
+      <module name="EnigmaMachine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="enigmaEngine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,7 +96,8 @@
       <workItem from="1659991079351" duration="60000" />
       <workItem from="1659991150570" duration="1989000" />
       <workItem from="1659994007600" duration="70000" />
-      <workItem from="1659994090197" duration="14289000" />
+      <workItem from="1659994090197" duration="15647000" />
+      <workItem from="1660080124042" duration="7814000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -137,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660049297813</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added Interfaces Package &#10;created Strategy for getting sources">
+      <created>1660068138597</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660068138597</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +173,28 @@
     <MESSAGE value="update rotor test" />
     <MESSAGE value="added initialization of the stacks" />
     <MESSAGE value="added interfaces: get machine from source, &#10;rotate next RotorImpl, TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="added interfaces: get machine from source, &#10;rotate next RotorImpl, TODOs" />
+    <MESSAGE value="added Interfaces Package &#10;created Strategy for getting sources" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Interfaces Package &#10;created Strategy for getting sources" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((RotorImpl)((java.util.Stack)((EnigmaEngine)this).rotorStackRightToLeft).get(0)).startIndex" custom="enigmaEngine.impl.EnigmaEngine,enigmaEngine.impl.RotorImpl,java.util.Stack" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

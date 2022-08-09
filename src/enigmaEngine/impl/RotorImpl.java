@@ -11,7 +11,7 @@ public class RotorImpl implements Rotor, Rotatable {
     private final int id;
     private final int notch;
     private int countRotations;
-    private int startIndex;   //TODO: initiate starting position of the rotor by startIndex
+    private int startIndex;
     private final List<Character> rightSide;
     private final List<Character> leftSide;
     private final int rotorSize;
@@ -28,6 +28,7 @@ public class RotorImpl implements Rotor, Rotatable {
         this.rotateNextRotor = null;
         this.startIndex = 0;
     }
+
     @Override
     public int getOutputIndex(int inputIndex, Direction dir) {
         int outputIndex = -1;
@@ -45,8 +46,6 @@ public class RotorImpl implements Rotor, Rotatable {
 
         return outputIndex;
     }
-
-
 
 
     //    private int findCharIndexInList(List<Character> list, Character ch) {
@@ -74,7 +73,7 @@ public class RotorImpl implements Rotor, Rotatable {
     public void rotate() {
         Collections.rotate(rightSide, -1);
         Collections.rotate(leftSide, -1);
-        this.countRotations = (countRotations + 1) % rotorSize;
+        this.countRotations = (countRotations + 1) % (rotorSize - 1);
 
         if (isNotchOnTop() && rotateNextRotor != null) { //rotates the next rotor if needed
             rotateNextRotor.rotate();
