@@ -15,8 +15,7 @@ public class EnigmaEngine {
     private final ArrayList<Character> machineABC;
     private Stack<RotorImpl> rotorStackRightToLeft;
     private Stack<RotorImpl> rotorStackLeftToRight;
-    private List<Integer> selectedRotors;
-
+    private List<Integer> selectedRotors; //TODO: implement test for this
     private Reflector selectedReflector;
 
     public EnigmaEngine(HashMap<Integer, RotorImpl> rotors, HashMap<Integer,Reflector> reflector, PlugBoard plugBoard, ArrayList<Character> abc) {
@@ -28,7 +27,7 @@ public class EnigmaEngine {
         this.rotorStackLeftToRight = new Stack<>();
     }
 
-    public char activate(char input) {
+    public char encrypt(char input) {
         char out = '\0';
         int index;
         char temp;
@@ -48,6 +47,7 @@ public class EnigmaEngine {
         index = selectedReflector.findPairByIndex(index);
 
         //pipeline form the reflector
+        //TODO: redundant code  extract the code to a method
         while (!rotorStackLeftToRight.isEmpty()){
             index = rotorStackLeftToRight.peek().getOutputIndex(index, Engine.Direction.RIGHT);
             rotorStackRightToLeft.push(rotorStackLeftToRight.pop());
@@ -62,7 +62,7 @@ public class EnigmaEngine {
 
     //creates the array of the selected rotors in order
     public void setSelectedRotors(List<Integer> rotorsID){
-        selectedRotors = rotors.keySet().stream().filter(rotorsID::contains).collect(Collectors.toList()); //TODO: need to check
+        selectedRotors = rotors.keySet().stream().filter(rotorsID::contains).collect(Collectors.toList()); //TODO: need to check its inorder
         connectRotors();
         selectedRotors.forEach(rotorID ->rotorStackRightToLeft.push(rotors.get(rotorID)));
     }
@@ -73,7 +73,7 @@ public class EnigmaEngine {
 
         for (int i = selectedRotors.size() - 1; i > 0; i--) {
             try {
-                rotors.get(selectedRotors.get(i)).setRotateNextRotor(rotors.get(selectedRotors.get(i - 1)).getClass().getMethod("rotate", null));
+                rotors.get(selectedRotors.get(i)).setRotateNextRotor(rotors.get(selectedRotors.get(i - 1)).getClass().getMethod("rotate", null)); //TODO: need to change
             } catch (NoSuchMethodException e) {
                 throw new RuntimeException(e);
             }
@@ -88,3 +88,5 @@ public class EnigmaEngine {
         this.selectedReflector = reflectors.get(selectedReflectorID);
     }
 }
+// create new interface for the rotors named Rotatable
+

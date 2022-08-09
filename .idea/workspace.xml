@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added Interfaces">
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added initialization of the stacks">
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaComponents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/Rotatable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/Tests" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/Factory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +74,7 @@
       <workItem from="1659991079351" duration="60000" />
       <workItem from="1659991150570" duration="1989000" />
       <workItem from="1659994007600" duration="70000" />
+      <workItem from="1659994090197" duration="6309000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -101,7 +107,14 @@
       <option name="presentableId" value="LOCAL‎00005" />
       <updated>1659625578861</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added initialization of the stacks">
+      <created>1659994504227</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1659994504227</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,7 +134,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="update rotor test" />
-    <option name="LAST_COMMIT_MESSAGE" value="update rotor test" />
+    <MESSAGE value="added initialization of the stacks" />
+    <option name="LAST_COMMIT_MESSAGE" value="added initialization of the stacks" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

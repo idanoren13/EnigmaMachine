@@ -1,0 +1,6 @@
+Tests For The Enigma Engine:
+
+    -   Validate rotors, plug board are correctly initialised by the machineABC.
+    -   Validate reflectors are correctly initialised by the machineABC by length.
+    -   Validate selected rotors exist in rotors HashMap.
+    -   Validate all the components(rotors, reflectors, plug board nad machineABC) are in even size.
