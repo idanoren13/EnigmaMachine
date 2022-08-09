@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class CreateEnigmaMachineToDebug implements InitializeEnigmaComponents {
     @Override
-    public EnigmaEngine getEnigmaEngineFromSource() {
+    public EnigmaEngine getEnigmaEngineFromSource(String source) {
         ArrayList<Character> abc = new ArrayList<Character>();
         HashMap<Integer, Rotor> rotors = new HashMap<Integer, Rotor>();
         HashMap<Integer, Reflector> reflectors = new HashMap<Integer, Reflector>();

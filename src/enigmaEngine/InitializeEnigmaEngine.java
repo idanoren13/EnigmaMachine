@@ -7,10 +7,11 @@ public class InitializeEnigmaEngine {
     public enum sourceMode{
         XML,
         DEBUG,
+        JSON
 
     }
 
-    public EnigmaEngine initializeEngine(sourceMode source){
+    public EnigmaEngine initializeEngine(sourceMode source, String path) {
         InitializeEnigmaComponents enigmaEngineInitializer = null;
 
         switch (source){
@@ -21,6 +22,6 @@ public class InitializeEnigmaEngine {
                 enigmaEngineInitializer = new CreateEnigmaMachineToDebug();
                 break;
         }
-        return enigmaEngineInitializer.getEnigmaEngineFromSource();
+        return enigmaEngineInitializer.getEnigmaEngineFromSource(path);
     }
 }

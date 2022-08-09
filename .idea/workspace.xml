@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added Interfaces Package &#10;created Strategy for getting sources">
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="MACHINE WORKS!!!&#10;need to add validations">
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEEnigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEPositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEPositioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEReflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEReflect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEReflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEReflector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEReflectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTEReflectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTERotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTERotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTERotors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/CTERotors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/xmlReader/schemaBinding/ObjectFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +101,7 @@
       <workItem from="1659991150570" duration="1989000" />
       <workItem from="1659994007600" duration="70000" />
       <workItem from="1659994090197" duration="15647000" />
-      <workItem from="1660080124042" duration="7814000" />
+      <workItem from="1660080124042" duration="8645000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -151,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660068138597</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="MACHINE WORKS!!!&#10;need to add validations">
+      <created>1660088293494</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660088293494</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,7 +185,8 @@
     <MESSAGE value="added initialization of the stacks" />
     <MESSAGE value="added interfaces: get machine from source, &#10;rotate next RotorImpl, TODOs" />
     <MESSAGE value="added Interfaces Package &#10;created Strategy for getting sources" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Interfaces Package &#10;created Strategy for getting sources" />
+    <MESSAGE value="MACHINE WORKS!!!&#10;need to add validations" />
+    <option name="LAST_COMMIT_MESSAGE" value="MACHINE WORKS!!!&#10;need to add validations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
