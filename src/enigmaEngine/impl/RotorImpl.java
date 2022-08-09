@@ -1,40 +1,38 @@
 package enigmaEngine.impl;
 
-import enigmaEngine.Engine;
-import enigmaEngine.Rotatable;
-import enigmaEngine.Rotor;
+import enigmaEngine.interfaces.Rotatable;
+import enigmaEngine.interfaces.Rotor;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
 
 public class RotorImpl implements Rotor, Rotatable {
+
     private final int id;
     private final int notch;
     private int countRotations;
-    private final int startIndex;   //TODO: initiate starting position of the rotor by startIndex
+    private int startIndex;   //TODO: initiate starting position of the rotor by startIndex
     private final List<Character> rightSide;
     private final List<Character> leftSide;
     private final int rotorSize;
-    private Method rotateNextRotor;
+    private Rotatable rotateNextRotor;
 
 
-    public RotorImpl(int id, int notch, int startIndex, List<Character> rightSide, List<Character> leftSide) {
+    public RotorImpl(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
         this.id = id;
         this.notch = notch;
-        this.startIndex = startIndex;
         this.rightSide = rightSide;
         this.leftSide = leftSide;
         this.countRotations = 0;
         this.rotorSize = rightSide.size();
         this.rotateNextRotor = null;
+        this.startIndex = 0;
     }
-
-    public int getOutputIndex(int inputIndex, Engine.Direction dir) {
+    @Override
+    public int getOutputIndex(int inputIndex, Direction dir) {
         int outputIndex = -1;
         //make it better
-        if (dir == Engine.Direction.RIGHT) {
+        if (dir == Direction.RIGHT) {
             outputIndex = rightSide.indexOf(leftSide.get(inputIndex));
         } else {
             outputIndex = leftSide.indexOf(rightSide.get(inputIndex));
@@ -48,7 +46,10 @@ public class RotorImpl implements Rotor, Rotatable {
         return outputIndex;
     }
 
-//    private int findCharIndexInList(List<Character> list, Character ch) {
+
+
+
+    //    private int findCharIndexInList(List<Character> list, Character ch) {
 //        int index = -1;
 //
 //        for (int i = 0; i < list.size(); i++) {
@@ -60,15 +61,13 @@ public class RotorImpl implements Rotor, Rotatable {
 //
 //        return index;
 //    }
-
     @Override
-    public char makeFirstImport(int input, Engine.Direction dir) {
-        return 0;
-    }
+    public void setStartIndex(char startCharacter) {
+        this.startIndex = this.rightSide.indexOf(startCharacter);
 
-    @Override
-    public int makeSecondImport(char input, Engine.Direction dir) {
-        return 0;
+        for (int i = 0; i < this.startIndex; i++) {
+            rotate();
+        }
     }
 
     @Override
@@ -77,26 +76,17 @@ public class RotorImpl implements Rotor, Rotatable {
         Collections.rotate(leftSide, -1);
         this.countRotations = (countRotations + 1) % rotorSize;
 
-        try {
-            if (isNotchOnTop() && rotateNextRotor != null) { //rotates the next rotor if needed
-                rotateNextRotor.invoke(null);
-            }
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            throw new RuntimeException(e);
+        if (isNotchOnTop() && rotateNextRotor != null) { //rotates the next rotor if needed
+            rotateNextRotor.rotate();
         }
-    }
-
-
-    @Override
-    public void rotateNext() {
-
     }
 
     private boolean isNotchOnTop() {
         return countRotations == notch;
     }
 
-    public void setRotateNextRotor(Method rotateNextRotor) {
+    @Override
+    public void setRotateNextRotor(Rotatable rotateNextRotor) {
         this.rotateNextRotor = rotateNextRotor;
     }
 }

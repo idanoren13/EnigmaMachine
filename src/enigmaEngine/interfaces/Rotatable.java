@@ -1,7 +1,7 @@
-package enigmaEngine;
+package enigmaEngine.interfaces;
 
 public interface Rotatable {
+
     public void rotate();
 
-    public void rotateNext();
 }

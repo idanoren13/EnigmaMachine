@@ -1,4 +1,4 @@
-package enigmaEngine;
+package enigmaEngine.interfaces;
 
 import java.util.HashMap;
 

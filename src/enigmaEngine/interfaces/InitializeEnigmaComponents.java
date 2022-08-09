@@ -1,4 +1,4 @@
-package enigmaEngine;
+package enigmaEngine.interfaces;
 
 import enigmaEngine.impl.EnigmaEngine;
 

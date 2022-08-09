@@ -1,15 +1,17 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.interfaces.PlugBoard;
+
 import java.util.HashMap;
 
-public class PlugBoard implements enigmaEngine.PlugBoard {
+public class PlugBoardImpl implements PlugBoard {
     private final HashMap<Character, Character> abcPairs;
 
-    public PlugBoard() {
+    public PlugBoardImpl() {
         this.abcPairs = new HashMap<Character, Character>();
     }
 
-    public PlugBoard(String userInput) {
+    public PlugBoardImpl(String userInput) {
         this.abcPairs = generateInputIntoPairs(userInput);
     }
 
@@ -23,10 +25,6 @@ public class PlugBoard implements enigmaEngine.PlugBoard {
             abcPairs.put(pair.charAt(2), pair.charAt(0));   // TO DO - we assume that the pairs would always be "x,y", maybe they are not.
             // (for instance "x, y"). TO DO - handle this
         }
-        return abcPairs;
-    }
-
-    public HashMap<Character, Character> getAbcPairs() {
         return abcPairs;
     }
 

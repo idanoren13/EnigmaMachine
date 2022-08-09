@@ -1,16 +1,16 @@
 package enigmaEngine.impl;
 
-import java.awt.*;
+import enigmaEngine.interfaces.Reflector;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import enigmaEngine.Factory.ReflectorID;
-
-public class Reflector implements enigmaEngine.Reflector {
+public class ReflectorImpl implements Reflector {
     private final HashMap<Integer, Integer> indexPairs;
     private final ReflectorID id;
 
-    public Reflector(List<Integer> input, List<Integer> output, ReflectorID id) {
+    public ReflectorImpl(List<Integer> input, List<Integer> output, ReflectorID id) {
         this.id = id;
         this.indexPairs = new HashMap<Integer, Integer>();
 
@@ -20,18 +20,18 @@ public class Reflector implements enigmaEngine.Reflector {
         }
     }
 
-    public Reflector(HashMap<Integer, Integer> indexPairs, ReflectorID id) {
+    public ReflectorImpl(HashMap<Integer, Integer> indexPairs, ReflectorID id) {
         this.indexPairs = indexPairs;
         this.id = id;
-    }
-
-    public HashMap<Integer, Integer> getIndexPairs() {
-        return indexPairs;
     }
 
     @Override
     public int findPairByIndex(int idx) {
         // returns ReflectorDictionary[index], returns pairIndex
         return this.getIndexPairs().get(idx);
+    }
+
+    private HashMap<Integer, Integer> getIndexPairs() {
+        return indexPairs;
     }
 }
