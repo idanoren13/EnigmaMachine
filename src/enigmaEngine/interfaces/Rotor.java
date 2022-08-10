@@ -8,5 +8,7 @@ public interface Rotor extends Rotatable {
 
     void setStartIndex(char startCharacter);
 
-    public void setRotateNextRotor(Rotatable rotateNextRotor);
+    void setRotateNextRotor(Rotatable rotateNextRotor);
+
+    void resetRotor();
 }

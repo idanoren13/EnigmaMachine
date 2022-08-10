@@ -14,6 +14,7 @@ public class RotorImpl implements Rotor, Rotatable {
     private final List<Character> rightSide;
     private final List<Character> leftSide;
     private final int rotorSize;
+    private final char firstCharacter;
     private Rotatable rotateNextRotor;
 
     public RotorImpl(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
@@ -25,6 +26,7 @@ public class RotorImpl implements Rotor, Rotatable {
         this.rotorSize = rightSide.size();
         this.rotateNextRotor = null;
         this.startIndex = 0;
+        this.firstCharacter = rightSide.get(0);
     }
 
     @Override
@@ -34,26 +36,8 @@ public class RotorImpl implements Rotor, Rotatable {
         } else {
             return leftSide.indexOf(rightSide.get(inputIndex));
         }
-//        if (dir == Engine.Direction.LEFT) {
-//            outputIndex = findCharIndexInList(leftSide, rightSide.get(inputIndex));
-//        } else {
-//            outputIndex = findCharIndexInList(rightSide, leftSide.get(inputIndex));
-//        }
     }
 
-
-    //    private int findCharIndexInList(List<Character> list, Character ch) {
-//        int index = -1;
-//
-//        for (int i = 0; i < list.size(); i++) {
-//            if (list.get(i) == ch) {
-//                index = i;
-//                break;
-//            }
-//        }
-//
-//        return index;
-//    }
     @Override
     public void setStartIndex(char startCharacter) {
         this.startIndex = this.rightSide.indexOf(startCharacter);
@@ -81,5 +65,16 @@ public class RotorImpl implements Rotor, Rotatable {
     @Override
     public void setRotateNextRotor(Rotatable rotateNextRotor) {
         this.rotateNextRotor = rotateNextRotor;
+    }
+
+    @Override
+    public void resetRotor() {
+        rotateNextRotor = null;
+        while (rightSide.indexOf(firstCharacter) > 0) {
+            rotate();
+        }
+
+        startIndex = 0;
+        countRotations = 0;
     }
 }

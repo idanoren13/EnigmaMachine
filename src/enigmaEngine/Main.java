@@ -1,5 +1,8 @@
 package enigmaEngine;
 
+import enigmaEngine.exceptions.InvalidABCException;
+import enigmaEngine.exceptions.InvalidReflectorException;
+import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.impl.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
 
@@ -12,7 +15,15 @@ public class Main {
     public static void main(String[] args) {
         InitializeEnigmaEngine enigmaEngineInitializer = new InitializeEnigmaEngine();
 //        EnigmaEngine enigmaEngine = enigmaEngineInitializer.initializeEngine(InitializeEnigmaEngine.sourceMode.DEBUG, "");
-        EnigmaEngine enigmaEngine = enigmaEngineInitializer.initializeEngine(InitializeEnigmaEngine.sourceMode.XML, "src/Resources/ex1-sanity-small.xml");
+        EnigmaEngine enigmaEngine = null;
+
+        try {
+            enigmaEngine = enigmaEngineInitializer.initializeEngine(InitializeEnigmaEngine.sourceMode.XML, "src/Resources/ex1-sanity-small.xml");
+        } catch (InvalidRotorException | InvalidReflectorException | InvalidABCException e) {   //exception thrown by the enigma engine initialization
+            throw new RuntimeException(e);
+        }catch (Exception e) {  //we want to catch all exceptions and not just the ones that are thrown by the enigma engine
+            e.printStackTrace();
+        }
 
         List<Integer> selectedRotors = Arrays.asList(2, 1);
         ArrayList<Character> startingCharacters = new ArrayList<>();
@@ -23,12 +34,21 @@ public class Main {
         enigmaEngine.setSelectedReflector(Reflector.ReflectorID.I);
         enigmaEngine.setSelectedRotors(selectedRotors, startingCharacters);
 
-        String secretMessage = "ABCDEFGHIJKL"; // = "ABCDEF";
-        String encryptedMessage = "KFBLICCCLFIB"; // = "CCEEFB";
+        String secretMessage = /*"ABCDEFGHIJKL";*/ "ABCDEF";
+        String encryptedMessage = /*"KFBLICCCLFIB";*/ "BCDEFC";
 
         for (int i = 0; i < secretMessage.length(); i++) {
+            System.out.print(enigmaEngine.activate(secretMessage.charAt(i)));
+        }
+
+        System.out.println();
+        enigmaEngine.reset();
+
+        for (int i = 0; i < encryptedMessage.length(); i++) {
             System.out.print(enigmaEngine.activate(encryptedMessage.charAt(i)));
         }
+
+        System.out.println();
     }
 
     //CMD Main

@@ -40,12 +40,12 @@ public class EnigmaEngine {
 
         index = runRotorPipelineStack(rotorStackRightToLeft, rotorStackLeftToRight, index, Rotor.Direction.LEFT); //pipeline to the reflector
         index = selectedReflector.findPairByIndex(index);
-        index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index,  Rotor.Direction.RIGHT); //pipeline from the reflector
+        index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index, Rotor.Direction.RIGHT); //pipeline from the reflector
         temp = machineABC.charAt(index);
         return plugBoard.returnCharacterPair(temp);
     }
 
-    private int runRotorPipelineStack(Stack<Rotor> pipelineStack, Stack<Rotor> stackToBeFilled, int index,  Rotor.Direction dir) {
+    private int runRotorPipelineStack(Stack<Rotor> pipelineStack, Stack<Rotor> stackToBeFilled, int index, Rotor.Direction dir) {
         int outputIndex = index;
         while (!pipelineStack.isEmpty()) {
             outputIndex = pipelineStack.peek().getOutputIndex(outputIndex, dir);
@@ -55,11 +55,18 @@ public class EnigmaEngine {
     }
 
     //creates the array of the selected rotors in order
-    public void setSelectedRotors(List<Integer> rotorsIDInorder, ArrayList<Character> startingPositions) {
+    public void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) {
         this.selectedRotors = rotorsIDInorder;
-        this.startingCharacters = startingPositions;
+        this.startingCharacters = startingPositions;setStartingCharacters(startingPositions);
+    }
 
-        for (int i = 0 ; i < selectedRotors.size(); i++) {
+    public void setStartingCharacters(List<Character> startingCharacters) {
+        this.rotorStackLeftToRight.clear();
+        this.rotorStackRightToLeft.clear();
+        this.startingCharacters = startingCharacters;
+        disconnectAllRotors();
+
+        for (int i = 0; i < selectedRotors.size(); i++) {
             rotors.get(selectedRotors.get(i)).setStartIndex(startingCharacters.get(i));
         }
 
@@ -82,6 +89,11 @@ public class EnigmaEngine {
 
     public void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) {
         this.selectedReflector = reflectors.get(selectedReflectorID);
+    }
+
+    public void reset() {
+        this.selectedRotors.forEach(rotorID -> this.rotors.get(rotorID).resetRotor());
+        setSelectedRotors(this.selectedRotors, this.startingCharacters);
     }
 }
 
