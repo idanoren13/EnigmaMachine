@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added Interfaces">
-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateAndValidateEnigmaComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_01_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_01_36__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_15_57__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_15_57__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_1.xml" afterDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="Added reset Engine">
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidStartingCharacters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659994504227</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added reset Engine">
+      <created>1660168628296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660168628296</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +164,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="update rotor test" />
     <MESSAGE value="added initialization of the stacks" />
-    <option name="LAST_COMMIT_MESSAGE" value="added initialization of the stacks" />
+    <MESSAGE value="Added reset Engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added reset Engine" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

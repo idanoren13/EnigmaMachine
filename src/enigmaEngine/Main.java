@@ -3,6 +3,7 @@ package enigmaEngine;
 import enigmaEngine.exceptions.InvalidABCException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
+import enigmaEngine.exceptions.InvalidStartingCharacters;
 import enigmaEngine.impl.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
 
@@ -32,7 +33,13 @@ public class Main {
         startingCharacters.add('C');
 
         enigmaEngine.setSelectedReflector(Reflector.ReflectorID.I);
-        enigmaEngine.setSelectedRotors(selectedRotors, startingCharacters);
+        try {
+            enigmaEngine.setSelectedRotors(selectedRotors, startingCharacters);
+        } catch (InvalidStartingCharacters e) {
+            throw new RuntimeException(e);
+        } catch (InvalidRotorException e) {
+            throw new RuntimeException(e);
+        }
 
         String secretMessage = /*"ABCDEFGHIJKL";*/ "ABCDEF";
         String encryptedMessage = /*"KFBLICCCLFIB";*/ "BCDEFC";
