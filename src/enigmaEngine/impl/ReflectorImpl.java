@@ -1,11 +1,18 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.interfaces.Reflector;
+
 import java.util.HashMap;
 import java.util.List;
 
-public class ReflectorImpl implements enigmaEngine.interfaces.Reflector {
+public class ReflectorImpl implements Reflector {
     private final HashMap<Integer, Integer> indexPairs;
     private final ReflectorID id;
+
+    public ReflectorImpl(HashMap<Integer, Integer> indexPairs, ReflectorID id) {
+        this.indexPairs = indexPairs;
+        this.id = id;
+    }
 
     public ReflectorImpl(List<Integer> input, List<Integer> output, ReflectorID id) {
         this.id = id;

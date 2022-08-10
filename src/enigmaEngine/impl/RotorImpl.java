@@ -1,11 +1,12 @@
 package enigmaEngine.impl;
 
 import enigmaEngine.interfaces.Rotatable;
+import enigmaEngine.interfaces.Rotor;
 
 import java.util.Collections;
 import java.util.List;
 
-public class RotorImpl implements enigmaEngine.interfaces.Rotor, Rotatable {
+public class RotorImpl implements Rotor, Rotatable {
 
     private final int id;
     private final int notch;

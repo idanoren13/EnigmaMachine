@@ -1,7 +1,7 @@
 package enigmaEngine.interfaces;
 
-import enigmaEngine.impl.EnigmaEngineImpl;
+import enigmaEngine.impl.EnigmaEngine;
 
 public interface InitializeEnigmaComponents {
-    EnigmaEngineImpl getEnigmaEngineFromSource(String source);
+    EnigmaEngine getEnigmaEngineFromSource(String source);
 }

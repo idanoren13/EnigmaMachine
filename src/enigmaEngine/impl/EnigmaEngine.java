@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-public class EnigmaEngineImpl {
+public class EnigmaEngine {
 
     private final HashMap<Integer, Rotor> rotors;
-    private final HashMap<Integer, Reflector> reflectors;
+    private final HashMap<Reflector.ReflectorID, Reflector> reflectors;
     private final PlugBoard plugBoard;
-    private final ArrayList<Character> machineABC;
+    private final String machineABC;
     private final Stack<Rotor> rotorStackRightToLeft;
     private final Stack<Rotor> rotorStackLeftToRight;
     private List<Integer> selectedRotors;
@@ -31,7 +31,7 @@ public class EnigmaEngineImpl {
 //        this.startingCharacters = new ArrayList<>();
 //    }
 
-    public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Integer, Reflector> reflectors, PlugBoard plugBoard, ArrayList<Character> abc) {
+    public EnigmaEngine(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
         this.rotors = rotors;
         this.reflectors = reflectors;
         this.plugBoard = plugBoard;
@@ -52,7 +52,7 @@ public class EnigmaEngineImpl {
         index = runRotorPipelineStack(rotorStackRightToLeft, rotorStackLeftToRight, index, Rotor.Direction.LEFT); //pipeline to the reflector
         index = selectedReflector.findPairByIndex(index);
         index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index,  Rotor.Direction.RIGHT); //pipeline from the reflector
-        temp = machineABC.get(index);
+        temp = machineABC.charAt(index);
         return plugBoard.returnCharacterPair(temp);
     }
 
@@ -91,8 +91,8 @@ public class EnigmaEngineImpl {
         rotors.keySet().forEach(key -> rotors.get(key).setRotateNextRotor(null));
     }
 
-    public void setSelectedReflector(int selectedReflectorID) {
-        this.selectedReflector = reflectors.get(selectedReflectorID + 1);
+    public void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) {
+        this.selectedReflector = reflectors.get(selectedReflectorID);
     }
 }
 
