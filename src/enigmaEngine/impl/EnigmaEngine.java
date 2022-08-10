@@ -42,23 +42,18 @@ public class EnigmaEngine {
     }
 
     public char activate(char input) {
-        char out = '\0';
-        int index;
-        char temp;
 
         //rotate the first rotor
         rotorStackRightToLeft.peek().rotate();
 
-        temp = plugBoard.returnCharacterPair(input);
-        index = machineABC.indexOf(temp);
+        char temp = plugBoard.returnCharacterPair(input);
+        int index = machineABC.indexOf(temp);
 
-        index = runRotorPipelineStack(rotorStackRightToLeft, rotorStackLeftToRight, index, Rotor.Direction.LEFT);//pipeline to the reflector
+        index = runRotorPipelineStack(rotorStackRightToLeft, rotorStackLeftToRight, index, Rotor.Direction.LEFT); //pipeline to the reflector
         index = selectedReflector.findPairByIndex(index);
-        index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index,  Rotor.Direction.RIGHT);//pipeline from the reflector
+        index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index,  Rotor.Direction.RIGHT); //pipeline from the reflector
         temp = machineABC.get(index);
-        out = plugBoard.returnCharacterPair(temp);
-
-        return out;
+        return plugBoard.returnCharacterPair(temp);
     }
 
     private int runRotorPipelineStack(Stack<Rotor> pipelineStack, Stack<Rotor> stackToBeFilled, int index,  Rotor.Direction dir) {

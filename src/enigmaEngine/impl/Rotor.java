@@ -1,12 +1,11 @@
 package enigmaEngine.impl;
 
 import enigmaEngine.interfaces.Rotatable;
-import enigmaEngine.interfaces.Rotor;
 
 import java.util.Collections;
 import java.util.List;
 
-public class RotorImpl implements Rotor, Rotatable {
+public class Rotor implements enigmaEngine.interfaces.Rotor, Rotatable {
 
     private final int id;
     private final int notch;
@@ -18,7 +17,7 @@ public class RotorImpl implements Rotor, Rotatable {
     private Rotatable rotateNextRotor;
 
 
-    public RotorImpl(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
+    public Rotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
         this.id = id;
         this.notch = notch;
         this.rightSide = rightSide;
@@ -31,20 +30,16 @@ public class RotorImpl implements Rotor, Rotatable {
 
     @Override
     public int getOutputIndex(int inputIndex, Direction dir) {
-        int outputIndex = -1;
-        //make it better
         if (dir == Direction.RIGHT) {
-            outputIndex = rightSide.indexOf(leftSide.get(inputIndex));
+            return rightSide.indexOf(leftSide.get(inputIndex));
         } else {
-            outputIndex = leftSide.indexOf(rightSide.get(inputIndex));
+            return leftSide.indexOf(rightSide.get(inputIndex));
         }
 //        if (dir == Engine.Direction.LEFT) {
 //            outputIndex = findCharIndexInList(leftSide, rightSide.get(inputIndex));
 //        } else {
 //            outputIndex = findCharIndexInList(rightSide, leftSide.get(inputIndex));
 //        }
-
-        return outputIndex;
     }
 
 
@@ -68,7 +63,7 @@ public class RotorImpl implements Rotor, Rotatable {
             rotate();
         }
     }
-
+    
     @Override
     public void rotate() {
         Collections.rotate(rightSide, -1);

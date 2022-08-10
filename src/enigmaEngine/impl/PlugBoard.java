@@ -1,19 +1,19 @@
 package enigmaEngine.impl;
 
-import enigmaEngine.interfaces.PlugBoard;
 import javafx.util.Pair;
+import jdk.internal.util.xml.impl.Pair;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class PlugBoardImpl implements PlugBoard {
+public class PlugBoard implements enigmaEngine.interfaces.PlugBoard {
     private final HashMap<Character, Character> abcPairs;
 
-    public PlugBoardImpl() {
+    public PlugBoard() {
         this.abcPairs = new HashMap<Character, Character>();
     }
 
-    public PlugBoardImpl(List<Pair<Character,Character>> pairList) {
+    public PlugBoard(List<Pair<Character,Character>> pairList) {
         this.abcPairs = generateInputIntoPairs(pairList);
     }
 

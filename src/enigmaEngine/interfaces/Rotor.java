@@ -1,7 +1,5 @@
 package enigmaEngine.interfaces;
 
-import enigmaEngine.impl.RotorImpl;
-
 public interface Rotor extends Rotatable {
     enum Direction {
         LEFT, RIGHT
