@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="MACHINE WORKS!!!&#10;need to add validations">
-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added Interfaces">
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateAndValidateEnigmaComponents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidABCException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidReflectorException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidRotorException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_01_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_01_36__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_15_57__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_15_57__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ex1-sanity-small.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/ex1-sanity-small.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enigma-Ex1.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/Enigma-Ex1.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/EnigmaMachineToDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/ReflectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigmaComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,22 +62,25 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="enigmaEngine" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine\src\Resources" />
       <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="enigmaEngine.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="enigmaEngine.Main" />
       <module name="EnigmaMachine" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="enigmaEngine.*" />
+          <option name="PATTERN" value="enigmaEngine.exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -87,7 +90,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.enigmaEngine.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -167,17 +170,6 @@
     <MESSAGE value="update rotor test" />
     <MESSAGE value="added initialization of the stacks" />
     <option name="LAST_COMMIT_MESSAGE" value="added initialization of the stacks" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

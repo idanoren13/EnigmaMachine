@@ -4,7 +4,7 @@ import enigmaEngine.impl.EnigmaEngine;
 import enigmaEngine.impl.PlugBoardImpl;
 import enigmaEngine.impl.ReflectorImpl;
 import enigmaEngine.impl.RotorImpl;
-import enigmaEngine.interfaces.InitializeEnigmaComponents;
+import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import enigmaEngine.schemaBinding.*;
@@ -19,10 +19,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //TODO: implement this class , Guy Becken
-public class CreateEnigmaMachineFromXML implements InitializeEnigmaComponents {
+public class EnigmaMachineFromXML implements InitializeEnigma {
 
     @Override
     public EnigmaEngine getEnigmaEngineFromSource(String path) {

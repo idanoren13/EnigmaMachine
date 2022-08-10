@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Stack;
 
 public class EnigmaEngine {
-
     private final HashMap<Integer, Rotor> rotors;
     private final HashMap<Reflector.ReflectorID, Reflector> reflectors;
     private final PlugBoard plugBoard;
@@ -20,16 +19,6 @@ public class EnigmaEngine {
     private List<Integer> selectedRotors;
     private Reflector selectedReflector;
     private List<Character> startingCharacters;
-
-//    public EnigmaEngine(HashMap<Integer, RotorImpl> rotors, HashMap<Integer, ReflectorImpl> reflector, PlugBoard plugBoard, ArrayList<Character> abc) {
-//        this.rotors = rotors;
-//        this.reflectors = reflector;
-//        this.plugBoard = plugBoard;
-//        this.machineABC = abc;
-//        this.rotorStackRightToLeft = new Stack<>();
-//        this.rotorStackLeftToRight = new Stack<>();
-//        this.startingCharacters = new ArrayList<>();
-//    }
 
     public EnigmaEngine(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
         this.rotors = rotors;

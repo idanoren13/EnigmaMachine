@@ -2,6 +2,6 @@ package enigmaEngine.interfaces;
 
 import enigmaEngine.impl.EnigmaEngine;
 
-public interface InitializeEnigmaComponents {
+public interface InitializeEnigma {
     EnigmaEngine getEnigmaEngineFromSource(String source);
 }

@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class RotorImpl implements Rotor, Rotatable {
-
     private final int id;
     private final int notch;
     private int countRotations;
@@ -16,7 +15,6 @@ public class RotorImpl implements Rotor, Rotatable {
     private final List<Character> leftSide;
     private final int rotorSize;
     private Rotatable rotateNextRotor;
-
 
     public RotorImpl(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
         this.id = id;

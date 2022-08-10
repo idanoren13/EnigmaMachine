@@ -1,7 +1,7 @@
 package enigmaEngine;
 
 import enigmaEngine.impl.EnigmaEngine;
-import enigmaEngine.interfaces.InitializeEnigmaComponents;
+import enigmaEngine.interfaces.InitializeEnigma;
 
 public class InitializeEnigmaEngine {
     public enum sourceMode{
@@ -11,14 +11,14 @@ public class InitializeEnigmaEngine {
     }
 
     public EnigmaEngine initializeEngine(sourceMode source, String path) {
-        InitializeEnigmaComponents enigmaEngineInitializer = null;
+        InitializeEnigma enigmaEngineInitializer = null;
 
         switch (source){
             case XML:
-                enigmaEngineInitializer = new CreateEnigmaMachineFromXML();
+                enigmaEngineInitializer = new EnigmaMachineFromXML();
                 break;
             case DEBUG:
-                enigmaEngineInitializer = new CreateEnigmaMachineToDebug();
+                enigmaEngineInitializer = new EnigmaMachineToDebug();
                 break;
         }
         return enigmaEngineInitializer.getEnigmaEngineFromSource(path);

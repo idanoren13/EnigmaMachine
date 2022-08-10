@@ -4,14 +4,14 @@ import enigmaEngine.impl.EnigmaEngine;
 import enigmaEngine.impl.PlugBoardImpl;
 import enigmaEngine.impl.ReflectorImpl;
 import enigmaEngine.impl.RotorImpl;
-import enigmaEngine.interfaces.InitializeEnigmaComponents;
+import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CreateEnigmaMachineToDebug implements InitializeEnigmaComponents {
+public class EnigmaMachineToDebug implements InitializeEnigma {
     @Override
     public EnigmaEngine getEnigmaEngineFromSource(String source) {
         String abc = new String("ABCDEFGHIJKL");

@@ -1,7 +1,6 @@
 package enigmaEngine;
 
 import enigmaEngine.impl.EnigmaEngine;
-import enigmaEngine.interfaces.InitializeEnigmaComponents;
 import enigmaEngine.interfaces.Reflector;
 
 import java.util.ArrayList;
