@@ -1,8 +1,8 @@
 package enigmaEngine;
 
-import enigmaEngine.impl.EnigmaEngine;
-import enigmaEngine.impl.Reflector;
-import enigmaEngine.impl.Rotor;
+import enigmaEngine.impl.EnigmaEngineImpl;
+import enigmaEngine.impl.ReflectorImpl;
+import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.InitializeEnigmaComponents;
 import enigmaEngine.schemaBinding.*;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public enum CreateEnigmaMachineFromFile implements InitializeEnigmaComponents {
     XML {
         @Override
-        public EnigmaEngine getEnigmaEngineFromSource(String path) {
+        public EnigmaEngineImpl getEnigmaEngineFromSource(String path) {
             CTEEnigma xmlOutput = null;
             try {
                 if (path.contains(".xml") == false) {
@@ -48,7 +48,7 @@ public enum CreateEnigmaMachineFromFile implements InitializeEnigmaComponents {
                 }
                 List<CTEReflector> cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
 
-                List<Rotor> rotors = new ArrayList<>();
+                List<RotorImpl> rotors = new ArrayList<>();
                 // TODO: check that all rotors IDs are given from 1 to n without empty IDs
                 for (CTERotor rotor : cteRotors.getCTERotor()) {
                     int id = rotor.getId(), notch = rotor.getNotch();
@@ -65,10 +65,10 @@ public enum CreateEnigmaMachineFromFile implements InitializeEnigmaComponents {
                         right.add(pair.getRight().charAt(0));
                         left.add(pair.getLeft().charAt(0));
                     }
-                    rotors.add(new Rotor(id, notch, right, left));
+                    rotors.add(new RotorImpl(id, notch, right, left));
                 }
                 // TODO: check if the 'reflectors' list size is maximum 5
-                List<Reflector> reflectors = new ArrayList<>();
+                List<ReflectorImpl> reflectors = new ArrayList<>();
                 for (CTEReflector reflector : cteReflectors) {
                     enigmaEngine.interfaces.Reflector.ReflectorID id;
                     try {
@@ -89,7 +89,7 @@ public enum CreateEnigmaMachineFromFile implements InitializeEnigmaComponents {
                         input.add(pair.getInput());
                         output.add(pair.getOutput());
                     }
-                    reflectors.add(new enigmaEngine.impl.Reflector(input, output, id));
+                    reflectors.add(new ReflectorImpl(input, output, id));
                 }
                 return null;
             } catch (RuntimeException e) {
@@ -102,12 +102,12 @@ public enum CreateEnigmaMachineFromFile implements InitializeEnigmaComponents {
     },
     JSON {
         @Override
-        public EnigmaEngine getEnigmaEngineFromSource(String path) {
+        public EnigmaEngineImpl getEnigmaEngineFromSource(String path) {
             return null;
         }
     };
 
-    abstract public EnigmaEngine getEnigmaEngineFromSource(String path);
+    abstract public EnigmaEngineImpl getEnigmaEngineFromSource(String path);
 
     public static void main(String[] args) {
         // WHAT I DID IN CMD: xjc -d . -p enigmaEngine.schemaBinding Enigma-Ex1.xsd

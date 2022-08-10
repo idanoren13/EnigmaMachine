@@ -5,7 +5,7 @@ import enigmaEngine.interfaces.Rotatable;
 import java.util.Collections;
 import java.util.List;
 
-public class Rotor implements enigmaEngine.interfaces.Rotor, Rotatable {
+public class RotorImpl implements enigmaEngine.interfaces.Rotor, Rotatable {
 
     private final int id;
     private final int notch;
@@ -17,7 +17,7 @@ public class Rotor implements enigmaEngine.interfaces.Rotor, Rotatable {
     private Rotatable rotateNextRotor;
 
 
-    public Rotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
+    public RotorImpl(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
         this.id = id;
         this.notch = notch;
         this.rightSide = rightSide;

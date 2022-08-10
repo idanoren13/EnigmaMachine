@@ -1,0 +1,300 @@
+Index: src/enigmaEngine/InitializeEnigmaEngine.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package enigmaEngine;\r\n\r\nimport enigmaEngine.impl.EnigmaEngine;\r\n\r\npublic class InitializeEnigmaEngine {\r\n    public enum sourceMode{\r\n        XML,\r\n\r\n    }\r\n\r\n    public EnigmaEngine initializeEngine(sourceMode source){\r\n        InitializeEnigmaComponents enigmaEngineInitializer = null;\r\n\r\n        switch (source){\r\n            case XML:\r\n                enigmaEngineInitializer = new CreateEnigmaMachineFromXML();\r\n                break;\r\n        }\r\n        return enigmaEngineInitializer.getEnigmaEngineFromSource();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/enigmaEngine/InitializeEnigmaEngine.java b/src/enigmaEngine/InitializeEnigmaEngine.java
+--- a/src/enigmaEngine/InitializeEnigmaEngine.java	
++++ b/src/enigmaEngine/InitializeEnigmaEngine.java	
+@@ -4,7 +4,7 @@
+ 
+ public class InitializeEnigmaEngine {
+     public enum sourceMode{
+-        XML,
++        XML, JSON
+ 
+     }
+ 
+@@ -15,7 +15,8 @@
+             case XML:
+                 enigmaEngineInitializer = new CreateEnigmaMachineFromXML();
+                 break;
++
+         }
+-        return enigmaEngineInitializer.getEnigmaEngineFromSource();
++        return null; // return enigmaEngineInitializer.getEnigmaEngineFromSource();
+     }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3\" name=\"Changes\" comment=\"added initialization of the stacks\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaComponents.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/enigmaEngine/Rotatable.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/enigmaEngine/Tests\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2CsoWGyDLiEPke6jv4nSACzbJvJ\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/idano/IdeaProjects/EnigmaMachine&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\idano\\IdeaProjects\\EnigmaMachine\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3\" name=\"Changes\" comment=\"\" />\r\n      <created>1659600687681</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1659600687681</updated>\r\n      <workItem from=\"1659600689401\" duration=\"5889000\" />\r\n      <workItem from=\"1659873169422\" duration=\"359000\" />\r\n      <workItem from=\"1659873879911\" duration=\"12582000\" />\r\n      <workItem from=\"1659991079351\" duration=\"60000\" />\r\n      <workItem from=\"1659991150570\" duration=\"1989000\" />\r\n      <workItem from=\"1659994007600\" duration=\"70000\" />\r\n      <workItem from=\"1659994090197\" duration=\"6309000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"test\">\r\n      <created>1659601196558</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1659601196558</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00002\" summary=\"update rotor test\">\r\n      <created>1659608975600</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00002\" />\r\n      <updated>1659608975600</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00003\" summary=\"update rotor test\">\r\n      <created>1659619876038</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00003\" />\r\n      <updated>1659619876038</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00004\" summary=\"update rotor test\">\r\n      <created>1659624208492</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00004\" />\r\n      <updated>1659624208492</updated>\r\n    </task>\r\n    <task id=\"LOCAL\u200E00005\" summary=\"update rotor test\">\r\n      <created>1659625578861</created>\r\n      <option name=\"number\" value=\"LOCAL\u200E00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL\u200E00005\" />\r\n      <updated>1659625578861</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"added initialization of the stacks\">\r\n      <created>1659994504227</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1659994504227</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"test\" />\r\n    <MESSAGE value=\"update rotor test\" />\r\n    <MESSAGE value=\"added initialization of the stacks\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"added initialization of the stacks\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,14 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added initialization of the stacks">
+-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaComponents.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/Rotatable.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/Tests" afterDir="false" />
++    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="update rotor test">
++      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromFile.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromXML.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaComponents.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -21,6 +19,7 @@
+       <list>
+         <option value="Interface" />
+         <option value="Class" />
++        <option value="Enum" />
+       </list>
+     </option>
+   </component>
+@@ -31,7 +30,7 @@
+     <option name="stateVersion" value="1" />
+   </component>
+   <component name="ProblemsViewState">
+-    <option name="selectedTabId" value="CurrentFile" />
++    <option name="selectedTabId" value="ProjectErrors" />
+   </component>
+   <component name="ProjectId" id="2CsoWGyDLiEPke6jv4nSACzbJvJ" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+@@ -48,7 +47,7 @@
+     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/idano/IdeaProjects/EnigmaMachine&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/guybe/Documents/האקדמית תל אביב/שנה ב/סמסטר קיץ/פיתוח תוכנה מבוסס ג'אווה/דוגמאות הקורס/05. XML&quot;,
+     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+@@ -59,6 +58,26 @@
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine" />
+     </key>
++  </component>
++  <component name="RunManager">
++    <configuration name="CreateEnigmaMachineFromFile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="enigmaEngine.CreateEnigmaMachineFromFile" />
++      <module name="EnigmaMachine" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="enigmaEngine.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Application.CreateEnigmaMachineFromFile" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -74,7 +93,9 @@
+       <workItem from="1659991079351" duration="60000" />
+       <workItem from="1659991150570" duration="1989000" />
+       <workItem from="1659994007600" duration="70000" />
+-      <workItem from="1659994090197" duration="6309000" />
++      <workItem from="1660081935245" duration="2083000" />
++      <workItem from="1660084050287" duration="2323000" />
++      <workItem from="1660123996775" duration="605000" />
+     </task>
+     <task id="LOCAL-00001" summary="test">
+       <created>1659601196558</created>
+@@ -107,14 +128,7 @@
+       <option name="presentableId" value="LOCAL‎00005" />
+       <updated>1659625578861</updated>
+     </task>
+-    <task id="LOCAL-00006" summary="added initialization of the stacks">
+-      <created>1659994504227</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1659994504227</updated>
+-    </task>
+-    <option name="localTasksCounter" value="7" />
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -134,8 +148,27 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="test" />
+     <MESSAGE value="update rotor test" />
+-    <MESSAGE value="added initialization of the stacks" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added initialization of the stacks" />
++    <option name="LAST_COMMIT_MESSAGE" value="update rotor test" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/enigmaEngine/SchemaBinding/CTEMachine.java</url>
++          <option name="timeStamp" value="9" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/enigmaEngine/CreateEnigmaMachineFromFile.java</url>
++          <line>66</line>
++          <option name="timeStamp" value="20" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++    <watches-manager>
++      <configuration name="Application">
++        <watch expression="rotors.get(0)" />
++      </configuration>
++    </watches-manager>
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
+Index: src/enigmaEngine/impl/RotorImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package enigmaEngine.impl;\r\n\r\nimport enigmaEngine.Engine;\r\nimport enigmaEngine.Rotatable;\r\nimport enigmaEngine.Rotor;\r\n\r\nimport java.lang.reflect.InvocationTargetException;\r\nimport java.lang.reflect.Method;\r\nimport java.util.Collections;\r\nimport java.util.List;\r\n\r\npublic class RotorImpl implements Rotor, Rotatable {\r\n    private final int id;\r\n    private final int notch;\r\n    private int countRotations;\r\n    private final int startIndex;   //TODO: initiate starting position of the rotor by startIndex\r\n    private final List<Character> rightSide;\r\n    private final List<Character> leftSide;\r\n    private final int rotorSize;\r\n    private Method rotateNextRotor;\r\n\r\n\r\n    public RotorImpl(int id, int notch, int startIndex, List<Character> rightSide, List<Character> leftSide) {\r\n        this.id = id;\r\n        this.notch = notch;\r\n        this.startIndex = startIndex;\r\n        this.rightSide = rightSide;\r\n        this.leftSide = leftSide;\r\n        this.countRotations = 0;\r\n        this.rotorSize = rightSide.size();\r\n        this.rotateNextRotor = null;\r\n    }\r\n\r\n    public int getOutputIndex(int inputIndex, Engine.Direction dir) {\r\n        int outputIndex = -1;\r\n        //make it better\r\n        if (dir == Engine.Direction.RIGHT) {\r\n            outputIndex = rightSide.indexOf(leftSide.get(inputIndex));\r\n        } else {\r\n            outputIndex = leftSide.indexOf(rightSide.get(inputIndex));\r\n        }\r\n//        if (dir == Engine.Direction.LEFT) {\r\n//            outputIndex = findCharIndexInList(leftSide, rightSide.get(inputIndex));\r\n//        } else {\r\n//            outputIndex = findCharIndexInList(rightSide, leftSide.get(inputIndex));\r\n//        }\r\n\r\n        return outputIndex;\r\n    }\r\n\r\n//    private int findCharIndexInList(List<Character> list, Character ch) {\r\n//        int index = -1;\r\n//\r\n//        for (int i = 0; i < list.size(); i++) {\r\n//            if (list.get(i) == ch) {\r\n//                index = i;\r\n//                break;\r\n//            }\r\n//        }\r\n//\r\n//        return index;\r\n//    }\r\n\r\n    @Override\r\n    public char makeFirstImport(int input, Engine.Direction dir) {\r\n        return 0;\r\n    }\r\n\r\n    @Override\r\n    public int makeSecondImport(char input, Engine.Direction dir) {\r\n        return 0;\r\n    }\r\n\r\n    @Override\r\n    public void rotate() {\r\n        Collections.rotate(rightSide, -1);\r\n        Collections.rotate(leftSide, -1);\r\n        this.countRotations = (countRotations + 1) % rotorSize;\r\n\r\n        try {\r\n            if (isNotchOnTop() && rotateNextRotor != null) { //rotates the next rotor if needed\r\n                rotateNextRotor.invoke(null);\r\n            }\r\n        } catch (InvocationTargetException | IllegalAccessException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n\r\n    @Override\r\n    public void rotateNext() {\r\n\r\n    }\r\n\r\n    private boolean isNotchOnTop() {\r\n        return countRotations == notch;\r\n    }\r\n\r\n    public void setRotateNextRotor(Method rotateNextRotor) {\r\n        this.rotateNextRotor = rotateNextRotor;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/enigmaEngine/impl/RotorImpl.java b/src/enigmaEngine/impl/RotorImpl.java
+--- a/src/enigmaEngine/impl/RotorImpl.java	
++++ b/src/enigmaEngine/impl/RotorImpl.java	
+@@ -70,7 +70,7 @@
+     public int makeSecondImport(char input, Engine.Direction dir) {
+         return 0;
+     }
+-
++    
+     @Override
+     public void rotate() {
+         Collections.rotate(rightSide, -1);
+Index: src/enigmaEngine/CreateEnigmaMachineFromFile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/enigmaEngine/CreateEnigmaMachineFromFile.java b/src/enigmaEngine/CreateEnigmaMachineFromFile.java
+new file mode 100644
+--- /dev/null	
++++ b/src/enigmaEngine/CreateEnigmaMachineFromFile.java	
+@@ -0,0 +1,83 @@
++package enigmaEngine;
++
++import enigmaEngine.impl.EnigmaEngine;
++import enigmaEngine.schemaBinding.*;
++
++import javax.xml.bind.JAXBContext;
++import javax.xml.bind.JAXBException;
++import javax.xml.bind.Unmarshaller;
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileNotFoundException;
++import java.io.InputStream;
++import java.util.ArrayList;
++import java.util.List;
++
++public enum CreateEnigmaMachineFromFile implements InitializeEnigmaComponents {
++    XML {
++        @Override
++        public EnigmaEngine getEnigmaEngineFromSource(String path) throws JAXBException {
++            CTEEnigma xmlOutput = null;
++            try {
++                InputStream xmlFile = new FileInputStream(path);
++                JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
++                Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
++                xmlOutput = (CTEEnigma)jaxbUnmarshaller.unmarshal(xmlFile);
++            } catch (JAXBException | FileNotFoundException e) {
++                e.printStackTrace();
++            }
++            CTEMachine machine = xmlOutput.getCTEMachine();
++            String cteMachineABC = machine.getABC();
++            int cteRotorsCount = machine.getRotorsCount();
++            CTERotors cteRotors = machine.getCTERotors();
++            List<CTEReflector> cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
++
++            List<Rotor> rotors = new ArrayList<>();
++            for (CTERotor rotor : cteRotors.getCTERotor()) {
++                int id = rotor.getId(), notch = rotor.getNotch();
++                // TODO: check if all notches in rotors are between 1 to the ABC length
++                // TODO: check if one of the numbers is bigger than the length of the ABC or non-positive or appears twice
++                List<Character> right = new ArrayList<>();
++                List<Character> left = new ArrayList<>();
++                for (CTEPositioning pair : rotor.getCTEPositioning()) {
++                    right.add(pair.getRight().charAt(0));
++                    left.add(pair.getLeft().charAt(0));
++                }
++                rotors.add(new enigmaEngine.impl.RotorImpl(id, notch, -1, right, left));
++            }
++
++            // TODO: check if the 'reflectors' list size is maximum 5
++            List<Reflector> reflectors = new ArrayList<>();
++            for (CTEReflector reflector : cteReflectors) {
++                Factory.ReflectorID id = Factory.ReflectorID.valueOf(reflector.getId().toUpperCase());
++                // TODO: check if the id is: I, II, III, VI or V
++                // TODO: check if one of the numbers is bigger than the length of the ABC or non-positive or appears twice
++                List<Integer> input = new ArrayList<>();
++                List<Integer> output = new ArrayList<>();
++                for (CTEReflect pair : reflector.getCTEReflect()) {
++                    input.add(pair.getInput());
++                    output.add(pair.getOutput());
++                }
++                reflectors.add(new enigmaEngine.impl.Reflector(input, output, id));
++            }
++            if (cteMachineABC.trim().length() % 2 == 1) {
++                // TODO: show message
++                // ERROR, odd number of letters.
++            }
++            return null;
++        }
++    },
++    JSON {
++        @Override
++        public EnigmaEngine getEnigmaEngineFromSource(String path) {
++            return null;
++        }
++    };
++
++    abstract public EnigmaEngine getEnigmaEngineFromSource(String path) throws JAXBException;
++
++    public static void main(String[] args) throws JAXBException {
++        // WHAT I DID IN CMD: xjc -d . -p enigmaEngine.schemaBinding Enigma-Ex1.xsd
++        ((InitializeEnigmaComponents) CreateEnigmaMachineFromFile.XML).getEnigmaEngineFromSource("ex1-sanity-small.xml");
++    }
++}
+Index: src/enigmaEngine/CreateEnigmaMachineFromXML.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package enigmaEngine;\r\n\r\nimport enigmaEngine.impl.EnigmaEngine;\r\n//TODO: implement this class , Guy Becken\r\npublic class CreateEnigmaMachineFromXML implements InitializeEnigmaComponents {\r\n    public EnigmaEngine getEnigmaEngineFromSource() {\r\n        return null;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/enigmaEngine/CreateEnigmaMachineFromXML.java b/src/enigmaEngine/CreateEnigmaMachineFromXML.java
+--- a/src/enigmaEngine/CreateEnigmaMachineFromXML.java	
++++ b/src/enigmaEngine/CreateEnigmaMachineFromXML.java	
+@@ -3,7 +3,7 @@
+ import enigmaEngine.impl.EnigmaEngine;
+ //TODO: implement this class , Guy Becken
+ public class CreateEnigmaMachineFromXML implements InitializeEnigmaComponents {
+-    public EnigmaEngine getEnigmaEngineFromSource() {
++    public EnigmaEngine getEnigmaEngineFromSource(String path) {
+         return null;
+     }
+ }

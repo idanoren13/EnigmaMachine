@@ -1,9 +1,9 @@
 package enigmaEngine;
 
-import enigmaEngine.impl.EnigmaEngine;
-import enigmaEngine.impl.PlugBoard;
-import enigmaEngine.impl.Reflector;
-import enigmaEngine.impl.Rotor;
+import enigmaEngine.impl.EnigmaEngineImpl;
+import enigmaEngine.impl.PlugBoardImpl;
+import enigmaEngine.impl.ReflectorImpl;
+import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.InitializeEnigmaComponents;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class CreateEnigmaMachineToDebug implements InitializeEnigmaComponents {
     @Override
-    public EnigmaEngine getEnigmaEngineFromSource(String source) {
+    public EnigmaEngineImpl getEnigmaEngineFromSource(String source) {
         ArrayList<Character> abc = new ArrayList<Character>();
         HashMap<Integer, enigmaEngine.interfaces.Rotor> rotors = new HashMap<Integer, enigmaEngine.interfaces.Rotor>();
         HashMap<Integer, enigmaEngine.interfaces.Reflector> reflectors = new HashMap<Integer, enigmaEngine.interfaces.Reflector>();
@@ -28,15 +28,15 @@ public class CreateEnigmaMachineToDebug implements InitializeEnigmaComponents {
         abc.add('K');
         abc.add('L');
 
-        enigmaEngine.interfaces.PlugBoard plugBoard = new PlugBoard();
+        enigmaEngine.interfaces.PlugBoard plugBoard = new PlugBoardImpl();
         plugBoard.addPair('C', 'B');
 
 //        rotors.put(1, new RotorImpl(1, 3, stringToArrayList("ABCDEF"), stringToArrayList("FEDCBA")));
 //        rotors.put(3, new RotorImpl(3, 5, stringToArrayList("ABCDEF"), stringToArrayList("BADCFE")));
 //        rotors.put(2, new RotorImpl(2, 0, stringToArrayList("ABCDEF"), stringToArrayList("EBDFCA")));
-        rotors.put(1, new Rotor(1, 3, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("HAIJCDEGLKBF")));
-        rotors.put(3, new Rotor(3, 5, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("GHICDEFJKLAB")));
-        rotors.put(2, new Rotor(2, 0, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("CFLBHIGKDEGA")));
+        rotors.put(1, new RotorImpl(1, 3, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("HAIJCDEGLKBF")));
+        rotors.put(3, new RotorImpl(3, 5, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("GHICDEFJKLAB")));
+        rotors.put(2, new RotorImpl(2, 0, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("CFLBHIGKDEGA")));
 
         HashMap<Integer, Integer> Pairs1 = new HashMap<Integer, Integer>();
         //decrementing the index by 1 to match the index of the abc arraylist
@@ -67,10 +67,10 @@ public class CreateEnigmaMachineToDebug implements InitializeEnigmaComponents {
         Pairs2.put(10, 11);
         Pairs2.put(11, 10);
 
-        reflectors.put(1, new Reflector(Pairs1, enigmaEngine.interfaces.Reflector.ReflectorID.I));
-        reflectors.put(2, new Reflector(Pairs2, enigmaEngine.interfaces.Reflector.ReflectorID.II));
+        reflectors.put(1, new ReflectorImpl(Pairs1, enigmaEngine.interfaces.Reflector.ReflectorID.I));
+        reflectors.put(2, new ReflectorImpl(Pairs2, enigmaEngine.interfaces.Reflector.ReflectorID.II));
 
-        return new EnigmaEngine(rotors, reflectors, plugBoard, abc);
+        return new EnigmaEngineImpl(rotors, reflectors, plugBoard, abc);
     }
 
     private ArrayList<Character> stringToArrayList(String input) {

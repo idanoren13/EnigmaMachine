@@ -1,0 +1,18 @@
+Index: src/enigmaEngine/InitializeEnigmaComponents.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package enigmaEngine;\r\n\r\nimport enigmaEngine.impl.EnigmaEngine;\r\n\r\npublic interface InitializeEnigmaComponents {\r\n    EnigmaEngine getEnigmaEngineFromSource();\r\n}\r\n
+===================================================================
+diff --git a/src/enigmaEngine/InitializeEnigmaComponents.java b/src/enigmaEngine/InitializeEnigmaComponents.java
+--- a/src/enigmaEngine/InitializeEnigmaComponents.java	
++++ b/src/enigmaEngine/InitializeEnigmaComponents.java	
+@@ -2,6 +2,8 @@
+ 
+ import enigmaEngine.impl.EnigmaEngine;
+ 
++import javax.xml.bind.JAXBException;
++
+ public interface InitializeEnigmaComponents {
+-    EnigmaEngine getEnigmaEngineFromSource();
++    EnigmaEngine getEnigmaEngineFromSource(String path) throws JAXBException;
+ }

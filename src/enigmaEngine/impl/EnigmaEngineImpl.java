@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-public class EnigmaEngine {
+public class EnigmaEngineImpl {
 
     private final HashMap<Integer, Rotor> rotors;
     private final HashMap<Integer, Reflector> reflectors;
@@ -31,7 +31,7 @@ public class EnigmaEngine {
 //        this.startingCharacters = new ArrayList<>();
 //    }
 
-    public EnigmaEngine(HashMap<Integer, Rotor> rotors, HashMap<Integer, Reflector> reflectors, PlugBoard plugBoard, ArrayList<Character> abc) {
+    public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Integer, Reflector> reflectors, PlugBoard plugBoard, ArrayList<Character> abc) {
         this.rotors = rotors;
         this.reflectors = reflectors;
         this.plugBoard = plugBoard;

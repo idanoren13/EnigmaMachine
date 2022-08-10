@@ -3,11 +3,11 @@ package enigmaEngine.impl;
 import java.util.HashMap;
 import java.util.List;
 
-public class Reflector implements enigmaEngine.interfaces.Reflector {
+public class ReflectorImpl implements enigmaEngine.interfaces.Reflector {
     private final HashMap<Integer, Integer> indexPairs;
     private final ReflectorID id;
 
-    public Reflector(List<Integer> input, List<Integer> output, ReflectorID id) {
+    public ReflectorImpl(List<Integer> input, List<Integer> output, ReflectorID id) {
         this.id = id;
         this.indexPairs = new HashMap<>();
 

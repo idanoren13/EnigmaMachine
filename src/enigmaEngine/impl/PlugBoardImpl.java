@@ -6,14 +6,14 @@ import jdk.internal.util.xml.impl.Pair;
 import java.util.HashMap;
 import java.util.List;
 
-public class PlugBoard implements enigmaEngine.interfaces.PlugBoard {
+public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
     private final HashMap<Character, Character> abcPairs;
 
-    public PlugBoard() {
+    public PlugBoardImpl() {
         this.abcPairs = new HashMap<Character, Character>();
     }
 
-    public PlugBoard(List<Pair<Character,Character>> pairList) {
+    public PlugBoardImpl(List<Pair<Character,Character>> pairList) {
         this.abcPairs = generateInputIntoPairs(pairList);
     }
 
