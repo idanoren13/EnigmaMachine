@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="Added reset Engine">
-      <change afterPath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidStartingCharacters.java" afterDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added exceptions and checking for starting characters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660168628296</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added exceptions and checking for starting characters">
+      <created>1660174804940</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660174804940</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +169,8 @@
     <MESSAGE value="update rotor test" />
     <MESSAGE value="added initialization of the stacks" />
     <MESSAGE value="Added reset Engine" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added reset Engine" />
+    <MESSAGE value="added exceptions and checking for starting characters" />
+    <option name="LAST_COMMIT_MESSAGE" value="added exceptions and checking for starting characters" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
