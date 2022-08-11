@@ -14,10 +14,12 @@ import java.util.List;
 public class Main {
     //TODO: The machine starts with 0 and not 1 as required
     public static void main(String[] args) {
+        // ~~~~~~~~~ UI : initialize the machine on start ~~~~~~~~~
         InitializeEnigmaEngine enigmaEngineInitializer = new InitializeEnigmaEngine();
 //        EnigmaEngine enigmaEngine = enigmaEngineInitializer.initializeEngine(InitializeEnigmaEngine.sourceMode.DEBUG, "");
         EnigmaEngine enigmaEngine = null;
 
+        // ~~~~~~~~~ UI : option 1 Load from XML ~~~~~~~~~
         try {
             enigmaEngine = enigmaEngineInitializer.initializeEngine(InitializeEnigmaEngine.sourceMode.XML, "src/Resources/ex1-sanity-small.xml");
         } catch (InvalidRotorException | InvalidReflectorException | InvalidABCException e) {   //exception thrown by the enigma engine initialization
@@ -26,6 +28,7 @@ public class Main {
             e.printStackTrace();
         }
 
+        // ~~~~~~~~~ UI : option 3 set machine state manually ~~~~~~~~~
         List<Integer> selectedRotors = Arrays.asList(2, 1);
         ArrayList<Character> startingCharacters = new ArrayList<>();
 
@@ -41,6 +44,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        // ~~~~~~~~~ UI : option 5 encrypt/decrypt message ~~~~~~~~~
         String secretMessage = /*"ABCDEFGHIJKL";*/ "ABCDEF";
         String encryptedMessage = /*"KFBLICCCLFIB";*/ "BCDEFC";
 
@@ -49,7 +53,7 @@ public class Main {
         }
 
         System.out.println();
-        enigmaEngine.reset();
+        enigmaEngine.reset();   //UI : option 6 reset the machine to its initial state
 
         for (int i = 0; i < encryptedMessage.length(); i++) {
             System.out.print(enigmaEngine.activate(encryptedMessage.charAt(i)));
