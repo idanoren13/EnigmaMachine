@@ -1,6 +1,6 @@
 package enigmaEngine;
 
-import enigmaEngine.impl.EnigmaEngine;
+import enigmaEngine.impl.EnigmaEngineImpl;
 import enigmaEngine.impl.PlugBoardImpl;
 import enigmaEngine.impl.ReflectorImpl;
 import enigmaEngine.impl.RotorImpl;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class EnigmaMachineToDebug implements InitializeEnigma {
     @Override
-    public EnigmaEngine getEnigmaEngineFromSource(String source) {
+    public EnigmaEngineImpl getEnigmaEngineFromSource(String source) {
         String abc = new String("ABCDEFGHIJKL");
         HashMap<Integer, Rotor> rotors = new HashMap<>();
         HashMap<Reflector.ReflectorID, Reflector> reflectors = new HashMap<>();
@@ -60,7 +60,7 @@ public class EnigmaMachineToDebug implements InitializeEnigma {
         reflectors.put(Reflector.ReflectorID.I, new ReflectorImpl(Pairs1, Reflector.ReflectorID.I));
         reflectors.put(Reflector.ReflectorID.II, new ReflectorImpl(Pairs2, Reflector.ReflectorID.II));
 
-        return new EnigmaEngine(rotors, reflectors, plugBoard, abc);
+        return new EnigmaEngineImpl(rotors, reflectors, plugBoard, abc);
     }
 
     private ArrayList<Character> stringToArrayList(String input) {

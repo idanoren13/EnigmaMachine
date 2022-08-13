@@ -4,6 +4,8 @@ public interface Rotor extends Rotatable {
     enum Direction {
         LEFT, RIGHT
     }
+
+    int getNotch();
     int getOutputIndex(int inputIndex, Direction dir);
 
     void setStartIndex(char startCharacter);

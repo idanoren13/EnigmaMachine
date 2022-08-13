@@ -30,6 +30,11 @@ public class RotorImpl implements Rotor, Rotatable {
     }
 
     @Override
+    public int getNotch() {
+        return this.notch;
+    }
+
+    @Override
     public int getOutputIndex(int inputIndex, Direction dir) {
         if (dir == Direction.RIGHT) {
             return rightSide.indexOf(leftSide.get(inputIndex));

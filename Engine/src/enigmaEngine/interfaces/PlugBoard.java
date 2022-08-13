@@ -1,13 +1,12 @@
 package enigmaEngine.interfaces;
 
-import javafx.util.Pair;
+import Resources.PairClass;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface PlugBoard {
     char returnCharacterPair(char character);
-    void UpdatePairs(List<Pair<Character, Character>> pairList);
+    void UpdatePairs(List<PairClass<Character, Character>> pairList);
     void addPair(char a, char b);
 //    HashMap<Character, Character> generateInputIntoPairs(List<Pair<Character,Character>> pairList); // if input = null -> return null
 

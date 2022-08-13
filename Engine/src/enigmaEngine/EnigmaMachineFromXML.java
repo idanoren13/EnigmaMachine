@@ -3,10 +3,8 @@ package enigmaEngine;
 import enigmaEngine.exceptions.InvalidABCException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.impl.EnigmaEngine;
+import enigmaEngine.impl.EnigmaEngineImpl;
 import enigmaEngine.impl.PlugBoardImpl;
-import enigmaEngine.impl.ReflectorImpl;
-import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
@@ -28,7 +26,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
 
     @Override
-    public EnigmaEngine getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
+    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
         CTEEnigma xmlOutput = null;
 
         if (!path.contains(".xml")) {
@@ -42,7 +40,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         return getEnigmaEngine(path, xmlOutput);
     }
 
-    private EnigmaEngine getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
+    private EnigmaEngineImpl getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
 
         assert xmlOutput != null;
         String cteMachineABC;
@@ -117,6 +115,6 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
 
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
-        return new EnigmaEngine(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
+        return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
     }
 }
