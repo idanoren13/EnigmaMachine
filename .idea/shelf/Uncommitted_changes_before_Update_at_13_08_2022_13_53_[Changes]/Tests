@@ -1,0 +1,9 @@
+Tests For The Enigma Engine:
+
+Validating the Enigma Engine:
+    -   rotors, plug board are correctly initialised by the machineABC.
+    -   reflectors are correctly initialised by the machineABC by length.
+    -   selected rotors exist in rotors HashMap.
+    -   all the components(rotors, reflectors, plug board nad machineABC) are in even size.
+    -   size of startingCharacters is equal to the number of selected rotors.
+    -   startingCharacters is a valid set of characters.
