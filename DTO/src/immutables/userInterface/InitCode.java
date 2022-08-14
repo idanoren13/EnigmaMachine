@@ -1,7 +1,7 @@
 package immutables.userInterface;
 
-import Resources.PairClass;
 import enigmaEngine.interfaces.Reflector;
+import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ public class InitCode {
     private Deque<Integer> selectedRotors; // ArrayDeque<Integer>, LIFO collection (as same as stack)
     private List<Character> startingCharacters;
     private Reflector.ReflectorID reflector;
-    private List<PairClass<Character, Character>> abcPairs;
+    private List<Pair<Character, Character>> abcPairs;
     private List<Integer> notchIndexes;
 
     // For manual machine initialization
@@ -50,11 +50,11 @@ public class InitCode {
         return listCharacters;
     }
 
-    private List<PairClass<Character, Character>> createPlugBoardPairs(String abcString) {
+    private List<Pair<Character, Character>> createPlugBoardPairs(String abcString) {
         char abcArr[] = abcString.toCharArray();
-        List<PairClass<Character, Character>> abcPairs = new ArrayList<>();
+        List<Pair<Character, Character>> abcPairs = new ArrayList<>();
         for (int i = 0; i < abcArr.length; i += 2) {
-            abcPairs.add(new PairClass<Character, Character>(abcArr[i], abcArr[i + 1]));
+            abcPairs.add(new Pair<Character, Character>(abcArr[i], abcArr[i + 1]));
         }
         return abcPairs;
     }
@@ -98,7 +98,7 @@ public class InitCode {
             put("V", false);
         }};
         for (String singleID : reflectorsID) {
-            if (allIDs.containsValue(singleID) == true) {
+            if (allIDs.containsValue(singleID)) {
                 allIDs.put(singleID, true);
             }
         }
@@ -156,7 +156,7 @@ public class InitCode {
         return this.reflector;
     }
 
-    public List<PairClass<Character, Character>> getAbcPairs() {
+    public List<Pair<Character, Character>> getAbcPairs() {
         return this.abcPairs;
     }
 

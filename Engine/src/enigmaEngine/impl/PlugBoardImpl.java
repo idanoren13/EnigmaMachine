@@ -1,6 +1,6 @@
 package enigmaEngine.impl;
 
-import Resources.PairClass;
+import javafx.util.Pair;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +14,12 @@ public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
         this.abcPairs = new HashMap<Character, Character>();
     }
 
-    public PlugBoardImpl(List<PairClass<Character,Character>> pairList) {
+    public PlugBoardImpl(List<Pair<Character,Character>> pairList) {
         this.abcPairs = generateInputIntoPairs(pairList);
     }
 
 
-    private HashMap<Character, Character> generateInputIntoPairs(List<PairClass<Character,Character>> pairList) {
+    private HashMap<Character, Character> generateInputIntoPairs(List<Pair<Character,Character>> pairList) {
 //        String[] allPairs = pairList.split(",");
 //        HashMap<Character, Character> abcPairs = new HashMap<>();
 //        for (String pair : allPairs) {
@@ -31,7 +31,7 @@ public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
 //        return abcPairs;
 
         HashMap<Character, Character> abcPairs = new HashMap<>();
-        for (PairClass<Character,Character> pair : pairList) {
+        for (Pair<Character,Character> pair : pairList) {
             abcPairs.put(pair.getKey(), pair.getValue());
             abcPairs.put(pair.getValue(), pair.getKey());
         }
@@ -49,7 +49,7 @@ public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
     }
 
     @Override
-    public void UpdatePairs(List<PairClass<Character, Character>> pairList) {
+    public void UpdatePairs(List<Pair<Character, Character>> pairList) {
         this.abcPairs.clear();
         this.abcPairs.putAll(generateInputIntoPairs(pairList));
     }

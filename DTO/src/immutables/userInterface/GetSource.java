@@ -24,9 +24,9 @@ public class GetSource {
         // TODO: if this raised some exception, no engine overwriting should happen
     }
     private enigmaEngine.InitializeEnigmaEngine.SourceMode getFilePathExtension(String path) {
-        if (path.matches("[a-zA-Z]+") == false) { // TODO: add exception handling
-            System.out.println("Exception! Only English letters can be given.");
-        }
+//        if (path.matches("[a-zA-Z]+") == false) { // TODO: add exception handling
+//            System.out.println("Exception! Only English letters can be given.");
+//        }
         int substringLength = path.lastIndexOf(".") + 1;
         String extension = path.substring(substringLength);
         return enigmaEngine.InitializeEnigmaEngine.SourceMode.valueOf(extension);

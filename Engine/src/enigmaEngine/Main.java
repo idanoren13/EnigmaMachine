@@ -1,6 +1,5 @@
 package enigmaEngine;
 
-import Resources.PairClass;
 import enigmaEngine.exceptions.InvalidABCException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
@@ -8,6 +7,7 @@ import enigmaEngine.exceptions.InvalidStartingCharacters;
 import enigmaEngine.impl.EnigmaEngineImpl;
 import enigmaEngine.impl.PlugBoardImpl;
 import enigmaEngine.interfaces.Reflector;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,13 +46,13 @@ public class Main {
         } catch (InvalidRotorException e) {
             throw new RuntimeException(e);
         }
-        List<PairClass<Character, Character>> plugBoardPairs = new ArrayList<PairClass<Character, Character>>(){{
-            add(new PairClass<Character, Character>(Character.toUpperCase('a'), Character.toUpperCase('f')));
+        List<Pair<Character, Character>> plugBoardPairs = new ArrayList<Pair<Character, Character>>() {{
+            add(new Pair<Character, Character>(Character.toUpperCase('a'), Character.toUpperCase('f')));
         }};
         enigmaEngine.setPlugBoard(new PlugBoardImpl(plugBoardPairs));
         // ~~~~~~~~~ UI : option 5 encrypt/decrypt message ~~~~~~~~~
         String secretMessage = "AABBCCDDEEFF"; /*"ABCDEFGHIJKL";*/ /*"ABCDEF"*/;
-        String encryptedMessage = "CEEFBDFCDAAB"; /*"KFBLICCCLFIB"*/ /*"BCDEFC"*/;
+        String encryptedMessage = "CEEFBAFCDABD"; /*"KFBLICCCLFIB"*/ /*"BCDEFC"*/;
 
         for (int i = 0; i < secretMessage.length(); i++) {
             System.out.print(enigmaEngine.activate(secretMessage.charAt(i)));

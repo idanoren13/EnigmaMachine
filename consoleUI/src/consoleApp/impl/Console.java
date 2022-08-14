@@ -85,14 +85,17 @@ public class Console implements Input {
                 System.out.println("Please enter a single-digit from one of the numbers above, without other letters.");
                 valid3 = false;
             }
-        } while (valid3 == false);
+
+        } while (!valid3);
+
         do {
             allPlugBoardPairs = this.scanner.nextLine().trim();
             valid4 = (allPlugBoardPairs.length() % 2 == 1);
-            if (valid4 == false) {
+            if (!valid4) {
                 System.out.println("Given plug board pairs does not contain even number of ABC characters. Try again please.");
             }
-        } while (valid4 == false);
+
+        } while (!valid4);
 
         return new InitCode(selectedRotors, allStartingPositions, reflectorNumber, allPlugBoardPairs, getAllNotches());
     }

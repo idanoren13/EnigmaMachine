@@ -1,52 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="update rotor test">
-      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/userInterface/GetSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/userInterface/InitCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/Resources/PairClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/UnknownSourceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/UI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/src/consoleApp/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/src/consoleApp/exceptions/InputMisMatchException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/src/consoleApp/impl/Console.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/src/consoleApp/interfaces/Input.java" afterDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="added exceptions and checking for starting characters">
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/Enigma-Ex1.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Resources/Enigma-Ex1.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/ex1-sanity-small.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/EnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/Tests" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/Tests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidABCException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidABCException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidReflectorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidReflectorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidRotorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidRotorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/exceptions/InvalidStartingCharacters.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidStartingCharacters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/ReflectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Rotatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTEEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTEMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTEPositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTEReflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTEReflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTEReflectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTERotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/CTERotors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enigmaEngine/schemaBinding/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/userInterface/GetSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/userInterface/GetSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/userInterface/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/userInterface/InitCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/PairClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/UI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/consoleUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/src/consoleApp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/src/consoleApp/exceptions/InputMisMatchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/InputMisMatchException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/src/consoleApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +64,7 @@
     "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
     "last_opened_file_path": "C:/Users/guybe/Downloads/javafx-sdk-18.0.2",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "configurable.group.editor"
@@ -109,7 +80,7 @@
       <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.enigmaEngine.Main">
+  <component name="RunManager" selected="Application.consoleApp.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="enigmaEngine.Main" />
       <module name="EnigmaMachine" />
@@ -125,7 +96,7 @@
     </configuration>
     <configuration name="consoleApp.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="consoleApp.Main" />
-      <module name="UI" />
+      <module name="consoleUI" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="consoleApp.*" />
@@ -151,8 +122,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.enigmaEngine.Main" />
         <item itemvalue="Application.consoleApp.Main" />
+        <item itemvalue="Application.enigmaEngine.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -253,9 +224,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/consoleUI/src/consoleApp/Main.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

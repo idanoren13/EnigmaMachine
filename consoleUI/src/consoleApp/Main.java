@@ -42,39 +42,30 @@ public class Main {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Please enter a single-digit from one of the numbers above.");
                 }
-            } while (validInput == false);
+            } while (!validInput);
 
             switch(userChoice) {
-                case CHOICE_ONE: {
+                case CHOICE_ONE:
                     consoleApp.readMachineFromXMLFile();
                     break;
-                }
-                case CHOICE_TWO: {
+                case CHOICE_TWO:
                     consoleApp.getMachineSpecs();
                     break;
-                }
-                case CHOICE_THREE: {
+                case CHOICE_THREE:
                     break;
-                }
-                case CHOICE_FOUR: {
+                case CHOICE_FOUR:
                     break;
-                }
-                case CHOICE_FIVE: {
+                case CHOICE_FIVE:
                     break;
-                }
-                case CHOICE_SIX: {
+                case CHOICE_SIX:
                     break;
-                }
-                case CHOICE_SEVEN: {
-
+                case CHOICE_SEVEN:
                     break;
-                }
-                case CHOICE_EIGHT: {
+                case CHOICE_EIGHT:
                     System.out.println("Goodbye!");
                     break;
-                }
             }
-        } while (userChoice != userChoice.CHOICE_EIGHT);
+        } while (userChoice != Choice.CHOICE_EIGHT);
     }
 
     public static void greetUser() {
