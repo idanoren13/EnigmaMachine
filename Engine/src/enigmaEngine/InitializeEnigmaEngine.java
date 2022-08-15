@@ -17,10 +17,10 @@ public class InitializeEnigmaEngine {
         JSON
     }
 
-    private String lastFilePath = null;
+    private final String lastFilePath = null;
 
     public EnigmaEngine initializeEngine(SourceMode source, String path) throws InvalidRotorException, InvalidABCException, InvalidReflectorException, JAXBException, FileNotFoundException, UnknownSourceException {
-        InitializeEnigma enigmaEngineInitializer = null;
+        InitializeEnigma enigmaEngineInitializer;
 
         switch (source){
             case XML:
@@ -32,13 +32,6 @@ public class InitializeEnigmaEngine {
             default:
                 throw new UnknownSourceException("Unknown file extension source is given.");
         }
-        if (lastFilePath != null && lastFilePath.equals(path) == true) {
-            // TODO: add exception and get out
-            System.out.println("This file already exists in the machine.");
-            return null;
-        }
-        else {
-            return enigmaEngineInitializer.getEnigmaEngineFromSource(path);
-        }
+        return enigmaEngineInitializer.getEnigmaEngineFromSource(path);
     }
 }

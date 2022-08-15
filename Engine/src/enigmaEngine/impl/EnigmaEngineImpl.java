@@ -1,11 +1,15 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.exceptions.InvalidPlugBoardException;
+import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.exceptions.InvalidStartingCharacters;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
+import immutables.engine.EngineDTO;
+import javafx.util.Pair;
 
 import java.util.*;
 
@@ -15,21 +19,24 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     private PlugBoard plugBoard;
     private final String machineABC;
     private final Map<Character, Character> machineABCMap;
-    private final Deque<Rotor> rotorStackRightToLeft; // Stack is thread-safe, ArrayDeque is not. Both are LIFO
-    private final Deque<Rotor> rotorStackLeftToRight; // Stack is thread-safe, ArrayDeque is not. Both are LIFO
+    private final Deque<Rotor> rotorStackRightToLeft;
+    private final Deque<Rotor> rotorStackLeftToRight;
     private List<Integer> selectedRotors;
     private Reflector selectedReflector;
     private List<Character> startingCharacters;
+    private int messagesSentCounter;
+
 
     public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
         this.rotors = rotors;
         this.reflectors = reflectors;
         this.plugBoard = plugBoard;
         this.machineABC = abc;
-        this.rotorStackRightToLeft = new ArrayDeque<>(); // Stack is thread-safe, ArrayDeque is not. Both are LIFO
-        this.rotorStackLeftToRight = new ArrayDeque<>(); // Stack is thread-safe, ArrayDeque is not. Both are LIFO
+        this.rotorStackRightToLeft = new ArrayDeque<>();
+        this.rotorStackLeftToRight = new ArrayDeque<>();
         this.startingCharacters = new ArrayList<>();
         this.machineABCMap = new HashMap<>();
+        this.messagesSentCounter = 0;
         for (int i = 0; i < machineABC.length(); i++) {
             machineABCMap.put(machineABC.charAt(i), machineABC.charAt(i));
         }
@@ -40,10 +47,16 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         return this.rotors;
     }
 
+//    @Override
+//    public HashMap<Reflector.ReflectorID, Reflector> getReflectors() {
+//        return this.reflectors;
+//    }
+
     @Override
     public String getMachineABC() {
         return this.machineABC;
     }
+
     @Override
     public char activate(char input) {
 
@@ -57,7 +70,19 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         index = selectedReflector.findPairByIndex(index);
         index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index, Rotor.Direction.RIGHT); //pipeline from the reflector
         temp = machineABC.charAt(index);
+
         return plugBoard.returnCharacterPair(temp);
+    }
+
+    @Override
+    public String encryptDecrypt(String input) {
+        StringBuilder output = new StringBuilder();
+        messagesSentCounter++;
+        for (int i = 0; i < input.length(); i++) {
+            output.append(activate(input.charAt(i)));
+        }
+
+        return output.toString();
     }
 
     @Override
@@ -83,12 +108,18 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         this.selectedRotors.forEach(rotorID -> this.rotorStackRightToLeft.push(this.rotors.get(rotorID)));
     }
 
-    public void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) {
+    @Override
+    public void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) throws InvalidReflectorException {
+        if (!reflectors.containsKey(selectedReflectorID)) {
+            throw new InvalidReflectorException("Reflector not found");
+        }
         this.selectedReflector = reflectors.get(selectedReflectorID);
     }
 
-    public void setPlugBoard(PlugBoard plugBoard) {
-        this.plugBoard = plugBoard;
+    @Override
+    public void setPlugBoard(List<Pair<Character, Character>> plugBoard) throws InvalidPlugBoardException {
+        checkPlugBoard(plugBoard);
+        this.plugBoard = new PlugBoardImpl(plugBoard);
     }
 
     @Override
@@ -99,6 +130,29 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         } catch (InvalidStartingCharacters | InvalidRotorException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public EngineDTO getEngineDTO() {
+        return new EngineDTO(rotors.size(),
+                reflectors.size(),
+                plugBoard.getPairs(),
+                selectedReflector == null ? "" : selectedReflector.getReflectorID().toString(),
+                charsAtWindows(),
+                getSelectedRotorsAndNotchesDistances());
+    }
+
+    private List<Character> charsAtWindows() {
+        List<Character> charsAtWindows = new ArrayList<>();
+        for (Rotor rotor : rotorStackRightToLeft) {
+            charsAtWindows.add(rotor.peekWindow());
+        }
+        return charsAtWindows;
+    }
+
+    @Override
+    public PlugBoard getPlugBoard() {
+        return this.plugBoard;
     }
 
     private int runRotorPipelineStack(Deque<Rotor> pipelineStack, Deque<Rotor> stackToBeFilled, int index, Rotor.Direction dir) {
@@ -130,19 +184,38 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         if (startingCharacters.stream().anyMatch(c -> !this.machineABCMap.containsKey(c))) {
             throw new InvalidStartingCharacters("Starting characters must be valid");
         }
-        // TODO: is this useless?
-        for (char c : startingCharacters) {
-            if (this.machineABC.contains(String.valueOf(c)) == false) {
-                throw new InvalidStartingCharacters("'" + c + "' does not appear in the machine abc.");
-            }
-        }
     }
+
     private void checkSelectedRotors(List<Integer> rotorsIDs) throws InvalidRotorException {
-        if(rotorsIDs.size() > rotors.size()) {
+        if (rotorsIDs.size() > rotors.size()) {
             throw new InvalidRotorException("Too many rotors selected");
         }
-        if(rotorsIDs.stream().anyMatch(rotorID -> !rotors.containsKey(rotorID))) {
+        if (rotorsIDs.stream().anyMatch(rotorID -> !rotors.containsKey(rotorID))) {
             throw new InvalidRotorException("Invalid rotor selected");
+        }
+        if (new HashSet<>(rotorsIDs).size() != rotorsIDs.size()) {
+            throw new InvalidRotorException("Duplicate rotors selected");
+        }
+    }
+
+    private List<Pair<Integer, Integer>> getSelectedRotorsAndNotchesDistances() {
+        List<Pair<Integer, Integer>> notchPositionsByOrder = new ArrayList<>();
+        for (Integer selectedRotor : selectedRotors) {
+            notchPositionsByOrder.add(new Pair<>(selectedRotor, Math.abs(rotors.get(selectedRotor).getNotch() - rotors.get(selectedRotor).getNumberOfRotations())));
+        }
+
+        return notchPositionsByOrder;
+    }
+
+    private void checkPlugBoard(List<Pair<Character, Character>> plugBoard) throws InvalidPlugBoardException {
+        this.plugBoard = new PlugBoardImpl();
+
+        for (Pair<Character, Character> pair : plugBoard) {
+            if (!machineABCMap.containsKey(pair.getKey()) || !machineABCMap.containsKey(pair.getValue()) || this.plugBoard.containsPair(pair)) {
+                throw new InvalidPlugBoardException("Plug board contains invalid characters");
+            }
+
+            this.plugBoard.addPair(pair.getKey(), pair.getValue());
         }
     }
 }

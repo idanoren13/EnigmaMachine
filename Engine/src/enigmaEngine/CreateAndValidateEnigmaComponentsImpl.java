@@ -1,6 +1,7 @@
 package enigmaEngine;
 
 import enigmaEngine.exceptions.InvalidABCException;
+import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.impl.ReflectorImpl;
@@ -19,18 +20,22 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     private final String abc;
     private final HashMap<Character, Character> abcMap;
 
+    private int currentRotorID, currentRotorNotch;
+
     public CreateAndValidateEnigmaComponentsImpl(String abc) {
         this.abc = abc.toUpperCase();
         this.abcMap = new HashMap<>();
     }
 
     /*
-    * Creations
-    * */
+     * Creations
+     * */
     @Override
     public Rotor createRotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) throws InvalidRotorException {
-        validateRotor(id, notch, rightSide, leftSide);
-        return new RotorImpl(id, notch, rightSide, leftSide);
+        currentRotorID = id;
+        currentRotorNotch = notch;
+        validateRotor(rightSide, leftSide);
+        return new RotorImpl(currentRotorID, currentRotorNotch, rightSide, leftSide);
     }
 
     @Override
@@ -47,21 +52,21 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
 
     @Override
     public void validateRotorsIDs(Map<Integer, Rotor> rotorMap) throws InvalidRotorException {
-        if(rotorMap.keySet().stream().anyMatch(i -> i < 1 || i > rotorMap.size())){
+        if (rotorMap.keySet().stream().anyMatch(i -> i < 1 || i > rotorMap.size())) {
             throw new InvalidRotorException("Rotor ID must be sequential from 1 to" + rotorMap.size());
         }
     }
 
     @Override
     public void validateReflectorsIDs(Map<Reflector.ReflectorID, Reflector> reflectorsMap) throws InvalidReflectorException {
-        if(reflectorsMap.keySet().stream().anyMatch(id -> id.ordinal() >= reflectorsMap.size())){
+        if (reflectorsMap.keySet().stream().anyMatch(id -> id.ordinal() >= reflectorsMap.size())) {
             throw new InvalidReflectorException("Reflector ID must be sequential from 1 to" + reflectorsMap.size());
         }
     }
 
     /*
-    * Validations
-    * */
+     * Validations
+     * */
     @Override
     public void ValidateABC(String abc) throws InvalidABCException {
 
@@ -78,9 +83,9 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
         }
     }
 
-    private void validateRotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) throws InvalidRotorException {
-        validateRotorId(id);
-        validateRotorNotch(notch);
+    private void validateRotor(List<Character> rightSide, List<Character> leftSide) throws InvalidRotorException {
+        validateRotorId();
+        validateRotorNotch();
         validateRotorSides(rightSide, leftSide);
     }
 
@@ -92,25 +97,25 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     private void validateRotorSide(List<Character> side, String sideName) throws InvalidRotorException {
         // check if all the characters in side unique
         if (new HashSet(side).size() != abc.length()) {
-            throw new InvalidRotorException("Rotor" + sideName + " side characters must be unique");
+            throw new InvalidRotorException("Rotor " + currentRotorID + " " + sideName + " side " + ":characters must be unique");
         }
 
         for (Character character : side) {
             if (!abcMap.containsKey(character)) {
-                throw new InvalidRotorException("Rotor" + sideName + " characters must be in abc");
+                throw new InvalidRotorException("Rotor " + currentRotorID + " " + sideName + " side " + ":characters must be in abc");
             }
         }
     }
 
-    private void validateRotorNotch(int notch) throws InvalidRotorException {
-        if (notch < 0 || notch >= abc.length()) {
-            throw new InvalidRotorException("Rotor notch must be in abc");
+    private void validateRotorNotch() throws InvalidRotorException {
+        if (currentRotorNotch < 0 || currentRotorNotch >= abc.length()) {
+            throw new InvalidRotorException("Rotor " + currentRotorID + " :notch must be in abc");
         }
     }
 
-    private void validateRotorId(int id) throws InvalidRotorException {
-        if (id < 0) {
-            throw new InvalidRotorException("Rotor id must be natural number");
+    private void validateRotorId() throws InvalidRotorException {
+        if (currentRotorID < 0) {
+            throw new InvalidRotorException("Rotor id must be natural number" + currentRotorID);
         }
     }
 
@@ -136,6 +141,11 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
         }
     }
 
+    private void validatePlugBoard(Map<Character, Character> plugBoard) throws InvalidPlugBoardException {
+        if (plugBoard.keySet().stream().anyMatch(i -> i > (abc.length() / 2))) {
+            throw new InvalidPlugBoardException("Plug board must be at most half as ABC" + abc.length());
+        }
+    }
 
 }
 

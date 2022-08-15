@@ -1,37 +1,34 @@
 package consoleApp.impl;
 
 import consoleApp.interfaces.Input;
-import enigmaEngine.exceptions.InvalidABCException;
-import enigmaEngine.exceptions.InvalidReflectorException;
-import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.UnknownSourceException;
+import enigmaEngine.InitializeEnigmaEngine;
+import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
-import enigmaEngine.interfaces.Rotor;
-import immutables.userInterface.InitCode;
+import immutables.engine.EngineDTO;
+import javafx.util.Pair;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Console implements Input {
 
     private Scanner scanner;
-    private EnigmaEngine machine;
+    private EnigmaEngine engine;
     private int numOfDecryptions;
     private List<String> stringInput;
     private List<String> stringOutput;
     private List<Integer> timeStamps;
+    private List<String> codeTransforms;
 
     public Console() {
         this.scanner = new Scanner(System.in);
-        this.machine = null;
+        this.engine = null;
         this.numOfDecryptions = 0;
-        this.stringInput = null;
-        this.stringOutput = null;
+        this.stringInput = new ArrayList<>();
+        this.stringOutput = new ArrayList<>();
         this.timeStamps = null;
+        this.codeTransforms = new ArrayList<>();
     }
 
     public Scanner getScanner() {
@@ -39,93 +36,145 @@ public class Console implements Input {
     }
 
     public Console(EnigmaEngine machine) {
-        this.machine = machine;
+        this.engine = machine;
         this.stringInput = null;
         this.stringOutput = null;
         this.timeStamps = null;
     }
 
     @Override
-    public void readMachineFromXMLFile() throws JAXBException, InvalidRotorException, FileNotFoundException, InvalidABCException, UnknownSourceException, InvalidReflectorException {
+    public void readMachineFromXMLFile() {
         System.out.println("Enter a valid full path to your file, including file name and its file extension.");
+
         try {
-            String path = this.scanner.nextLine();
-            EnigmaEngine newMachine = new immutables.userInterface.GetSource(path).getEngine();
-            this.machine = newMachine;
-        } catch(Exception e) {
-            // TODO: add error message, etc... Prevent machine for being overwritten
+            engine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, this.scanner.nextLine());
+        } catch (InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException |
+                 FileNotFoundException | UnknownSourceException e) {
+            System.out.println("Exception: " + e.getMessage());
+            engine = null;
+            return;
         }
+
+        System.out.println("Machine successfully initialized.");
     }
 
     @Override
     public void getMachineSpecs() {
-        // TODO: do this
+        EngineDTO DTO = engine.getEngineDTO();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Machine specs:\n");
+        sb.append("\tMax Number Of Rotors: ").append(DTO.getTotalNumberOfRotors()).append("\n");
+        sb.append("\tCurrent Selected Rotors: ").append(DTO.getSelectedRotors().size()).append("\n");
+        sb.append("\tNumber Of Reflectors: ").append(DTO.getTotalReflectors()).append("\n");
+        sb.append("\tMessages Processed: ").append(numOfDecryptions).append("\n");
+        sb.append("\tCurrent Machine State: ").append(currentMachineState(DTO)).append("\n");
+
+        System.out.println(sb.toString());
+    }
+
+    private StringBuilder currentMachineState(EngineDTO DTO) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<");
+        for (Pair<Integer, Integer> rotorIDAndNotchPosition : DTO.getSelectedRotorsAndNotchesPosition()) {
+            sb.append(rotorIDAndNotchPosition.getKey()).append('(').append(rotorIDAndNotchPosition.getValue()).append("),");
+        }
+
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(">");
+
+        sb.append("<").append(DTO.currentSelectedRotorsPositions()).append(">");//TODO: implement toString
+        sb.append("<").append(DTO.getSelectedReflector()).append(">");
+
+        if (DTO.getPlugBoard() != null) {
+            sb.append("<");
+            //TODO: implement not working good bad logic, do not touch it ill fix it later
+            Map<Character, Character> plugBoardDP =  new HashMap<>(DTO.getPlugBoard());
+            for (Map.Entry<Character, Character> pair : DTO.getPlugBoard().entrySet()) {
+                sb.append(pair.getKey()).append('|').append(pair.getValue()).append(",");
+                if (!plugBoardDP.isEmpty()) {
+                    plugBoardDP.remove(pair.getValue());
+                    plugBoardDP.remove(pair.getKey());
+                }
+            }
+
+            sb.append(">");
+        }
+
+        return sb;
     }
 
     @Override
-    public InitCode initializePaperEnigmaCodeManually() {
-        String machineABC = this.machine.getMachineABC();
-        boolean valid1 = false;
-        boolean valid2 = false;
-        boolean valid3 = false;
-        boolean valid4 = false;
-        String selectedRotors = null;
-        String allStartingPositions = null;
-        int reflectorNumber = -1;
-        String allPlugBoardPairs = null;
+    public void initializeEnigmaCodeManually() {
+        boolean isValid = false;
+        String selectedRotors;
+        String allStartingPositions;
+        String reflectorNumber;
+        String allPlugBoardPairs;
+        InitCode initCode = new InitCode();
 
-        selectedRotors = this.scanner.nextLine();
-        allStartingPositions = this.scanner.nextLine();
-        System.out.println("Enter your desired reflector ID.");
-        do {
+        while (!isValid) {
             try {
-                reflectorNumber = Integer.parseInt(this.scanner.nextLine());
-                valid3 = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a single-digit from one of the numbers above, without other letters.");
-                valid3 = false;
+                System.out.println("Enter your desired rotor IDs separated by a comma without spaces.");
+                selectedRotors = this.scanner.nextLine();
+                System.out.println("Enter your desired rotor starting positions no separation between them.");
+                allStartingPositions = this.scanner.nextLine();
+                engine.setSelectedRotors(initCode.createSelectedRotorsDeque(selectedRotors), initCode.createStartingCharactersList(allStartingPositions));
+                isValid = true;
+            } catch (InvalidRotorException | InvalidStartingCharacters | NumberFormatException e) {
+                System.out.println("Exception: " + e.getMessage());
             }
-
-        } while (!valid3);
-
-        do {
-            allPlugBoardPairs = this.scanner.nextLine().trim();
-            valid4 = (allPlugBoardPairs.length() % 2 == 1);
-            if (!valid4) {
-                System.out.println("Given plug board pairs does not contain even number of ABC characters. Try again please.");
-            }
-
-        } while (!valid4);
-
-        return new InitCode(selectedRotors, allStartingPositions, reflectorNumber, allPlugBoardPairs, getAllNotches());
-    }
-
-    private List<Integer> getAllNotches() {
-        HashMap<Integer, Rotor> allRotors = this.machine.getRotors();
-        List<Integer> allNotches = new ArrayList<>();
-
-        for (int i = 0; i < allRotors.size(); i++) {
-            allNotches.add(allRotors.get(i).getNotch());
         }
 
-        return allNotches;
+        isValid = false;
+        while (!isValid) {
+            try {
+                System.out.println("Enter your desired reflector ID please enter the number using romans numerals (I, II, III, IV, V)");
+                reflectorNumber = this.scanner.nextLine();
+                engine.setSelectedReflector(initCode.getReflectorID(reflectorNumber));
+                isValid = true;
+            } catch (InvalidReflectorException | IllegalArgumentException e) {
+                System.out.println("Exception: " + e.getMessage());
+            }
+        }
+
+        isValid = false;
+        while (!isValid) {
+            try {
+                System.out.println("Enter your desired plug board pairs with no separation.");
+                allPlugBoardPairs = this.scanner.nextLine();
+                engine.setPlugBoard(initCode.createPlugBoard(allPlugBoardPairs));
+                isValid = true;
+            } catch (InvalidPlugBoardException e) {
+                System.out.println("Exception: " + e.getMessage());
+            }
+        }
+
+        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
     }
 
     @Override
     public void initializePaperEnigmaCodeAutomatically() {
+    //TODO: implement, if you need more data, create new DTO class and use the data from there
 
     }
 
     @Override
     public void encryptInput() {
+        System.out.println("Enter your message to encrypt.");
+        String input = this.scanner.nextLine();
+        stringInput.add(input);
+        stringOutput.add(engine.encryptDecrypt(input));
+        System.out.println("Encrypted message: " + stringOutput.get(stringOutput.size() - 1));
+
+        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
 
     }
 
     @Override
     // Reset last
     public void resetMachine() {
-        // TODO: reset manual or automatic paper enigma code
-
+        engine.reset();
+        System.out.println("Machine successfully reset.");
     }
 
     @Override

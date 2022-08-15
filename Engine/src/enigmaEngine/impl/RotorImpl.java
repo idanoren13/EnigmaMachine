@@ -30,6 +30,16 @@ public class RotorImpl implements Rotor, Rotatable {
     }
 
     @Override
+    public int getNumberOfRotations() {
+        return this.countRotations;
+    }
+
+    @Override
+    public Character peekWindow() {
+        return this.rightSide.get(0);
+    }
+
+    @Override
     public int getNotch() {
         return this.notch;
     }

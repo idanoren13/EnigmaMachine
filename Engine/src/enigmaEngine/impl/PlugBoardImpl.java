@@ -5,8 +5,6 @@ import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.List;
 
-// TODO: add validations to this class
-
 public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
     private final HashMap<Character, Character> abcPairs;
 
@@ -14,24 +12,14 @@ public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
         this.abcPairs = new HashMap<Character, Character>();
     }
 
-    public PlugBoardImpl(List<Pair<Character,Character>> pairList) {
+    public PlugBoardImpl(List<Pair<Character, Character>> pairList) {
         this.abcPairs = generateInputIntoPairs(pairList);
     }
 
 
-    private HashMap<Character, Character> generateInputIntoPairs(List<Pair<Character,Character>> pairList) {
-//        String[] allPairs = pairList.split(",");
-//        HashMap<Character, Character> abcPairs = new HashMap<>();
-//        for (String pair : allPairs) {
-//            abcPairs.put(pair.charAt(0), pair.charAt(1));   // TO DO - we assume that the pairs would always be "x,y", maybe they are not.
-//            // (for instance "x, y"). TO DO - handle this
-//            abcPairs.put(pair.charAt(1), pair.charAt(0));   // TO DO - we assume that the pairs would always be "x,y", maybe they are not.
-//            // (for instance "x, y"). TO DO - handle this
-//        }
-//        return abcPairs;
-
+    private HashMap<Character, Character> generateInputIntoPairs(List<Pair<Character, Character>> pairList) {
         HashMap<Character, Character> abcPairs = new HashMap<>();
-        for (Pair<Character,Character> pair : pairList) {
+        for (Pair<Character, Character> pair : pairList) {
             abcPairs.put(pair.getKey(), pair.getValue());
             abcPairs.put(pair.getValue(), pair.getKey());
         }
@@ -58,5 +46,15 @@ public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
     public void addPair(char a, char b) {
         this.abcPairs.put(a, b);
         this.abcPairs.put(b, a);
+    }
+
+    @Override
+    public HashMap<Character, Character> getPairs() {
+        return (HashMap<Character, Character>) this.abcPairs.clone();
+    }
+
+    @Override
+    public boolean containsPair(Pair<Character, Character> pair) {
+        return this.abcPairs.containsKey(pair.getKey()) && this.abcPairs.containsKey(pair.getValue());
     }
 }

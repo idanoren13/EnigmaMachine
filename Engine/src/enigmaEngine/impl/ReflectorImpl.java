@@ -30,6 +30,11 @@ public class ReflectorImpl implements Reflector {
         return this.getIndexPairs().get(idx);
     }
 
+    @Override
+    public ReflectorID getReflectorID() {
+        return this.id;
+    }
+
     private HashMap<Integer, Integer> getIndexPairs() {
         return indexPairs;
     }

@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-//TODO: implement this class , Guy Becken
 public class EnigmaMachineFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
 
@@ -53,7 +52,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
 
         machine = xmlOutput.getCTEMachine();
         if (machine == null) {
-            throw new RuntimeException("ERROR! The XML that is given does not contain any machine.");
+            throw new RuntimeException("The XML that is given does not contain any machine.");
         }
 
         cteMachineABC = machine.getABC().trim();
@@ -62,12 +61,11 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
 
         cteRotorsCount = machine.getRotorsCount();
         cteRotors = machine.getCTERotors();
-        if (cteRotorsCount > cteRotors.getCTERotor().size()) { //TODO: ??
-            throw new RuntimeException("ERROR! The XML that is given, contains in its settings more needed rotors than actual rotors.");
+        if (cteRotorsCount > cteRotors.getCTERotor().size()) {
+            throw new RuntimeException("The XML that is given, contains in its settings more needed rotors than actual rotors.");
         }
 
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
-        // TODO: check that all rotors IDs are given from 1 to n without empty IDs
         for (CTERotor rotor : cteRotors.getCTERotor()) {
             int id = rotor.getId(), notch = rotor.getNotch() - 1;
             List<Character> right = new ArrayList<>();
@@ -78,21 +76,20 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
             }
 
             if (rotors.containsKey(id)) {
-                throw new InvalidRotorException("Error! two rotors have the same ID.");
+                throw new InvalidRotorException("two rotors have the same ID.");
             } else
                 rotors.put(id, createAndValidateEnigmaComponents.createRotor(id, notch, right, left));
         }
 
         createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
 
-        // TODO: check if the 'reflectors' list size is maximum 5
         for (CTEReflector reflector : cteReflectors) {
             enigmaEngine.interfaces.Reflector.ReflectorID id;
             try {
                 id = enigmaEngine.interfaces.Reflector.ReflectorID.valueOf(reflector.getId().toUpperCase());
             } catch (IllegalArgumentException e) {
-                throw new RuntimeException("ERROR! Invalid ID for enum "
-                        + enigmaEngine.interfaces.Reflector.ReflectorID.class.getSimpleName() // TODO: check if this line works
+                throw new RuntimeException("Invalid ID for enum "
+                        + enigmaEngine.interfaces.Reflector.ReflectorID.class.getSimpleName()
                         + " of a given reflector: " + reflector.getId()
                         + ". Valid IDs are only: " + Arrays.toString(Reflector.ReflectorID.values()));
             }
@@ -101,14 +98,14 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
             List<Integer> output = new ArrayList<>();
             for (CTEReflect pair : reflector.getCTEReflect()) {
                 if (pair.getInput() == pair.getOutput()) {
-                    throw new RuntimeException("ERROR! The XML that is given contains a reflector that maps a letter to itself.");
+                    throw new RuntimeException("The XML that is given contains a reflector that maps a letter to itself.");
                 }
 
                 input.add(pair.getInput());
                 output.add(pair.getOutput());
             }
             if (reflectors.containsKey(id)) {
-                throw new InvalidReflectorException("Error! two reflectors have the same ID.");
+                throw new InvalidReflectorException("two reflectors have the same ID.");
             } else
                 reflectors.put(id, createAndValidateEnigmaComponents.createReflector(input, output, id));
         }

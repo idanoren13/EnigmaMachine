@@ -5,7 +5,6 @@ import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.exceptions.InvalidStartingCharacters;
 import enigmaEngine.impl.EnigmaEngineImpl;
-import enigmaEngine.impl.PlugBoardImpl;
 import enigmaEngine.interfaces.Reflector;
 import javafx.util.Pair;
 
@@ -38,7 +37,11 @@ public class Main {
         startingCharacters.add('C');
         startingCharacters.add('C');
 
-        enigmaEngine.setSelectedReflector(Reflector.ReflectorID.I);
+        try {
+            enigmaEngine.setSelectedReflector(Reflector.ReflectorID.I);
+        } catch (InvalidReflectorException e) {
+            throw new RuntimeException(e);
+        }
         try {
             enigmaEngine.setSelectedRotors(selectedRotors, startingCharacters);
         } catch (InvalidStartingCharacters e) {
@@ -49,7 +52,7 @@ public class Main {
         List<Pair<Character, Character>> plugBoardPairs = new ArrayList<Pair<Character, Character>>() {{
             add(new Pair<Character, Character>(Character.toUpperCase('a'), Character.toUpperCase('f')));
         }};
-        enigmaEngine.setPlugBoard(new PlugBoardImpl(plugBoardPairs));
+//        enigmaEngine.setPlugBoard(new PlugBoardImpl(plugBoardPairs));
         // ~~~~~~~~~ UI : option 5 encrypt/decrypt message ~~~~~~~~~
         String secretMessage = "AABBCCDDEEFF"; /*"ABCDEFGHIJKL";*/ /*"ABCDEF"*/;
         String encryptedMessage = "CEEFBAFCDABD"; /*"KFBLICCCLFIB"*/ /*"BCDEFC"*/;

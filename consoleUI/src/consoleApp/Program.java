@@ -1,15 +1,10 @@
 package consoleApp;
 
 import consoleApp.impl.Console;
-import enigmaEngine.exceptions.InvalidABCException;
-import enigmaEngine.exceptions.InvalidReflectorException;
-import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.UnknownSourceException;
 
-import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-public class Main {
+public class Program {
     public enum Choice {
         CHOICE_ONE,
         CHOICE_TWO,
@@ -21,7 +16,8 @@ public class Main {
         CHOICE_EIGHT
     }
 
-    public static void main(String[] args) throws JAXBException, InvalidRotorException, FileNotFoundException, InvalidABCException, UnknownSourceException, InvalidReflectorException {
+    //TODO: NOT GOOD MAIN LOOP INSIDE THE MAIN FUNCTION IS A BAD PRACTICE! EXTRACT IT TO A NEW CLASS!
+    public static void main(String[] args)  {
         Console consoleApp = new Console();
         Choice userChoice = null;
 
@@ -31,7 +27,8 @@ public class Main {
             boolean validInput = false;
             do {
                 try {
-                    int input = Integer.parseInt(consoleApp.getScanner().nextLine());
+                    Scanner scanner = new Scanner(System.in);
+                    int input = scanner.nextInt(); //TODO: not good, it should be parsed from string to int
                     if (input < 1 || 9 <= input) {
                         throw new IllegalArgumentException();
                     }
@@ -52,14 +49,19 @@ public class Main {
                     consoleApp.getMachineSpecs();
                     break;
                 case CHOICE_THREE:
+                    consoleApp.initializeEnigmaCodeManually();
                     break;
                 case CHOICE_FOUR:
+                    //TODO: implement this method, Guy
                     break;
                 case CHOICE_FIVE:
+                    consoleApp.encryptInput();
                     break;
                 case CHOICE_SIX:
+                    consoleApp.resetMachine();
                     break;
                 case CHOICE_SEVEN:
+                    //TODO: implement
                     break;
                 case CHOICE_EIGHT:
                     System.out.println("Goodbye!");
