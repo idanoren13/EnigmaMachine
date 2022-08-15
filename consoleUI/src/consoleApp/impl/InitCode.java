@@ -7,40 +7,9 @@ import javafx.util.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-// UI->DTO->Engine
-// A DTO for sections 3, 4
 public class InitCode {
-    private Deque<Integer> selectedRotors; // ArrayDeque<Integer>, LIFO collection (as same as stack)
-    private List<Character> startingCharacters;
-    private Reflector.ReflectorID reflector;
-    private List<Pair<Character, Character>> abcPairs;
-
-    // For manual machine initialization
-    public InitCode() {
-        this.selectedRotors = new ArrayDeque<>();
-        this.startingCharacters = new ArrayList<>();
-        this.abcPairs = new ArrayList<>();
-    }
-
-//    public InitCode(String selectedRotors, String startingCharacters, int reflectorID, String plugBoardInput) {
-//        this.selectedRotors = createSelectedRotorsDeque(selectedRotors);
-//        this.startingCharacters = createStartingCharactersList(startingCharacters);
-//        this.reflector = Reflector.ReflectorID.values()[reflectorID - 1]; // Returned value is 1-5
-//        this.abcPairs = createPlugBoardPairs(plugBoardInput);
-//
-//    }
-//
-//    // For automatic machine initialization
-//    public InitCode(String machineABC, int rotorsCount, int totalRotors, List<String> reflectorsID) {
-//        this.selectedRotors = createSelectedRotorsDeque(pickRandomRotors(rotorsCount, totalRotors));
-//        this.startingCharacters = createStartingCharactersList(pickRandomStartingCharacters(machineABC, rotorsCount));
-//        this.reflector = Reflector.ReflectorID.values()[pickRandomReflectorID(reflectorsID)]; // Returned value is 0-4
-//        this.abcPairs = createPlugBoardPairs(createRandomABCString(machineABC));
-//
-//    }
-
-    // Non-Randoms
 
     public ArrayList<Integer> createSelectedRotorsDeque(String selectedRotors) throws NumberFormatException {
         String[] stringRotors = selectedRotors.split(",");
@@ -49,6 +18,7 @@ public class InitCode {
     }
 
     public List<Character> createStartingCharactersList(String startingCharacters) {
+        startingCharacters = startingCharacters.toUpperCase();
         List<Character> listCharacters = new ArrayList<>();
         for (char ch : startingCharacters.toCharArray()) {
             listCharacters.add(ch);
@@ -57,7 +27,7 @@ public class InitCode {
     }
 
     public List<Pair<Character, Character>> createPlugBoard(String abcString) throws InvalidPlugBoardException {
-        char[] abcArr = abcString.toCharArray();
+        char[] abcArr = abcString.toUpperCase().toCharArray();
         List<Pair<Character, Character>> abcPairs = new ArrayList<>();
 
         if (abcArr.length % 2 == 1) {
@@ -83,101 +53,58 @@ public class InitCode {
         return abcSet.size();
     }
 
-
     // Randoms
-    private String pickRandomRotors(int rotorsCount, int totalRotors) {
-        // Will generate from left (last) to right (first) rotor-IDs
-        // rotorsCount - rotors the machine will use
-        // totalRotors - the maximum ID of the given rotors in the XML file
-        HashMap<Integer, Boolean> allIDs = new HashMap<Integer, Boolean>();
+    // Will generate from left (last) to right (first) rotor-IDs
+    // rotorsCount - rotors the machine will use
+    // totalRotors - the maximum ID of the given rotors in the XML file
+    public String pickRandomRotors(int rotorsCount, int totalRotors) {
+        List<Integer> allIDs = new  ArrayList<>();
         List<Integer> rotorIDs = new ArrayList<>();
-        Random rand = new Random(0);
-        for (int i = 0; i < totalRotors; i++) {
-            allIDs.put(i, false);
-        }
-        for (int i = 0; i < rotorsCount; i++) {
-            int randomID = rand.nextInt() % allIDs.size();
-            rotorIDs.add(randomID);
-            allIDs.remove(randomID);
-        }
+        Random rand = new Random();
+
+        IntStream.rangeClosed(1, totalRotors).forEach(allIDs::add);
+        Collections.shuffle(allIDs, rand);
+        IntStream.rangeClosed(1, rotorsCount).forEach(i -> rotorIDs.add(allIDs.get(i - 1)));
+
         return rotorIDs.stream().
                 map(String::valueOf).
                 collect(Collectors.joining(",")); // [48, 59] -> "48,59" (List->String)
     }
 
-    private String pickRandomStartingCharacters(String machineABC, int rotorsCount) {
-        String res = "";
-        Random rand = new Random(0);
+    public String pickRandomStartingCharacters(List<Character> machineABC, int rotorsCount) {
+        StringBuilder res = new StringBuilder();
+        Random rand = new Random();
 
         for (int i = 0; i < rotorsCount; i++) {
-            int randomABCIndex = rand.nextInt() % machineABC.length();
-            res = res + machineABC.charAt(randomABCIndex);
+            int randomABCIndex = rand.nextInt(machineABC.size());
+            res.append(machineABC.get(randomABCIndex));
         }
-        return res;
+        return res.toString();
     }
 
-    private int pickRandomReflectorID(List<String> reflectorsID) {
-        HashMap<String, Boolean> allIDs = new HashMap<String, Boolean>() {{
-            put("I", false);
-            put("II", false);
-            put("III", false);
-            put("VI", false);
-            put("V", false);
-        }};
-        for (String singleID : reflectorsID) {
-            if (allIDs.containsValue(singleID)) {
-                allIDs.put(singleID, true);
-            }
-        }
-        Random rand = new Random(0);
-        int randomID = 0;
-        Boolean notFoundID = true;
-        do {
-            randomID = rand.nextInt() % 5;
-            if (allIDs.get(randomID).equals(true)) {
-                notFoundID = false;
-            }
-        } while (notFoundID.equals(true));
-        return randomID;
+    public String pickRandomReflectorID(int reflectorsIDSize) {
+        HashMap<Integer, String> allIDs = new HashMap<>();
+        allIDs.put(1, "I");
+        allIDs.put(2, "II");
+        allIDs.put(3, "III");
+        allIDs.put(4, "IV");
+        allIDs.put(5, "V");
+        Random rand = new Random();
+
+        return allIDs.get(rand.nextInt(reflectorsIDSize) + 1);
     }
 
-    private String createRandomABCString(String machineABC) {
-        StringBuilder mutableABC = new StringBuilder(machineABC);
-        StringBuilder finalString = new StringBuilder();
-        int abcPairs = new Random().nextInt() % ((machineABC.length() / 2) + 1); // TODO: check if the value makes sense
-        Random rand = new Random(0);
+    public String pickRandomPlugBoard(List<Character> machineABC) {
+        List<Character> shuffledABC = new ArrayList<>(machineABC);
+        Random rand = new Random();
+        Collections.shuffle(shuffledABC);
+        StringBuilder res = new StringBuilder();
+        int abcPairs = rand.nextInt(machineABC.size() / 2);
 
-        for (int i = 0; i < abcPairs; i++) {
-            for (int j = 0; j < 2; j++) {
-                int index = rand.nextInt(mutableABC.length() + 1);
-                finalString.append(mutableABC.charAt(index));
-                mutableABC.deleteCharAt(index);
-            }
-        }
+        shuffledABC.subList(0, abcPairs * 2).forEach(res::append);
 
-        return finalString.toString();
+        return res.toString();
     }
-
-//    private List<Integer> mapRelevantNotchIndexes(List<Integer> allNotchIndexes) {
-//        List<Integer> relevantNotches = new ArrayList<>();
-//        for (Integer rotorIndex : this.selectedRotors) {
-//            relevantNotches.add(0, allNotchIndexes.get(rotorIndex));
-//        }
-//        if (relevantNotches.size() == 0) {
-//            return null;
-//        }
-//        else {
-//            return relevantNotches;
-//        }
-//    }
-
-//    public Deque<Integer> getSelectedRotors() {
-//        return this.selectedRotors;
-//    }
-//
-//    public List<Character> getStartingCharacters() {
-//        return this.startingCharacters;
-//    }
 
     public Reflector.ReflectorID getReflectorID(String reflector) throws InvalidReflectorException, IllegalArgumentException {
         int reflectorID = romansToInt(reflector);
@@ -186,10 +113,6 @@ public class InitCode {
         }
 
         return Reflector.ReflectorID.values()[reflectorID - 1];
-    }
-
-    public List<Pair<Character, Character>> getAbcPairs() {
-        return this.abcPairs;
     }
 
     private int romansToInt(String roman) throws IllegalArgumentException {

@@ -1,7 +1,6 @@
 package enigmaEngine;
 
 import enigmaEngine.exceptions.InvalidABCException;
-import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.impl.ReflectorImpl;
@@ -140,12 +139,5 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
             throw new InvalidReflectorException("Input and output must be sequential from 1 to" + abc.length());
         }
     }
-
-    private void validatePlugBoard(Map<Character, Character> plugBoard) throws InvalidPlugBoardException {
-        if (plugBoard.keySet().stream().anyMatch(i -> i > (abc.length() / 2))) {
-            throw new InvalidPlugBoardException("Plug board must be at most half as ABC" + abc.length());
-        }
-    }
-
 }
 

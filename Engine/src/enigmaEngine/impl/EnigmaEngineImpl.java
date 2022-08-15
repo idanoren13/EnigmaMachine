@@ -3,12 +3,13 @@ package enigmaEngine.impl;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.InvalidStartingCharacters;
+import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.engine.EngineDTO;
+import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
 
 import java.util.*;
@@ -47,11 +48,6 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         return this.rotors;
     }
 
-//    @Override
-//    public HashMap<Reflector.ReflectorID, Reflector> getReflectors() {
-//        return this.reflectors;
-//    }
-
     @Override
     public String getMachineABC() {
         return this.machineABC;
@@ -75,7 +71,11 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     }
 
     @Override
-    public String encryptDecrypt(String input) {
+    public String encryptDecrypt(String input) throws InvalidCharactersException {
+        input = input.toUpperCase();
+        if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
+            throw new InvalidCharactersException("Starting characters must be in the machine ABC");
+        }
         StringBuilder output = new StringBuilder();
         messagesSentCounter++;
         for (int i = 0; i < input.length(); i++) {
@@ -85,15 +85,17 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         return output.toString();
     }
 
+
+
     @Override
-    public void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidStartingCharacters, InvalidRotorException {
+    public void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException {
         checkSelectedRotors(rotorsIDInorder);
         this.selectedRotors = rotorsIDInorder;
         setStartingCharacters(startingPositions);
     }
 
     @Override
-    public void setStartingCharacters(List<Character> startingCharacters) throws InvalidStartingCharacters {
+    public void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException {
         checkStartingCharacters(startingCharacters);
         this.rotorStackLeftToRight.clear();
         this.rotorStackRightToLeft.clear();
@@ -127,7 +129,7 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         this.selectedRotors.forEach(rotorID -> this.rotors.get(rotorID).resetRotor());
         try {
             setSelectedRotors(this.selectedRotors, this.startingCharacters);
-        } catch (InvalidStartingCharacters | InvalidRotorException e) {
+        } catch (InvalidCharactersException | InvalidRotorException e) {
             throw new RuntimeException(e);
         }
     }
@@ -139,7 +141,12 @@ public class EnigmaEngineImpl implements EnigmaEngine {
                 plugBoard.getPairs(),
                 selectedReflector == null ? "" : selectedReflector.getReflectorID().toString(),
                 charsAtWindows(),
-                getSelectedRotorsAndNotchesDistances());
+                getSelectedRotorsAndNotchesDistances(), messagesSentCounter);
+    }
+
+    @Override
+    public EngineDTOSelectedParts getSelectedParts() {
+        return new EngineDTOSelectedParts(rotors.size(), reflectors.size(), stringToList(machineABC));
     }
 
     private List<Character> charsAtWindows() {
@@ -177,12 +184,12 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         this.rotors.keySet().forEach(key -> this.rotors.get(key).setRotateNextRotor(null));
     }
 
-    private void checkStartingCharacters(List<Character> startingCharacters) throws InvalidStartingCharacters {
+    private void checkStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException {
         if (startingCharacters.size() != this.selectedRotors.size()) {
-            throw new InvalidStartingCharacters("Starting characters must be the same size as the number of selected rotors");
+            throw new InvalidCharactersException("Starting characters must be the same size as the number of selected rotors");
         }
         if (startingCharacters.stream().anyMatch(c -> !this.machineABCMap.containsKey(c))) {
-            throw new InvalidStartingCharacters("Starting characters must be valid");
+            throw new InvalidCharactersException("Starting characters must be valid");
         }
     }
 
@@ -217,6 +224,14 @@ public class EnigmaEngineImpl implements EnigmaEngine {
 
             this.plugBoard.addPair(pair.getKey(), pair.getValue());
         }
+    }
+
+    private List<Character> stringToList(String input) {
+        List<Character> output = new ArrayList<>();
+        for (int i = 0; i < input.length(); i++) {
+            output.add(input.charAt(i));
+        }
+        return output;
     }
 }
 

@@ -16,33 +16,28 @@ public class Program {
         CHOICE_EIGHT
     }
 
-    //TODO: NOT GOOD MAIN LOOP INSIDE THE MAIN FUNCTION IS A BAD PRACTICE! EXTRACT IT TO A NEW CLASS!
     public static void main(String[] args)  {
+        runMachine();
+    }
+
+    private static void runMachine() {
         Console consoleApp = new Console();
-        Choice userChoice = null;
+        Choice userChoice;
+        Boolean machineIsLoaded = false;
 
         greetUser();
+        //loads the machine from the XML file
+        while (!machineIsLoaded) {
+            machineIsLoaded = consoleApp.readMachineFromXMLFile();
+        }
+
         do {
             showMenu();
-            boolean validInput = false;
-            do {
-                try {
-                    Scanner scanner = new Scanner(System.in);
-                    int input = scanner.nextInt(); //TODO: not good, it should be parsed from string to int
-                    if (input < 1 || 9 <= input) {
-                        throw new IllegalArgumentException();
-                    }
-                    userChoice = Choice.values()[input - 1];
-                    validInput = true;
-                } catch (NumberFormatException e) {
-                    System.out.println("Please enter numeric value.");
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Please enter a single-digit from one of the numbers above.");
-                }
-            } while (!validInput);
+            userChoice = getChoice();
 
             switch(userChoice) {
                 case CHOICE_ONE:
+                    consoleApp = new Console();
                     consoleApp.readMachineFromXMLFile();
                     break;
                 case CHOICE_TWO:
@@ -52,7 +47,7 @@ public class Program {
                     consoleApp.initializeEnigmaCodeManually();
                     break;
                 case CHOICE_FOUR:
-                    //TODO: implement this method, Guy
+                    consoleApp.initializeEnigmaCodeAutomatically();
                     break;
                 case CHOICE_FIVE:
                     consoleApp.encryptInput();
@@ -61,23 +56,46 @@ public class Program {
                     consoleApp.resetMachine();
                     break;
                 case CHOICE_SEVEN:
-                    //TODO: implement
+                    consoleApp.getMachineStatisticsAndHistory();
                     break;
                 case CHOICE_EIGHT:
-                    System.out.println("Goodbye!");
+                    consoleApp.exitMachine();
                     break;
             }
         } while (userChoice != Choice.CHOICE_EIGHT);
+    }
+
+    private static Choice getChoice() {
+        Choice userChoice = null;
+        boolean validInput = false;
+        do {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                int input = Integer.parseInt(scanner.nextLine());
+                if (input < 1 || 9 <= input) {
+                    throw new IllegalArgumentException();
+                }
+
+                userChoice = Choice.values()[input - 1];
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter numeric value.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Please enter a single-digit from one of the numbers above.");
+            }
+        } while (!validInput);
+
+        return userChoice;
     }
 
     public static void greetUser() {
         System.out.println("Hello dear user!");
         System.out.println("Welcome to the C.T.E game.");
         System.out.println("From now on, showtime.");
-        System.out.println("Here are all your options during this game:");
-
     }
+
     public static void showMenu() {
+        System.out.println("Here are all your options:");
         System.out.println("1. Load a XML file by giving a full file path.");
         System.out.println("2. Get your full Enigma machine engine specifications.");
         System.out.println("3. Choose Enigma engine code.");

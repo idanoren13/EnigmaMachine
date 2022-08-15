@@ -3,7 +3,7 @@ package enigmaEngine;
 import enigmaEngine.exceptions.InvalidABCException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.InvalidStartingCharacters;
+import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.impl.EnigmaEngineImpl;
 import enigmaEngine.interfaces.Reflector;
 import javafx.util.Pair;
@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    // TODO: The machine starts with 0 and not 1 as required
     public static void main(String[] args) {
         // ~~~~~~~~~ UI : initialize the machine on start ~~~~~~~~~
         InitializeEnigmaEngine enigmaEngineInitializer = new InitializeEnigmaEngine();
@@ -44,7 +43,7 @@ public class Main {
         }
         try {
             enigmaEngine.setSelectedRotors(selectedRotors, startingCharacters);
-        } catch (InvalidStartingCharacters e) {
+        } catch (InvalidCharactersException e) {
             throw new RuntimeException(e);
         } catch (InvalidRotorException e) {
             throw new RuntimeException(e);
