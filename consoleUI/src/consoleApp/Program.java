@@ -50,7 +50,7 @@ public class Program {
                     consoleApp.initializeEnigmaCodeAutomatically();
                     break;
                 case CHOICE_FIVE:
-                    consoleApp.encryptInput();
+                    consoleApp.getMessageAndProcessIt();
                     break;
                 case CHOICE_SIX:
                     consoleApp.resetMachine();

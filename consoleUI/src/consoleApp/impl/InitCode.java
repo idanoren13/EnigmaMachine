@@ -14,6 +14,7 @@ public class InitCode {
     public ArrayList<Integer> createSelectedRotorsDeque(String selectedRotors) throws NumberFormatException {
         String[] stringRotors = selectedRotors.split(",");
         int[] intRotors = Arrays.stream(stringRotors).mapToInt(Integer::parseInt).toArray();
+
         return Arrays.stream(intRotors).boxed().collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -23,6 +24,7 @@ public class InitCode {
         for (char ch : startingCharacters.toCharArray()) {
             listCharacters.add(ch);
         }
+
         return listCharacters;
     }
 
@@ -52,14 +54,13 @@ public class InitCode {
 
         return abcSet.size();
     }
-    
+    //TODO: check if this pattern is valid by Aviad
     public String pickRandomRotors(int rotorsCount, int totalRotors) {
         List<Integer> allIDs = new  ArrayList<>();
         List<Integer> rotorIDs = new ArrayList<>();
-        Random rand = new Random();
 
-        IntStream.rangeClosed(1, totalRotors).forEach(allIDs::add);
-        Collections.shuffle(allIDs, rand);
+        IntStream.rangeClosed(1, totalRotors).forEach(allIDs::add); //list 1 to totalRotors [1, 2, 3, ..., totalRotors]
+        Collections.shuffle(allIDs, new Random());
         IntStream.rangeClosed(1, rotorsCount).forEach(i -> rotorIDs.add(allIDs.get(i - 1)));
 
         return rotorIDs.stream().
@@ -72,12 +73,13 @@ public class InitCode {
         Random rand = new Random();
 
         for (int i = 0; i < rotorsCount; i++) {
-            int randomABCIndex = rand.nextInt(machineABC.size());
-            res.append(machineABC.get(randomABCIndex));
+            res.append(machineABC.get(rand.nextInt(machineABC.size())));
         }
+
         return res.toString();
     }
 
+    //TODO: Check roman numerials are valid by Aviad
     public String pickRandomReflectorID(int reflectorsIDSize) {
         HashMap<Integer, String> allIDs = new HashMap<>();
         allIDs.put(1, "I");

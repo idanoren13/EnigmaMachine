@@ -71,7 +71,7 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     }
 
     @Override
-    public String encryptDecrypt(String input) throws InvalidCharactersException {
+    public String processMessage(String input) throws InvalidCharactersException {
         input = input.toUpperCase();
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
             throw new InvalidCharactersException("Starting characters must be in the machine ABC");

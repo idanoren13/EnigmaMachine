@@ -15,7 +15,7 @@ public interface Input {
     void getMachineSpecs();
     void initializeEnigmaCodeManually();
     void initializeEnigmaCodeAutomatically();
-    void encryptInput();
+    void getMessageAndProcessIt();
     void resetMachine();
     void getMachineStatisticsAndHistory();
     void exitMachine();

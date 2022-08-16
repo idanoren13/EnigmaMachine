@@ -18,7 +18,7 @@ public interface EnigmaEngine {
     String getMachineABC();
     char activate(char input);
 
-    String encryptDecrypt(String input) throws InvalidCharactersException;
+    String processMessage(String input) throws InvalidCharactersException;
 
     void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException;
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;

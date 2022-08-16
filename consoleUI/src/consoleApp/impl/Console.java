@@ -132,7 +132,7 @@ public class Console implements Input {
             try {
                 System.out.println("Enter your desired reflector ID please enter the number using romans numerals (I, II, III, IV, V)");
                 reflectorNumber = this.scanner.nextLine();
-                engine.setSelectedReflector(initCode.getReflectorID(reflectorNumber));
+                engine.setSelectedReflector(initCode.getReflectorID(reflectorNumber));//TODO: check
                 isValid = true;
             } catch (InvalidReflectorException | IllegalArgumentException e) {
                 System.out.println("Exception: " + e.getMessage());
@@ -154,6 +154,7 @@ public class Console implements Input {
         machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(engine.getEngineDTO()).toString()));
     }
 
+    //TODO: Bad design, the automated should be in the engine class and the conversions will be in the UI
     @Override
     public void initializeEnigmaCodeAutomatically() {
         InitCode initCode = new InitCode();
@@ -191,24 +192,23 @@ public class Console implements Input {
         }
 
         machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(engine.getEngineDTO()).toString()));
-//        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
         System.out.println("Automatically initialized code: " + machineHistoryAndStatistics.getCurrentMachineCode());
     }
 
     @Override
-    public void encryptInput() {
+    public void getMessageAndProcessIt() {
         int timeStart, timeEnd;
         String output;
         String input;
         if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("Machine was not generated.");
+            System.out.println("No engine code was initialized.");
             return;
         }
-        System.out.println("Enter your message to encrypt.");
+        System.out.println("Enter your message to process.");
         input = this.scanner.nextLine();
         try {
             timeStart = (int) System.nanoTime();
-            output = engine.encryptDecrypt(input);
+            output = engine.processMessage(input);
             timeEnd = (int) System.nanoTime();
         } catch (InvalidCharactersException e) {
             System.out.println("Exception: " + e.getMessage());
@@ -216,7 +216,7 @@ public class Console implements Input {
         }
 
         machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(input, output, timeEnd - timeStart);
-        System.out.println("Encrypted message: " + output);
+        System.out.println("Processed message: " + output);
     }
 
     @Override
@@ -231,11 +231,12 @@ public class Console implements Input {
         System.out.println("Machine successfully reset.");
     }
 
+    //TODo: create this method in the MachineHistoryAndStatistics class and activate it here
     @Override
     public void getMachineStatisticsAndHistory() {
         StringBuilder sb = new StringBuilder();
         sb.append("Machine statistics and history:\n");
-        for (MachineCodeData machineCodeData : machineHistoryAndStatistics) {
+        for (MachineCodeData machineCodeData : this.machineHistoryAndStatistics) {
             sb.append(machineCodeData.getMachineCode()).append("\n");
             int i = 1;
             for (MachineActivateData machineActivateData : machineCodeData.getMachineActivateData()) {
