@@ -9,6 +9,7 @@ import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import enigmaEngine.schemaBinding.*;
+import javafx.util.Pair;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -36,19 +37,19 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         xmlOutput = (CTEEnigma) jaxbUnmarshaller.unmarshal(xmlFile);
 
+        assert xmlOutput != null;
         return getEnigmaEngine(path, xmlOutput);
     }
 
     private EnigmaEngineImpl getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
 
-        assert xmlOutput != null;
         String cteMachineABC;
         int cteRotorsCount;
         CTERotors cteRotors;
         CTEMachine machine;
         List<CTEReflector> cteReflectors;
-        HashMap<Integer, Rotor> rotors = new HashMap<>();
-        HashMap<Reflector.ReflectorID, Reflector> reflectors = new HashMap<>();
+        HashMap<Integer, Rotor> rotors;
+        HashMap<Reflector.ReflectorID, Reflector> reflectors;
 
         machine = xmlOutput.getCTEMachine();
         if (machine == null) {
@@ -60,58 +61,84 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         createAndValidateEnigmaComponents.ValidateABC(cteMachineABC);
 
         cteRotorsCount = machine.getRotorsCount();
-        cteRotors = machine.getCTERotors();
-        if (cteRotorsCount > cteRotors.getCTERotor().size()) {
-            throw new RuntimeException("The XML that is given, contains in its settings more needed rotors than actual rotors.");
+        if (cteRotorsCount < 2) {
+            throw new RuntimeException("In the given XML, rotors count is less than 2.");
         }
 
+        cteRotors = machine.getCTERotors();
+        if (cteRotorsCount > cteRotors.getCTERotor().size()) {
+            throw new RuntimeException("In the given XML, rotors count is larger than actual rotors.");
+        }
+        rotors = (HashMap<Integer, Rotor>)importCTERotors(cteRotors, new HashMap<>());
+        createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
+
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
+        reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
+        createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
+
+        return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
+    }
+
+    private HashMap<?, ?> importCTERotors(CTERotors cteRotors, HashMap<Object, Object> rotors) throws InvalidRotorException {
         for (CTERotor rotor : cteRotors.getCTERotor()) {
             int id = rotor.getId(), notch = rotor.getNotch() - 1;
-            List<Character> right = new ArrayList<>();
-            List<Character> left = new ArrayList<>();
-            for (CTEPositioning pair : rotor.getCTEPositioning()) {
-                right.add(pair.getRight().charAt(0));
-                left.add(pair.getLeft().charAt(0));
-            }
+            Pair<List<Character>, List<Character>> rightAndLeft = getCTERotorRightAndLeftPairs(rotor);
 
             if (rotors.containsKey(id)) {
                 throw new InvalidRotorException("two rotors have the same ID.");
             } else
-                rotors.put(id, createAndValidateEnigmaComponents.createRotor(id, notch, right, left));
+                rotors.put(id, createAndValidateEnigmaComponents.createRotor(id, notch, rightAndLeft.getKey(), rightAndLeft.getValue()));
         }
+        return rotors;
+    }
 
-        createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
+    private Pair<List<Character>, List<Character>> getCTERotorRightAndLeftPairs(CTERotor rotor) {
+        List<Character> right = new ArrayList<>();
+        List<Character> left = new ArrayList<>();
+        for (CTEPositioning pair : rotor.getCTEPositioning()) {
+            right.add(pair.getRight().charAt(0));
+            left.add(pair.getLeft().charAt(0));
+        }
+        return new Pair<>(right, left);
+    }
 
+    private HashMap<?, ?> importCTEReflectors(List<CTEReflector> cteReflectors, HashMap<Object, Object> reflectors) throws InvalidReflectorException {
         for (CTEReflector reflector : cteReflectors) {
-            enigmaEngine.interfaces.Reflector.ReflectorID id;
-            try {
-                id = enigmaEngine.interfaces.Reflector.ReflectorID.valueOf(reflector.getId().toUpperCase());
-            } catch (IllegalArgumentException e) {
-                throw new RuntimeException("Invalid ID for enum "
-                        + enigmaEngine.interfaces.Reflector.ReflectorID.class.getSimpleName()
-                        + " of a given reflector: " + reflector.getId()
-                        + ". Valid IDs are only: " + Arrays.toString(Reflector.ReflectorID.values()));
-            }
+            Reflector.ReflectorID id = getCTEReflectorID(reflector.getId().toUpperCase());
+            Pair<List<Integer>, List<Integer>> inputAndOutput = getCTEReflectorInputAndOutputPairs(reflector);
 
-            List<Integer> input = new ArrayList<>();
-            List<Integer> output = new ArrayList<>();
-            for (CTEReflect pair : reflector.getCTEReflect()) {
-                if (pair.getInput() == pair.getOutput()) {
-                    throw new RuntimeException("The XML that is given contains a reflector that maps a letter to itself.");
-                }
-
-                input.add(pair.getInput());
-                output.add(pair.getOutput());
-            }
             if (reflectors.containsKey(id)) {
                 throw new InvalidReflectorException("two reflectors have the same ID.");
             } else
-                reflectors.put(id, createAndValidateEnigmaComponents.createReflector(input, output, id));
+                reflectors.put(id, createAndValidateEnigmaComponents.createReflector(inputAndOutput.getKey(), inputAndOutput.getValue(), id));
         }
+        return reflectors;
+    }
 
-        createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
+    private Reflector.ReflectorID getCTEReflectorID(String stringID) {
+        try {
+            Reflector.ReflectorID id = enigmaEngine.interfaces.Reflector.ReflectorID.valueOf(stringID);
+            return id;
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Invalid ID for enum "
+                    + enigmaEngine.interfaces.Reflector.ReflectorID.class.getSimpleName()
+                    + " of a given reflector: " + stringID
+                    + ". Valid IDs are only: " + Arrays.toString(Reflector.ReflectorID.values()));
+        }
+    }
 
-        return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
+    private Pair<List<Integer>, List<Integer>> getCTEReflectorInputAndOutputPairs(CTEReflector reflector) {
+        List<Integer> input = new ArrayList<>();
+        List<Integer> output = new ArrayList<>();
+        Pair<List<Integer>, List<Integer>> res = new Pair<>(input, output);
+        for (CTEReflect pair : reflector.getCTEReflect()) {
+            if (pair.getInput() == pair.getOutput()) {
+                throw new RuntimeException("The XML that is given contains a reflector that maps a letter to itself.");
+            }
+
+            input.add(pair.getInput());
+            output.add(pair.getOutput());
+        }
+        return new Pair<>(input, output);
     }
 }

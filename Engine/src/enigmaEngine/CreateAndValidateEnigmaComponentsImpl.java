@@ -70,12 +70,12 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     public void ValidateABC(String abc) throws InvalidABCException {
 
         if (abc.length() % 2 == 1) {
-            throw new InvalidABCException("ABC must be an even number of characters");
+            throw new InvalidABCException("The size of the ABC language must be an even number");
         }
 
         for (int i = 0; i < abc.length(); i++) {
             if (this.abcMap.containsKey(abc.charAt(i))) {
-                throw new InvalidABCException("Duplicate character in abc");
+                throw new InvalidABCException("File contains a duplicate letter in the abc");
             }
 
             this.abcMap.put(abc.charAt(i), abc.charAt(i));
@@ -140,4 +140,3 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
         }
     }
 }
-

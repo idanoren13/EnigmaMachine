@@ -49,4 +49,27 @@ public class MachineHistoryAndStatistics implements Iterable<MachineCodeData> {
     public Spliterator<MachineCodeData> spliterator() {
         return Iterable.super.spliterator();
     }
+
+    @Override
+    public String toString() {
+        if (this.machineCodeData.size() == 0) {
+            return "No Enigma engine code were given yet. You can add it by picking 3 or 4.";
+        }
+        else {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Machine statistics and history:\n");
+            for (MachineCodeData currCodeData : this.machineCodeData) {
+                sb.append(currCodeData.getMachineCode()).append("\n");
+                int i = 1;
+                for (MachineActivateData machineActivateData : currCodeData.getMachineActivateData()) {
+                    sb.append("\t").append(i).append(". ").append(machineActivateData.getRawData())
+                            .append(" -> ").append(machineActivateData.getProcessedData())
+                            .append(" : ").append(machineActivateData.getTimeElapsed()).append(" nano-seconds")
+                            .append("\n");
+                    i++;
+                }
+            }
+            return sb.toString();
+        }
+    }
 }

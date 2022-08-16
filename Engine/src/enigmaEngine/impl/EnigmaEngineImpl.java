@@ -71,7 +71,7 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     }
 
     @Override
-    public String encryptDecrypt(String input) throws InvalidCharactersException {
+    public String processMessage(String input) throws InvalidCharactersException {
         input = input.toUpperCase();
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
             throw new InvalidCharactersException("Starting characters must be in the machine ABC");
@@ -195,13 +195,13 @@ public class EnigmaEngineImpl implements EnigmaEngine {
 
     private void checkSelectedRotors(List<Integer> rotorsIDs) throws InvalidRotorException {
         if (rotorsIDs.size() > rotors.size()) {
-            throw new InvalidRotorException("Too many rotors selected");
+            throw new InvalidRotorException("Too many rotors have been selected.");
         }
         if (rotorsIDs.stream().anyMatch(rotorID -> !rotors.containsKey(rotorID))) {
-            throw new InvalidRotorException("Invalid rotor selected");
+            throw new InvalidRotorException("An invalid rotor is selected.");
         }
         if (new HashSet<>(rotorsIDs).size() != rotorsIDs.size()) {
-            throw new InvalidRotorException("Duplicate rotors selected");
+            throw new InvalidRotorException("Duplicate rotors selected.");
         }
     }
 
@@ -235,4 +235,3 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         return output;
     }
 }
-

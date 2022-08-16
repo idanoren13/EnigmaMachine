@@ -16,5 +16,4 @@ public interface CreateAndValidateEnigmaComponents {
     void validateRotorsIDs(Map<Integer, Rotor> rotors) throws InvalidRotorException;
     void validateReflectorsIDs(Map<Reflector.ReflectorID, Reflector> reflectors) throws InvalidReflectorException;
 
-
 }

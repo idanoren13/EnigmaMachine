@@ -5,4 +5,3 @@ public class InvalidABCException extends Exception {
         super(message);
     }
 }
-

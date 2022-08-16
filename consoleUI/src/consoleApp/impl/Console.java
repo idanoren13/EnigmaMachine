@@ -1,12 +1,13 @@
 package consoleApp.impl;
 
-import consoleApp.historyAndStatistics.MachineActivateData;
+import consoleApp.exceptions.UserQuitException;
 import consoleApp.historyAndStatistics.MachineCodeData;
 import consoleApp.historyAndStatistics.MachineHistoryAndStatistics;
 import consoleApp.interfaces.Input;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
+import enigmaEngine.interfaces.Reflector;
 import immutables.engine.EngineDTO;
 import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
@@ -105,55 +106,115 @@ public class Console implements Input {
     }
 
     @Override
-    public void initializeEnigmaCodeManually() {
-        boolean isValid = false;
-        String selectedRotors;
-        String allStartingPositions;
-        String reflectorNumber;
-        String allPlugBoardPairs;
+    public boolean initializeEnigmaCodeManually() {
         InitCode initCode = new InitCode();
+        List<Integer> selectedRotorsDeque = null;
         resetMachine();
-
-        while (!isValid) {
-            try {
-                System.out.println("Enter your desired rotor IDs separated by a comma without spaces.");
-                selectedRotors = this.scanner.nextLine();
-                System.out.println("Enter your desired rotor starting positions no separation between them.");
-                allStartingPositions = this.scanner.nextLine();
-                engine.setSelectedRotors(initCode.createSelectedRotorsDeque(selectedRotors), initCode.createStartingCharactersList(allStartingPositions));
-                isValid = true;
-            } catch (InvalidRotorException | InvalidCharactersException | NumberFormatException e) {
-                System.out.println("Exception: " + e.getMessage());
-            }
+        try {
+            selectedRotorsDeque = getRotorsFromUserInput(initCode);
+            getStartingPositionsFromUserInput(selectedRotorsDeque, initCode);
+            getReflectorFromUserInput();
+            getPlugBoardPairsFromUserInput(initCode);
+        } catch (RuntimeException e) {
+            System.out.println("You are being sent back to main menu. Enigma engine code is not modified.");
+            return false;
         }
 
-        isValid = false;
-        while (!isValid) {
-            try {
-                System.out.println("Enter your desired reflector ID please enter the number using romans numerals (I, II, III, IV, V)");
-                reflectorNumber = this.scanner.nextLine();
-                engine.setSelectedReflector(initCode.getReflectorID(reflectorNumber));
-                isValid = true;
-            } catch (InvalidReflectorException | IllegalArgumentException e) {
-                System.out.println("Exception: " + e.getMessage());
-            }
-        }
+        machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(this.engine.getEngineDTO()).toString()));
 
-        isValid = false;
-        while (!isValid) {
-            try {
-                System.out.println("Enter your desired plug board pairs with no separation.");
-                allPlugBoardPairs = this.scanner.nextLine();
-                engine.setPlugBoard(initCode.createPlugBoard(allPlugBoardPairs));
-                isValid = true;
-            } catch (InvalidPlugBoardException e) {
-                System.out.println("Exception: " + e.getMessage());
-            }
-        }
-
-        machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(engine.getEngineDTO()).toString()));
+        return true;
     }
 
+    private List<Integer> getRotorsFromUserInput(InitCode initCode) {
+        List<Integer> selectedRotorsDeque;
+        String selectedRotors;
+        while (true) {
+            try {
+                System.out.println("Enter your desired rotor IDs separated by a comma without spaces.");
+                System.out.println("If you are willing to go back to main menu, type 'OUT !'.");
+                selectedRotors = this.scanner.nextLine();
+                if (selectedRotors.equals("OUT !")) {
+                    throw new UserQuitException("");
+                }
+                selectedRotorsDeque = initCode.createSelectedRotorsDeque(selectedRotors); // TODO: bad design, but required condition here. TO ASK AVIAD
+                List<Integer> finalSelectedRotorsDeque = selectedRotorsDeque;
+                if (initCode.createSelectedRotorsDeque(selectedRotors).stream().anyMatch(rotorID -> rotorID > finalSelectedRotorsDeque.size())) {
+                    throw new InvalidRotorException("Invalid rotor ID selected. Please insert an ID from 1 to "
+                            + this.engine.getRotors().size() + ".");
+                }
+                break;
+            } catch (InvalidRotorException | NumberFormatException e) {
+                System.out.println("Exception: " + e.getMessage());
+            } catch (UserQuitException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return selectedRotorsDeque;
+    }
+    private void getStartingPositionsFromUserInput(List<Integer> selectedRotorsDeque, InitCode initCode) {
+        String allStartingPositions;
+        while (true) {
+            try {
+                System.out.println("Enter all your desired rotors starting positions without separation between them.");
+                System.out.println("If you are willing to go back to main menu, type 'OUT !'.");
+                allStartingPositions = this.scanner.nextLine();
+                if (allStartingPositions.equalsIgnoreCase("OUT !")) {
+                    throw new UserQuitException("");
+                }
+                this.engine.setSelectedRotors(selectedRotorsDeque, initCode.createStartingCharactersList(allStartingPositions));
+                break;
+            } catch (InvalidRotorException | InvalidCharactersException | NumberFormatException e) {
+                System.out.println("Exception: " + e.getMessage());
+            } catch (UserQuitException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    private void getReflectorFromUserInput() {
+        int reflectorNumber;
+        while (true) {
+            try {
+                System.out.println("Enter your desired reflector ID. Please enter the number using one of these numerals:\n"
+                        + "1. For reflector I\n" + "2. For reflector II\n" + "3. For reflector III\n" + "4. For reflector IV\n" + "5. For reflector V\n");
+                System.out.println("If you are willing to go back to main menu, type '-1'.");
+                reflectorNumber = Integer.parseInt(this.scanner.nextLine());
+                if (reflectorNumber == -1) {
+                    throw new UserQuitException("");
+                }
+                if (reflectorNumber < 1 || reflectorNumber > 5) {
+                    throw new InvalidReflectorException(reflectorNumber + " is an invalid reflector ID.");
+                }
+                this.engine.setSelectedReflector(Reflector.ReflectorID.values()[reflectorNumber - 1]);
+                break;
+            } catch (InvalidReflectorException | IllegalArgumentException e) {
+                System.out.println("Exception: " + e.getMessage());
+            } catch (UserQuitException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void getPlugBoardPairsFromUserInput(InitCode initCode) {
+        String allPlugBoardPairs;
+        while (true) {
+            try {
+                System.out.println("Enter all your desired plug board pairs without separation between them.");
+                System.out.println("If you are willing to go back to main menu, type 'OUT !'.");
+                allPlugBoardPairs = this.scanner.nextLine();
+                if (allPlugBoardPairs.equals("OUT !")) {
+                    throw new UserQuitException("");
+                }
+                this.engine.setPlugBoard(initCode.createPlugBoard(allPlugBoardPairs));
+                break;
+            } catch (InvalidPlugBoardException e) {
+                System.out.println("Exception: " + e.getMessage());
+            } catch (UserQuitException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    //TODO: Bad design, the automated should be in the engine class and the conversions will be in the UI
     @Override
     public void initializeEnigmaCodeAutomatically() {
         InitCode initCode = new InitCode();
@@ -165,50 +226,49 @@ public class Console implements Input {
         Random random = new Random();
         resetMachine();
 
-        EngineDTOSelectedParts partsForRandom = engine.getSelectedParts();
+        EngineDTOSelectedParts partsForRandom = this.engine.getSelectedParts();
         randomNumberOfRotors = random.nextInt(partsForRandom.getNumberOfRotors() - 1) + 2;
 
         selectedRotors = initCode.pickRandomRotors(randomNumberOfRotors, partsForRandom.getNumberOfRotors());
         allStartingPositions = initCode.pickRandomStartingCharacters(partsForRandom.getABC(), randomNumberOfRotors);
         try {
-            engine.setSelectedRotors(initCode.createSelectedRotorsDeque(selectedRotors), initCode.createStartingCharactersList(allStartingPositions));
+            this.engine.setSelectedRotors(initCode.createSelectedRotorsDeque(selectedRotors), initCode.createStartingCharactersList(allStartingPositions));
         } catch (InvalidCharactersException | InvalidRotorException e) {
             System.out.println("Exception: " + e.getMessage());
         }
 
         reflectorID = initCode.pickRandomReflectorID(partsForRandom.getNumberOfReflectors());
         try {
-            engine.setSelectedReflector(initCode.getReflectorID(reflectorID));
+            this.engine.setSelectedReflector(initCode.getReflectorID(reflectorID));
         } catch (InvalidReflectorException | IllegalArgumentException e) {
             System.out.println("Exception: " + e.getMessage());
         }
 
         randomPlugBoard = initCode.pickRandomPlugBoard(partsForRandom.getABC());
         try {
-            engine.setPlugBoard(initCode.createPlugBoard(randomPlugBoard));
+            this.engine.setPlugBoard(initCode.createPlugBoard(randomPlugBoard));
         } catch (InvalidPlugBoardException e) {
             System.out.println("Exception: " + e.getMessage());
         }
 
-        machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(engine.getEngineDTO()).toString()));
-//        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
+        machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(this.engine.getEngineDTO()).toString()));
         System.out.println("Automatically initialized code: " + machineHistoryAndStatistics.getCurrentMachineCode());
     }
 
     @Override
-    public void encryptInput() {
+    public void getMessageAndProcessIt() {
         int timeStart, timeEnd;
         String output;
         String input;
         if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("Machine was not generated.");
+            System.out.println("No engine code was initialized.");
             return;
         }
-        System.out.println("Enter your message to encrypt.");
-        input = this.scanner.nextLine();
+        System.out.println("Enter your message to process.");
+        input = this.scanner.nextLine().toUpperCase();
         try {
             timeStart = (int) System.nanoTime();
-            output = engine.encryptDecrypt(input);
+            output = this.engine.processMessage(input);
             timeEnd = (int) System.nanoTime();
         } catch (InvalidCharactersException e) {
             System.out.println("Exception: " + e.getMessage());
@@ -216,36 +276,26 @@ public class Console implements Input {
         }
 
         machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(input, output, timeEnd - timeStart);
-        System.out.println("Encrypted message: " + output);
+        System.out.println("Processed message: " + output);
     }
 
     @Override
     // Reset last
     public void resetMachine() {
         if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("Machine was not generated.");
+            System.out.println("This is the first Enigma code insertion.");
             return;
         }
-        engine.reset();
+        this.engine.reset();
 
         System.out.println("Machine successfully reset.");
     }
 
+    //TODO: create this method in the MachineHistoryAndStatistics class and activate it here
     @Override
     public void getMachineStatisticsAndHistory() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Machine statistics and history:\n");
-        for (MachineCodeData machineCodeData : machineHistoryAndStatistics) {
-            sb.append(machineCodeData.getMachineCode()).append("\n");
-            int i = 1;
-            for (MachineActivateData machineActivateData : machineCodeData.getMachineActivateData()) {
-                sb.append("\t").append(i).append(". ").append(machineActivateData.getRawData()).append(" -> ")
-                        .append(machineActivateData.getProcessedData()).append(" : ").append(machineActivateData.getTimeElapsed()).append("\n");
-                i++;
-            }
-        }
 
-        System.out.println(sb.toString());
+        System.out.println(this.machineHistoryAndStatistics);
     }
 
     @Override

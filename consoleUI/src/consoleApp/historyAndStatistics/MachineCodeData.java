@@ -7,7 +7,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class MachineCodeData implements Iterable<MachineActivateData> {
-    private final String machineCode;
+    private final String machineCode;   //Example: <2(1),3(2)><FD><II>
     private final List<MachineActivateData> machineActivateData;
 
     public MachineCodeData(String machineCode) {

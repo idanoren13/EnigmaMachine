@@ -37,8 +37,10 @@ public class Program {
 
             switch(userChoice) {
                 case CHOICE_ONE:
-                    consoleApp = new Console();
-                    consoleApp.readMachineFromXMLFile();
+                    Console tmpConsole = new Console();
+                    if (tmpConsole.readMachineFromXMLFile() == true) {
+                        consoleApp = tmpConsole;
+                    }
                     break;
                 case CHOICE_TWO:
                     consoleApp.getMachineSpecs();
@@ -50,7 +52,7 @@ public class Program {
                     consoleApp.initializeEnigmaCodeAutomatically();
                     break;
                 case CHOICE_FIVE:
-                    consoleApp.encryptInput();
+                    consoleApp.getMessageAndProcessIt();
                     break;
                 case CHOICE_SIX:
                     consoleApp.resetMachine();
