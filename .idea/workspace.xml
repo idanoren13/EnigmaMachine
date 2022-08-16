@@ -8,21 +8,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="Added:&#10;UI, fully tested engine, JAR files with bat&#10;needs Some work:&#10;Choice 2, not fully implemented,check TODOs&#10;Choice 4, auto selection&#10;Choice 7, statistics">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/consoleUI_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/MachineCodeData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/MachineHistoryAndStatistics.java" afterDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="not completed&#10;Choice 7, statistics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTOSelectedParts.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTOSelectedParts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidStartingCharacters.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidCharactersException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/MachineActivateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineActivateData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +150,7 @@
       <workItem from="1660317769726" duration="9956000" />
       <workItem from="1660331997485" duration="2096000" />
       <workItem from="1660383046948" duration="3063000" />
-      <workItem from="1660577302902" duration="14249000" />
+      <workItem from="1660577302902" duration="19806000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -210,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660532063125</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="not completed&#10;Choice 7, statistics">
+      <created>1660605281531</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660605281531</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +234,8 @@
     <MESSAGE value="added initialization of the stacks" />
     <MESSAGE value="Added reset Engine" />
     <MESSAGE value="Added:&#10;UI, fully tested engine, JAR files with bat&#10;needs Some work:&#10;Choice 2, not fully implemented,check TODOs&#10;Choice 4, auto selection&#10;Choice 7, statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added:&#10;UI, fully tested engine, JAR files with bat&#10;needs Some work:&#10;Choice 2, not fully implemented,check TODOs&#10;Choice 4, auto selection&#10;Choice 7, statistics" />
+    <MESSAGE value="not completed&#10;Choice 7, statistics" />
+    <option name="LAST_COMMIT_MESSAGE" value="not completed&#10;Choice 7, statistics" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

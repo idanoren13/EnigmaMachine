@@ -52,11 +52,7 @@ public class InitCode {
 
         return abcSet.size();
     }
-
-    // Randoms
-    // Will generate from left (last) to right (first) rotor-IDs
-    // rotorsCount - rotors the machine will use
-    // totalRotors - the maximum ID of the given rotors in the XML file
+    
     public String pickRandomRotors(int rotorsCount, int totalRotors) {
         List<Integer> allIDs = new  ArrayList<>();
         List<Integer> rotorIDs = new ArrayList<>();

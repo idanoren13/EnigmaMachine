@@ -1,4 +1,4 @@
-package consoleApp.impl;
+package consoleApp.historyAndStatistics;
 
 public class MachineActivateData {
     private final String rawData;

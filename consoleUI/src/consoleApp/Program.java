@@ -61,6 +61,8 @@ public class Program {
                 case CHOICE_EIGHT:
                     consoleApp.exitMachine();
                     break;
+
+                    //TODO: Bonus?
             }
         } while (userChoice != Choice.CHOICE_EIGHT);
     }

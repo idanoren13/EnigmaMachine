@@ -1,5 +1,8 @@
 package consoleApp.impl;
 
+import consoleApp.historyAndStatistics.MachineActivateData;
+import consoleApp.historyAndStatistics.MachineCodeData;
+import consoleApp.historyAndStatistics.MachineHistoryAndStatistics;
 import consoleApp.interfaces.Input;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
@@ -14,35 +17,14 @@ import java.util.*;
 
 public class Console implements Input {
 
-    private Scanner scanner;
+    private final Scanner scanner;
     private EnigmaEngine engine;
-    private int numOfDecryptions;
-    private List<String> stringInput;
-    private List<String> stringOutput;
-    private List<Integer> timeStamps;
-    private List<String> codeTransforms;
-
-    private MachineHistoryAndStatistics machineHistoryAndStatistics;
+    private final MachineHistoryAndStatistics machineHistoryAndStatistics;
 
     public Console() {
         this.scanner = new Scanner(System.in);
         this.engine = null;
-        this.numOfDecryptions = 0;
-        this.stringInput = new ArrayList<>();
-        this.stringOutput = new ArrayList<>();
-        this.timeStamps = null;
-        this.codeTransforms = new ArrayList<>();
-    }
-
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    public Console(EnigmaEngine machine) {
-        this.engine = machine;
-        this.stringInput = null;
-        this.stringOutput = null;
-        this.timeStamps = null;
+        this.machineHistoryAndStatistics = new MachineHistoryAndStatistics();
     }
 
     @Override
@@ -66,7 +48,7 @@ public class Console implements Input {
 
     @Override
     public void getMachineSpecs() {
-        if (codeTransforms.isEmpty()) {
+        if (machineHistoryAndStatistics.isEmpty()) {
             System.out.println("Machine was not generated.");
             return;
         }
@@ -78,7 +60,7 @@ public class Console implements Input {
         sb.append("\tCurrent Selected Rotors: ").append(DTO.getSelectedRotors().size()).append("\n");
         sb.append("\tNumber Of Reflectors: ").append(DTO.getTotalReflectors()).append("\n");
         sb.append("\tMessages Processed: ").append(DTO.getMessagesSentCounter()).append("\n");
-        sb.append("\tFirst Machine State: ").append(codeTransforms.get(0)).append("\n");
+        sb.append("\tFirst Machine State: ").append(machineHistoryAndStatistics.getFirstMachineCode()).append("\n");
         sb.append("\tCurrent Machine State: ").append(currentMachineState(DTO)).append("\n");
 
         System.out.println(sb.toString());
@@ -130,6 +112,7 @@ public class Console implements Input {
         String reflectorNumber;
         String allPlugBoardPairs;
         InitCode initCode = new InitCode();
+        resetMachine();
 
         while (!isValid) {
             try {
@@ -168,8 +151,7 @@ public class Console implements Input {
             }
         }
 
-
-        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
+        machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(engine.getEngineDTO()).toString()));
     }
 
     @Override
@@ -181,6 +163,7 @@ public class Console implements Input {
         String randomPlugBoard;
         int randomNumberOfRotors;
         Random random = new Random();
+        resetMachine();
 
         EngineDTOSelectedParts partsForRandom = engine.getSelectedParts();
         randomNumberOfRotors = random.nextInt(partsForRandom.getNumberOfRotors() - 1) + 2;
@@ -207,8 +190,9 @@ public class Console implements Input {
             System.out.println("Exception: " + e.getMessage());
         }
 
-        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
-        System.out.println("Automatically initialized code: " + codeTransforms.get(codeTransforms.size() - 1));
+        machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(engine.getEngineDTO()).toString()));
+//        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
+        System.out.println("Automatically initialized code: " + machineHistoryAndStatistics.getCurrentMachineCode());
     }
 
     @Override
@@ -216,7 +200,7 @@ public class Console implements Input {
         int timeStart, timeEnd;
         String output;
         String input;
-        if (codeTransforms.isEmpty()) {
+        if (machineHistoryAndStatistics.isEmpty()) {
             System.out.println("Machine was not generated.");
             return;
         }
@@ -231,37 +215,37 @@ public class Console implements Input {
             return;
         }
 
-        stringInput.add(input);
-        stringOutput.add(output);
-        timeStamps.add(timeEnd - timeStart);
-        System.out.println("Encrypted message: " + stringOutput.get(stringOutput.size() - 1));
-
-        codeTransforms.add(currentMachineState(engine.getEngineDTO()).toString());
-
+        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(input, output, timeEnd - timeStart);
+        System.out.println("Encrypted message: " + output);
     }
 
     @Override
     // Reset last
     public void resetMachine() {
-        if (codeTransforms.isEmpty()) {
+        if (machineHistoryAndStatistics.isEmpty()) {
             System.out.println("Machine was not generated.");
             return;
         }
         engine.reset();
+
         System.out.println("Machine successfully reset.");
     }
 
     @Override
     public void getMachineStatisticsAndHistory() {
         StringBuilder sb = new StringBuilder();
-        for (int i= 0; i < codeTransforms.size(); i++) {
-            sb.append(codeTransforms.get(i)).append(" :\n")
-                    .append(stringInput.get(i)).append("->")
-                    .append(stringOutput.get(i))
-                    .append("(").append(timeStamps.get(i)).append(" nano-seconds)");
-            System.out.println(sb.toString());
-            sb.delete(0, sb.length());
+        sb.append("Machine statistics and history:\n");
+        for (MachineCodeData machineCodeData : machineHistoryAndStatistics) {
+            sb.append(machineCodeData.getMachineCode()).append("\n");
+            int i = 1;
+            for (MachineActivateData machineActivateData : machineCodeData.getMachineActivateData()) {
+                sb.append("\t").append(i).append(". ").append(machineActivateData.getRawData()).append(" -> ")
+                        .append(machineActivateData.getProcessedData()).append(" : ").append(machineActivateData.getTimeElapsed()).append("\n");
+                i++;
+            }
         }
+
+        System.out.println(sb.toString());
     }
 
     @Override

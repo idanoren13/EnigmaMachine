@@ -17,6 +17,6 @@ public interface Input {
     void initializeEnigmaCodeAutomatically();
     void encryptInput();
     void resetMachine();
-    void getMachineStatisticsAndHistory(); // TODO: read page 19 on CTE sheet (7).
+    void getMachineStatisticsAndHistory();
     void exitMachine();
 }
