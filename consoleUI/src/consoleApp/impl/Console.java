@@ -291,7 +291,6 @@ public class Console implements Input {
         System.out.println("Machine successfully reset.");
     }
 
-    //TODO: create this method in the MachineHistoryAndStatistics class and activate it here
     @Override
     public void getMachineStatisticsAndHistory() {
         if (machineHistoryAndStatistics.isEmpty()) {
