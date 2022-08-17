@@ -294,7 +294,10 @@ public class Console implements Input {
     //TODO: create this method in the MachineHistoryAndStatistics class and activate it here
     @Override
     public void getMachineStatisticsAndHistory() {
-
+        if (machineHistoryAndStatistics.isEmpty()) {
+            System.out.println("Machine was not generated.");
+            return;
+        }
         System.out.println(this.machineHistoryAndStatistics);
     }
 
