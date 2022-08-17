@@ -71,8 +71,13 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         }
         rotors = (HashMap<Integer, Rotor>)importCTERotors(cteRotors, new HashMap<>());
         createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
-
+        if (machine.getCTEReflectors() == null) {
+            throw new InvalidReflectorException("In the given XML, there are no reflectors.");
+        }
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
+        if (cteReflectors.size() < 1) {
+            throw new InvalidReflectorException("In the given XML, there are no reflectors.");
+        }
         reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
