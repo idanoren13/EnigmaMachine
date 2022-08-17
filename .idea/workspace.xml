@@ -8,39 +8,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="UI guidelines implemented in the engine">
-      <change afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/UserQuitException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_01_36_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_01_36__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_15_57_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_08_2022_15_57__Changes_.xml" beforeDir="false" />
+    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="some TODOs">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTOSelectedParts.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTOSelectedParts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidABCException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidABCException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/InputMisMatchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/InputMisMatchException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineActivateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineActivateData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +32,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Idan Oren &lt;idanor@mta.ac.il&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -75,26 +53,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TODO_SCOPE": "All Places",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "create.test.in.the.same.root": "true",
-    "extract.method.default.visibility": "private",
-    "jdk.selected.JAVA_MODULE": "1.8 (2)",
-    "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
-    "last_opened_file_path": "C:/Users/guybe/javafx-sdk-18.0.2/lib",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8 (2)&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/guybe/javafx-sdk-18.0.2/lib&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="consoleApp" />
@@ -176,7 +154,8 @@
       <workItem from="1660331997485" duration="2096000" />
       <workItem from="1660383046948" duration="3063000" />
       <workItem from="1660577302902" duration="25299000" />
-      <workItem from="1660662316624" duration="19233000" />
+      <workItem from="1660662316624" duration="19588000" />
+      <workItem from="1660738193350" duration="2377000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -244,7 +223,25 @@
       <option name="project" value="LOCAL" />
       <updated>1660610289131</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎00011" summary="some TODOs">
+      <created>1660704864333</created>
+      <option name="number" value="LOCAL‎00011" />
+      <option name="presentableId" value="LOCAL‎00011" />
+      <updated>1660704864333</updated>
+    </task>
+    <task id="LOCAL‎00012" summary="some TODOs">
+      <created>1660705033219</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1660705033219</updated>
+    </task>
+    <task id="LOCAL‎00013" summary="some TODOs">
+      <created>1660705064924</created>
+      <option name="number" value="LOCAL‎00013" />
+      <option name="presentableId" value="LOCAL‎00013" />
+      <updated>1660705064924</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,15 +267,46 @@
     <MESSAGE value="not completed&#10;Choice 7, statistics" />
     <MESSAGE value="all added, notch distance from window is not correct" />
     <MESSAGE value="UI guidelines implemented in the engine" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI guidelines implemented in the engine" />
+    <MESSAGE value="some TODOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="some TODOs" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java</url>
+          <line>212</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngine" memberName="rotorStackRightToLeft" />
         <PinnedItemInfo parentTag="enigmaEngine.impl.RotorImpl" memberName="countRotations" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((HashMap.Node)rotors.entrySet().toArray()[1]).getValue()" custom="java.util.HashMap.Node" />
+        <watch expression="((HashMap.Node)rotors.entrySet().toArray()[1]).getValue()" custom="java.util.HashMap.Node" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

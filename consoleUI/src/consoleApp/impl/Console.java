@@ -261,7 +261,7 @@ public class Console implements Input {
         String output;
         String input;
         if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("No engine code was initialized.");
+            System.out.println("No Enigma engine code was initialized.");
             return;
         }
         System.out.println("Enter your message to process.");
@@ -291,7 +291,6 @@ public class Console implements Input {
         System.out.println("Machine successfully reset.");
     }
 
-    //TODO: create this method in the MachineHistoryAndStatistics class and activate it here
     @Override
     public void getMachineStatisticsAndHistory() {
         if (machineHistoryAndStatistics.isEmpty()) {

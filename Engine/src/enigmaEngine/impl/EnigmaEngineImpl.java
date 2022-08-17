@@ -72,7 +72,6 @@ public class EnigmaEngineImpl implements EnigmaEngine {
 
     @Override
     public String processMessage(String input) throws InvalidCharactersException {
-        input = input.toUpperCase();
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
             throw new InvalidCharactersException("Starting characters must be in the machine ABC");
         }
@@ -207,9 +206,11 @@ public class EnigmaEngineImpl implements EnigmaEngine {
 
     private List<Pair<Integer, Integer>> getSelectedRotorsAndNotchesDistances() {
         List<Pair<Integer, Integer>> notchPositionsByOrder = new ArrayList<>();
-        for (Integer selectedRotor : selectedRotors) {
-            notchPositionsByOrder.add(new Pair<>(selectedRotor, Math.abs(rotors.get(selectedRotor).getNotch() - rotors.get(selectedRotor).getNumberOfRotations()) + 1));
-        //TODO: notch distance calculation is not correct
+        for (Integer selectedRotor : this.selectedRotors) {
+            Rotor currRotor = this.rotors.get(selectedRotor);
+            int machineABCLength = this.machineABC.length();
+            int distanceFromWindow = Math.abs(machineABCLength - currRotor.getNotch() - currRotor.getNumberOfRotations()) % machineABCLength;
+            notchPositionsByOrder.add(new Pair<>(selectedRotor, distanceFromWindow + 1)); // TODO: check with Aviad if range is {1,...,n} or {0,...,n-1}
         }
 
         return notchPositionsByOrder;
