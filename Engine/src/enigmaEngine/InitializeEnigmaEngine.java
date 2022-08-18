@@ -1,9 +1,6 @@
 package enigmaEngine;
 
-import enigmaEngine.exceptions.InvalidABCException;
-import enigmaEngine.exceptions.InvalidReflectorException;
-import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.UnknownSourceException;
+import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.InitializeEnigma;
 
@@ -19,7 +16,7 @@ public class InitializeEnigmaEngine {
 
     private final String lastFilePath = null;
 
-    public EnigmaEngine initializeEngine(SourceMode source, String path) throws InvalidRotorException, InvalidABCException, InvalidReflectorException, JAXBException, FileNotFoundException, UnknownSourceException {
+    public EnigmaEngine initializeEngine(SourceMode source, String path) throws InvalidRotorException, InvalidABCException, InvalidReflectorException, JAXBException, FileNotFoundException, UnknownSourceException, InvalidMachineException {
         InitializeEnigma enigmaEngineInitializer;
 
         switch (source){

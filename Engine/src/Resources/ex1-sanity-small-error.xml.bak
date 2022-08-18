@@ -30,7 +30,5 @@
 				<CTE-Positioning right="F" left="A"/>				
 			</CTE-Rotor>						
 		</CTE-Rotors>
-		<CTE-Reflectors>		
-		</CTE-Reflectors>
 	</CTE-Machine>	
 </CTE-Enigma>

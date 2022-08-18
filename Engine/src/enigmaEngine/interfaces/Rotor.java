@@ -12,6 +12,7 @@ public interface Rotor extends Rotatable {
     int getNotch();
 
     int getOutputIndex(int inputIndex, Direction dir);
+    int getStartIndex();
 
     void setStartIndex(char startCharacter);
 

@@ -56,7 +56,7 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     @Override
     public char activate(char input) {
 
-        //rotate the first rotor
+        // Rotates the first rotor
         rotorStackRightToLeft.peek().rotate();
 
         char temp = plugBoard.returnCharacterPair(input);
@@ -206,11 +206,11 @@ public class EnigmaEngineImpl implements EnigmaEngine {
 
     private List<Pair<Integer, Integer>> getSelectedRotorsAndNotchesDistances() {
         List<Pair<Integer, Integer>> notchPositionsByOrder = new ArrayList<>();
-        for (Integer selectedRotor : this.selectedRotors) {
-            Rotor currRotor = this.rotors.get(selectedRotor);
+        for (Integer selectedRotorIdx : this.selectedRotors) {
+            Rotor currRotor = this.rotors.get(selectedRotorIdx);
             int machineABCLength = this.machineABC.length();
-            int distanceFromWindow = Math.abs(machineABCLength - currRotor.getNotch() - currRotor.getNumberOfRotations()) % machineABCLength;
-            notchPositionsByOrder.add(new Pair<>(selectedRotor, distanceFromWindow + 1)); // TODO: check with Aviad if range is {1,...,n} or {0,...,n-1}
+            int distanceFromWindow = Math.floorMod(currRotor.getNotch() - currRotor.getNumberOfRotations(), machineABCLength);
+            notchPositionsByOrder.add(new Pair<>(selectedRotorIdx, distanceFromWindow));
         }
 
         return notchPositionsByOrder;

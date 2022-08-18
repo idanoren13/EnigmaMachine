@@ -35,6 +35,11 @@ public class RotorImpl implements Rotor, Rotatable {
     }
 
     @Override
+    public int getStartIndex() {
+        return this.startIndex;
+    }
+
+    @Override
     public Character peekWindow() {
         return this.rightSide.get(0);
     }
@@ -66,9 +71,9 @@ public class RotorImpl implements Rotor, Rotatable {
     public void rotate() {
         Collections.rotate(rightSide, -1);
         Collections.rotate(leftSide, -1);
-        this.countRotations = (countRotations + 1) % (rotorSize - 1);
+        this.countRotations = Math.floorMod((countRotations + 1), rotorSize);
 
-        if (isNotchOnTop() && rotateNextRotor != null) { //rotates the next rotor if needed
+        if (isNotchOnTop() && rotateNextRotor != null) { // rotates the next rotor when needed
             rotateNextRotor.rotate();
         }
     }

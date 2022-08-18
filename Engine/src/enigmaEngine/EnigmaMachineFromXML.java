@@ -1,6 +1,7 @@
 package enigmaEngine;
 
 import enigmaEngine.exceptions.InvalidABCException;
+import enigmaEngine.exceptions.InvalidMachineException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.impl.EnigmaEngineImpl;
@@ -26,7 +27,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
 
     @Override
-    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
+    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
         CTEEnigma xmlOutput = null;
 
         if (!path.contains(".xml")) {
@@ -41,7 +42,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         return getEnigmaEngine(path, xmlOutput);
     }
 
-    private EnigmaEngineImpl getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException {
+    private EnigmaEngineImpl getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
 
         String cteMachineABC;
         int cteRotorsCount;
@@ -51,33 +52,34 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         HashMap<Integer, Rotor> rotors;
         HashMap<Reflector.ReflectorID, Reflector> reflectors;
 
+        // Machine
         machine = xmlOutput.getCTEMachine();
         if (machine == null) {
-            throw new RuntimeException("The XML that is given does not contain any machine.");
+            throw new InvalidMachineException("The XML that is given does not contain any machine.");
         }
 
+        // Machine's ABC
         cteMachineABC = machine.getABC().trim();
         createAndValidateEnigmaComponents = new CreateAndValidateEnigmaComponentsImpl(cteMachineABC);
         createAndValidateEnigmaComponents.ValidateABC(cteMachineABC);
 
+        // Rotors
         cteRotorsCount = machine.getRotorsCount();
         if (cteRotorsCount < 2) {
-            throw new RuntimeException("In the given XML, rotors count is less than 2.");
+            throw new InvalidRotorException("In the given XML, rotors count is less than 2.");
         }
-
         cteRotors = machine.getCTERotors();
         if (cteRotorsCount > cteRotors.getCTERotor().size()) {
-            throw new RuntimeException("In the given XML, rotors count is larger than actual rotors.");
+            throw new InvalidRotorException("In the given XML, rotors count is larger than actual rotors.");
         }
         rotors = (HashMap<Integer, Rotor>)importCTERotors(cteRotors, new HashMap<>());
         createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
-        if (machine.getCTEReflectors() == null) {
+
+        // Reflectors
+        if (machine.getCTEReflectors() == null || machine.getCTEReflectors().getCTEReflector().size() < 1) {
             throw new InvalidReflectorException("In the given XML, there are no reflectors.");
         }
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
-        if (cteReflectors.size() < 1) {
-            throw new InvalidReflectorException("In the given XML, there are no reflectors.");
-        }
         reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 

@@ -1,5 +1,6 @@
 package consoleApp;
 
+import consoleApp.exceptions.NoMachineGeneratedException;
 import consoleApp.impl.Console;
 
 import java.util.Scanner;
@@ -13,14 +14,16 @@ public class Program {
         CHOICE_FIVE,
         CHOICE_SIX,
         CHOICE_SEVEN,
-        CHOICE_EIGHT
+        CHOICE_EIGHT,
+        CHOICE_NINE,
+        CHOICE_TEN
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws NoMachineGeneratedException {
         runMachine();
     }
 
-    private static void runMachine() {
+    private static void runMachine() throws NoMachineGeneratedException {
         Console consoleApp = new Console();
         Choice userChoice;
         Boolean machineIsLoaded = false;
@@ -63,8 +66,12 @@ public class Program {
                 case CHOICE_EIGHT:
                     consoleApp.exitMachine();
                     break;
-
-                    //TODO: Bonus?
+                case CHOICE_NINE:
+                    consoleApp.saveGame();
+                    break;
+                case CHOICE_TEN:
+                    consoleApp.loadGame();
+                    break;
             }
         } while (userChoice != Choice.CHOICE_EIGHT);
     }
@@ -76,7 +83,7 @@ public class Program {
             try {
                 Scanner scanner = new Scanner(System.in);
                 int input = Integer.parseInt(scanner.nextLine());
-                if (input < 1 || 9 <= input) {
+                if (input < 1 || 11 <= input) {
                     throw new IllegalArgumentException();
                 }
 
@@ -85,7 +92,7 @@ public class Program {
             } catch (NumberFormatException e) {
                 System.out.println("Please enter numeric value.");
             } catch (IllegalArgumentException e) {
-                System.out.println("Please enter a single-digit from one of the numbers above.");
+                System.out.println("Please enter a numeric choice from one of the above.");
             }
         } while (!validInput);
 
@@ -108,5 +115,7 @@ public class Program {
         System.out.println("6. Reset current Enigma engine code.");
         System.out.println("7. Reveal descriptive statistics.");
         System.out.println("8. Exit the C.T.E game.");
+        System.out.println("9. Save game.");
+        System.out.println("10. Load game.");
     }
 }

@@ -1,5 +1,6 @@
 package consoleApp.impl;
 
+import consoleApp.exceptions.NoMachineGeneratedException;
 import consoleApp.exceptions.UserQuitException;
 import consoleApp.historyAndStatistics.MachineCodeData;
 import consoleApp.historyAndStatistics.MachineHistoryAndStatistics;
@@ -35,8 +36,8 @@ public class Console implements Input {
 
         try {
             tempEngine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, this.scanner.nextLine());
-        } catch (InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException |
-                 FileNotFoundException | UnknownSourceException e) {
+        } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException |
+                 FileNotFoundException | UnknownSourceException | RuntimeException e) {
             System.out.println("Exception: " + e.getMessage());
             return false;
         }
@@ -48,23 +49,25 @@ public class Console implements Input {
     }
 
     @Override
-    public void getMachineSpecs() {
-        if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("Machine was not generated.");
-            return;
+    public void getMachineSpecs() throws NoMachineGeneratedException {
+        try {
+            if (machineHistoryAndStatistics.isEmpty()) {
+                throw new NoMachineGeneratedException("no machine was generated.");
+            }
+
+            EngineDTO DTO = engine.getEngineDTO();
+            String str = "Machine specs:\n" +
+                    "\tMax Number Of Rotors: " + DTO.getTotalNumberOfRotors() + "\n" +
+                    "\tCurrent Selected Rotors: " + DTO.getSelectedRotors().size() + "\n" +
+                    "\tNumber Of Reflectors: " + DTO.getTotalReflectors() + "\n" +
+                    "\tMessages Processed: " + DTO.getMessagesSentCounter() + "\n" +
+                    "\tFirst Machine State: " + machineHistoryAndStatistics.getFirstMachineCode() + "\n" +
+                    "\tCurrent Machine State: " + currentMachineState(DTO) + "\n";
+
+            System.out.println(str);
+        } catch (NoMachineGeneratedException e) {
+            System.out.println("Exception: " + e.getMessage());
         }
-
-        EngineDTO DTO = engine.getEngineDTO();
-        StringBuilder sb = new StringBuilder();
-        sb.append("Machine specs:\n");
-        sb.append("\tMax Number Of Rotors: ").append(DTO.getTotalNumberOfRotors()).append("\n");
-        sb.append("\tCurrent Selected Rotors: ").append(DTO.getSelectedRotors().size()).append("\n");
-        sb.append("\tNumber Of Reflectors: ").append(DTO.getTotalReflectors()).append("\n");
-        sb.append("\tMessages Processed: ").append(DTO.getMessagesSentCounter()).append("\n");
-        sb.append("\tFirst Machine State: ").append(machineHistoryAndStatistics.getFirstMachineCode()).append("\n");
-        sb.append("\tCurrent Machine State: ").append(currentMachineState(DTO)).append("\n");
-
-        System.out.println(sb.toString());
     }
 
     private StringBuilder currentMachineState(EngineDTO DTO) {
@@ -75,13 +78,10 @@ public class Console implements Input {
         }
 
         sb.deleteCharAt(sb.length() - 1);
-        sb.append(">");
-
-        sb.append("<");
+        sb.append("><");
         DTO.currentSelectedRotorsPositions().forEach(sb::append);
-        sb.append(">");
-
-        sb.append("<").append(DTO.getSelectedReflector()).append(">");
+        sb.append("><");
+        sb.append(DTO.getSelectedReflector()).append(">");
 
         if (!DTO.getPlugBoard().isEmpty()) {
             sb.append("<");
@@ -108,7 +108,7 @@ public class Console implements Input {
     @Override
     public boolean initializeEnigmaCodeManually() {
         InitCode initCode = new InitCode();
-        List<Integer> selectedRotorsDeque = null;
+        List<Integer> selectedRotorsDeque;
         resetMachine();
         try {
             selectedRotorsDeque = getRotorsFromUserInput(initCode);
@@ -293,15 +293,65 @@ public class Console implements Input {
 
     @Override
     public void getMachineStatisticsAndHistory() {
-        if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("Machine was not generated.");
-            return;
+        try {
+            if (machineHistoryAndStatistics.isEmpty()) {
+                throw new NoMachineGeneratedException("no machine was generated.");
+            }
+            System.out.println(this.machineHistoryAndStatistics);
+        } catch (NoMachineGeneratedException e) {
+            System.out.println("Exception: " + e.getMessage());
         }
-        System.out.println(this.machineHistoryAndStatistics);
     }
 
     @Override
     public void exitMachine() {
         System.out.println("Goodbye!");
+    }
+
+    @Override
+    public void saveGame() {
+        try {
+            if (machineHistoryAndStatistics.isEmpty()) {
+                throw new NoMachineGeneratedException("no machine was generated.");
+            }
+            System.out.println("You are about to save Enigma engine code to a file.");
+
+            String fileNameIncludingFullPath = getFilePathFromUser();
+            saveFileInPath(fileNameIncludingFullPath);
+        } catch (NoMachineGeneratedException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+
+    private String getFilePathFromUser() {
+        boolean nullString;
+        String fileNameIncludingFullPath;
+        do {
+            System.out.println("Enter a valid full path to your file, including file name ONLY and EXCLUDING its file extension.");
+            fileNameIncludingFullPath = this.scanner.nextLine();
+            nullString = (fileNameIncludingFullPath.equals(""));
+            if (nullString) {
+                System.out.println("No input was entered.");
+            }
+        } while (nullString);
+        return fileNameIncludingFullPath;
+    }
+
+    private void saveFileInPath(String fileNameIncludingFullPath) {
+        // TODO: implement this save method for bonus
+    }
+
+    @Override
+    public void loadGame() {
+        System.out.println("You are about to load Enigma engine code from a file.");
+
+        String fileNameIncludingFullPath = getFilePathFromUser();
+        loadFileInPath(fileNameIncludingFullPath);
+    }
+
+    private void loadFileInPath(String fileNameIncludingFullPath) {
+        // TODO: implement this load method for bonus
+
+        // this file doesn't exist
     }
 }
