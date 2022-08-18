@@ -68,8 +68,10 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
      * */
     @Override
     public void ValidateABC(String abc) throws InvalidABCException {
-
-        if (abc.length() % 2 == 1) {
+        if (abc.length() < 1) {
+            throw new InvalidABCException("There machine does not contain ABC letters.");
+        }
+        else if (abc.length() % 2 == 1) {
             throw new InvalidABCException("The size of machine's ABC language must be an even number.");
         }
 

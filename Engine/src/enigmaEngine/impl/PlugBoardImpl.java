@@ -1,11 +1,13 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.interfaces.PlugBoard;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
+public class PlugBoardImpl implements PlugBoard, Serializable {
     private final HashMap<Character, Character> abcPairs;
 
     public PlugBoardImpl() {

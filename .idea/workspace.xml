@@ -9,22 +9,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="some TODOs">
-      <change afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/exceptions/InvalidMachineException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/NoMachineGeneratedException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml.bak" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml.bak" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineActivateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineActivateData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +164,9 @@
       <workItem from="1660662316624" duration="19588000" />
       <workItem from="1660738193350" duration="2709000" />
       <workItem from="1660742266446" duration="559000" />
-      <workItem from="1660754769888" duration="11195000" />
+      <workItem from="1660754769888" duration="11346000" />
+      <workItem from="1660822316410" duration="811000" />
+      <workItem from="1660823600180" duration="5061000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -266,7 +264,13 @@
       <option name="presentableId" value="LOCAL‎00015" />
       <updated>1660742804182</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎00016" summary="some TODOs">
+      <created>1660784933010</created>
+      <option name="number" value="LOCAL‎00016" />
+      <option name="presentableId" value="LOCAL‎00016" />
+      <updated>1660784933010</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +300,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="some TODOs" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java</url>
+          <line>345</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngine" memberName="rotorStackRightToLeft" />

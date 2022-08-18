@@ -55,10 +55,13 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         // Machine
         machine = xmlOutput.getCTEMachine();
         if (machine == null) {
-            throw new InvalidMachineException("The XML that is given does not contain any machine.");
+            throw new InvalidMachineException("In the given XML, no machine is given.");
         }
 
         // Machine's ABC
+        if (machine.getABC() == null) {
+            throw new InvalidABCException("In the given XML, there is no ABC language.");
+        }
         cteMachineABC = machine.getABC().trim();
         createAndValidateEnigmaComponents = new CreateAndValidateEnigmaComponentsImpl(cteMachineABC);
         createAndValidateEnigmaComponents.ValidateABC(cteMachineABC);

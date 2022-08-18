@@ -1,6 +1,8 @@
 package consoleApp.historyAndStatistics;
 
-public class MachineActivateData {
+import java.io.Serializable;
+
+public class MachineActivateData implements Serializable {
     private final String rawData;
     private final String processedData;
     private final int timeElapsed;

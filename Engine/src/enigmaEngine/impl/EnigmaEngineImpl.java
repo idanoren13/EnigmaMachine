@@ -12,9 +12,10 @@ import immutables.engine.EngineDTO;
 import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class EnigmaEngineImpl implements EnigmaEngine {
+public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private final HashMap<Integer, Rotor> rotors;
     private final HashMap<Reflector.ReflectorID, Reflector> reflectors;
     private PlugBoard plugBoard;

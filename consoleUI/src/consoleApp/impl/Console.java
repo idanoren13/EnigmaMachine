@@ -14,14 +14,16 @@ import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Console implements Input {
 
     private final Scanner scanner;
     private EnigmaEngine engine;
-    private final MachineHistoryAndStatistics machineHistoryAndStatistics;
+    private MachineHistoryAndStatistics machineHistoryAndStatistics;
 
     public Console() {
         this.scanner = new Scanner(System.in);
@@ -338,7 +340,41 @@ public class Console implements Input {
     }
 
     private void saveFileInPath(String fileNameIncludingFullPath) {
-        // TODO: implement this save method for bonus
+        try {
+            if (Files.exists(Paths.get(fileNameIncludingFullPath)) == true) {
+                System.out.println("There is already a file with this name in the given path.");
+                System.out.println("Do you want to proceed and save your new file? Type Y/N.");
+                boolean validInput;
+                String proceedOrNot = "";
+                do {
+                    proceedOrNot = this.scanner.nextLine().toUpperCase();
+                    if (proceedOrNot.equals("Y") || proceedOrNot.equals("N")) {
+                        validInput = true;
+                    }
+                    else {
+                        System.out.println("The input given is not Y nor N.");
+                        validInput = false;
+                    }
+                } while (!validInput);
+                if (proceedOrNot.equals("N")) {
+                    System.out.println("The file was not saved.");
+                    return;
+                }
+            }
+            ObjectOutputStream fileToSerialize = new ObjectOutputStream(
+                    new FileOutputStream(
+                            fileNameIncludingFullPath)
+            );
+            fileToSerialize.writeObject(this.engine);
+            fileToSerialize.writeObject(this.machineHistoryAndStatistics);
+            fileToSerialize.flush();
+
+            System.out.println("File has been successfully saved!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Exception: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
     }
 
     @Override
@@ -350,8 +386,24 @@ public class Console implements Input {
     }
 
     private void loadFileInPath(String fileNameIncludingFullPath) {
-        // TODO: implement this load method for bonus
+        try {
+            if (Files.notExists(Paths.get(fileNameIncludingFullPath)) == true) {
+                throw new FileNotFoundException("the given file name '" + fileNameIncludingFullPath + "' not found.");
+            }
+            ObjectInputStream fileToDeserialize = new ObjectInputStream(
+                    new FileInputStream(
+                            fileNameIncludingFullPath)
+            );
+            this.engine = (EnigmaEngine)fileToDeserialize.readObject();
+            this.machineHistoryAndStatistics = (MachineHistoryAndStatistics)fileToDeserialize.readObject();
 
-        // this file doesn't exist
+            System.out.println("File has been successfully loaded!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Exception: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Exception: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception: there is a problem with loading the file.");
+        }
     }
 }
