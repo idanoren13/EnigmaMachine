@@ -319,7 +319,7 @@ public class Console implements Input {
             System.out.println("You are about to save Enigma engine code to a file.");
 
             String fileNameIncludingFullPath = getFilePathFromUser();
-            saveFileInPath(fileNameIncludingFullPath);
+            saveFileInPath(fileNameIncludingFullPath + ".slz");
         } catch (NoMachineGeneratedException e) {
             System.out.println("Exception: " + e.getMessage());
         }
@@ -382,7 +382,7 @@ public class Console implements Input {
         System.out.println("You are about to load Enigma engine code from a file.");
 
         String fileNameIncludingFullPath = getFilePathFromUser();
-        loadFileInPath(fileNameIncludingFullPath);
+        loadFileInPath(fileNameIncludingFullPath + ".slz");
     }
 
     private void loadFileInPath(String fileNameIncludingFullPath) {
