@@ -26,7 +26,7 @@ import java.util.List;
 
 public class EnigmaMachineFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
-    public String currentEnigmaMachineSource;
+    public String currentEnigmaMachineSource = "";
 
     @Override
     public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException, FileAlreadyExistsException {
