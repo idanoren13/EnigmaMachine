@@ -2,6 +2,7 @@ package consoleApp.impl;
 
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
+import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.interfaces.Reflector;
 import javafx.util.Pair;
 
@@ -11,10 +12,15 @@ import java.util.stream.IntStream;
 
 public class InitCode {
 
-    public ArrayList<Integer> createSelectedRotorsDeque(String selectedRotors) throws NumberFormatException {
+    public ArrayList<Integer> createSelectedRotorsDeque(String selectedRotors) throws NumberFormatException, InvalidRotorException {
         String[] stringRotors = selectedRotors.split(",");
         int[] intRotors = Arrays.stream(stringRotors).mapToInt(Integer::parseInt).toArray();
 
+        List<Integer> listRotors = Arrays.stream(intRotors).boxed().collect(Collectors.toList());
+        Set<Integer> targetSet = new HashSet<>(listRotors);
+        if (targetSet.size() < listRotors.size()) {
+            throw new InvalidRotorException("A rotor ID was inserted several times. Please insert only unique rotor IDs.");
+        }
         return Arrays.stream(intRotors).boxed().collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -35,7 +41,6 @@ public class InitCode {
         if (abcArr.length % 2 == 1) {
             throw new InvalidPlugBoardException("Plug board must have even number of pairs");
         }
-        HashSet<Character> abcSet = new HashSet<>();
         if (getUniqueCharacters(abcArr) != abcArr.length) {
             throw new InvalidPlugBoardException("Plug board must have unique characters");
         }
@@ -79,7 +84,7 @@ public class InitCode {
         return res.toString();
     }
 
-    //TODO: Check roman numerials are valid by Aviad
+    //TODO: Check roman numerals are valid by Aviad
     public String pickRandomReflectorID(int reflectorsIDSize) {
         HashMap<Integer, String> allIDs = new HashMap<>();
         allIDs.put(1, "I");
