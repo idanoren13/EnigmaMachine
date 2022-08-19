@@ -74,16 +74,23 @@ public class Console implements Input {
     }
 
     private StringBuilder currentMachineState(EngineDTO DTO) {
+        StringBuilder rotorFirstPart = new StringBuilder();
+        StringBuilder rotorSecondPart = new StringBuilder();
         StringBuilder sb = new StringBuilder();
-        sb.append("<");
-        for (Pair<Integer, Integer> rotorIDAndNotchPosition : DTO.getSelectedRotorsAndNotchesPosition()) {
-            sb.append(rotorIDAndNotchPosition.getKey()).append('(').append(rotorIDAndNotchPosition.getValue()).append("),");
+        rotorFirstPart.append("<");
+        rotorSecondPart.append("<");
+        List<Pair<Integer, Integer>> selectedRotorsAndNotchesPosition = DTO.getSelectedRotorsAndNotchesPosition();
+        List<Character> selectedRotorsPositions = DTO.currentSelectedRotorsPositions();
+        for (int i = 0; i < selectedRotorsAndNotchesPosition.size(); i++) {
+            rotorFirstPart.append(selectedRotorsAndNotchesPosition.get(i).getKey()).append(',');
+            rotorSecondPart.append(selectedRotorsPositions.get(i))
+                    .append('(').append(selectedRotorsAndNotchesPosition.get(i).getValue()).append("),");
         }
-
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("><");
-        DTO.currentSelectedRotorsPositions().forEach(sb::append);
-        sb.append("><");
+        rotorFirstPart.deleteCharAt(rotorFirstPart.length() - 1);
+        rotorFirstPart.append(">");
+        rotorSecondPart.deleteCharAt(rotorSecondPart.length() - 1);
+        rotorSecondPart.append("><");
+        sb.append(rotorFirstPart).append(rotorSecondPart);
         sb.append(DTO.getSelectedReflector()).append(">");
 
         if (!DTO.getPlugBoard().isEmpty()) {

@@ -10,7 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="some TODOs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,8 @@
       <workItem from="1660823600180" duration="5099000" />
       <workItem from="1660865217492" duration="109000" />
       <workItem from="1660934549678" duration="1320000" />
-      <workItem from="1660935931277" duration="1101000" />
+      <workItem from="1660935931277" duration="1115000" />
+      <workItem from="1660938187387" duration="978000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -299,7 +300,13 @@
       <option name="presentableId" value="LOCAL‎00022" />
       <updated>1660935442507</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL‎00023" summary="some TODOs">
+      <created>1660937046454</created>
+      <option name="number" value="LOCAL‎00023" />
+      <option name="presentableId" value="LOCAL‎00023" />
+      <updated>1660937046454</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +336,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="some TODOs" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngine" memberName="rotorStackRightToLeft" />
