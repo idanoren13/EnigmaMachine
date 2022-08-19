@@ -1,6 +1,5 @@
 package consoleApp;
 
-import consoleApp.exceptions.NoMachineGeneratedException;
 import consoleApp.impl.Console;
 
 import java.util.Scanner;
@@ -19,11 +18,11 @@ public class Program {
         CHOICE_TEN
     }
 
-    public static void main(String[] args) throws NoMachineGeneratedException {
+    public static void main(String[] args) {
         runMachine();
     }
 
-    private static void runMachine() throws NoMachineGeneratedException {
+    private static void runMachine() {
         Console consoleApp = new Console();
         Choice userChoice;
         Boolean machineIsLoaded = false;
@@ -41,7 +40,7 @@ public class Program {
             switch(userChoice) {
                 case CHOICE_ONE:
                     Console tmpConsole = new Console();
-                    if (tmpConsole.readMachineFromXMLFile() == true) {
+                    if (tmpConsole.readMachineFromXMLFile()) {
                         consoleApp = tmpConsole;
                     }
                     break;

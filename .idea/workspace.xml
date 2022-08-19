@@ -9,11 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="some TODOs">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +161,8 @@
       <workItem from="1660754769888" duration="11346000" />
       <workItem from="1660822316410" duration="811000" />
       <workItem from="1660823600180" duration="5099000" />
-      <workItem from="1660865217492" duration="62000" />
+      <workItem from="1660865217492" duration="109000" />
+      <workItem from="1660934549678" duration="545000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -277,7 +278,13 @@
       <option name="presentableId" value="LOCAL‎00018" />
       <updated>1660835699426</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL‎00019" summary="some TODOs">
+      <created>1660865298373</created>
+      <option name="number" value="LOCAL‎00019" />
+      <option name="presentableId" value="LOCAL‎00019" />
+      <updated>1660865298373</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

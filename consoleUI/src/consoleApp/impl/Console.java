@@ -15,6 +15,7 @@ import javafx.util.Pair;
 
 import javax.xml.bind.JAXBException;
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -39,7 +40,7 @@ public class Console implements Input {
         try {
             tempEngine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, this.scanner.nextLine());
         } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException |
-                 FileNotFoundException | UnknownSourceException | RuntimeException e) {
+                 FileNotFoundException | UnknownSourceException | FileAlreadyExistsException | RuntimeException e) {
             System.out.println("Exception: " + e.getMessage());
             return false;
         }
@@ -51,7 +52,7 @@ public class Console implements Input {
     }
 
     @Override
-    public void getMachineSpecs() throws NoMachineGeneratedException {
+    public void getMachineSpecs() {
         try {
             if (machineHistoryAndStatistics.isEmpty()) {
                 throw new NoMachineGeneratedException("no machine was generated.");
@@ -341,11 +342,11 @@ public class Console implements Input {
 
     private void saveFileInPath(String fileNameIncludingFullPath) {
         try {
-            if (Files.exists(Paths.get(fileNameIncludingFullPath)) == true) {
+            if (Files.exists(Paths.get(fileNameIncludingFullPath))) {
                 System.out.println("There is already a file with this name in the given path.");
                 System.out.println("Do you want to proceed and save your new file? Type Y/N.");
                 boolean validInput;
-                String proceedOrNot = "";
+                String proceedOrNot;
                 do {
                     proceedOrNot = this.scanner.nextLine().toUpperCase();
                     if (proceedOrNot.equals("Y") || proceedOrNot.equals("N")) {
@@ -387,7 +388,7 @@ public class Console implements Input {
 
     private void loadFileInPath(String fileNameIncludingFullPath) {
         try {
-            if (Files.notExists(Paths.get(fileNameIncludingFullPath)) == true) {
+            if (Files.notExists(Paths.get(fileNameIncludingFullPath))) {
                 throw new FileNotFoundException("the given file name '" + fileNameIncludingFullPath + "' not found.");
             }
             ObjectInputStream fileToDeserialize = new ObjectInputStream(

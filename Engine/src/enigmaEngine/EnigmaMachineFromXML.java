@@ -18,6 +18,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,13 +26,17 @@ import java.util.List;
 
 public class EnigmaMachineFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
+    public String currentEnigmaMachineSource;
 
     @Override
-    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
-        CTEEnigma xmlOutput = null;
+    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException, FileAlreadyExistsException {
+        CTEEnigma xmlOutput;
 
         if (!path.contains(".xml")) {
             throw new FileNotFoundException("File given is not of XML type.");
+        }
+        else if (this.currentEnigmaMachineSource.equals(path)) {
+            throw new FileAlreadyExistsException("File given is already defined as the Enigma machine.");
         }
         InputStream xmlFile = new FileInputStream(path);
         JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
@@ -86,6 +91,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
+        this.currentEnigmaMachineSource = path;
         return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
     }
 
@@ -127,8 +133,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
 
     private Reflector.ReflectorID getCTEReflectorID(String stringID) {
         try {
-            Reflector.ReflectorID id = enigmaEngine.interfaces.Reflector.ReflectorID.valueOf(stringID);
-            return id;
+            return Reflector.ReflectorID.valueOf(stringID);
         } catch (IllegalArgumentException e) {
             throw new RuntimeException("Invalid ID for enum "
                     + enigmaEngine.interfaces.Reflector.ReflectorID.class.getSimpleName()
@@ -140,7 +145,6 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
     private Pair<List<Integer>, List<Integer>> getCTEReflectorInputAndOutputPairs(CTEReflector reflector) {
         List<Integer> input = new ArrayList<>();
         List<Integer> output = new ArrayList<>();
-        Pair<List<Integer>, List<Integer>> res = new Pair<>(input, output);
         for (CTEReflect pair : reflector.getCTEReflect()) {
             if (pair.getInput() == pair.getOutput()) {
                 throw new RuntimeException("The XML that is given contains a reflector that maps a letter to itself.");
