@@ -8,7 +8,8 @@ import enigmaEngine.impl.EnigmaEngineImpl;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
+import java.nio.file.FileAlreadyExistsException;
 
 public interface InitializeEnigma {
-    EnigmaEngineImpl getEnigmaEngineFromSource(String source) throws InvalidABCException, InvalidReflectorException, InvalidRotorException, FileNotFoundException, JAXBException, InvalidMachineException;
+    EnigmaEngineImpl getEnigmaEngineFromSource(String source) throws InvalidABCException, InvalidReflectorException, InvalidRotorException, FileNotFoundException, JAXBException, InvalidMachineException, FileAlreadyExistsException;
 }

@@ -1,12 +1,13 @@
 package consoleApp.historyAndStatistics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class MachineHistoryAndStatistics implements Iterable<MachineCodeData> {
+public class MachineHistoryAndStatistics implements Iterable<MachineCodeData>, Serializable {
     private final List<MachineCodeData> machineCodeData;
 
     public MachineHistoryAndStatistics() {

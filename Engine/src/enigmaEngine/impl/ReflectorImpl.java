@@ -2,10 +2,11 @@ package enigmaEngine.impl;
 
 import enigmaEngine.interfaces.Reflector;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public class ReflectorImpl implements Reflector {
+public class ReflectorImpl implements Reflector, Serializable {
     private final HashMap<Integer, Integer> indexPairs;
     private final ReflectorID id;
 
