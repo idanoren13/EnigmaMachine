@@ -41,7 +41,7 @@ public class Program {
             switch(userChoice) {
                 case CHOICE_ONE:
                     Console tmpConsole = new Console();
-                    if (tmpConsole.readMachineFromXMLFile() == true) {
+                    if (tmpConsole.readMachineFromXMLFile()) {
                         consoleApp = tmpConsole;
                     }
                     break;

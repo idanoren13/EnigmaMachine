@@ -9,7 +9,7 @@ public class PlugBoardImpl implements enigmaEngine.interfaces.PlugBoard {
     private final HashMap<Character, Character> abcPairs;
 
     public PlugBoardImpl() {
-        this.abcPairs = new HashMap<Character, Character>();
+        this.abcPairs = new HashMap<>();
     }
 
     public PlugBoardImpl(List<Pair<Character, Character>> pairList) {

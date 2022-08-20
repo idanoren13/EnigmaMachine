@@ -9,6 +9,7 @@ import java.util.List;
 public class RotorImpl implements Rotor, Rotatable {
     private final int id;
     private final int notch;
+    private final char notchCharacter;
     private int countRotations;
     private int startIndex;
     private final List<Character> rightSide;
@@ -20,6 +21,7 @@ public class RotorImpl implements Rotor, Rotatable {
     public RotorImpl(int id, int notch, List<Character> rightSide, List<Character> leftSide) {
         this.id = id;
         this.notch = notch;
+        this.notchCharacter = rightSide.get(notch);
         this.rightSide = rightSide;
         this.leftSide = leftSide;
         this.countRotations = 0;
@@ -45,8 +47,8 @@ public class RotorImpl implements Rotor, Rotatable {
     }
 
     @Override
-    public int getNotch() {
-        return this.notch;
+    public int getNotchIndex() {
+        return this.rightSide.indexOf(this.notchCharacter);
     }
 
     @Override

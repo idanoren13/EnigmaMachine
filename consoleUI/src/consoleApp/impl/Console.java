@@ -10,7 +10,6 @@ import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
 import immutables.engine.EngineDTO;
-import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBException;
@@ -136,9 +135,9 @@ public class Console implements Input {
                 if (selectedRotors.equals("OUT !")) {
                     throw new UserQuitException("");
                 }
-                selectedRotorsDeque = initCode.createSelectedRotorsDeque(selectedRotors); // TODO: bad design, but required condition here. TO ASK AVIAD
+                selectedRotorsDeque = initCode.createSelectedRotorsList(selectedRotors); // TODO: bad design, but required condition here. TO ASK AVIAD
                 List<Integer> finalSelectedRotorsDeque = selectedRotorsDeque;
-                if (initCode.createSelectedRotorsDeque(selectedRotors).stream().anyMatch(rotorID -> rotorID > finalSelectedRotorsDeque.size())) {
+                if (initCode.createSelectedRotorsList(selectedRotors).stream().anyMatch(rotorID -> rotorID > finalSelectedRotorsDeque.size())) {
                     throw new InvalidRotorException("Invalid rotor ID selected. Please insert an ID from 1 to "
                             + this.engine.getRotors().size() + ".");
                 }
@@ -214,43 +213,9 @@ public class Console implements Input {
         }
     }
 
-    //TODO: Bad design, the automated should be in the engine class and the conversions will be in the UI
     @Override
     public void initializeEnigmaCodeAutomatically() {
-        InitCode initCode = new InitCode();
-        String selectedRotors;
-        String allStartingPositions;
-        String reflectorID;
-        String randomPlugBoard;
-        int randomNumberOfRotors;
-        Random random = new Random();
-        resetMachine();
-
-        EngineDTOSelectedParts partsForRandom = this.engine.getSelectedParts();
-        randomNumberOfRotors = random.nextInt(partsForRandom.getNumberOfRotors() - 1) + 2;
-
-        selectedRotors = initCode.pickRandomRotors(randomNumberOfRotors, partsForRandom.getNumberOfRotors());
-        allStartingPositions = initCode.pickRandomStartingCharacters(partsForRandom.getABC(), randomNumberOfRotors);
-        try {
-            this.engine.setSelectedRotors(initCode.createSelectedRotorsDeque(selectedRotors), initCode.createStartingCharactersList(allStartingPositions));
-        } catch (InvalidCharactersException | InvalidRotorException e) {
-            System.out.println("Exception: " + e.getMessage());
-        }
-
-        reflectorID = initCode.pickRandomReflectorID(partsForRandom.getNumberOfReflectors());
-        try {
-            this.engine.setSelectedReflector(initCode.getReflectorID(reflectorID));
-        } catch (InvalidReflectorException | IllegalArgumentException e) {
-            System.out.println("Exception: " + e.getMessage());
-        }
-
-        randomPlugBoard = initCode.pickRandomPlugBoard(partsForRandom.getABC());
-        try {
-            this.engine.setPlugBoard(initCode.createPlugBoard(randomPlugBoard));
-        } catch (InvalidPlugBoardException e) {
-            System.out.println("Exception: " + e.getMessage());
-        }
-
+        this.engine.randomSelectedComponents();
         machineHistoryAndStatistics.add(new MachineCodeData(currentMachineState(this.engine.getEngineDTO()).toString()));
         System.out.println("Automatically initialized code: " + machineHistoryAndStatistics.getCurrentMachineCode());
     }

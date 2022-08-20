@@ -9,7 +9,7 @@ public interface Rotor extends Rotatable {
         LEFT, RIGHT
     }
 
-    int getNotch();
+    int getNotchIndex();
 
     int getOutputIndex(int inputIndex, Direction dir);
     int getStartIndex();

@@ -1,11 +1,10 @@
 package enigmaEngine.interfaces;
 
+import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.InvalidCharactersException;
 import immutables.engine.EngineDTO;
-import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
 
 import java.util.HashMap;
@@ -31,7 +30,5 @@ public interface EnigmaEngine {
 
     EngineDTO getEngineDTO();
 
-    EngineDTOSelectedParts getSelectedParts();
-
-    PlugBoard getPlugBoard();
+    void randomSelectedComponents();
 }

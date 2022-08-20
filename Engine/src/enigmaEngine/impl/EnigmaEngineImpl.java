@@ -1,18 +1,18 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.engine.EngineDTO;
-import immutables.engine.EngineDTOSelectedParts;
 import javafx.util.Pair;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class EnigmaEngineImpl implements EnigmaEngine {
     private final HashMap<Integer, Rotor> rotors;
@@ -20,12 +20,12 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     private PlugBoard plugBoard;
     private final String machineABC;
     private final Map<Character, Character> machineABCMap;
-    private final Stack<Rotor> rotorStackRightToLeft;
-    private final Stack<Rotor> rotorStackLeftToRight;
     private List<Integer> selectedRotors;
     private Reflector selectedReflector;
     private List<Character> startingCharacters;
     private int messagesSentCounter;
+    private final List<Rotor> selectedRotorsListRightToLeft;
+    private final List<Rotor> selectedRotorsListLeftToRight;
 
 
     public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
@@ -33,14 +33,14 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         this.reflectors = reflectors;
         this.plugBoard = plugBoard;
         this.machineABC = abc;
-        this.rotorStackRightToLeft = new Stack<>();
-        this.rotorStackLeftToRight = new Stack<>();
         this.startingCharacters = new ArrayList<>();
         this.machineABCMap = new HashMap<>();
         this.messagesSentCounter = 0;
         for (int i = 0; i < machineABC.length(); i++) {
             machineABCMap.put(machineABC.charAt(i), machineABC.charAt(i));
         }
+        this.selectedRotorsListRightToLeft = new ArrayList<>();
+        this.selectedRotorsListLeftToRight = new ArrayList<>();
     }
 
     @Override
@@ -57,14 +57,14 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     public char activate(char input) {
 
         // Rotates the first rotor
-        rotorStackRightToLeft.peek().rotate();
+        selectedRotorsListRightToLeft.get(0).rotate();
 
         char temp = plugBoard.returnCharacterPair(input);
         int index = machineABC.indexOf(temp);
 
-        index = runRotorPipelineStack(rotorStackRightToLeft, rotorStackLeftToRight, index, Rotor.Direction.LEFT); //pipeline to the reflector
+        index = runRotorPipelineList(index, Rotor.Direction.LEFT);
         index = selectedReflector.findPairByIndex(index);
-        index = runRotorPipelineStack(rotorStackLeftToRight, rotorStackRightToLeft, index, Rotor.Direction.RIGHT); //pipeline from the reflector
+        index = runRotorPipelineList(index, Rotor.Direction.RIGHT);
         temp = machineABC.charAt(index);
 
         return plugBoard.returnCharacterPair(temp);
@@ -85,7 +85,6 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     }
 
 
-
     @Override
     public void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException {
         checkSelectedRotors(rotorsIDInorder);
@@ -96,8 +95,8 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     @Override
     public void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException {
         checkStartingCharacters(startingCharacters);
-        this.rotorStackLeftToRight.clear();
-        this.rotorStackRightToLeft.clear();
+        this.selectedRotorsListRightToLeft.clear();
+        this.selectedRotorsListLeftToRight.clear();
         this.startingCharacters = startingCharacters;
         disconnectAllRotors();
 
@@ -106,7 +105,9 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         }
 
         connectRotors();
-        this.selectedRotors.forEach(rotorID -> this.rotorStackRightToLeft.push(this.rotors.get(rotorID)));
+        this.selectedRotors.forEach(rotorID -> this.selectedRotorsListLeftToRight.add(this.rotors.get(rotorID)));
+        this.selectedRotorsListRightToLeft.addAll(this.selectedRotorsListLeftToRight);
+        Collections.reverse(this.selectedRotorsListRightToLeft);
     }
 
     @Override
@@ -143,30 +144,55 @@ public class EnigmaEngineImpl implements EnigmaEngine {
                 getSelectedRotorsAndNotchesDistances(), messagesSentCounter);
     }
 
-    @Override
-    public EngineDTOSelectedParts getSelectedParts() {
-        return new EngineDTOSelectedParts(rotors.size(), reflectors.size(), stringToList(machineABC));
-    }
-
     private List<Character> charsAtWindows() {
         List<Character> charsAtWindows = new ArrayList<>();
-        for (Rotor rotor : rotorStackRightToLeft) {
+        for (Rotor rotor : selectedRotorsListRightToLeft) {
             charsAtWindows.add(rotor.peekWindow());
         }
+
         return charsAtWindows;
     }
 
     @Override
-    public PlugBoard getPlugBoard() {
-        return this.plugBoard;
+    public void randomSelectedComponents() {
+        Random random = new Random();
+        int numberOfSelectedRotors = random.nextInt(this.rotors.size() - 1) + 2;
+        this.selectedRotors = new ArrayList<>(numberOfSelectedRotors);
+        IntStream.rangeClosed(1, this.rotors.size()).forEach(this.selectedRotors::add);
+        Collections.shuffle(this.selectedRotors);
+        this.selectedRotors = this.selectedRotors.subList(0, numberOfSelectedRotors);
+        this.startingCharacters = new ArrayList<>(numberOfSelectedRotors);
+        this.selectedRotors.forEach(rotorID -> this.startingCharacters.add(machineABCMap.get(machineABC.charAt(random.nextInt(machineABC.length())))));
+        try {
+            setStartingCharacters(this.startingCharacters);
+        } catch (InvalidCharactersException e) {
+            throw new RuntimeException(e);
+        }
+
+        this.selectedReflector = this.reflectors.get(Reflector.ReflectorID.values()[random.nextInt(this.reflectors.size())]);
+        this.plugBoard = new PlugBoardImpl();
+        List<Character> plugBoardPairs = new ArrayList<>(this.machineABCMap.keySet());
+        Collections.shuffle(plugBoardPairs);
+        int abcPairs = random.nextInt((machineABC.length()/ 2) + 1) ;
+        plugBoardPairs = plugBoardPairs.subList(0, abcPairs * 2);
+        for (int i = 0; i < plugBoardPairs.size(); i += 2) {
+            this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
+        }
+
     }
 
-    private int runRotorPipelineStack(Stack<Rotor> pipelineStack, Stack<Rotor> stackToBeFilled, int index, Rotor.Direction dir) {
+    private int runRotorPipelineList(int index, Rotor.Direction dir) {
         int outputIndex = index;
-        while (!pipelineStack.isEmpty()) {
-            outputIndex = pipelineStack.peek().getOutputIndex(outputIndex, dir);
-            stackToBeFilled.push(pipelineStack.pop());
+        if (dir == Rotor.Direction.LEFT) {
+            for (Rotor rotor : selectedRotorsListRightToLeft) {
+                outputIndex = rotor.getOutputIndex(outputIndex, dir);
+            }
+        } else {
+            for (Rotor rotor : selectedRotorsListLeftToRight) {
+                outputIndex = rotor.getOutputIndex(outputIndex, dir);
+            }
         }
+
         return outputIndex;
     }
 
@@ -207,10 +233,7 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     private List<Pair<Integer, Integer>> getSelectedRotorsAndNotchesDistances() {
         List<Pair<Integer, Integer>> notchPositionsByOrder = new ArrayList<>();
         for (Integer selectedRotorIdx : this.selectedRotors) {
-            Rotor currRotor = this.rotors.get(selectedRotorIdx);
-            int machineABCLength = this.machineABC.length();
-            int distanceFromWindow = Math.floorMod(currRotor.getNotch() - currRotor.getNumberOfRotations(), machineABCLength);
-            notchPositionsByOrder.add(new Pair<>(selectedRotorIdx, distanceFromWindow));
+            notchPositionsByOrder.add(new Pair<>(selectedRotorIdx, this.rotors.get(selectedRotorIdx).getNotchIndex()));
         }
 
         return notchPositionsByOrder;
@@ -233,6 +256,9 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         for (int i = 0; i < input.length(); i++) {
             output.add(input.charAt(i));
         }
+
         return output;
     }
+
+
 }
