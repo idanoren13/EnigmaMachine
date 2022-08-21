@@ -40,7 +40,7 @@ public class Console implements Input {
             tempEngine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, this.scanner.nextLine());
         } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException |
                  FileNotFoundException | UnknownSourceException | FileAlreadyExistsException | RuntimeException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
             return false;
         }
 
@@ -68,7 +68,7 @@ public class Console implements Input {
 
             System.out.println(str);
         } catch (NoMachineGeneratedException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
         }
     }
 
@@ -146,7 +146,7 @@ public class Console implements Input {
                 }
                 break;
             } catch (InvalidRotorException | NumberFormatException e) {
-                System.out.println("Exception: " + e.getMessage());
+                System.out.println("Exception: " + e);
             } catch (UserQuitException e) {
                 throw new RuntimeException(e);
             }
@@ -166,7 +166,7 @@ public class Console implements Input {
                 this.engine.setSelectedRotors(selectedRotorsDeque, initCode.createStartingCharactersList(allStartingPositions));
                 break;
             } catch (InvalidRotorException | InvalidCharactersException | NumberFormatException e) {
-                System.out.println("Exception: " + e.getMessage());
+                System.out.println("Exception: " + e);
             } catch (UserQuitException e) {
                 throw new RuntimeException(e);
             }
@@ -189,7 +189,7 @@ public class Console implements Input {
                 this.engine.setSelectedReflector(Reflector.ReflectorID.values()[reflectorNumber - 1]);
                 break;
             } catch (InvalidReflectorException | IllegalArgumentException e) {
-                System.out.println("Exception: " + e.getMessage());
+                System.out.println("Exception: " + e);
             } catch (UserQuitException e) {
                 throw new RuntimeException(e);
             }
@@ -209,7 +209,7 @@ public class Console implements Input {
                 this.engine.setPlugBoard(initCode.createPlugBoard(allPlugBoardPairs));
                 break;
             } catch (InvalidPlugBoardException e) {
-                System.out.println("Exception: " + e.getMessage());
+                System.out.println("Exception: " + e);
             } catch (UserQuitException e) {
                 throw new RuntimeException(e);
             }
@@ -239,7 +239,7 @@ public class Console implements Input {
             output = this.engine.processMessage(input);
             timeEnd = (int) System.nanoTime();
         } catch (InvalidCharactersException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
             return;
         }
 
@@ -267,7 +267,7 @@ public class Console implements Input {
             }
             System.out.println(this.machineHistoryAndStatistics);
         } catch (NoMachineGeneratedException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
         }
     }
 
@@ -287,7 +287,7 @@ public class Console implements Input {
             String fileNameIncludingFullPath = getFilePathFromUser();
             saveFileInPath(fileNameIncludingFullPath + ".slz");
         } catch (NoMachineGeneratedException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
         }
     }
 
@@ -336,7 +336,7 @@ public class Console implements Input {
 
             System.out.println("File has been successfully saved!");
         } catch (IOException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
         }
     }
 
@@ -362,9 +362,9 @@ public class Console implements Input {
 
             System.out.println("File has been successfully loaded!");
         } catch (FileNotFoundException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
         } catch (IOException e) {
-            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Exception: " + e);
         } catch (ClassNotFoundException e) {
             System.out.println("Exception: there is a problem with loading the file.");
         }

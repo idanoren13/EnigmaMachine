@@ -11,10 +11,11 @@ import enigmaEngine.interfaces.Rotor;
 import immutables.engine.EngineDTO;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class EnigmaEngineImpl implements EnigmaEngine {
+public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private final HashMap<Integer, Rotor> rotors;
     private final HashMap<Reflector.ReflectorID, Reflector> reflectors;
     private PlugBoard plugBoard;
@@ -41,6 +42,7 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         }
         this.selectedRotorsListRightToLeft = new ArrayList<>();
         this.selectedRotorsListLeftToRight = new ArrayList<>();
+        this.selectedRotors = new ArrayList<>();
     }
 
     @Override
@@ -157,10 +159,13 @@ public class EnigmaEngineImpl implements EnigmaEngine {
     public void randomSelectedComponents() {
         Random random = new Random();
         int numberOfSelectedRotors = random.nextInt(this.rotors.size() - 1) + 2;
-        this.selectedRotors = new ArrayList<>(numberOfSelectedRotors);
-        IntStream.rangeClosed(1, this.rotors.size()).forEach(this.selectedRotors::add);
-        Collections.shuffle(this.selectedRotors);
-        this.selectedRotors = this.selectedRotors.subList(0, numberOfSelectedRotors);
+        List<Integer> tempSelectedRotors = new ArrayList<>(numberOfSelectedRotors);
+        IntStream.rangeClosed(1, this.rotors.size()).forEach(tempSelectedRotors::add);
+        Collections.shuffle(tempSelectedRotors);
+        this.selectedRotors = new ArrayList<>(tempSelectedRotors.subList(0, numberOfSelectedRotors));
+//        for (int i = 0; i < numberOfSelectedRotors; i++) {
+//            this.selectedRotors.add(tempSelectedRotors.get(i));
+//        }
         this.startingCharacters = new ArrayList<>(numberOfSelectedRotors);
         this.selectedRotors.forEach(rotorID -> this.startingCharacters.add(machineABCMap.get(machineABC.charAt(random.nextInt(machineABC.length())))));
         try {
@@ -173,8 +178,11 @@ public class EnigmaEngineImpl implements EnigmaEngine {
         this.plugBoard = new PlugBoardImpl();
         List<Character> plugBoardPairs = new ArrayList<>(this.machineABCMap.keySet());
         Collections.shuffle(plugBoardPairs);
-        int abcPairs = random.nextInt((machineABC.length()/ 2) + 1) ;
-        plugBoardPairs = plugBoardPairs.subList(0, abcPairs * 2);
+        int abcPairs = random.nextInt((machineABC.length() / 2) + 1);
+        plugBoardPairs = new ArrayList<>(plugBoardPairs.subList(0, abcPairs * 2));
+//        for (int i = 0; i < abcPairs * 2; i+=2) {
+//            this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
+//        }
         for (int i = 0; i < plugBoardPairs.size(); i += 2) {
             this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
         }
@@ -259,6 +267,5 @@ public class EnigmaEngineImpl implements EnigmaEngine {
 
         return output;
     }
-
 
 }
