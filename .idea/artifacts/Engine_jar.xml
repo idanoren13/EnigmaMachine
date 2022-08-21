@@ -4,7 +4,6 @@
     <root id="root">
       <element id="archive" name="Engine.jar">
         <element id="module-output" name="Engine" />
-        <element id="module-output" name="DTO" />
       </element>
     </root>
   </artifact>

@@ -1,4 +1,4 @@
-package immutables.engine;
+package enigmaEngine.DTO;
 
 import enigmaEngine.InitCode;
 import enigmaEngine.exceptions.InvalidPlugBoardException;

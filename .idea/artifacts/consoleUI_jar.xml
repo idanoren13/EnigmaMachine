@@ -5,7 +5,6 @@
       <element id="archive" name="consoleUI.jar">
         <element id="module-output" name="consoleUI" />
         <element id="module-output" name="Engine" />
-        <element id="module-output" name="DTO" />
       </element>
     </root>
   </artifact>

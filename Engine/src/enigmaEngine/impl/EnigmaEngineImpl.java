@@ -8,9 +8,9 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
-import immutables.engine.EngineDTO;
-import immutables.engine.EngineSelectedPartsDTO;
-import immutables.engine.CodeGeneratorDTO;
+import enigmaEngine.DTO.EngineDTO;
+import enigmaEngine.DTO.EngineSelectedPartsDTO;
+import enigmaEngine.DTO.CodeGeneratorDTO;
 import javafx.util.Pair;
 
 import java.io.Serializable;

@@ -10,7 +10,7 @@ import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
-import immutables.engine.EngineDTO;
+import enigmaEngine.DTO.EngineDTO;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBException;
