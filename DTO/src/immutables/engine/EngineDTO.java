@@ -8,23 +8,25 @@ import java.util.stream.Collectors;
 
 // Engine->DTO->UI
 public class EngineDTO {
-    private final int totalNumberOfRotors;
+    private final int totalRotors;
     private final int totalReflectors;
     private final Map<Character, Character> plugBoard;
     private final String selectedReflector;
     private final List<Character> currentSelectedRotorsPositions;
     private final List<Pair<Integer,Integer>> selectedRotorsAndNotchesPosition;
+
+    // private final EngineInputDTO inputDTO;
     private final int messagesSentCounter;
 
-    public EngineDTO(int rotorsNum,
-                     int reflectorsNum,
+    public EngineDTO(int totalRotors,
+                     int totalReflectors,
                      Map<Character, Character> plugBoard,
                      String selectedReflector,
                      List<Character> currentSelectedRotorsPositions,
                      List<Pair<Integer,Integer>> selectedRotorsAndNotchesDistanceFromWindows, int messagesSentCounter) {
 
-        this.totalNumberOfRotors = rotorsNum;
-        this.totalReflectors = reflectorsNum;
+        this.totalRotors = totalRotors;
+        this.totalReflectors = totalReflectors;
         this.plugBoard = plugBoard;
         this.selectedReflector = selectedReflector;
         this.currentSelectedRotorsPositions = currentSelectedRotorsPositions;
@@ -33,8 +35,8 @@ public class EngineDTO {
         this.messagesSentCounter = messagesSentCounter;
     }
 
-    public int getTotalNumberOfRotors() {
-        return this.totalNumberOfRotors;
+    public int getTotalRotors() {
+        return this.totalRotors;
     }
 
     public int getTotalReflectors() {
@@ -45,7 +47,7 @@ public class EngineDTO {
         return this.plugBoard;
     }
 
-    public List<Integer> getSelectedRotors() {
+    public List<Integer> getSelectedRotorsToList() {
         return this.selectedRotorsAndNotchesPosition.stream().map(Pair::getKey).collect(Collectors.toList());
     }
 
@@ -53,7 +55,7 @@ public class EngineDTO {
         return this.selectedReflector;
     }
 
-    public List<Character> currentSelectedRotorsPositions() {
+    public List<Character> getCurrentSelectedRotorsPositions() {
         return this.currentSelectedRotorsPositions;
     }
 
@@ -62,6 +64,6 @@ public class EngineDTO {
     }
 
     public int getMessagesSentCounter() {
-        return messagesSentCounter;
+        return this.messagesSentCounter;
     }
 }

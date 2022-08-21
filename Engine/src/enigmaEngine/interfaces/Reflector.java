@@ -9,7 +9,6 @@ public interface Reflector {
         IV,
         V
     }
-    // TO DO may call this ReflectIndex
     int findPairByIndex(int idx); // returns ReflectorDictionary[index], returns pairIndex
     ReflectorID getReflectorID();
 }

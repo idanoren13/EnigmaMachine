@@ -1,15 +1,16 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.engine.EngineDTO;
-import immutables.engine.EngineDTOSelectedParts;
+import immutables.engine.EngineSelectedPartsDTO;
+import immutables.engine.CodeGeneratorDTO;
 import javafx.util.Pair;
 
 import java.io.Serializable;
@@ -47,11 +48,6 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public HashMap<Integer, Rotor> getRotors() {
         return this.rotors;
-    }
-
-    @Override
-    public String getMachineABC() {
-        return this.machineABC;
     }
 
     @Override
@@ -127,6 +123,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public void reset() {
         this.rotors.forEach((rotorID, rotor) -> rotor.resetRotor());
+        this.messagesSentCounter = 0;
         try {
             setSelectedRotors(this.selectedRotors, this.startingCharacters);
         } catch (InvalidCharactersException | InvalidRotorException e) {
@@ -145,8 +142,20 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public EngineDTOSelectedParts getSelectedParts() {
-        return new EngineDTOSelectedParts(rotors.size(), reflectors.size(), stringToList(machineABC));
+    public EngineSelectedPartsDTO getSelectedParts() {
+        return new EngineSelectedPartsDTO(rotors.size(), reflectors.size(), stringToList(machineABC));
+    }
+
+    @Override
+    public CodeGeneratorDTO getRandomGeneratorDTO(EngineSelectedPartsDTO partsForRandom) throws InvalidPlugBoardException, InvalidRotorException, InvalidReflectorException {
+        return new CodeGeneratorDTO(getSelectedParts());
+    }
+
+    @Override
+    public void setEnigmaCode(CodeGeneratorDTO partsForRandom) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException {
+        setSelectedRotors(partsForRandom.getSelectedRotorsList(), partsForRandom.getAllStartingPositionsList());
+        setSelectedReflector(partsForRandom.getReflectorID());
+        setPlugBoard(partsForRandom.getRandomPlugBoardPairsList());
     }
 
     private List<Character> charsAtWindows() {
@@ -155,11 +164,6 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
             charsAtWindows.add(rotor.peekWindow());
         }
         return charsAtWindows;
-    }
-
-    @Override
-    public PlugBoard getPlugBoard() {
-        return this.plugBoard;
     }
 
     private int runRotorPipelineStack(Stack<Rotor> pipelineStack, Stack<Rotor> stackToBeFilled, int index, Rotor.Direction dir) {

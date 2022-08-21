@@ -27,7 +27,6 @@ public class ReflectorImpl implements Reflector, Serializable {
 
     @Override
     public int findPairByIndex(int idx) {
-        // returns ReflectorDictionary[index], returns pairIndex
         return this.getIndexPairs().get(idx);
     }
 

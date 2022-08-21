@@ -22,12 +22,6 @@ public class MachineHistoryAndStatistics implements Iterable<MachineCodeData>, S
        machineCodeData.get(machineCodeData.size() - 1).addActivateData(rawData, processedData, timeElapsed);
     }
 
-
-
-    public String getFirstMachineCode() {
-        return machineCodeData.get(0).getMachineCode();
-    }
-
     public String getCurrentMachineCode() {
         return machineCodeData.get(this.machineCodeData.size() - 1).getMachineCode();
     }

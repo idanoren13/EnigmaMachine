@@ -1,11 +1,12 @@
 package enigmaEngine.interfaces;
 
+import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import enigmaEngine.exceptions.InvalidCharactersException;
 import immutables.engine.EngineDTO;
-import immutables.engine.EngineDTOSelectedParts;
+import immutables.engine.EngineSelectedPartsDTO;
+import immutables.engine.CodeGeneratorDTO;
 import javafx.util.Pair;
 
 import java.util.HashMap;
@@ -14,12 +15,8 @@ import java.util.List;
 public interface EnigmaEngine {
 
     HashMap<Integer, Rotor> getRotors();
-
-    String getMachineABC();
     char activate(char input);
-
     String processMessage(String input) throws InvalidCharactersException;
-
     void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException;
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;
 
@@ -31,7 +28,9 @@ public interface EnigmaEngine {
 
     EngineDTO getEngineDTO();
 
-    EngineDTOSelectedParts getSelectedParts();
+    EngineSelectedPartsDTO getSelectedParts();
 
-    PlugBoard getPlugBoard();
+    CodeGeneratorDTO getRandomGeneratorDTO(EngineSelectedPartsDTO partsForRandom) throws InvalidPlugBoardException, InvalidRotorException, InvalidReflectorException;
+
+    void setEnigmaCode(CodeGeneratorDTO partsForRandom) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
 }

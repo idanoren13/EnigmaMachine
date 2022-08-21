@@ -28,7 +28,7 @@ public class Program {
         Boolean machineIsLoaded = false;
 
         greetUser();
-        //loads the machine from the XML file
+        // Loads the Enigma machine from the XML file
         while (!machineIsLoaded) {
             machineIsLoaded = consoleApp.readMachineFromXMLFile();
         }

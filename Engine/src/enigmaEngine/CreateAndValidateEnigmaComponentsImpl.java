@@ -63,9 +63,7 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
         }
     }
 
-    /*
-     * Validations
-     * */
+    // Validations
     @Override
     public void ValidateABC(String abc) throws InvalidABCException {
         if (abc.length() < 1) {
@@ -96,7 +94,7 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     }
 
     private void validateRotorSide(List<Character> side, String sideName) throws InvalidRotorException {
-        if (new HashSet(side).size() != abc.length() || side.size() != abc.length()) {
+        if (new HashSet<>(side).size() != abc.length() || side.size() != abc.length()) {
             throw new InvalidRotorException("Rotor #" + currentRotorID + " - " + sideName + " side" + ": all characters must be unique.");
         }
 
