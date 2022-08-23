@@ -103,14 +103,14 @@ public class Console implements Input {
                 .append(DTO.getSelectedReflector()).append(">"); // Eventually it becomes <1,2,...,n><A(1),...,A(n)><I>
 
         if (!DTO.getPlugBoard().isEmpty()) {
-            StringBuilder plugBoardSB = extracted(DTO.getPlugBoard());
+            StringBuilder plugBoardSB = createPlugBoardPairsStringBuilder(DTO.getPlugBoard());
             finalSB.append(plugBoardSB);
         } // Eventually it becomes <1,2,...,n><A(1),...,A(n)><I><A|B,C|D,...,(N-1)|N>
 
         return finalSB;
     }
 
-    private StringBuilder extracted(Map<Character, Character> enginePlugBoard) {
+    private StringBuilder createPlugBoardPairsStringBuilder(Map<Character, Character> enginePlugBoard) {
         StringBuilder sb = new StringBuilder();
         sb.append("<");
         List<Map.Entry<Character, Character>> plugBoard = new ArrayList<>(new HashMap<>(enginePlugBoard).entrySet());
