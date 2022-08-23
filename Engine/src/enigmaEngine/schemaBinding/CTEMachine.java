@@ -44,6 +44,7 @@ import javax.xml.bind.annotation.XmlType;
     "cteRotors",
     "cteReflectors"
 })
+@SuppressWarnings("all")
 @XmlRootElement(name = "CTE-Machine")
 public class CTEMachine {
 

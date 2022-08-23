@@ -13,8 +13,6 @@ import java.util.List;
 public interface EnigmaEngine {
 
     HashMap<Integer, Rotor> getRotors();
-
-    String getMachineABC();
     char activate(char input);
 
     String processMessage(String input) throws InvalidCharactersException;

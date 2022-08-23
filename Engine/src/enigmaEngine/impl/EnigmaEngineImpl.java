@@ -51,11 +51,6 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public String getMachineABC() {
-        return this.machineABC;
-    }
-
-    @Override
     public char activate(char input) {
 
         // Rotates the first rotor
@@ -75,7 +70,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public String processMessage(String input) throws InvalidCharactersException {
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
-            throw new InvalidCharactersException("Starting characters must be in the machine ABC");
+            throw new InvalidCharactersException("Starting characters must be in the machine ABC.");
         }
         StringBuilder output = new StringBuilder();
         messagesSentCounter++;
@@ -113,9 +108,10 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
+    // Added more details if a reflector doesn't exist in Enigma machine's XML file.
     public void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) throws InvalidReflectorException {
         if (!reflectors.containsKey(selectedReflectorID)) {
-            throw new InvalidReflectorException("Reflector not found");
+            throw new InvalidReflectorException(String.format("Reflector '%s' not found.", selectedReflectorID.name()));
         }
         this.selectedReflector = reflectors.get(selectedReflectorID);
     }
@@ -143,7 +139,8 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
                 plugBoard.getPairs(),
                 selectedReflector == null ? "" : selectedReflector.getReflectorID().toString(),
                 charsAtWindows(),
-                getSelectedRotorsAndNotchesDistances(), messagesSentCounter);
+                getSelectedRotorsAndNotchesDistances(),
+                messagesSentCounter); // TODO: see if we need to change this to 0 instead
     }
 
     private List<Character> charsAtWindows() {
@@ -159,13 +156,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     public void randomSelectedComponents() {
         Random random = new Random();
         int numberOfSelectedRotors = random.nextInt(this.rotors.size() - 1) + 2;
-        List<Integer> tempSelectedRotors = new ArrayList<>(numberOfSelectedRotors);
-        IntStream.rangeClosed(1, this.rotors.size()).forEach(tempSelectedRotors::add);
-        Collections.shuffle(tempSelectedRotors);
-        this.selectedRotors = new ArrayList<>(tempSelectedRotors.subList(0, numberOfSelectedRotors));
-//        for (int i = 0; i < numberOfSelectedRotors; i++) {
-//            this.selectedRotors.add(tempSelectedRotors.get(i));
-//        }
+        this.selectedRotors = new ArrayList<>(createRandomSelectedRotors(numberOfSelectedRotors).subList(0, numberOfSelectedRotors));
         this.startingCharacters = new ArrayList<>(numberOfSelectedRotors);
         this.selectedRotors.forEach(rotorID -> this.startingCharacters.add(machineABCMap.get(machineABC.charAt(random.nextInt(machineABC.length())))));
         try {
@@ -180,13 +171,18 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         Collections.shuffle(plugBoardPairs);
         int abcPairs = random.nextInt((machineABC.length() / 2) + 1);
         plugBoardPairs = new ArrayList<>(plugBoardPairs.subList(0, abcPairs * 2));
-//        for (int i = 0; i < abcPairs * 2; i+=2) {
-//            this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
-//        }
         for (int i = 0; i < plugBoardPairs.size(); i += 2) {
             this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
         }
 
+    }
+
+    private List<Integer> createRandomSelectedRotors(int numberOfSelectedRotors) {
+        List<Integer> randomSelectedRotors = new ArrayList<>(numberOfSelectedRotors);
+        IntStream.rangeClosed(1, this.rotors.size()).forEach(randomSelectedRotors::add);
+        Collections.shuffle(randomSelectedRotors);
+
+        return randomSelectedRotors;
     }
 
     private int runRotorPipelineList(int index, Rotor.Direction dir) {
@@ -219,10 +215,10 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     private void checkStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException {
         if (startingCharacters.size() != this.selectedRotors.size()) {
-            throw new InvalidCharactersException("Starting characters must be the same size as the number of selected rotors");
+            throw new InvalidCharactersException("Starting characters must be the same size as the number of selected rotors.");
         }
         if (startingCharacters.stream().anyMatch(c -> !this.machineABCMap.containsKey(c))) {
-            throw new InvalidCharactersException("Starting characters must be valid");
+            throw new InvalidCharactersException("Starting characters must be valid.");
         }
     }
 
@@ -252,7 +248,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
         for (Pair<Character, Character> pair : plugBoard) {
             if (!machineABCMap.containsKey(pair.getKey()) || !machineABCMap.containsKey(pair.getValue()) || this.plugBoard.containsPair(pair)) {
-                throw new InvalidPlugBoardException("Plug board contains invalid characters");
+                throw new InvalidPlugBoardException("Plug board contains invalid characters.");
             }
 
             this.plugBoard.addPair(pair.getKey(), pair.getValue());

@@ -1,6 +1,5 @@
 package consoleApp;
 
-import consoleApp.exceptions.NoMachineGeneratedException;
 import consoleApp.impl.Console;
 
 import java.util.Scanner;
@@ -19,17 +18,17 @@ public class Program {
         CHOICE_TEN
     }
 
-    public static void main(String[] args) throws NoMachineGeneratedException {
+    public static void main(String[] args) {
         runMachine();
     }
 
-    private static void runMachine() throws NoMachineGeneratedException {
+    private static void runMachine() {
         Console consoleApp = new Console();
         Choice userChoice;
         Boolean machineIsLoaded = false;
 
         greetUser();
-        //loads the machine from the XML file
+        // Loads the machine from the XML file
         while (!machineIsLoaded) {
             machineIsLoaded = consoleApp.readMachineFromXMLFile();
         }

@@ -39,17 +39,12 @@ public class PlugBoardImpl implements PlugBoard, Serializable {
     }
 
     @Override
-    public void UpdatePairs(List<Pair<Character, Character>> pairList) {
-        this.abcPairs.clear();
-        this.abcPairs.putAll(generateInputIntoPairs(pairList));
-    }
-
-    @Override
     public void addPair(char a, char b) {
         this.abcPairs.put(a, b);
         this.abcPairs.put(b, a);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public HashMap<Character, Character> getPairs() {
         return (HashMap<Character, Character>) this.abcPairs.clone();

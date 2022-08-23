@@ -5,8 +5,7 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.InitializeEnigma;
 
 import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
-import java.nio.file.FileAlreadyExistsException;
+import java.io.IOException;
 
 public class InitializeEnigmaEngine {
     public enum SourceMode{
@@ -15,7 +14,7 @@ public class InitializeEnigmaEngine {
         JSON
     }
 
-    public EnigmaEngine initializeEngine(SourceMode source, String path) throws InvalidRotorException, InvalidABCException, InvalidReflectorException, JAXBException, FileNotFoundException, UnknownSourceException, InvalidMachineException, FileAlreadyExistsException {
+    public EnigmaEngine initializeEngine(SourceMode source, String path) throws InvalidRotorException, InvalidABCException, InvalidReflectorException, JAXBException, IOException, UnknownSourceException, InvalidMachineException {
         InitializeEnigma enigmaEngineInitializer;
 
         switch (source) {

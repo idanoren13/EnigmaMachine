@@ -15,10 +15,12 @@ import javafx.util.Pair;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,16 +31,16 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
     public static String currentEnigmaMachineSource = "";
 
     @Override
-    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws FileNotFoundException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException, FileAlreadyExistsException {
+    public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws IOException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
         CTEEnigma xmlOutput;
 
         if (!path.contains(".xml")) {
             throw new FileNotFoundException("File given is not of XML type.");
         }
-        else if (this.currentEnigmaMachineSource.equals(path)) {
+        else if (currentEnigmaMachineSource.equals(path)) {
             throw new FileAlreadyExistsException("File given is already defined as the Enigma machine.");
         }
-        InputStream xmlFile = new FileInputStream(path);
+        InputStream xmlFile = Files.newInputStream(Paths.get(path));
         JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         xmlOutput = (CTEEnigma) jaxbUnmarshaller.unmarshal(xmlFile);
@@ -47,6 +49,8 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         return getEnigmaEngine(path, xmlOutput);
     }
 
+
+    @SuppressWarnings("unchecked")
     private EnigmaEngineImpl getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
 
         String cteMachineABC;
@@ -91,7 +95,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
-        this.currentEnigmaMachineSource = path;
+        currentEnigmaMachineSource = path;
         return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
     }
 
@@ -145,7 +149,6 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
     private Pair<List<Integer>, List<Integer>> getCTEReflectorInputAndOutputPairs(CTEReflector reflector) {
         List<Integer> input = new ArrayList<>();
         List<Integer> output = new ArrayList<>();
-        Pair<List<Integer>, List<Integer>> res = new Pair<>(input, output);
         for (CTEReflect pair : reflector.getCTEReflect()) {
             if (pair.getInput() == pair.getOutput()) {
                 throw new RuntimeException("The XML that is given contains a reflector that maps a letter to itself.");

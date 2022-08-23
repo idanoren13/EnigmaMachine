@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "cteMachine"
 })
+@SuppressWarnings("all")
 @XmlRootElement(name = "CTE-Enigma")
 public class CTEEnigma {
 

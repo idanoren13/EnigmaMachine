@@ -14,7 +14,7 @@ public interface Input {
     // Only full path is given, not just file
     Boolean readMachineFromXMLFile() throws JAXBException, InvalidRotorException, FileNotFoundException, InvalidABCException, UnknownSourceException, InvalidReflectorException;
     void getMachineSpecs() throws NoMachineGeneratedException;
-    boolean initializeEnigmaCodeManually(); // Changed to boolean. false - if player exits this option in the middle, true if he added all input
+    void initializeEnigmaCodeManually(); // Changed to boolean. false - if player exits this option in the middle, true if he added all input
     void initializeEnigmaCodeAutomatically();
     void getMessageAndProcessIt();
     void resetMachine();
