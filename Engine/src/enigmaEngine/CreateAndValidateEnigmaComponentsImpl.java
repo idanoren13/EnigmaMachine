@@ -96,7 +96,7 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     }
 
     private void validateRotorSide(List<Character> side, String sideName) throws InvalidRotorException {
-        if (new HashSet(side).size() != abc.length() || side.size() != abc.length()) {
+        if (new HashSet<>(side).size() != abc.length() || side.size() != abc.length()) {
             throw new InvalidRotorException("Rotor #" + currentRotorID + " - " + sideName + " side" + ": all characters must be unique.");
         }
 

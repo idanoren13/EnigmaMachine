@@ -21,7 +21,8 @@ public class EngineDTO {
                      Map<Character, Character> plugBoard,
                      String selectedReflector,
                      List<Character> currentSelectedRotorsPositions,
-                     List<Pair<Integer,Integer>> selectedRotorsAndNotchesDistanceFromWindows, int messagesSentCounter) {
+                     List<Pair<Integer,Integer>> selectedRotorsAndNotchesDistanceFromWindows,
+                     int messagesSentCounter) {
 
         this.totalNumberOfRotors = rotorsNum;
         this.totalReflectors = reflectorsNum;
@@ -29,7 +30,6 @@ public class EngineDTO {
         this.selectedReflector = selectedReflector;
         this.currentSelectedRotorsPositions = currentSelectedRotorsPositions;
         this.selectedRotorsAndNotchesPosition = selectedRotorsAndNotchesDistanceFromWindows;
-
         this.messagesSentCounter = messagesSentCounter;
     }
 

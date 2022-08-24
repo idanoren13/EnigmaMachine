@@ -1,7 +1,6 @@
 package enigmaEngine.interfaces;
 
 public interface Rotor extends Rotatable {
-    int getNumberOfRotations();
 
     Character peekWindow();
 
@@ -12,7 +11,6 @@ public interface Rotor extends Rotatable {
     int getNotchIndex();
 
     int getOutputIndex(int inputIndex, Direction dir);
-    int getStartIndex();
 
     void setStartIndex(char startCharacter);
 

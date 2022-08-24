@@ -11,14 +11,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="UI guidelines implemented in the engine">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_00_01__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_00_01__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_17_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_17_53__Changes_.xml" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="EX1 final - added more input checks, etc. Documentation available where changes have been made">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_20_31__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_00_01_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_00_01__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_17_53_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_08_2022_17_53__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/EngineDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/Tests" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EnigmaMachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EnigmaMachine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/InputMisMatchException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/exceptions/UserQuitException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineCodeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/impl/InitCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/consoleUI/src/consoleApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +76,7 @@
     <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
+    <branch-grouping />
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="Idan Oren &lt;idanor@mta.ac.il&gt;" />
@@ -47,10 +84,13 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="finalEx1ArrangementBeforeEx2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -68,6 +108,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -80,10 +121,11 @@
     &quot;last_directory_selection&quot;: &quot;C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/guybe/javafx-sdk-18.0.2/lib&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -149,7 +191,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9079e32c-6cbe-4879-9ffd-a1fd4b1b9fc3" name="Changes" comment="" />
+      <changelist id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="EX1 final - added more input checks, etc. Documentation available where changes have been made" />
       <created>1659600687681</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -174,6 +216,7 @@
       <workItem from="1660738193350" duration="2709000" />
       <workItem from="1660742266446" duration="559000" />
       <workItem from="1660754769888" duration="11195000" />
+      <workItem from="1661299009522" duration="182000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -282,7 +325,44 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/finalEx1ArrangementBeforeEx2" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -298,18 +378,10 @@
     <MESSAGE value="all added, notch distance from window is not correct" />
     <MESSAGE value="UI guidelines implemented in the engine" />
     <MESSAGE value="some TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="some TODOs" />
+    <MESSAGE value="EX1 final - added more input checks, etc. Documentation available where changes have been made" />
+    <option name="LAST_COMMIT_MESSAGE" value="EX1 final - added more input checks, etc. Documentation available where changes have been made" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/consoleUI/src/consoleApp/impl/Console.java</url>
-          <line>332</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngineImpl" memberName="selectedRotorsListRightToLeft" />
@@ -318,6 +390,11 @@
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngineImpl" memberName="selectedRotorsListLeftToRight" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((EnigmaEngineImpl)this).selectedRotorsListRightToLeft" custom="enigmaEngine.impl.EnigmaEngineImpl" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

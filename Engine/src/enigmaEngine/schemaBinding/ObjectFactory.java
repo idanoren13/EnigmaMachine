@@ -10,7 +10,6 @@ package enigmaEngine.schemaBinding;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
-
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
@@ -25,6 +24,7 @@ import javax.xml.bind.annotation.XmlRegistry;
  * provided in this class.
  * 
  */
+@SuppressWarnings("all")
 @XmlRegistry
 public class ObjectFactory {
 

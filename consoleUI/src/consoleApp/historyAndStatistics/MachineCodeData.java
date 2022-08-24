@@ -28,10 +28,6 @@ public class MachineCodeData implements Iterable<MachineActivateData>, Serializa
         return machineCode;
     }
 
-    public int getNumberOfActivations() {
-        return machineActivateData.size();
-    }
-
     @Override
     public Iterator<MachineActivateData> iterator() {
         return this.machineActivateData.iterator();

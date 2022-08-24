@@ -11,25 +11,23 @@ import enigmaEngine.interfaces.Rotor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class EnigmaMachineToDebug implements InitializeEnigma {
     @Override
     public EnigmaEngineImpl getEnigmaEngineFromSource(String source) {
-        String abc = new String("ABCDEFGHIJKL");
+        String abc = "ABCDEFGHIJKL";
         HashMap<Integer, Rotor> rotors = new HashMap<>();
         HashMap<Reflector.ReflectorID, Reflector> reflectors = new HashMap<>();
 
         enigmaEngine.interfaces.PlugBoard plugBoard = new PlugBoardImpl();
         plugBoard.addPair('C', 'B');
 
-//        rotors.put(1, new RotorImpl(1, 3, stringToArrayList("ABCDEF"), stringToArrayList("FEDCBA")));
-//        rotors.put(3, new RotorImpl(3, 5, stringToArrayList("ABCDEF"), stringToArrayList("BADCFE")));
-//        rotors.put(2, new RotorImpl(2, 0, stringToArrayList("ABCDEF"), stringToArrayList("EBDFCA")));
         rotors.put(1, new RotorImpl(1, 3, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("HAIJCDEGLKBF")));
         rotors.put(3, new RotorImpl(3, 5, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("GHICDEFJKLAB")));
         rotors.put(2, new RotorImpl(2, 0, stringToArrayList("ABCDEFGHIJKL"), stringToArrayList("CFLBHIGKDEGA")));
 
         HashMap<Integer, Integer> Pairs1 = new HashMap<>();
-        //decrementing the index by 1 to match the index of the abc arraylist
+        // Decrementing the index by 1 to match the index of the abc arraylist
         Pairs1.put(0, 6);
         Pairs1.put(1, 7);
         Pairs1.put(2, 8);
