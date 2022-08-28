@@ -1,4 +1,4 @@
-package consoleApp.exceptions;
+package desktopApp.exceptions;
 
 public class UserQuitsException extends Exception {
     public UserQuitsException(String message) {

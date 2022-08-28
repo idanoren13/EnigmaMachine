@@ -1,10 +1,10 @@
-package consoleApp.impl;
+package desktopApp.impl;
 
-import consoleApp.exceptions.NoMachineGeneratedException;
-import consoleApp.exceptions.UserQuitsException;
-import consoleApp.historyAndStatistics.MachineCodeData;
-import consoleApp.historyAndStatistics.MachineHistoryAndStatistics;
-import consoleApp.interfaces.Input;
+import desktopApp.InitCode;
+import desktopApp.exceptions.NoMachineGeneratedException;
+import desktopApp.historyAndStatistics.MachineCodeData;
+import desktopApp.historyAndStatistics.MachineHistoryAndStatistics;
+import desktopApp.interfaces.Input;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
@@ -13,47 +13,32 @@ import immutables.engine.EngineDTO;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Console implements Input {
-    private static final String inputToExit = "OUT !";
-    private final Scanner scanner;
     private EnigmaEngine engine;
+
     private MachineHistoryAndStatistics machineHistoryAndStatistics;
 
     public Console() {
-        this.scanner = new Scanner(System.in);
         this.engine = null;
         this.machineHistoryAndStatistics = new MachineHistoryAndStatistics();
     }
 
     @Override
-    public Boolean readMachineFromXMLFile() {
-        EnigmaEngine tempEngine;
-        System.out.println("Enter a valid full path to your file, including file name and its file extension.");
+    public MachineHistoryAndStatistics getMachineHistoryStates() {
+        return machineHistoryAndStatistics;
+    }
 
-        try {
-            tempEngine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, this.scanner.nextLine());
-        } catch (NoSuchFileException e) {
-            System.out.println("Exception: file given could not be found.");
-            return false;
-        } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException |
-                 JAXBException | UnknownSourceException | RuntimeException | IOException e) {
-            System.out.println("Exception: " + e.getLocalizedMessage());
-            return false;
-        }
+    @Override
+    public EnigmaEngine getEngine() {
+        return this.engine;
+    }
 
-        this.engine = tempEngine;
-        System.out.println("Machine successfully initialized.");
-
+    @Override
+    public Boolean readMachineFromXMLFile(String path) throws InvalidMachineException, JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException {
+        this.engine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, path);
         return true;
     }
 
@@ -131,115 +116,54 @@ public class Console implements Input {
 
     @Override
     // Changed method. Quitting is now case-insensitive +  I added a call to 'addEnigmaCode' and this adds the new Enigma code.
-    public void initializeEnigmaCodeManually() {
+    public void initializeEnigmaCodeManually(String rotors, String startingPositions, String plugBoardPairs, String reflectorID) throws InputMismatchException, IllegalArgumentException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException, InvalidCharactersException {
         List<Integer> selectedRotorsDeque;
         resetMachine();
-        try {
-            selectedRotorsDeque = getRotorsFromUserInput();
-            getStartingPositionsFromUserInput(selectedRotorsDeque);
-            getReflectorFromUserInput();
-            getPlugBoardPairsFromUserInput();
+        selectedRotorsDeque = getRotorsFromUserInput(rotors);
+        getStartingPositionsFromUserInput(selectedRotorsDeque, startingPositions);
+        getReflectorFromUserInput(reflectorID);
+        getPlugBoardPairsFromUserInput(plugBoardPairs);
 
-            addEnigmaCode("Manually");
-        } catch (RuntimeException e) {
-            System.out.println("You are being sent back to main menu. Enigma engine code is not modified.");
-        }
+        addEnigmaCode("Manually");
     }
 
     // Added check case. For instance: now "2,2" or "0, 2" raises exception. Also added more information if a user inserts an invalid rotor ID.
-    private List<Integer> getRotorsFromUserInput() {
-        List<Integer> selectedRotorsDeque;
-        String selectedRotors;
-        while (true) {
-            try {
-                System.out.println("Enter your desired rotor IDs starting from 1, separated by a comma without spaces.");
-                System.out.printf("If you are willing to go back to main menu, type '%s'.%n", inputToExit);
-                selectedRotors = this.scanner.nextLine();
-                if (selectedRotors.equalsIgnoreCase(inputToExit)) {
-                    throw new UserQuitsException("");
-                }
-                selectedRotorsDeque = InitCode.createSelectedRotorsList(selectedRotors);
-                if (new HashSet<>(selectedRotorsDeque).size() < selectedRotorsDeque.size()) {
-                    throw new InvalidRotorException("A rotor ID was inserted several times. Please insert only unique values.");
-                }
-                List<Integer> finalSelectedRotorsDeque = InitCode.createSelectedRotorsList(selectedRotors);
-                Integer invalidRotorID = InitCode.createSelectedRotorsList(selectedRotors)
-                        .stream().filter(rotorID -> rotorID > finalSelectedRotorsDeque.size() || rotorID < 1)
-                        .findFirst().orElse(null); // Now we can track the wrong input instead of just getting an exception.
+    private List<Integer> getRotorsFromUserInput(String rotors) throws InvalidRotorException {
+        List<Integer> selectedRotorsDeque = null;
+        System.out.println("Enter your desired rotor IDs starting from 1, separated by a comma without spaces.");
+        selectedRotorsDeque = InitCode.createSelectedRotorsList(rotors);
+        if (new HashSet<>(selectedRotorsDeque).size() < selectedRotorsDeque.size()) {
+            throw new InvalidRotorException("A rotor ID was inserted several times. Please insert only unique values.");
+        }
+        List<Integer> finalSelectedRotorsDeque = InitCode.createSelectedRotorsList(rotors);
+        Integer invalidRotorID = InitCode.createSelectedRotorsList(rotors)
+                .stream().filter(rotorID -> rotorID > finalSelectedRotorsDeque.size() || rotorID < 1)
+                .findFirst().orElse(null); // Now we can track the wrong input instead of just getting an exception.
 
-                if (invalidRotorID != null) {
-                    throw new InvalidRotorException(String.format("Invalid rotor ID was selected - '%d'. Please insert an ID from 1 to %d.",
-                            invalidRotorID, this.engine.getRotors().size()));
-                }
-                break;
-            } catch (InputMismatchException | InvalidRotorException | NumberFormatException e) {
-                System.out.println("Exception: " + e.getLocalizedMessage());
-            } catch (UserQuitsException e) {
-                throw new RuntimeException(e);
-            }
+        if (invalidRotorID != null) {
+            throw new InvalidRotorException(String.format("Invalid rotor ID was selected - '%d'. Please insert an ID from 1 to %d.",
+                    invalidRotorID, this.engine.getRotors().size()));
         }
         return selectedRotorsDeque;
     }
-    private void getStartingPositionsFromUserInput(List<Integer> selectedRotorsDeque) {
-        String allStartingPositions;
-        while (true) {
-            try {
-                System.out.println("Enter all your desired rotors starting positions without separation between them.");
-                System.out.printf("If you are willing to go back to main menu, type '%s'.%n", inputToExit);
-                allStartingPositions = this.scanner.nextLine();
-                if (allStartingPositions.equalsIgnoreCase(inputToExit)) {
-                    throw new UserQuitsException("");
-                }
-                this.engine.setSelectedRotors(selectedRotorsDeque, InitCode.createStartingCharactersList(allStartingPositions));
-                break;
-            } catch (InvalidRotorException | InvalidCharactersException | NumberFormatException e) {
-                System.out.println("Exception: " + e.getLocalizedMessage());
-            } catch (UserQuitsException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private void getStartingPositionsFromUserInput(List<Integer> selectedRotorsDeque, String startingPositions) throws InvalidCharactersException, InvalidRotorException {
+        System.out.println("Enter all your desired rotors starting positions without separation between them.");
+        this.engine.setSelectedRotors(selectedRotorsDeque, InitCode.createStartingCharactersList(startingPositions));
     }
-    private void getReflectorFromUserInput() {
+    private void getReflectorFromUserInput(String reflectorID) throws InvalidReflectorException {
         int reflectorNumber;
-        while (true) {
-            try {
-                System.out.println("Enter your desired reflector ID. Please enter the number using one of these numerals:\n"
-                        + "1. For reflector I\n" + "2. For reflector II\n" + "3. For reflector III\n" + "4. For reflector IV\n" + "5. For reflector V\n");
-                System.out.println("If you are willing to go back to main menu, type '-1'.");
-                reflectorNumber = Integer.parseInt(this.scanner.nextLine());
-                if (reflectorNumber == -1) {
-                    throw new UserQuitsException("");
-                }
-                if (reflectorNumber < 1 || reflectorNumber > 5) {
-                    throw new InvalidReflectorException(reflectorNumber + " is an invalid reflector ID.");
-                }
-                this.engine.setSelectedReflector(Reflector.ReflectorID.values()[reflectorNumber - 1]);
-                break;
-            } catch (InvalidReflectorException | IllegalArgumentException e) {
-                System.out.println("Exception: " + e.getLocalizedMessage());
-            } catch (UserQuitsException e) {
-                throw new RuntimeException(e);
-            }
+        System.out.println("Enter your desired reflector ID. Please enter the number using one of these numerals:\n"
+                + "1. For reflector I\n" + "2. For reflector II\n" + "3. For reflector III\n" + "4. For reflector IV\n" + "5. For reflector V\n");
+        System.out.println("If you are willing to go back to main menu, type '-1'.");
+        reflectorNumber = Reflector.ReflectorID.valueOf(reflectorID).ordinal() + 1;
+        if (reflectorNumber < 1 || reflectorNumber > 5) {
+            throw new InvalidReflectorException(reflectorNumber + " is an invalid reflector ID.");
         }
+        this.engine.setSelectedReflector(Reflector.ReflectorID.values()[reflectorNumber - 1]);
     }
-    private void getPlugBoardPairsFromUserInput() {
-        String allPlugBoardPairs;
-        while (true) {
-            try {
-                System.out.println("Enter all your desired plug board pairs without separation between them.");
-                System.out.printf("If you are willing to go back to main menu, type '%s'.%n", inputToExit);
-                allPlugBoardPairs = this.scanner.nextLine();
-                if (allPlugBoardPairs.equalsIgnoreCase(inputToExit)) {
-                    throw new UserQuitsException("");
-                }
-                this.engine.setPlugBoard(InitCode.createPlugBoard(allPlugBoardPairs));
-                break;
-            } catch (InvalidPlugBoardException e) {
-                System.out.println("Exception: " + e.getLocalizedMessage());
-            } catch (UserQuitsException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private void getPlugBoardPairsFromUserInput(String plugBoardPairs) throws InvalidPlugBoardException {
+        System.out.println("Enter all your desired plug board pairs without separation between them.");
+        this.engine.setPlugBoard(InitCode.createPlugBoard(plugBoardPairs));
     }
 
     @Override
@@ -256,26 +180,24 @@ public class Console implements Input {
     }
 
     @Override
-    public void getMessageAndProcessIt() {
+    public void getMessageAndProcessIt(String messageInput) {
         int timeStart, timeEnd;
         String output;
-        String input;
         if (machineHistoryAndStatistics.isEmpty()) {
             System.out.println("No Enigma engine code was initialized.");
             return;
         }
         System.out.println("Enter your message to process.");
-        input = this.scanner.nextLine().toUpperCase();
         try {
             timeStart = (int) System.nanoTime();
-            output = this.engine.processMessage(input);
+            output = this.engine.processMessage(messageInput);
             timeEnd = (int) System.nanoTime();
         } catch (InvalidCharactersException e) {
             System.out.println("Exception: " + e.getLocalizedMessage());
             return;
         }
 
-        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(input, output, timeEnd - timeStart);
+        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, output, timeEnd - timeStart);
         System.out.println("Processed message: " + output);
     }
 
@@ -308,7 +230,7 @@ public class Console implements Input {
         System.out.println("Goodbye!");
     }
 
-    @Override
+/*    @Override
     public void saveGame() {
         try {
             if (machineHistoryAndStatistics.isEmpty()) {
@@ -397,5 +319,5 @@ public class Console implements Input {
         } catch (ClassNotFoundException e) {
             System.out.println("Exception: there is a problem with loading the file.");
         }
-    }
+    }*/
 }

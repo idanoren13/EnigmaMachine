@@ -1,4 +1,4 @@
-package consoleApp.historyAndStatistics;
+package desktopApp.historyAndStatistics;
 
 import java.io.Serializable;
 

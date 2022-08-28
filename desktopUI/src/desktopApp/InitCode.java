@@ -1,4 +1,4 @@
-package consoleApp.impl;
+package desktopApp;
 
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import javafx.util.Pair;

@@ -1,11 +1,16 @@
-package consoleApp;
+package desktopApp;
 
-import consoleApp.impl.Console;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.util.Scanner;
+import java.util.Objects;
 
-public class Program {
-    public enum Choice {
+public class Program extends Application {
+
+    /*public enum Choice {
         CHOICE_ONE,
         CHOICE_TWO,
         CHOICE_THREE,
@@ -16,31 +21,42 @@ public class Program {
         CHOICE_EIGHT,
         CHOICE_NINE,
         CHOICE_TEN
+    }*/
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("C.T.E Exercise 2");
+
+        Parent load = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("frontEnd/enigma-screen-one.fxml")));
+        Scene scene = new Scene(load, 900, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        // runMachine();
     }
 
     public static void main(String[] args) {
-        runMachine();
+        Thread.currentThread().setName("main");
+        Application.launch(args);
     }
 
-    private static void runMachine() {
+    /*private static void runMachine() {
         Console consoleApp = new Console();
         Choice userChoice;
         Boolean machineIsLoaded = false;
 
-        greetUser();
         // Loads the machine from the XML file
         while (!machineIsLoaded) {
-            machineIsLoaded = consoleApp.readMachineFromXMLFile();
+            machineIsLoaded = consoleApp.readMachineFromXMLFile("");
         }
 
         do {
-            showMenu();
             userChoice = getChoice();
 
             switch(userChoice) {
                 case CHOICE_ONE:
                     Console tmpConsole = new Console();
-                    if (tmpConsole.readMachineFromXMLFile()) {
+                    if (tmpConsole.readMachineFromXMLFile("")) {
                         consoleApp = tmpConsole;
                     }
                     break;
@@ -48,13 +64,13 @@ public class Program {
                     consoleApp.getMachineSpecs();
                     break;
                 case CHOICE_THREE:
-                    consoleApp.initializeEnigmaCodeManually();
+                    consoleApp.initializeEnigmaCodeManually("", "", "", "");
                     break;
                 case CHOICE_FOUR:
                     consoleApp.initializeEnigmaCodeAutomatically();
                     break;
                 case CHOICE_FIVE:
-                    consoleApp.getMessageAndProcessIt();
+                    consoleApp.getMessageAndProcessIt("");
                     break;
                 case CHOICE_SIX:
                     consoleApp.resetMachine();
@@ -65,12 +81,12 @@ public class Program {
                 case CHOICE_EIGHT:
                     consoleApp.exitMachine();
                     break;
-                case CHOICE_NINE:
+*//*                case CHOICE_NINE:
                     consoleApp.saveGame();
                     break;
                 case CHOICE_TEN:
                     consoleApp.loadGame();
-                    break;
+                    break;*//*
             }
         } while (userChoice != Choice.CHOICE_EIGHT);
     }
@@ -96,25 +112,5 @@ public class Program {
         } while (!validInput);
 
         return userChoice;
-    }
-
-    public static void greetUser() {
-        System.out.println("Hello dear user!");
-        System.out.println("Welcome to the C.T.E game.");
-        System.out.println("From now on, showtime.");
-    }
-
-    public static void showMenu() {
-        System.out.println("Here are all your options:");
-        System.out.println("1. Load a XML file by giving a full file path.");
-        System.out.println("2. Get your full Enigma machine engine specifications.");
-        System.out.println("3. Choose Enigma engine code.");
-        System.out.println("4. Generate your Enigma engine code automatically.");
-        System.out.println("5. Decrypt input by your Enigma engine.");
-        System.out.println("6. Reset current Enigma engine code.");
-        System.out.println("7. Reveal descriptive statistics.");
-        System.out.println("8. Exit the C.T.E game.");
-        System.out.println("9. Save game.");
-        System.out.println("10. Load game.");
-    }
+    }*/
 }

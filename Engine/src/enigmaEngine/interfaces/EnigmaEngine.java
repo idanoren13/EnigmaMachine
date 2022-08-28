@@ -20,6 +20,8 @@ public interface EnigmaEngine {
     void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException;
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;
 
+    List<Reflector.ReflectorID> getReflectors();
+
     void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) throws InvalidReflectorException;
 
     void setPlugBoard(List<Pair<Character,Character>> plugBoard) throws InvalidPlugBoardException;

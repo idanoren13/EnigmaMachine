@@ -1,4 +1,4 @@
-package consoleApp.exceptions;
+package desktopApp.exceptions;
 
 public class NoMachineGeneratedException extends Exception {
     public NoMachineGeneratedException(String message) {

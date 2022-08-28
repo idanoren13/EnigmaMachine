@@ -7,7 +7,7 @@ public interface Reflector {
         II,
         III,
         IV,
-        V
+        V;
     }
     int findPairByIndex(int idx); // returns ReflectorDictionary[index], returns pairIndex
     ReflectorID getReflectorID();

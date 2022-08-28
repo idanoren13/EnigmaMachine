@@ -51,6 +51,11 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
+    public List<Reflector.ReflectorID> getReflectors() {
+        return new ArrayList<>(this.reflectors.keySet());
+    }
+
+    @Override
     public char activate(char input) {
 
         // Rotates the first rotor
