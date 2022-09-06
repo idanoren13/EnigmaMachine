@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<ScrollPane fx:id="scrollPaneContainer" cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen1Controller">
+   <content>
+      <GridPane alignment="TOP_CENTER" minHeight="498.0" minWidth="898.0" styleClass="grid-pane">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="430.0" minWidth="430.0" prefWidth="430.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="430.0" minWidth="430.0" prefWidth="430.0" />
+          <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="236.0" minHeight="10.0" prefHeight="236.0" vgrow="NEVER" />
+          <RowConstraints minHeight="89.0" prefHeight="89.0" vgrow="NEVER" />
+            <RowConstraints minHeight="89.0" prefHeight="89.0" vgrow="NEVER" />
+            <RowConstraints minHeight="89.0" prefHeight="89.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+            <VBox spacing="4.0" styleClass="status-vbox" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+               <children>
+                  <Label id="currentMachineConfigurationStatusLabel" text="Current Machine Configuration Status">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="-6.0" />
+                     </VBox.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Label>
+                  <FlowPane styleClass="status-flow-pane">
+                     <children>
+                        <Label text="Number of Maximum Rotors Allowed in Machine:">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="machineConfigurationLabel1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </FlowPane>
+                  <FlowPane styleClass="status-flow-pane">
+                     <children>
+                        <Label text="Current Selected Rotors in Machine:">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="machineConfigurationLabel2" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane styleClass="status-flow-pane">
+                     <children>
+                        <Label text="Number of Total Reflectors in XML File:">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="machineConfigurationLabel3" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane styleClass="status-flow-pane">
+                     <children>
+                        <Label text="Current Selected Reflector in Machine:">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="machineConfigurationLabel4" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane styleClass="status-flow-pane">
+                     <children>
+                        <Label text="Total messages processed in Machine:">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="machineConfigurationMessageCounterLabel" />
+                     </children>
+                  </FlowPane>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="12.0" top="12.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="rotorsConfigurationVBox" styleClass="configuration-vbox" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <GridPane prefWidth="430.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="header-label" text="Rotors And Order:" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="rotorsAndOrderTextField" maxWidth="166.0" minHeight="30.0" minWidth="166.0" prefHeight="30.0" prefWidth="166.0" promptText="Separated by ‘,’..." GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="20.0" top="16.0" />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets bottom="3.0" left="4.0" top="1.0" />
+                           </padding>
+                        </TextField>
+                        <Label styleClass="header-label" text="Rotors Starting Pos:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="rotorsStartingPosTextField" maxWidth="166.0" minHeight="30.0" minWidth="166.0" prefHeight="30.0" prefWidth="166.0" promptText="No separation ‘,’..." GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="3.0" left="4.0" top="1.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets left="10.0" top="16.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </VBox>
+            <VBox fx:id="plugBoardReflectorConfigurationVBox" styleClass="configuration-vbox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <GridPane prefWidth="430.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label styleClass="header-label" text="Plug board pairs:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="plugBoardPairsTextField" maxWidth="166.0" minHeight="30.0" minWidth="166.0" prefHeight="30.0" prefWidth="166.0" promptText="No separation ‘,’..." GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="20.0" top="16.0" />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets bottom="3.0" left="4.0" top="1.0" />
+                           </padding>
+                        </TextField>
+                        <Label styleClass="header-label" text="Reflector:" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ChoiceBox fx:id="reflectorChoiceBox" maxWidth="166.0" minHeight="30.0" minWidth="166.0" prefHeight="30.0" prefWidth="166.0" stylesheets="@../css/general.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets top="-4.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets left="10.0" top="16.0" />
+                           </GridPane.margin>
+                        </ChoiceBox>
+                        <TextFlow GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets left="24.0" top="14.0" />
+                           </GridPane.margin>
+                           <children>
+                              <Label fx:id="setCodeLabel" alignment="TOP_LEFT" cache="true" maxHeight="1.7976931348623157E308" maxWidth="390.0" styleClass="info-label" textFill="GAINSBORO" wrapText="true">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </TextFlow>
+                     </children>
+                  </GridPane>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </VBox>
+            <VBox fx:id="configurationButtonsVBox" styleClass="configuration-vbox" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                      <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                    </rowConstraints>
+                     <children>
+                        <Button id="generateRandomCodeButton" maxHeight="41.0" maxWidth="212.0" minHeight="41.0" minWidth="212.0" mnemonicParsing="false" onAction="#setConfigurationRandomly" prefHeight="41.0" prefWidth="212.0" text="Generate Random Code" textFill="GAINSBORO" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="20.0" top="16.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button maxHeight="41.0" maxWidth="106.0" minHeight="41.0" minWidth="106.0" mnemonicParsing="false" onAction="#getConfigurationFromUser" prefHeight="41.0" prefWidth="106.0" styleClass="setCodeButton" text="Set Code" textFill="#323232" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="60.0" top="17.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </VBox>
+            <VBox styleClass="machine-state-vbox" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <GridPane prefWidth="430.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="title-label" text="First Machine State:" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                           <font>
+                              <Font name="Arial Bold" size="30.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="firstMachineStateLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="information-label" text="&lt;2,1&gt;&lt;C(4),C(1)&gt;&lt;I&gt;&lt;A|F&gt;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Italic" size="22.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox styleClass="machine-state-vbox" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <GridPane prefWidth="430.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="title-label" text="Current Machine State:" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                           <font>
+                              <Font name="Arial Bold" size="30.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets left="44.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="currentMachineStateLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="information-label" text="&lt;2,1&gt;&lt;C(4),C(1)&gt;&lt;I&gt;&lt;A|F&gt;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Italic" size="22.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox styleClass="machine-state-vbox" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="NEVER" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="resetMachineStateButton" maxHeight="41.0" maxWidth="246.0" minHeight="41.0" minWidth="246.0" mnemonicParsing="false" onAction="#resetMachineStateButtonActionListener" prefHeight="41.0" prefWidth="246.0" text="Reset Machine State" textFill="WHITE" textOverrun="CLIP" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="20.0" top="16.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox styleClass="configuration-vbox" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" />
+            <VBox styleClass="configuration-vbox" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" />
+            <VBox styleClass="configuration-vbox" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" />
+            <VBox styleClass="machine-state-vbox" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" />
+            <VBox styleClass="machine-state-vbox" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" />
+            <VBox styleClass="machine-state-vbox" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </content>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <stylesheets>
+      <URL value="@../css/screen1StyleOne.css" />
+      <URL value="@../css/general.css" />
+   </stylesheets>
+</ScrollPane>

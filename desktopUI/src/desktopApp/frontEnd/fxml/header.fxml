@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="100.0" prefWidth="900.0" styleClass="pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.HeaderController">
+   <stylesheets>
+      <URL value="@../css/general.css" />
+      <URL value="@../css/headerStyleOne.css" />
+   </stylesheets>
+   <children>
+      <HBox alignment="CENTER" maxHeight="100.0" prefHeight="100.0" prefWidth="900.0" spacing="10.0">
+         <children>
+            <Button id="loadXMLButton" alignment="CENTER" mnemonicParsing="false" onAction="#loadXML" prefHeight="60.0" prefWidth="104.0" text="Load XML" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <FlowPane columnHalignment="CENTER" maxHeight="100.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="214.0" rowValignment="BASELINE">
+               <children>
+                  <TextFlow prefWidth="200.0">
+                     <children>
+                        <Label text="XML File Path:" textFill="GAINSBORO">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="2.0" top="16.0" />
+                           </padding>
+                        </Label>
+                        <TextField cache="true" editable="false" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="214.0" promptText="No XML file path yet given..." fx:id="xmlFilePathTextField">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="6.0" right="-1.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                        <Label id="infoLabel" fx:id="loadXMLErrorLabel" cache="true" maxWidth="214.0" textFill="GAINSBORO" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="2.0" top="3.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </TextFlow>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </FlowPane>
+            <Button fx:id="machineDetailsButton" alignment="CENTER" cache="true" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#machineDetailsButtonActionListener" prefHeight="64.0" prefWidth="126.0" styleClass="screen-button" text="  Machine  Details" textAlignment="CENTER" textFill="#323232" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="decryptInputWithEnigmaButton" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#decryptInputWithEnigmaButtonActionListener" prefHeight="64.0" prefWidth="126.0" styleClass="screen-button" text="Decrypt Input Using Enigma" textAlignment="CENTER" textFill="#323232" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="bruteForceButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#bruteForceButtonActionListener" prefHeight="64.0" prefWidth="126.0" styleClass="screen-button" text="Brute Force" textAlignment="CENTER" textFill="#323232" wrapText="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <VBox alignment="CENTER_LEFT" layoutX="-9.0" prefHeight="100.0" prefWidth="129.0" spacing="6.0">
+               <children>
+                  <Label alignment="CENTER" text="UI/UX Accessibility:" textFill="GAINSBORO">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-6.0" left="1.0" />
+                     </padding>
+                  </Label>
+                  <ChoiceBox fx:id="styleChoiceBox" prefHeight="24.0" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="-4.0" />
+                     </padding>
+                  </ChoiceBox>
+                  <ChoiceBox fx:id="animationChoiceBox" prefHeight="24.0" prefWidth="150.0">
+                     <padding>
+                        <Insets top="-4.0" />
+                     </padding>
+                  </ChoiceBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets top="-12.0" />
+               </padding>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</FlowPane>
