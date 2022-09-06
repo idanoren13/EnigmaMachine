@@ -27,6 +27,18 @@ public class Console implements Input {
     }
 
     @Override
+    public String getCurrentMachineState() {
+        EngineDTO DTO = engine.getEngineDTO();
+        return currentMachineState(DTO).toString();
+    }
+
+    @Override
+    public int getMessageCounter() {
+        EngineDTO DTO = engine.getEngineDTO();
+        return DTO.getMessagesSentCounter();
+    }
+
+    @Override
     public MachineHistoryAndStatistics getMachineHistoryStates() {
         return machineHistoryAndStatistics;
     }
@@ -179,26 +191,17 @@ public class Console implements Input {
         System.out.println(message + " initialized code: " + machineHistoryAndStatistics.getCurrentMachineCode());
     }
 
-    @Override
-    public void getMessageAndProcessIt(String messageInput) {
+    @Override // TODO: to idan: <rotor_position(rotor distance from notch)> - you think rotor_starting_position is valid after each message encryption?
+    public String getMessageAndProcessIt(String messageInput) throws InvalidCharactersException {
         int timeStart, timeEnd;
-        String output;
-        if (machineHistoryAndStatistics.isEmpty()) {
-            System.out.println("No Enigma engine code was initialized.");
-            return;
-        }
+        String messageOutput;
         System.out.println("Enter your message to process.");
-        try {
-            timeStart = (int) System.nanoTime();
-            output = this.engine.processMessage(messageInput);
-            timeEnd = (int) System.nanoTime();
-        } catch (InvalidCharactersException e) {
-            System.out.println("Exception: " + e.getLocalizedMessage());
-            return;
-        }
+        timeStart = (int) System.nanoTime();
+        messageOutput = this.engine.processMessage(messageInput);
+        timeEnd = (int) System.nanoTime();
 
-        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, output, timeEnd - timeStart);
-        System.out.println("Processed message: " + output);
+        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
+        return "Processed message: " + messageInput + " -> " + messageOutput;
     }
 
     @Override
@@ -214,15 +217,8 @@ public class Console implements Input {
     }
 
     @Override
-    public void getMachineStatisticsAndHistory() {
-        try {
-            if (machineHistoryAndStatistics.isEmpty()) {
-                throw new NoMachineGeneratedException("no machine was generated.");
-            }
-            System.out.println(this.machineHistoryAndStatistics);
-        } catch (NoMachineGeneratedException e) {
-            System.out.println("Exception: " + e.getLocalizedMessage());
-        }
+    public String getMachineStatisticsAndHistory() {
+        return this.machineHistoryAndStatistics.toString();
     }
 
     @Override

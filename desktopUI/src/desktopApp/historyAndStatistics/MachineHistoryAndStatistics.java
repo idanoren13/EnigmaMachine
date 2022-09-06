@@ -48,7 +48,6 @@ public class MachineHistoryAndStatistics implements Iterable<MachineCodeData>, S
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Machine statistics and history:\n");
         for (MachineCodeData currCodeData : this.machineCodeData) {
             sb.append(currCodeData.getMachineCode()).append("\n");
             int i = 1;

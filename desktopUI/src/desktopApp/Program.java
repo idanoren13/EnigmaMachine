@@ -2,36 +2,44 @@ package desktopApp;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.LoadException;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.util.Objects;
+import java.net.URL;
 
 public class Program extends Application {
 
-    /*public enum Choice {
-        CHOICE_ONE,
-        CHOICE_TWO,
-        CHOICE_THREE,
-        CHOICE_FOUR,
-        CHOICE_FIVE,
-        CHOICE_SIX,
-        CHOICE_SEVEN,
-        CHOICE_EIGHT,
-        CHOICE_NINE,
-        CHOICE_TEN
-    }*/
+    private static String APP_FXML_INCLUDE_RESOURCE = "/desktopApp/frontEnd/fxml/app.fxml";
+    private static String APP_ICON_FOR_AVIAD = "/desktopApp/frontEnd/images/kifli.jpg";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Settings
+        primaryStage.setMinHeight(200);
+        primaryStage.setMaxHeight(800);
+        primaryStage.setMinWidth(300);
+        primaryStage.setMaxWidth(1200);
         primaryStage.setTitle("C.T.E Exercise 2");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream(APP_ICON_FOR_AVIAD)));
 
-        Parent load = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("frontEnd/enigma-screen-one.fxml")));
-        Scene scene = new Scene(load, 900, 600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        try {
+            // Load master app and controller from FXML
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            URL url = getClass().getResource(APP_FXML_INCLUDE_RESOURCE);
+            fxmlLoader.setLocation(url);
+            BorderPane root = fxmlLoader.load(url.openStream());
 
+            // Set scene
+            Scene scene = new Scene(root, 900, 600);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (LoadException | NullPointerException e) {
+            e.printStackTrace();
+            System.out.println("Exception cause: Resource not found.");
+        }
         // runMachine();
     }
 

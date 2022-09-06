@@ -11,8 +11,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads">
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="added FXML file">
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen1Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen2Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/general.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen2StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_08_2022_15_09_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_08_2022_15_09__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/howToAddSchemaBinding" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigma-screen-one.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigmaScreensStyleOne.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigmaScreensStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigmaScreensStyleTwo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,13 +75,13 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="better_Data_Strcutue_Random_In_Engine" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -93,10 +126,11 @@
       <recent name="enigmaEngine" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\fxml" />
+      <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\css" />
+      <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\body" />
+      <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\header" />
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\consoleUI\src\consoleApp" />
-      <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\consoleUI\src\consoleApp\frontEnd" />
-      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine\src\Resources" />
-      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachine" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Program">
@@ -144,8 +178,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Program" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.enigmaEngine.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Program" />
         <item itemvalue="Application.Main" />
       </list>
@@ -187,7 +221,19 @@
       <workItem from="1661572875350" duration="557000" />
       <workItem from="1661602880335" duration="21950000" />
       <workItem from="1661690822542" duration="603000" />
-      <workItem from="1661692786252" duration="308000" />
+      <workItem from="1661692786252" duration="380000" />
+      <workItem from="1661693711287" duration="2742000" />
+      <workItem from="1661772112127" duration="1540000" />
+      <workItem from="1661807204430" duration="1000" />
+      <workItem from="1661820372222" duration="807000" />
+      <workItem from="1661835187705" duration="4000" />
+      <workItem from="1661959413498" duration="6000" />
+      <workItem from="1662144263835" duration="689000" />
+      <workItem from="1662303373370" duration="8000" />
+      <workItem from="1662319090393" duration="24473000" />
+      <workItem from="1662378612166" duration="36919000" />
+      <workItem from="1662464911441" duration="8000" />
+      <workItem from="1662476314700" duration="10093000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -297,7 +343,14 @@
       <option name="presentableId" value="LOCAL‎00017" />
       <updated>1661299269597</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL‎-00018" summary="added FXML file">
+      <created>1661693152986</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL‎-00018" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1661693152986</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +372,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="origin/Ex2" />
                       </list>
                     </value>
                   </entry>
@@ -363,45 +416,16 @@
     <MESSAGE value="some TODOs" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads.&#10;Mainly what is needed is to get rid of console and delete useless lines with println, printf, whatever" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads" />
-    <option name="LAST_COMMIT_MESSAGE" value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads.&#10;Mainly what is needed is to get rid of console and delete useless lines with println, printf, whatever" />
+    <MESSAGE value="added FXML file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added FXML file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_341/javafx-src.zip!/javafx/fxml/FXMLLoader.java</url>
-          <line>1773</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/InitCode.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java</url>
-          <line>199</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java</url>
-          <line>197</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java</url>
-          <line>192</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java</url>
-          <line>190</line>
-          <option name="timeStamp" value="56" />
+          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

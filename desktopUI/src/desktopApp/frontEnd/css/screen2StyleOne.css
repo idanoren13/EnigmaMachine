@@ -1,0 +1,82 @@
+#machineStateGridPane {
+    -fx-background-color: #f6f6f6;
+    -fx-border-width: 4px;
+    -fx-border-color: #d13e58;
+}
+
+#machineStateGridPane .header-label {
+    -fx-text-fill: #323232;
+}
+
+#machineStateGridPane .information-label {
+    -fx-text-fill: #323232;
+    -fx-font-size: 22px;
+    -fx-font-style: Italic;
+}
+
+#keyboardInputStackPane {
+    -fx-font-size: 16px;
+    -fx-background-color: #c03049;
+}
+
+#keyboardInputStackPane .text-field {
+    -fx-border-width: 2px;
+    -fx-border-color: #505050;
+    -fx-font-size: 18px;
+}
+
+#keyboardInputStackPane .button {
+    -fx-font-family: Arial;
+    -fx-font-weight: Bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #25bfc5;
+}
+
+#keyboardInputStackPane #keyboardInputButton {
+    -fx-font-size: 20px;
+}
+
+#keyboardInputStackPane .button:hover, .chosen-button {
+    -fx-text-fill: #323232;
+    -fx-border-color: #008198;
+}
+
+#statisticsAndHistoryTextFlow {
+    -fx-background-color: #ea4f46;
+}
+
+#statisticsAndHistoryTextFlow #header {
+    -fx-text-fill: #323232;
+    -fx-font-size: 16px;
+    -fx-font-weight: Bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.25), 1, 0, 1, 1);
+}
+
+#statisticsAndHistoryTextFlow .machine-configuration-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+    -fx-font-style: Italic;
+}
+
+#statisticsAndHistoryTextFlow .machine-details-text-flow .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+}
+
+#mouseInputGridPane {
+    -fx-background-color: #8d104c;
+    -fx-border-width: 6px;
+    -fx-border-color: #bf154b;
+}
+
+#mouseInputGridPane .header-label {
+    -fx-text-fill: #ffffff;
+}
+
+.header-label {
+    -fx-font-size: 30px;
+    -fx-font-weight: Bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 1, 0, 1, 1);
+}

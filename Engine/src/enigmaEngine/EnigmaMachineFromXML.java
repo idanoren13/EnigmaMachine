@@ -18,7 +18,6 @@ import javax.xml.bind.Unmarshaller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ import java.util.List;
 
 public class EnigmaMachineFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
-    public static String currentEnigmaMachineSource = "";
 
     @Override
     public EnigmaEngineImpl getEnigmaEngineFromSource(String path) throws IOException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
@@ -36,9 +34,6 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
 
         if (!path.contains(".xml")) {
             throw new FileNotFoundException("File given is not of XML type.");
-        }
-        else if (currentEnigmaMachineSource.equals(path)) {
-            throw new FileAlreadyExistsException("File given is already defined as the Enigma machine.");
         }
         InputStream xmlFile = Files.newInputStream(Paths.get(path));
         JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
@@ -95,7 +90,6 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
-        currentEnigmaMachineSource = path;
         return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
     }
 
