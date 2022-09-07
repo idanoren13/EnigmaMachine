@@ -11,41 +11,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="added FXML file">
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen1Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen2Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/general.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen2StyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_08_2022_15_09_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_08_2022_15_09__Changes_.xml" beforeDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/ex1-sanity-small-error.xml.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Resources/howToAddSchemaBinding" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ControllerFirstScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigma-screen-one.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigmaScreensStyleOne.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigmaScreensStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/enigmaScreensStyleTwo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/interfaces/Input.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +214,11 @@
       <workItem from="1662319090393" duration="24473000" />
       <workItem from="1662378612166" duration="36919000" />
       <workItem from="1662464911441" duration="8000" />
-      <workItem from="1662476314700" duration="10093000" />
+      <workItem from="1662476314700" duration="10418000" />
+      <workItem from="1662488245210" duration="197000" />
+      <workItem from="1662498915756" duration="3403000" />
+      <workItem from="1662503122395" duration="4525000" />
+      <workItem from="1662507709585" duration="2613000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -350,7 +335,28 @@
       <option name="project" value="LOCAL‎" />
       <updated>1661693152986</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL‎-00019" summary="added FXML file">
+      <created>1662487766028</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL‎-00019" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1662487766028</updated>
+    </task>
+    <task id="LOCAL‎-00020" summary="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)">
+      <created>1662487889300</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1662487889300</updated>
+    </task>
+    <task id="LOCAL‎-00021" summary="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)">
+      <created>1662487902518</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL‎-00021" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1662487902518</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,18 +423,10 @@
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads.&#10;Mainly what is needed is to get rid of console and delete useless lines with println, printf, whatever" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads" />
     <MESSAGE value="added FXML file" />
-    <option name="LAST_COMMIT_MESSAGE" value="added FXML file" />
+    <MESSAGE value="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="76" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngineImpl" memberName="selectedRotorsListRightToLeft" />

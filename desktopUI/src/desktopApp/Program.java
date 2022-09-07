@@ -41,7 +41,7 @@ public class Program extends Application {
             System.out.println("Exception cause: Resource not found.");
         }
         // runMachine();
-    }
+}
 
     public static void main(String[] args) {
         Thread.currentThread().setName("main");

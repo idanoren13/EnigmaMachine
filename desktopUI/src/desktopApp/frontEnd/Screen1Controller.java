@@ -4,11 +4,16 @@ import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -17,42 +22,24 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Screen1Controller implements Initializable {
-
-
     private AppController mainController;
-    @FXML private ScrollPane scrollPaneContainer;
-
     @FXML private Label machineConfigurationLabel1;
-
     @FXML private Label machineConfigurationLabel2;
-
     @FXML private Label machineConfigurationLabel3;
-
     @FXML private Label machineConfigurationLabel4;
-
     @FXML private Label machineConfigurationMessageCounterLabel;
-
-    @FXML private TextField rotorsAndOrderTextField;
-
-    @FXML private TextField rotorsStartingPosTextField;
-
     @FXML private Label firstMachineStateLabel;
-
-    @FXML private TextField plugBoardPairsTextField;
-
     @FXML private VBox rotorsConfigurationVBox;
-
     @FXML private VBox plugBoardReflectorConfigurationVBox;
-
     @FXML private VBox configurationButtonsVBox;
-
-    @FXML private ChoiceBox<String> reflectorChoiceBox;
-
     @FXML private Label setCodeLabel;
-
     @FXML private Label currentMachineStateLabel;
-
     @FXML private Button resetMachineStateButton;
+    @FXML private TextField rotorsAndOrderTextField;
+    @FXML private TextField rotorsStartingPosTextField;
+    @FXML private TextField plugBoardPairsTextField;
+    @FXML private ChoiceBox<String> reflectorChoiceBox;
+    @FXML private Button setCodeButton;
 
     public void setMainController(AppController mainController) {
         this.mainController = mainController;
@@ -60,6 +47,13 @@ public class Screen1Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Only for binding the ENTER key to the input text field
+        setCodeButton.setDefaultButton(true);
+        setCodeButton.setOnAction(event -> getConfigurationFromUser(event));
+        // Adding change property
+        rotorsAndOrderTextField.textProperty().addListener(new ClearStatusListener());
+        rotorsStartingPosTextField.textProperty().addListener(new ClearStatusListener());
+        plugBoardPairsTextField.textProperty().addListener(new ClearStatusListener());
         // Default values are added in certain screen places. This is called after constructor and after FXML variables are created.
         reset();
     }
@@ -83,8 +77,10 @@ public class Screen1Controller implements Initializable {
     @FXML
     void getConfigurationFromUser(ActionEvent event) {
         if (initializeEnigmaCode(true)) {
+            String tmp = setCodeLabel.getText();
             updateConfigurationFieldsAndMachineStateDisability();
-            mainController.resetScreens();
+            setCodeLabel.setText(tmp);
+            mainController.resetScreens(false);
         }
     }
 
@@ -92,7 +88,7 @@ public class Screen1Controller implements Initializable {
     void setConfigurationRandomly(ActionEvent event) {
         if (initializeEnigmaCode(false)) {
             updateConfigurationFieldsAndMachineStateDisability();
-            mainController.resetScreens();
+            mainController.resetScreens(false);
         }
     }
     private boolean initializeEnigmaCode(boolean isManual) {
@@ -172,7 +168,7 @@ public class Screen1Controller implements Initializable {
     @FXML
     void resetMachineStateButtonActionListener(ActionEvent event) {
         AppController.getConsoleApp().resetMachine();
-        mainController.resetScreens();
+        mainController.resetScreens(true);
     }
 
     public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
@@ -198,16 +194,25 @@ public class Screen1Controller implements Initializable {
     public void updateMachineStateAndStatus(String currentMachineState) {
         machineConfigurationMessageCounterLabel.setText(Integer.toString(AppController.getConsoleApp().getMessageCounter()));
         currentMachineStateLabel.setText(currentMachineState);
-        // TODO: update Enigma code current status section
     }
 
-    public void resetMachineStateAndStatus() {
-        setCodeLabel.setText("Machine state has been successfully reset");
+    public void resetMachineStateAndStatus(boolean bool) {
+        if (bool) {
+            setCodeLabel.setText("Machine state has been successfully reset");
+        }
         currentMachineStateLabel.setText(firstMachineStateLabel.getText());
-        // TODO: update Enigma code current status section
     }
+
+    class ClearStatusListener implements ChangeListener<String> {
+        @Override public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            mainController.updateLabelTextsToEmpty();
+        }
+    }
+    public void updateLabelTextsToEmpty() {
+        setCodeLabel.setText("");
+    }
+
 }
 
-// TODO: add this framework: https://stackoverflow.com/posts/12862613/revisions
 // TODO: make labels selectable and clickable: https://stackoverflow.com/a/44182371/3598990
 // TODO: check back-end response to reset

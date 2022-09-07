@@ -38,7 +38,6 @@
     -fx-border-width: 2px;
     -fx-text-overrun: ELLIPSIS;
     -fx-text-fill: #505050;
-    -fx-prompt-text-fill: #505050;
 }
 
 .configuration-vbox .choice-box .label {

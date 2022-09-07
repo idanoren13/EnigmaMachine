@@ -120,6 +120,9 @@ public class HeaderController implements Initializable {
             currXMLFilePath = "";
         }
     }
+    public void updateLabelTextsToEmpty() {
+        loadXMLErrorLabel.setText("");
+    }
 
     // TODO: Implement bonus method 1 (change CSS of screen) and bonus method 2 (add animations)
 }

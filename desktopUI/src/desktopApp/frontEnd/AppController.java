@@ -3,21 +3,17 @@ package desktopApp.frontEnd;
 import desktopApp.impl.Console;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 
 import java.util.List;
 
 public class AppController {
     static private Console consoleApp;
-    @FXML private FlowPane headerComponent;
-    @FXML private HeaderController headerComponentController;
-    @FXML private StackPane stackPaneContainer;
     @FXML private ScrollPane screen1Component;
-    @FXML private Screen1Controller screen1ComponentController;
     @FXML private ScrollPane screen2Component;
-    @FXML private Screen2Controller screen2ComponentController;
     @FXML private ScrollPane screen3Component;
+    @FXML private HeaderController headerComponentController;
+    @FXML private Screen1Controller screen1ComponentController;
+    @FXML private Screen2Controller screen2ComponentController;
     @FXML private Screen3Controller screen3ComponentController;
 
     @FXML
@@ -36,26 +32,6 @@ public class AppController {
         return consoleApp;
     }
 
-    public void setHeaderComponentController(HeaderController headerComponentController) {
-        this.headerComponentController = headerComponentController;
-        headerComponentController.setMainController(this);
-    }
-
-    public void setScreen1ComponentController(Screen1Controller screen1ComponentController) {
-        this.screen1ComponentController = screen1ComponentController;
-        screen1ComponentController.setMainController(this);
-    }
-
-    public void setScreen2ComponentController(Screen2Controller screen2ComponentController) {
-        this.screen2ComponentController = screen2ComponentController;
-        screen2ComponentController.setMainController(this);
-    }
-
-    public void setScreen3ComponentController(Screen3Controller screen3ComponentController) {
-        this.screen3ComponentController = screen3ComponentController;
-        screen3ComponentController.setMainController(this);
-    }
-
     public void updateScreens(String currentMachineState) {
         screen1ComponentController.updateMachineStateAndStatus(currentMachineState);
         screen2ComponentController.updateMachineStateAndStatistics(currentMachineState);
@@ -65,10 +41,10 @@ public class AppController {
     public void reset() {
         screen1ComponentController.reset();
     }
-    public void resetScreens() {
-        screen1ComponentController.resetMachineStateAndStatus();
-        screen2ComponentController.resetMachineStateAndStatistics();
-        screen3ComponentController.resetMachineState();
+    public void resetScreens(boolean bool) {
+        screen1ComponentController.resetMachineStateAndStatus(bool);
+        screen2ComponentController.resetMachineStateAndStatistics(bool);
+        screen3ComponentController.resetMachineStateAndEnigmaOutput(bool);
     }
     public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
         screen1ComponentController.updateScreenOne(choiceBoxItems, numberOfRotors, numberOfReflectors);
@@ -81,6 +57,13 @@ public class AppController {
     public void updateScreensDisability(boolean bool) {
         screen2ComponentController.setEnigmaDecryptionInputDisability(bool);
         screen3ComponentController.setBruteForceDisability(bool);
+    }
+
+    public void updateLabelTextsToEmpty() {
+        headerComponentController.updateLabelTextsToEmpty();
+        screen1ComponentController.updateLabelTextsToEmpty();
+        screen2ComponentController.updateLabelTextsToEmpty();
+        screen3ComponentController.updateLabelTextsToEmpty();
     }
 
     // Swap screens

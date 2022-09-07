@@ -277,7 +277,7 @@
                               <Insets left="20.0" top="16.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button maxHeight="41.0" maxWidth="106.0" minHeight="41.0" minWidth="106.0" mnemonicParsing="false" onAction="#getConfigurationFromUser" prefHeight="41.0" prefWidth="106.0" styleClass="setCodeButton" text="Set Code" textFill="#323232" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="setCodeButton" maxHeight="41.0" maxWidth="106.0" minHeight="41.0" minWidth="106.0" mnemonicParsing="false" onAction="#getConfigurationFromUser" prefHeight="41.0" prefWidth="106.0" styleClass="setCodeButton" text="Set Code" textFill="#323232" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Arial Bold" size="16.0" />
                            </font>

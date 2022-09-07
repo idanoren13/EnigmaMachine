@@ -75,7 +75,7 @@
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <GridPane id="keyboardInputGridPane" alignment="CENTER" StackPane.alignment="CENTER">
+                  <GridPane id="keyboardInputGridPane" fx:id="keyboardInputGridPane" alignment="CENTER" StackPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="15.0" minWidth="10.0" prefWidth="15.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -111,7 +111,7 @@
                               <Insets top="22.0" />
                            </GridPane.margin>
                         </VBox>
-                        <Button id="keyboardInputButton" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="64.0" prefWidth="203.0" text="Enter Current Keyboard Input" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button id="keyboardInputButton" fx:id="enterCurrentKeyboardInputButton" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="64.0" prefWidth="203.0" text="Enter Current Keyboard Input" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>

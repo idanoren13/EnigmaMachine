@@ -1,21 +1,27 @@
 package desktopApp.frontEnd;
 
 import enigmaEngine.exceptions.InvalidCharactersException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.TextFlow;
 
+import java.net.URL;
 import java.util.InputMismatchException;
+import java.util.ResourceBundle;
 
-public class Screen2Controller {
+public class Screen2Controller implements Initializable {
     // TODO: for idan: talk with snir about mouse input->output ("Mouse Input"->"Mouse Output")
     private AppController mainController;
     @FXML private ScrollPane scrollPaneContainer;
@@ -30,8 +36,22 @@ public class Screen2Controller {
     @FXML private Button encryptionDecryptionInputButton;
     @FXML private Button resetMachineStateButton;
 
-    @FXML
-    public void initialize() {
+    @FXML private Button enterCurrentKeyboardInputButton;
+    @FXML private GridPane keyboardInputGridPane; // Only for binding the ENTER key to the input text field
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Only for binding the ENTER key to the input text field
+        enterCurrentKeyboardInputButton.setOnAction(event -> enterCurrentKeyboardInputButtonActionListener(event));
+        keyboardInputGridPane.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if (ev.getCode() == KeyCode.ENTER) {
+                enterCurrentKeyboardInputButton.fire();
+                ev.consume();
+            }
+        });
+        // Adding change property
+        inputToEncryptDecryptInput.textProperty().addListener(new ClearStatusListener());
+        // Initialization
         setEnigmaDecryptionInputDisability(true);
         encryptionDecryptionInputButton.getStyleClass().add("chosen-button");
     }
@@ -48,9 +68,9 @@ public class Screen2Controller {
             if (messageInput.equals("")) {
                 throw new InputMismatchException("No encryption message was written.");
             }
-            setCodeLabel.setText(AppController.getConsoleApp().getMessageAndProcessIt(messageInput));
+            setCodeLabel.setText("Processed message: " + messageInput + " -> " + AppController.getConsoleApp().getMessageAndProcessIt(messageInput));
             mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineState());
-            inputToEncryptDecryptInput.setText("");
+            mainController.updateLabelTextsToEmpty();
         } catch (InvalidCharactersException | InputMismatchException e) {
             setCodeLabel.setText(e.getLocalizedMessage());
         }
@@ -72,7 +92,7 @@ public class Screen2Controller {
     @FXML
     void resetMachineStateButtonActionListener(ActionEvent event) {
         AppController.getConsoleApp().resetMachine();
-        mainController.resetScreens();
+        mainController.resetScreens(true);
 
         encryptionDecryptionInputButton.getStyleClass().remove("chosen-button");
         resetMachineStateButton.getStyleClass().add("chosen-button");
@@ -102,13 +122,22 @@ public class Screen2Controller {
     public void updateMachineStateAndStatistics(String currentMachineState) {
         currentMachineStateLabel.setText(currentMachineState);
         currentMachineInitialStateLabel.setText(AppController.getConsoleApp().getMachineStatisticsAndHistory());
-        // TODO: update statistics and history section
     }
 
-    public void resetMachineStateAndStatistics() {
-        setCodeLabel.setText("Machine state has been successfully reset");
+    public void resetMachineStateAndStatistics(boolean bool) {
+        if (bool) {
+            setCodeLabel.setText("Machine state has been successfully reset");
+        }
         currentMachineStateLabel.setText(firstMachineStateLabel.getText());
         currentMachineInitialStateLabel.setText(AppController.getConsoleApp().getMachineStatisticsAndHistory());
-        // TODO: update statistics and history section
+    }
+    class ClearStatusListener implements ChangeListener<String> {
+        @Override public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            setCodeLabel.setText("");
+        }
+    }
+    public void updateLabelTextsToEmpty() {
+        setCodeLabel.setText("");
+        inputToEncryptDecryptInput.setText("");
     }
 }

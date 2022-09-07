@@ -201,7 +201,7 @@ public class Console implements Input {
         timeEnd = (int) System.nanoTime();
 
         machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
-        return "Processed message: " + messageInput + " -> " + messageOutput;
+        return messageOutput;
     }
 
     @Override
