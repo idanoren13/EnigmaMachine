@@ -3,22 +3,22 @@
     -fx-border-color: #bf154b;
 }
 
-#keyboardInputGridPane {
+#keyboardInputVBox {
     -fx-background-color: #c03049;
 }
 
-#keyboardInputGridPane .machine-state-vbox .header-label {
+#keyboardInputVBox .machine-state-vbox .header-label {
     -fx-text-fill: #323232;
     -fx-font-size: 20px;
 }
 
-#keyboardInputGridPane .information-label {
+#keyboardInputVBox .information-label {
     -fx-text-fill: #323232;
     -fx-font-size: 14px;
     -fx-font-style: Italic;
 }
 
-#keyboardInputGridPane .button {
+#keyboardInputVBox .button {
     -fx-background-color: #25bfc5;
     -fx-text-fill: #ffffff;
     -fx-font-family: Arial;
@@ -26,7 +26,7 @@
     -fx-font-weight: Bold;
 }
 
-#keyboardInputGridPane .text-field {
+#keyboardInputVBox .text-field {
     -fx-font-size: 18px;
     -fx-border-color: #505050;
     -fx-border-width: 2px;
@@ -59,16 +59,28 @@
     -fx-prompt-text-fill: #956f70;
 }
 
-.search-dictionary-words-vbox #resultsScrollPane {
-    -fx-background-color: transparent;
+.search-dictionary-words-vbox #dictionaryScrollPane {
+    -fx-background-color: #f0f0f0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 1, 100, 0, 0);
 }
 
-.search-dictionary-words-vbox #resultsScrollPane .list-view {
+.search-dictionary-words-vbox #dictionaryScrollPane .viewport {
+    -fx-background-color: #f0f0f0;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .list-view, .thumb {
     -fx-background-color: #f0f0f0;
     -fx-font-weight: Bold;
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .track {
+    -fx-background-color: none;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .track-background {
+    -fx-background-color: #c4c4c4;
 }
 
 .header-label {
@@ -186,8 +198,22 @@
     -fx-effect: dropshadow(gaussian, rgba(204, 204, 204, 1.0), 1, 100, 0, 0);
 }
 
-#decryptionManagerStatusHBox .scroll-pane .list-view {
+#decryptionManagerStatusHBox .scroll-pane .list-view, .viewport {
     -fx-background-color: #ffffff;
+}
+
+#decryptionManagerStatusHBox .scroll-pane .track-background, .scroll-pane .track {
+    -fx-background-color: #bbbbbb;
+    -fx-border-width: 0px;
+}
+
+.scroll-pane .track {
+    -fx-effect: none;
+}
+
+.scroll-pane .thumb, .increment-button .increment-arrow, .decrement-button .decrement-arrow {
+    -fx-background-color: #505050;
+    -fx-effect: none;
 }
 
 .button {

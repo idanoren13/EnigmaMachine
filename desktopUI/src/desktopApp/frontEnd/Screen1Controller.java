@@ -1,5 +1,7 @@
 package desktopApp.frontEnd;
 
+import desktopApp.impl.models.MachineStateConsole;
+import desktopApp.impl.models.Specifications;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -7,39 +9,55 @@ import enigmaEngine.exceptions.InvalidRotorException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.LoadException;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Screen1Controller implements Initializable {
+    // Main component
     private AppController mainController;
-    @FXML private Label machineConfigurationLabel1;
-    @FXML private Label machineConfigurationLabel2;
-    @FXML private Label machineConfigurationLabel3;
-    @FXML private Label machineConfigurationLabel4;
+    private ConfigurationInputWindowController configurationInputWindowController; // It includes all XML resources only if XML valid
+    @FXML private MachineStateController firstMachineStateComponentController;
+    @FXML private MachineStateController currentMachineStateComponentController;
+    // Models
+    private Specifications specs;
+    private MachineStateConsole machineStatesConsole;
+    // Machine configuration status
+    @FXML private Label maxRotorsInMachineLabel;
+    @FXML private Label currentUsedMachineRotorsLabel;
+    @FXML private Label totalReflectorsInMachineLabel;
+    @FXML private Label currentSelectedMachineReflectorLabel;
     @FXML private Label machineConfigurationMessageCounterLabel;
-    @FXML private Label firstMachineStateLabel;
-    @FXML private VBox rotorsConfigurationVBox;
-    @FXML private VBox plugBoardReflectorConfigurationVBox;
-    @FXML private VBox configurationButtonsVBox;
+    // For disabling screen partitions
+    @FXML private VBox configurationVBox;
     @FXML private Label setCodeLabel;
-    @FXML private Label currentMachineStateLabel;
-    @FXML private Button resetMachineStateButton;
+    // Screen buttons
+    @FXML private Button setCodeButton;
+    @FXML private Button dragAndDropSetCodeButton;
+    // User configuration input section
     @FXML private TextField rotorsAndOrderTextField;
     @FXML private TextField rotorsStartingPosTextField;
     @FXML private TextField plugBoardPairsTextField;
     @FXML private ChoiceBox<String> reflectorChoiceBox;
-    @FXML private Button setCodeButton;
+
+    // Web view - miscellaneous
+    @FXML private WebView enigmaTermWebView;
 
     public void setMainController(AppController mainController) {
         this.mainController = mainController;
@@ -47,53 +65,90 @@ public class Screen1Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Only for binding the ENTER key to the input text field
-        setCodeButton.setDefaultButton(true);
-        setCodeButton.setOnAction(event -> getConfigurationFromUser(event));
-        // Adding change property
-        rotorsAndOrderTextField.textProperty().addListener(new ClearStatusListener());
-        rotorsStartingPosTextField.textProperty().addListener(new ClearStatusListener());
-        plugBoardPairsTextField.textProperty().addListener(new ClearStatusListener());
-        // Default values are added in certain screen places. This is called after constructor and after FXML variables are created.
-        reset();
+        if (firstMachineStateComponentController != null && currentMachineStateComponentController != null) {
+            firstMachineStateComponentController.setScreen1Controller(this);
+            currentMachineStateComponentController.setScreen1Controller(this);
+
+            // Only for binding the ENTER key to the input text field
+            setCodeButton.setDefaultButton(true);
+            setCodeButton.setOnAction(event -> getConfigurationFromUser());
+            // Adding change property
+            rotorsAndOrderTextField.textProperty().addListener(new ClearStatusListener());
+            rotorsStartingPosTextField.textProperty().addListener(new ClearStatusListener());
+            plugBoardPairsTextField.textProperty().addListener(new ClearStatusListener());
+            // Website add-on
+            WebEngine engine = enigmaTermWebView.getEngine();
+            enigmaTermWebView.setZoom(0.66);
+            engine.load("https://en.wikipedia.org/wiki/Enigma_machine");
+            // Model
+            specs = new Specifications();
+            maxRotorsInMachineLabel.textProperty().bind(specs.rotorsAmountInMachineXMLProperty());
+            currentUsedMachineRotorsLabel.textProperty().bind(specs.currentRotorsInMachineProperty());
+            totalReflectorsInMachineLabel.textProperty().bind(specs.reflectorsAmountInMachineXMLProperty());
+            currentSelectedMachineReflectorLabel.textProperty().bind(specs.currentReflectorInMachineProperty());
+            machineConfigurationMessageCounterLabel.textProperty().bind(specs.messagesProcessedProperty());
+
+            machineStatesConsole = new MachineStateConsole();
+/*            firstMachineStateLabel.textProperty().bind(machineStates.firstMachineStateProperty());
+            currentMachineStateLabel.textProperty().bind(machineStates.currentMachineStateProperty());*/
+            // Default values are added in certain screen places. This is called after constructor and after FXML variables are created.
+            reset();
+        }
     }
 
     private void setConfigurationDisability(boolean bool) {
-        rotorsConfigurationVBox.setDisable(bool);
-        plugBoardReflectorConfigurationVBox.setDisable(bool);
-        configurationButtonsVBox.setDisable(bool);
+        configurationVBox.setDisable(bool);
     }
 
     private void initializeMachineState() {
-        firstMachineStateLabel.setText("NaN");
-        currentMachineStateLabel.setText("NaN");
-        setMachineStateDisability(true);
-    }
-
-    private void setMachineStateDisability(boolean bool) {
-        resetMachineStateButton.setDisable(bool);
+        machineStatesConsole.setFirstMachineState("NaN");
+        machineStatesConsole.setCurrentMachineState("NaN");
     }
 
     @FXML
-    void getConfigurationFromUser(ActionEvent event) {
+    void dragAndDropSetCodeButtonActionListener() {
+        // TODO: implement drag and drop
+        configurationInputWindowController = new ConfigurationInputWindowController(AppController.getConsoleApp().getXmlLoader(), this);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/desktopApp/frontEnd/fxml/configurationInputWindow.fxml"));
+            URL url = getClass().getResource("/desktopApp/frontEnd/fxml/configurationInputWindow.fxml");
+            fxmlLoader.setLocation(url);
+            Parent root = fxmlLoader.load(url.openStream());
+
+            Scene scene = new Scene(root, 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+        } catch (LoadException | NullPointerException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+
+    @FXML
+    void getConfigurationFromUser() {
         if (initializeEnigmaCode(true)) {
             String tmp = setCodeLabel.getText();
             updateConfigurationFieldsAndMachineStateDisability();
             setCodeLabel.setText(tmp);
-            mainController.resetScreens(false);
+            mainController.resetScreens(false, null);
         }
     }
 
     @FXML
-    void setConfigurationRandomly(ActionEvent event) {
+    void setConfigurationRandomly() {
         if (initializeEnigmaCode(false)) {
             updateConfigurationFieldsAndMachineStateDisability();
-            mainController.resetScreens(false);
+            mainController.resetScreens(false, null);
         }
     }
     private boolean initializeEnigmaCode(boolean isManual) {
         String rotors, startingPositions, plugBoardPairs, reflectorID;
-        if (isManual == true) {
+        if (isManual) {
             // Get input from user and generate it to the machine
             if (isValidConfigurationTextFields()) {
                 rotors = rotorsAndOrderTextField.getText();
@@ -108,13 +163,7 @@ public class Screen1Controller implements Initializable {
                     setCodeLabel.setText("Non-numeric value was inserted in 'Rotors And Order'.");
                     return false;
                 } catch (InvalidRotorException | InvalidReflectorException | InvalidPlugBoardException |
-                         InvalidCharactersException e) {
-                    setCodeLabel.setText(e.getLocalizedMessage());
-                    return false;
-                } catch (NullPointerException | InputMismatchException | IllegalArgumentException e) {
-                    setCodeLabel.setText(e.getLocalizedMessage());
-                    return false;
-                } catch (Exception e) {
+                         InvalidCharactersException | NullPointerException | InputMismatchException | IllegalArgumentException e) {
                     setCodeLabel.setText(e.getLocalizedMessage());
                     return false;
                 }
@@ -124,21 +173,20 @@ public class Screen1Controller implements Initializable {
             AppController.getConsoleApp().initializeEnigmaCodeAutomatically();
             setCodeLabel.setText("Automatically initialized configuration code.");
         }
-        String machineCode = AppController.getConsoleApp().getMachineHistoryStates().getCurrentMachineCode();
-        updateMachineStatesAndDisability(machineCode, false);
+        String machineStateConsoleString = AppController.getConsoleApp().getMachineHistoryStates().getCurrentMachineCode();
+        updateMachineStatesAndDisability(machineStateConsoleString, false);
 
-        machineConfigurationLabel2.setText(Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getSelectedRotors().size()));
-        machineConfigurationLabel4.setText(AppController.getConsoleApp().getEngine().getEngineDTO().getSelectedReflector());
-        machineConfigurationMessageCounterLabel.setText(Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getMessagesSentCounter()));
+        specs.setCurrentRotorsInMachine(Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getSelectedRotors().size()));
+        specs.setCurrentReflectorInMachine(AppController.getConsoleApp().getEngine().getEngineDTO().getSelectedReflector());
+        specs.setMessagesProcessed(Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getMessagesSentCounter()));
         return true;
     }
 
-    public void updateMachineStatesAndDisability(String machineStateString, boolean bool) {
+    public void updateMachineStatesAndDisability(String machineStateConsoleString, boolean bool) {
         mainController.updateScreensDisability(bool);
-        mainController.initializeMachineStates(machineStateString);
-        firstMachineStateLabel.setText(machineStateString);
-        currentMachineStateLabel.setText(machineStateString);
-        resetMachineStateButton.setDisable(bool);
+        mainController.initializeMachineStates(machineStateConsoleString);
+        firstMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
+        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
     }
 
     private boolean isValidConfigurationTextFields() {
@@ -162,21 +210,14 @@ public class Screen1Controller implements Initializable {
         rotorsStartingPosTextField.setText("");
         plugBoardPairsTextField.setText("");
         reflectorChoiceBox.setValue(reflectorChoiceBox.getItems().get(0));
-        setMachineStateDisability(false);
-    }
-
-    @FXML
-    void resetMachineStateButtonActionListener(ActionEvent event) {
-        AppController.getConsoleApp().resetMachine();
-        mainController.resetScreens(true);
     }
 
     public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
         reflectorChoiceBox.setItems(FXCollections.observableArrayList(choiceBoxItems));
         reflectorChoiceBox.setValue(reflectorChoiceBox.getItems().get(0));
 
-        machineConfigurationLabel1.setText(numberOfRotors);
-        machineConfigurationLabel3.setText(numberOfReflectors);
+        specs.setRotorsAmountInMachineXML(numberOfRotors);
+        specs.setReflectorsAmountInMachineXML(numberOfReflectors);
 
         setConfigurationDisability(false);
     }
@@ -184,23 +225,22 @@ public class Screen1Controller implements Initializable {
         setConfigurationDisability(true);
         initializeMachineState();
 
-        machineConfigurationLabel1.setText("NaN");
-        machineConfigurationLabel2.setText("NaN");
-        machineConfigurationLabel3.setText("NaN");
-        machineConfigurationLabel4.setText("NaN");
-        machineConfigurationMessageCounterLabel.setText("NaN");
+        specs.setRotorsAmountInMachineXML("NaN");
+        specs.setCurrentRotorsInMachine("NaN");
+        specs.setReflectorsAmountInMachineXML("NaN");
+        specs.setCurrentReflectorInMachine("NaN");
+        specs.setMessagesProcessed("NaN");
     }
 
     public void updateMachineStateAndStatus(String currentMachineState) {
-        machineConfigurationMessageCounterLabel.setText(Integer.toString(AppController.getConsoleApp().getMessageCounter()));
-        currentMachineStateLabel.setText(currentMachineState);
+        specs.setMessagesProcessed(Integer.toString(AppController.getConsoleApp().getMessageCounter()));
+        machineStatesConsole.setCurrentMachineState(currentMachineState);
+        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
     }
 
-    public void resetMachineStateAndStatus(boolean bool) {
-        if (bool) {
-            setCodeLabel.setText("Machine state has been successfully reset");
-        }
-        currentMachineStateLabel.setText(firstMachineStateLabel.getText());
+    public void resetMachineStateAndStatus() {
+        machineStatesConsole.setCurrentMachineState(machineStatesConsole.getFirstMachineState());
+        currentMachineStateComponentController.resetMachineStateComponentComponent(AppController.getConsoleApp().getEngine().getEngineDTO());
     }
 
     class ClearStatusListener implements ChangeListener<String> {
@@ -215,4 +255,3 @@ public class Screen1Controller implements Initializable {
 }
 
 // TODO: make labels selectable and clickable: https://stackoverflow.com/a/44182371/3598990
-// TODO: check back-end response to reset

@@ -53,7 +53,7 @@ public class EngineDTO {
         return this.selectedReflector;
     }
 
-    public List<Character> currentSelectedRotorsPositions() {
+    public List<Character> getCurrentSelectedRotorsPositions() {
         return this.currentSelectedRotorsPositions;
     }
 

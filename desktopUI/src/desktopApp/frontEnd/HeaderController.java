@@ -2,7 +2,6 @@ package desktopApp.frontEnd;
 
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.Reflector;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,6 +23,8 @@ import java.util.stream.Collectors;
 public class HeaderController implements Initializable {
     private AppController mainController;
     private String currXMLFilePath = "";
+
+    // private final IntegerProperty chosenButton = new SimpleIntegerProperty();
     @FXML private TextField xmlFilePathTextField;
 
     @FXML private Label loadXMLErrorLabel;
@@ -54,7 +55,7 @@ public class HeaderController implements Initializable {
     }
 
     @FXML
-    void machineDetailsButtonActionListener(ActionEvent event) {
+    void machineDetailsButtonActionListener() {
         machineDetailsButton.getStyleClass().add("chosen-button");
         decryptInputWithEnigmaButton.getStyleClass().remove("chosen-button");
         bruteForceButton.getStyleClass().remove("chosen-button");
@@ -62,7 +63,7 @@ public class HeaderController implements Initializable {
     }
 
     @FXML
-    void decryptInputWithEnigmaButtonActionListener(ActionEvent event) {
+    void decryptInputWithEnigmaButtonActionListener() {
         machineDetailsButton.getStyleClass().remove("chosen-button");
         decryptInputWithEnigmaButton.getStyleClass().add("chosen-button");
         bruteForceButton.getStyleClass().remove("chosen-button");
@@ -70,7 +71,7 @@ public class HeaderController implements Initializable {
     }
 
     @FXML
-    void bruteForceButtonActionListener(ActionEvent event) {
+    void bruteForceButtonActionListener() {
         machineDetailsButton.getStyleClass().remove("chosen-button");
         decryptInputWithEnigmaButton.getStyleClass().remove("chosen-button");
         bruteForceButton.getStyleClass().add("chosen-button");
@@ -78,7 +79,7 @@ public class HeaderController implements Initializable {
     }
 
     @FXML
-    void loadXML(ActionEvent event) {
+    void loadXML() {
         try {
             FileChooser fc = new FileChooser();
             fc.setTitle("Pick your XML file for Ex2.");
@@ -104,6 +105,7 @@ public class HeaderController implements Initializable {
                 );
                 mainController.initializeMachineStates("NaN");
                 mainController.updateScreensDisability(true);
+                mainController.updateAmountAgents(AppController.getConsoleApp().getXmlLoader().getTotalAgents());
 
                 loadXMLErrorLabel.setText("Machine XML file successfully loaded.");
             }

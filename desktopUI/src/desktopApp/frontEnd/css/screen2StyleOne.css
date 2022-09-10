@@ -1,14 +1,18 @@
-#machineStateGridPane {
+#machineStateHBox {
     -fx-background-color: #f6f6f6;
     -fx-border-width: 4px;
     -fx-border-color: #d13e58;
 }
 
-#machineStateGridPane .header-label {
-    -fx-text-fill: #323232;
+#machineStateHBox .label {
+    -fx-font-size: 14px;
 }
 
-#machineStateGridPane .information-label {
+#machineStateHBox #headerLabel {
+    -fx-text-fill: #ea4F46;
+}
+
+#machineStateHBox .information-label {
     -fx-text-fill: #323232;
     -fx-font-size: 22px;
     -fx-font-style: Italic;

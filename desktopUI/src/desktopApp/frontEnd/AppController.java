@@ -41,17 +41,17 @@ public class AppController {
     public void reset() {
         screen1ComponentController.reset();
     }
-    public void resetScreens(boolean bool) {
-        screen1ComponentController.resetMachineStateAndStatus(bool);
+    public void resetScreens(boolean bool, Object controller) {
+        screen1ComponentController.resetMachineStateAndStatus();
         screen2ComponentController.resetMachineStateAndStatistics(bool);
-        screen3ComponentController.resetMachineStateAndEnigmaOutput(bool);
+        screen3ComponentController.resetMachineStateAndEnigmaOutput(bool, controller);
     }
     public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
         screen1ComponentController.updateScreenOne(choiceBoxItems, numberOfRotors, numberOfReflectors);
     }
-    public void initializeMachineStates(String machineStateString) {
-        screen2ComponentController.initializeMachineStates(machineStateString);
-        screen3ComponentController.initializeMachineStates(machineStateString);
+    public void initializeMachineStates(String machineStateConsoleString) {
+        screen2ComponentController.initializeMachineStates();
+        screen3ComponentController.initializeMachineStates(machineStateConsoleString);
     }
 
     public void updateScreensDisability(boolean bool) {
@@ -64,6 +64,10 @@ public class AppController {
         screen1ComponentController.updateLabelTextsToEmpty();
         screen2ComponentController.updateLabelTextsToEmpty();
         screen3ComponentController.updateLabelTextsToEmpty();
+    }
+
+    public void updateAmountAgents(int amountAgents) {
+        screen3ComponentController.updateAmountAgents(amountAgents);
     }
 
     // Swap screens

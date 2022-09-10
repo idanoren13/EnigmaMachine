@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.LoadException;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -18,10 +18,8 @@ public class Program extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Settings
-        primaryStage.setMinHeight(200);
-        primaryStage.setMaxHeight(800);
         primaryStage.setMinWidth(300);
-        primaryStage.setMaxWidth(1200);
+        primaryStage.setMinHeight(200);
         primaryStage.setTitle("C.T.E Exercise 2");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream(APP_ICON_FOR_AVIAD)));
 
@@ -30,10 +28,9 @@ public class Program extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader();
             URL url = getClass().getResource(APP_FXML_INCLUDE_RESOURCE);
             fxmlLoader.setLocation(url);
-            BorderPane root = fxmlLoader.load(url.openStream());
-
+            ScrollPane root = fxmlLoader.load(url.openStream());
             // Set scene
-            Scene scene = new Scene(root, 900, 600);
+            Scene scene = new Scene(root, 902, 602);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (LoadException | NullPointerException e) {

@@ -16,7 +16,7 @@ public interface Input {
     int getMessageCounter();
     MachineHistoryAndStatistics getMachineHistoryStates();
     EnigmaEngine getEngine();
-    Boolean readMachineFromXMLFile(String path) throws JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException, InvalidMachineException;
+    void readMachineFromXMLFile(String path) throws JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException, InvalidMachineException;
     void getMachineSpecs() throws NoMachineGeneratedException;
     void initializeEnigmaCodeManually(String rotors, String startingPositions, String plugBoardPairs, String reflectorID) throws InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException, InvalidCharactersException; // Changed to boolean. false - if player exits this option in the middle, true if he added all input
     void initializeEnigmaCodeAutomatically();
