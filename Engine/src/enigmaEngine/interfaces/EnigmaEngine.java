@@ -1,5 +1,6 @@
 package enigmaEngine.interfaces;
 
+import enigmaEngine.MachineCodeDTO;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -11,13 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface EnigmaEngine {
-
     HashMap<Integer, Rotor> getRotors();
+
     char activate(char input);
 
     String processMessage(String input) throws InvalidCharactersException;
 
     void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException;
+
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;
 
     List<Reflector.ReflectorID> getReflectors();
@@ -31,4 +33,8 @@ public interface EnigmaEngine {
     EngineDTO getEngineDTO();
 
     void randomSelectedComponents();
+
+    void setEngineConfiguration(MachineCodeDTO machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
+
+    EnigmaEngine cloneMachine();
 }

@@ -1,5 +1,6 @@
 package enigmaEngine.impl;
 
+import enigmaEngine.MachineCodeDTO;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -182,6 +183,25 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     }
 
+    @Override
+    public void setEngineConfiguration(MachineCodeDTO machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException {
+        setSelectedRotors(machineCode.getRotorsIDInorder(), machineCode.getStartingPositions());
+        setSelectedReflector(machineCode.getSelectedReflectorID());
+        setPlugBoard(machineCode.getPlugBoard());
+    }
+
+    @Override
+    public EnigmaEngine cloneMachine() {
+        EnigmaEngine clone = new EnigmaEngineImpl(this.rotors, this.reflectors, this.plugBoard, this.machineABC);
+        try {
+            clone.setSelectedRotors(this.selectedRotors, this.startingCharacters);
+            clone.setSelectedReflector(this.selectedReflector.getReflectorID());
+        } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException ignored) {
+        }
+
+        return clone;
+    }
+
     private List<Integer> createRandomSelectedRotors(int numberOfSelectedRotors) {
         List<Integer> randomSelectedRotors = new ArrayList<>(numberOfSelectedRotors);
         IntStream.rangeClosed(1, this.rotors.size()).forEach(randomSelectedRotors::add);
@@ -268,5 +288,4 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
         return output;
     }
-
 }
