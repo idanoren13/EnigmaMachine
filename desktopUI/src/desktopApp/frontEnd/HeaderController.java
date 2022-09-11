@@ -105,7 +105,7 @@ public class HeaderController implements Initializable {
                 );
                 mainController.initializeMachineStates("NaN");
                 mainController.updateScreensDisability(true);
-                mainController.updateAmountAgents(AppController.getConsoleApp().getXmlLoader().getTotalAgents());
+                mainController.updateDynamicKeyboardsAndAmountAgents(AppController.getConsoleApp().getXmlLoader().getTotalAgents());
 
                 loadXMLErrorLabel.setText("Machine XML file successfully loaded.");
             }

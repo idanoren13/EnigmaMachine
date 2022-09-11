@@ -64,6 +64,11 @@ public class Console implements Input {
     }
 
     @Override
+    public void setEngine(EnigmaEngine engine) {
+        this.engine = engine;
+    }
+
+    @Override
     public void readMachineFromXMLFile(String path) throws InvalidMachineException, JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException {
         this.engine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, path);
         createDTOFromXMLSource(path);
@@ -237,15 +242,19 @@ public class Console implements Input {
     }
 
     @Override // TODO: to idan: <rotor_position(rotor distance from notch)> - you think rotor_starting_position is valid after each message encryption?
-    public String getMessageAndProcessIt(String messageInput) throws InvalidCharactersException {
+    public String getMessageAndProcessIt(String messageInput, boolean bool) throws InvalidCharactersException {
         int timeStart, timeEnd;
         String messageOutput;
-        System.out.println("Enter your message to process.");
+        if (bool == true) {
+            System.out.println("Enter your message to process.");
+        }
         timeStart = (int) System.nanoTime();
-        messageOutput = this.engine.processMessage(messageInput);
+        messageOutput = this.engine.processMessage(messageInput, bool);
         timeEnd = (int) System.nanoTime();
 
-        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
+        if (bool == true) {
+            machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
+        }
         return messageOutput;
     }
 

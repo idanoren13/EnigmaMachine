@@ -6,10 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -84,44 +83,69 @@
             </GridPane>
          </left>
          <bottom>
-            <GridPane id="mouseInputGridPane" alignment="BOTTOM_CENTER" prefHeight="200.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="158.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <HBox id="mouseInputGridPane" prefHeight="200.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <Label styleClass="header-label" text="Mouse Input" GridPane.halignment="CENTER">
-                     <GridPane.margin>
+                  <VBox>
+                     <children>
+                        <Label styleClass="header-label" text="Mouse Input">
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </Label>
+                        <FlowPane fx:id="mouseInputFlowPane" hgap="5.0" vgap="5.0" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label styleClass="header-label" text="Mouse Output">
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </Label>
+                        <FlowPane fx:id="mouseOutputFlowPane" disable="true" hgap="5.0" vgap="5.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="header-label" text="Mouse Encryption Input:" textAlignment="CENTER" wrapText="true">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="mouseInputTextField" editable="false" prefHeight="25.0" promptText="Current Input...">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="header-label" text="Mouse Enigma Output:" textAlignment="CENTER" wrapText="true">
+                           <padding>
+                              <Insets left="1.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="mouseOutputTextField" editable="false" prefHeight="25.0" promptText="Current output...">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="clearInputButton" mnemonicParsing="false" onAction="#clearInputButtonActionListener" prefHeight="50.0" prefWidth="120.0" text="Clear Input" wrapText="true" />
+                              <Button fx:id="mouseEndOfInputButton" mnemonicParsing="false" onAction="#mouseEndOfInputButtonActionListener" prefHeight="50.0" prefWidth="120.0" text="End of Input" wrapText="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
                         <Insets />
-                     </GridPane.margin>
+                     </HBox.margin>
                      <padding>
-                        <Insets top="30.0" />
+                        <Insets right="4.0" top="2.0" />
                      </padding>
-                  </Label>
-                  <Label styleClass="header-label" text="Mouse Output" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets top="30.0" />
-                     </padding>
-                  </Label>
-                  <ImageView fitHeight="108.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../images/keyboard.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="108.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../images/keyboard.png" />
-                     </image>
-                  </ImageView>
+                  </VBox>
                </children>
-            </GridPane>
+            </HBox>
          </bottom>
          <center>
             <VBox id="statisticsAndHistoryTextFlow" BorderPane.alignment="CENTER_RIGHT">

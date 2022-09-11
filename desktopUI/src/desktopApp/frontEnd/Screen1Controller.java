@@ -245,7 +245,7 @@ public class Screen1Controller implements Initializable {
 
     class ClearStatusListener implements ChangeListener<String> {
         @Override public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            mainController.updateLabelTextsToEmpty();
+            mainController.updateLabelTextsToEmpty(this);
         }
     }
     public void updateLabelTextsToEmpty() {

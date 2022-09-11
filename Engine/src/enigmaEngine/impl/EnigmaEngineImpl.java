@@ -56,10 +56,12 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public char activate(char input) {
+    public char activate(char input, boolean bool) {
 
         // Rotates the first rotor
-        selectedRotorsListRightToLeft.get(0).rotate();
+        if (bool == true) {
+            selectedRotorsListRightToLeft.get(0).rotate();
+        }
 
         char temp = plugBoard.returnCharacterPair(input);
         int index = machineABC.indexOf(temp);
@@ -73,17 +75,21 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public String processMessage(String input) throws InvalidCharactersException {
-        if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
-            throw new InvalidCharactersException("Starting characters must be in the machine ABC.");
-        }
-        StringBuilder output = new StringBuilder();
-        messagesSentCounter++;
-        for (int i = 0; i < input.length(); i++) {
-            output.append(activate(input.charAt(i)));
-        }
+    public String processMessage(String input, boolean bool) throws InvalidCharactersException {
+        if (bool == true) {
+            if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
+                throw new InvalidCharactersException("Starting characters must be in the machine ABC.");
+            }
+            StringBuilder output = new StringBuilder();
+            messagesSentCounter++;
+            for (int i = 0; i < input.length(); i++) {
+                output.append(activate(input.charAt(i), true));
+            }
 
-        return output.toString();
+            return output.toString();
+        } else {
+            return Character.toString(activate(input.charAt(0), false));
+        }
     }
 
 

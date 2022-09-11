@@ -50,7 +50,7 @@ public class AppController {
         screen1ComponentController.updateScreenOne(choiceBoxItems, numberOfRotors, numberOfReflectors);
     }
     public void initializeMachineStates(String machineStateConsoleString) {
-        screen2ComponentController.initializeMachineStates();
+        screen2ComponentController.initializeMachineStatesAndMouseInputKeyboard();
         screen3ComponentController.initializeMachineStates(machineStateConsoleString);
     }
 
@@ -59,14 +59,15 @@ public class AppController {
         screen3ComponentController.setBruteForceDisability(bool);
     }
 
-    public void updateLabelTextsToEmpty() {
+    public void updateLabelTextsToEmpty(Object component) {
         headerComponentController.updateLabelTextsToEmpty();
         screen1ComponentController.updateLabelTextsToEmpty();
-        screen2ComponentController.updateLabelTextsToEmpty();
+        screen2ComponentController.updateLabelTextsToEmpty(component);
         screen3ComponentController.updateLabelTextsToEmpty();
     }
 
-    public void updateAmountAgents(int amountAgents) {
+    public void updateDynamicKeyboardsAndAmountAgents(int amountAgents) {
+        screen2ComponentController.updateDynamicKeyboards();
         screen3ComponentController.updateAmountAgents(amountAgents);
     }
 

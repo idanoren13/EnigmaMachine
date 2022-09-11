@@ -13,9 +13,9 @@ import java.util.List;
 public interface EnigmaEngine {
 
     HashMap<Integer, Rotor> getRotors();
-    char activate(char input);
+    char activate(char input, boolean bool);
 
-    String processMessage(String input) throws InvalidCharactersException;
+    String processMessage(String input, boolean bool) throws InvalidCharactersException;
 
     void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException;
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;

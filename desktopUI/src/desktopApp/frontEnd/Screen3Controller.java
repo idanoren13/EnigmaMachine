@@ -85,12 +85,12 @@ public class Screen3Controller implements Initializable {
             if (messageInput.equals("")) {
                 throw new InputMismatchException("No encryption message was written.");
             }
-            messageOutput = AppController.getConsoleApp().getMessageAndProcessIt(messageInput);
+            messageOutput = AppController.getConsoleApp().getMessageAndProcessIt(messageInput, true);
 
             new Alert(Alert.AlertType.CONFIRMATION, "Processed message: " + messageInput + " -> " + messageOutput).show();
             enigmaOutputTextField.setText(messageOutput);
             mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineState());
-            mainController.updateLabelTextsToEmpty();
+            mainController.updateLabelTextsToEmpty(this);
         } catch (InvalidCharactersException | InputMismatchException e) {
             new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
         }
