@@ -10,6 +10,7 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.concurrent.Task;
 
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 public class Agent extends Task<List<String>> {
 
@@ -17,22 +18,25 @@ public class Agent extends Task<List<String>> {
     private final String encryptedText;
     private final EnigmaEngine enigmaEngine;
     private final WordsDictionary wordsDictionary;
+    private final BlockingQueue<MachineCodeDTO> queue;
 
 
-    public Agent(int id, String encryptedText, EnigmaEngine enigmaEngine, WordsDictionary wordsDictionary, MachineCodeDTO machineCodeDTO) {
+    public Agent(int id, String encryptedText, EnigmaEngine enigmaEngine, WordsDictionary wordsDictionary, BlockingQueue<MachineCodeDTO> queue ) {
         this.wordsDictionary = wordsDictionary;
         this.id = Integer.parseInt(Thread.currentThread().getName());
         this.encryptedText = encryptedText;
         this.enigmaEngine = enigmaEngine.cloneMachine();
-        try {
-            this.enigmaEngine.setEngineConfiguration(machineCodeDTO);
-        } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException |
-                 InvalidPlugBoardException ignored) { }
+        this.queue = queue;
+
     }
 
 
     @Override
     protected List<String> call() throws Exception {
+        try {
+            this.enigmaEngine.setEngineConfiguration(queue.take());
+        } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException |
+                 InvalidPlugBoardException ignored) { }
         String processedText = enigmaEngine.processMessage(encryptedText);
         return wordsDictionary.candidateWords(processedText);
     }

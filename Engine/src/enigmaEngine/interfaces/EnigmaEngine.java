@@ -14,6 +14,10 @@ import java.util.List;
 public interface EnigmaEngine {
     HashMap<Integer, Rotor> getRotors();
 
+    int getABCSize();
+
+    String getABC();
+
     char activate(char input);
 
     String processMessage(String input) throws InvalidCharactersException;
@@ -31,6 +35,8 @@ public interface EnigmaEngine {
     void reset();
 
     EngineDTO getEngineDTO();
+
+    MachineCodeDTO getMachineCodeDTO();
 
     void randomSelectedComponents();
 

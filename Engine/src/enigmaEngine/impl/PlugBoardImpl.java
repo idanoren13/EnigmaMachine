@@ -4,17 +4,21 @@ import enigmaEngine.interfaces.PlugBoard;
 import javafx.util.Pair;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class PlugBoardImpl implements PlugBoard, Serializable {
     private final HashMap<Character, Character> abcPairs;
+    private final List<Pair<Character, Character>> pairList;
 
     public PlugBoardImpl() {
         this.abcPairs = new HashMap<>();
+        this.pairList = new ArrayList<>();
     }
 
     public PlugBoardImpl(List<Pair<Character, Character>> pairList) {
+        this.pairList = pairList;
         this.abcPairs = generateInputIntoPairs(pairList);
     }
 
@@ -53,5 +57,10 @@ public class PlugBoardImpl implements PlugBoard, Serializable {
     @Override
     public boolean containsPair(Pair<Character, Character> pair) {
         return this.abcPairs.containsKey(pair.getKey()) && this.abcPairs.containsKey(pair.getValue());
+    }
+
+    @Override
+    public List<Pair<Character, Character>> getPairList() {
+        return this.pairList;
     }
 }

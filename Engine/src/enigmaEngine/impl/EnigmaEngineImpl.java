@@ -52,6 +52,16 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
+    public int getABCSize() {
+        return this.machineABC.length();
+    }
+
+    @Override
+    public String getABC() {
+        return this.machineABC;
+    }
+
+    @Override
     public List<Reflector.ReflectorID> getReflectors() {
         return new ArrayList<>(this.reflectors.keySet());
     }
@@ -147,6 +157,11 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
                 charsAtWindows(),
                 getSelectedRotorsAndNotchesDistances(),
                 messagesSentCounter); // TODO: see if we need to change this to 0 instead
+    }
+
+    @Override
+    public MachineCodeDTO getMachineCodeDTO() {
+        return new MachineCodeDTO(selectedRotors,startingCharacters,selectedReflector.getReflectorID(),plugBoard.getPairList());
     }
 
     private List<Character> charsAtWindows() {
