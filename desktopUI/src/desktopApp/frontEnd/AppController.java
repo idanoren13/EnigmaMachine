@@ -41,17 +41,17 @@ public class AppController {
     public void reset() {
         screen1ComponentController.reset();
     }
-    public void resetScreens(boolean bool) {
-        screen1ComponentController.resetMachineStateAndStatus(bool);
+    public void resetScreens(boolean bool, Object controller) {
+        screen1ComponentController.resetMachineStateAndStatus();
         screen2ComponentController.resetMachineStateAndStatistics(bool);
-        screen3ComponentController.resetMachineStateAndEnigmaOutput(bool);
+        screen3ComponentController.resetMachineStateAndEnigmaOutput(bool, controller);
     }
     public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
         screen1ComponentController.updateScreenOne(choiceBoxItems, numberOfRotors, numberOfReflectors);
     }
-    public void initializeMachineStates(String machineStateString) {
-        screen2ComponentController.initializeMachineStates(machineStateString);
-        screen3ComponentController.initializeMachineStates(machineStateString);
+    public void initializeMachineStates(String machineStateConsoleString) {
+        screen2ComponentController.initializeMachineStatesAndMouseInputKeyboard();
+        screen3ComponentController.initializeMachineStates(machineStateConsoleString);
     }
 
     public void updateScreensDisability(boolean bool) {
@@ -59,11 +59,16 @@ public class AppController {
         screen3ComponentController.setBruteForceDisability(bool);
     }
 
-    public void updateLabelTextsToEmpty() {
+    public void updateLabelTextsToEmpty(Object component) {
         headerComponentController.updateLabelTextsToEmpty();
         screen1ComponentController.updateLabelTextsToEmpty();
-        screen2ComponentController.updateLabelTextsToEmpty();
+        screen2ComponentController.updateLabelTextsToEmpty(component);
         screen3ComponentController.updateLabelTextsToEmpty();
+    }
+
+    public void updateDynamicKeyboardsAndAmountAgents(int amountAgents) {
+        screen2ComponentController.updateDynamicKeyboards();
+        screen3ComponentController.updateAmountAgents(amountAgents);
     }
 
     // Swap screens

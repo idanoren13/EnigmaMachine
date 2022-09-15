@@ -5,19 +5,30 @@ import desktopApp.exceptions.NoMachineGeneratedException;
 import desktopApp.historyAndStatistics.MachineCodeData;
 import desktopApp.historyAndStatistics.MachineHistoryAndStatistics;
 import desktopApp.interfaces.Input;
+import desktopApp.interfaces.XMLLoader;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
+import enigmaEngine.schemaBinding.CTEDecipher;
+import enigmaEngine.schemaBinding.CTEEnigma;
+import enigmaEngine.schemaBinding.CTEReflector;
+import enigmaEngine.schemaBinding.CTERotor;
 import immutables.engine.EngineDTO;
 import javafx.util.Pair;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Console implements Input {
     private EnigmaEngine engine;
+    private XMLLoader xmlLoader;
 
     private MachineHistoryAndStatistics machineHistoryAndStatistics;
 
@@ -30,6 +41,10 @@ public class Console implements Input {
     public String getCurrentMachineState() {
         EngineDTO DTO = engine.getEngineDTO();
         return currentMachineState(DTO).toString();
+    }
+
+    public XMLLoader getXmlLoader() {
+        return xmlLoader;
     }
 
     @Override
@@ -49,9 +64,44 @@ public class Console implements Input {
     }
 
     @Override
-    public Boolean readMachineFromXMLFile(String path) throws InvalidMachineException, JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException {
+    public void setEngine(EnigmaEngine engine) {
+        this.engine = engine;
+    }
+
+    @Override
+    public void readMachineFromXMLFile(String path) throws InvalidMachineException, JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException {
         this.engine = new InitializeEnigmaEngine().initializeEngine(InitializeEnigmaEngine.SourceMode.XML, path);
-        return true;
+        createDTOFromXMLSource(path);
+    }
+
+    private void createDTOFromXMLSource(String path) {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            CTEEnigma xmlFile = (CTEEnigma) jaxbUnmarshaller.unmarshal(Files.newInputStream(Paths.get(path)));
+            // Ex1
+            List<Integer> rotorsFromXML = xmlFile.getCTEMachine().getCTERotors().getCTERotor()
+                    .stream().map(CTERotor::getId).collect(Collectors.toList());
+            List<String> reflectorsFromXML = xmlFile.getCTEMachine().getCTEReflectors().getCTEReflector()
+                    .stream().map(CTEReflector::getId).collect(Collectors.toList());
+            List<Character> ABCFromXML = xmlFile.getCTEMachine()
+                    .getABC().trim()
+                    .chars().mapToObj(e -> (char)e).collect(Collectors.toList());
+
+            Collections.sort(rotorsFromXML);
+            Collections.sort(reflectorsFromXML);
+            Collections.sort(ABCFromXML);
+            // Ex2
+            CTEDecipher decipher = xmlFile.getCTEDecipher();
+            String excludedCharacters = decipher.getCTEDictionary().getExcludeChars();
+            String nonSeparatedDictionaryWordsWithExcluded = decipher.getCTEDictionary().getWords().trim();
+            String nonSeparatedDictionaryWordsValid = nonSeparatedDictionaryWordsWithExcluded;
+            for (int i = 0; i < excludedCharacters.length(); i++) {
+                nonSeparatedDictionaryWordsValid = nonSeparatedDictionaryWordsWithExcluded.replace(excludedCharacters.substring(i, i + 1), "");
+            }
+            List<String> dictionaryWords = new ArrayList<>(Arrays.asList(nonSeparatedDictionaryWordsValid.split(" ")));
+            xmlLoader = new XMLLoaderImpl(rotorsFromXML, reflectorsFromXML, ABCFromXML, dictionaryWords, decipher.getAgents()); // TODO: if agents smaller than 2
+        } catch (Exception e) { } // Irrelevant
     }
 
     @Override
@@ -81,7 +131,7 @@ public class Console implements Input {
     // I changed it to: <1,2,...,n><A(0),...,A(n-1)><I><A|B,C|D,...,(N-1)|N>
     private StringBuilder currentMachineState(EngineDTO DTO) {
         List<Pair<Integer, Integer>> selectedRotorsAndNotchesPosition = DTO.getSelectedRotorsAndNotchesPosition();
-        List<Character> selectedRotorsPositions = DTO.currentSelectedRotorsPositions();
+        List<Character> selectedRotorsPositions = DTO.getCurrentSelectedRotorsPositions();
         int size = selectedRotorsAndNotchesPosition.size();
         StringBuilder rotorsSBPart1 = new StringBuilder();
         StringBuilder rotorsSBPart2 = new StringBuilder();
@@ -192,15 +242,19 @@ public class Console implements Input {
     }
 
     @Override // TODO: to idan: <rotor_position(rotor distance from notch)> - you think rotor_starting_position is valid after each message encryption?
-    public String getMessageAndProcessIt(String messageInput) throws InvalidCharactersException {
+    public String getMessageAndProcessIt(String messageInput, boolean bool) throws InvalidCharactersException {
         int timeStart, timeEnd;
         String messageOutput;
-        System.out.println("Enter your message to process.");
+        if (bool == true) {
+            System.out.println("Enter your message to process.");
+        }
         timeStart = (int) System.nanoTime();
-        messageOutput = this.engine.processMessage(messageInput);
+        messageOutput = this.engine.processMessage(messageInput, bool);
         timeEnd = (int) System.nanoTime();
 
-        machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
+        if (bool == true) {
+            machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
+        }
         return messageOutput;
     }
 

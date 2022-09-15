@@ -44,8 +44,20 @@
     -fx-row-valignment: CENTER;
 }
 
+.configuration-vbox #dragAndDropSetCodeButton {
+    -fx-background-color: #007fe3;
+    -fx-text-fill: #d5d5d5;
+}
+
+.configuration-vbox #dragAndDropSetCodeButton:hover {
+    -fx-background-color: #008dff;
+    -fx-border-color: #055fa4;
+    -fx-text-fill: #e7e7e7;
+}
+
 .configuration-vbox #generateRandomCodeButton {
     -fx-background-color: #db6579;
+    -fx-text-fill: #d5d5d5;
 }
 
 .configuration-vbox #generateRandomCodeButton:hover {
@@ -104,4 +116,23 @@
 .button {
     -fx-font-size: 16px;
     -fx-font-weight: Bold;
+}
+
+.web-view {
+    -fx-font-smoothing-type: Gray;
+    -fx-background-color: #505050;
+}
+
+.web-view .scroll-bar {
+    -fx-background-color: #505050;
+    -fx-border-color: #d13e58;
+    -fx-border-width: 2px;
+}
+
+.web-view .scroll-bar .thumb {
+    -fx-background-color: #f6f6f6;
+}
+
+.web-view .scroll-bar .increment-button .increment-arrow, .scroll-bar .decrement-button .decrement-arrow {
+    -fx-background-color: #f6f6f6;
 }
