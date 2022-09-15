@@ -19,10 +19,12 @@ public class Agent extends Task<List<String>> {
     private final EnigmaEngine enigmaEngine;
     private final WordsDictionary wordsDictionary;
     private final BlockingQueue<MachineCodeDTO> queue;
+    private long taskSize;
 
 
-    public Agent(int id, String encryptedText, EnigmaEngine enigmaEngine, WordsDictionary wordsDictionary, BlockingQueue<MachineCodeDTO> queue ) {
+    public Agent(int id, String encryptedText, EnigmaEngine enigmaEngine, WordsDictionary wordsDictionary, BlockingQueue<MachineCodeDTO> queue, long taskSize) {
         this.wordsDictionary = wordsDictionary;
+        this.taskSize = taskSize;
         this.id = Integer.parseInt(Thread.currentThread().getName());
         this.encryptedText = encryptedText;
         this.enigmaEngine = enigmaEngine.cloneMachine();

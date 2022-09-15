@@ -16,11 +16,13 @@ public class DecryptionManager implements Runnable {
     BlockingQueue<MachineCodeDTO> queue;
     private final Difficulty difficulty;
     private MachineCodeDTO machineCode;
+    private long taskSize;
 
-    public DecryptionManager(EnigmaEngine enigmaEngine, BlockingQueue<MachineCodeDTO> MachineCodeDTOQueue, Difficulty difficulty) {
+    public DecryptionManager(EnigmaEngine enigmaEngine, BlockingQueue<MachineCodeDTO> MachineCodeDTOQueue, Difficulty difficulty, long taskSize) {
         this.enigmaEngine = enigmaEngine;
         this.queue = MachineCodeDTOQueue;
         this.difficulty = difficulty;
+        this.taskSize = taskSize;
     }
 
     public void calculateCombinationNumber() {
@@ -102,7 +104,7 @@ public class DecryptionManager implements Runnable {
 
     }
 
-    private void advanceMachineCodeEasy() {
+    private void advanceMachineCodeEasy() {//TODO: rotate the stats taskSize times
         List<Character> startingPositions = machineCode.getStartingPositions();
         int ABCSize = enigmaEngine.getABCSize();
         int i = startingPositions.size() - 1;

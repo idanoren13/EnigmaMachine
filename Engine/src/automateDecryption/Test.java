@@ -22,6 +22,9 @@ public class Test {
             engine.reset();
             System.out.println(engine.processMessage(encryptedMessage));
 
+            TasksManager tasksManager = new TasksManager(4, encryptedMessage);
+            tasksManager.initialize(engine, Difficulty.EASY);
+            new Thread(tasksManager).start();
 
         } catch (InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException | IOException |
                  UnknownSourceException | InvalidMachineException | InvalidCharactersException e) {
