@@ -1,6 +1,7 @@
 package enigmaEngine.impl;
 
 import enigmaEngine.MachineCodeDTO;
+import enigmaEngine.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -28,6 +29,10 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private int messagesSentCounter;
     private final List<Rotor> selectedRotorsListRightToLeft;
     private final List<Rotor> selectedRotorsListLeftToRight;
+
+    private WordsDictionary wordsDictionary;
+
+    private int agentsNumber;
 
 
     public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
@@ -85,6 +90,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     @Override
     public String processMessage(String input) throws InvalidCharactersException {
+        input = input.toUpperCase();
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
             throw new InvalidCharactersException("Starting characters must be in the machine ABC.");
         }
@@ -302,5 +308,21 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         }
 
         return output;
+    }
+
+    public WordsDictionary getWordsDictionary() {
+        return wordsDictionary;
+    }
+
+    public void setWordsDictionary(WordsDictionary wordsDictionary) {
+        this.wordsDictionary = wordsDictionary;
+    }
+
+    public int getAgentsNumber() {
+        return agentsNumber;
+    }
+
+    public void setAgentsNumber(int agentsNumber) {
+        this.agentsNumber = agentsNumber;
     }
 }

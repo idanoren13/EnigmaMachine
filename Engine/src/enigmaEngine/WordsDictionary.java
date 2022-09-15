@@ -11,10 +11,11 @@ public class WordsDictionary {
     private final Set<Character> excludedCharacters;
 
     public WordsDictionary(String dictionaryWords, String _excludedCharacters) {
+        dictionaryWords.replaceAll("\\n\\t", "");
         this.excludedCharacters = new HashSet<>();
         this.words = new HashSet<>(Arrays.asList(dictionaryWords.toUpperCase().split(" ")));
         this.excludedCharacters.addAll(_excludedCharacters.toUpperCase().chars().mapToObj(c -> (char) c).collect(Collectors.toList()));
-        this.words.forEach(word -> this.words.add(word.replaceAll("[" + excludedCharacters + "]", "")));
+        this.words.forEach(word -> this.words.add(word.replaceAll(_excludedCharacters, "")));
     }
 
     public List<String> candidateWords(String processedText) {

@@ -25,7 +25,7 @@ public class TasksManager extends Task<Boolean> {
 
     public TasksManager(int numberOfAgents, String encryptedText) {
         this.numberOfAgents = numberOfAgents;
-        this.queue = new ArrayBlockingQueue<>(numberOfAgents);
+        this.queue = new ArrayBlockingQueue<>(numberOfAgents);//TODO:
         this.encryptedText = encryptedText;
         tasksPool = Executors.newFixedThreadPool(this.numberOfAgents, AgentFactory.getInstance());
     }
@@ -37,7 +37,7 @@ public class TasksManager extends Task<Boolean> {
     }
 
     @Override
-    protected Boolean call() throws Exception {
+    protected Boolean call() throws Exception {//TODO: Add Task Size
         DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine, queue, difficulty);
         decryptionManager.calculateCombinationNumber();
         decryptionManager.initializeMachineCode();
@@ -46,7 +46,7 @@ public class TasksManager extends Task<Boolean> {
         for (int i = 0; i < numberOfAgents; i++) {
             tasksPool.execute(new Agent(i, encryptedText, enigmaEngine, wordsDictionary, queue));
         }
-        if (!decryptionManagerThread.isAlive()) {
+        if (!decryptionManagerThread.isAlive() && queue.isEmpty()) {
             tasksPool.shutdown();
         }
 

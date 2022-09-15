@@ -55,6 +55,8 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         List<CTEReflector> cteReflectors;
         HashMap<Integer, Rotor> rotors;
         HashMap<Reflector.ReflectorID, Reflector> reflectors;
+        CTEDecipher decipher;
+        CTEDictionary dictionary;
 
         // Machine
         machine = xmlOutput.getCTEMachine();
@@ -90,7 +92,19 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
-        return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
+        EnigmaEngineImpl newEnigmaEngine = new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
+
+        decipher = xmlOutput.getCTEDecipher();
+        if (decipher != null) {
+            if (decipher.getCTEDictionary() != null) {
+                dictionary = decipher.getCTEDictionary();
+                if (dictionary.getWords() != null) {
+                    newEnigmaEngine.setWordsDictionary(new WordsDictionary(dictionary.getWords(), dictionary.getExcludeChars()));
+                }
+            }
+        }
+
+        return newEnigmaEngine;
     }
 
     private HashMap<?, ?> importCTERotors(CTERotors cteRotors, HashMap<Object, Object> rotors) throws InvalidRotorException {
