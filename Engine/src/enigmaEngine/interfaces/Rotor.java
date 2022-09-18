@@ -17,4 +17,7 @@ public interface Rotor extends Rotatable {
     void setRotateNextRotor(Rotatable rotateNextRotor);
 
     void resetRotor();
+
+    Rotor cloneRotor();
+
 }

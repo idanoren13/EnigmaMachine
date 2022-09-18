@@ -40,18 +40,23 @@
                 <RowConstraints maxHeight="206.0" prefHeight="206.0" vgrow="NEVER" />
               </rowConstraints>
                <children>
-                  <VBox id="keyboardInputVBox" fx:id="keyboardInputVBox" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" text="Button" />
+                  <VBox id="keyboardInputVBox" fx:id="keyboardInputVBox">
                      <children>
                         <HBox prefHeight="66.0" prefWidth="588.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="230.0" styleClass="machine-state-vbox">
                                  <children>
                                     <Label styleClass="header-label" text="First Machine State:" />
-                                    <Label fx:id="firstMachineStateLabel" styleClass="information-label" text="NaN">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
+                                    <ScrollPane>
+                                       <content>
+                                          <Label fx:id="firstMachineStateLabel" styleClass="information-label" text="NaN">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                                  <padding>
                                     <Insets left="30.0" top="10.0" />
@@ -60,11 +65,15 @@
                               <VBox prefWidth="300.0" styleClass="machine-state-vbox">
                                  <children>
                                     <Label styleClass="header-label" text="Current Machine State:" />
-                                    <Label fx:id="currentMachineStateLabel" styleClass="information-label" text="NaN">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
+                                    <ScrollPane>
+                                       <content>
+                                          <Label fx:id="currentMachineStateLabel" styleClass="information-label" text="NaN">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </content>
+                                    </ScrollPane>
                                  </children>
                                  <padding>
                                     <Insets left="50.0" top="10.0" />
@@ -118,7 +127,7 @@
                                     <Insets top="9.0" />
                                  </HBox.margin>
                               </Button>
-                              <VBox>
+                              <VBox id="outputEncryptedText">
                                  <children>
                                     <Label styleClass="header-label" text="Your Enigma Output:">
                                        <VBox.margin>
@@ -145,48 +154,56 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="12.0" styleClass="search-dictionary-words-vbox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <VBox alignment="TOP_CENTER" spacing="12.0" styleClass="search-dictionary-words-vbox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Label styleClass="header-label" text="Search For Dictionary Words:">
+                        <Label maxWidth="300.0" styleClass="header-label" text="Search For Dictionary Words:">
                            <VBox.margin>
                               <Insets top="14.0" />
                            </VBox.margin>
                         </Label>
-                        <StackPane maxHeight="42.0" maxWidth="181.0" prefHeight="150.0" prefWidth="200.0">
-                           <children>
-                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="39.0" prefWidth="172.0">
-                                 <StackPane.margin>
-                                    <Insets bottom="1.0" />
-                                 </StackPane.margin>
-                              </Button>
-                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="40.0" prefWidth="134.0" styleClass="stack-button">
-                                 <StackPane.margin>
-                                    <Insets left="-38.0" />
-                                 </StackPane.margin>
-                              </Button>
-                              <TextField fx:id="searchInputTextField" maxWidth="100.0" promptText="Type words here...">
-                                 <StackPane.margin>
-                                    <Insets right="14.0" />
-                                 </StackPane.margin>
-                              </TextField>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/search%20magnifying%20glass.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets left="130.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                           </children>
-                        </StackPane>
-                        <ScrollPane id="dictionaryScrollPane" maxHeight="1.7976931348623157E308" maxWidth="267.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                        <GridPane>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets />
                            </VBox.margin>
-                           <content>
-                              <ListView fx:id="searchDictionaryWordsListView" maxHeight="1.7976931348623157E308" prefHeight="79.0" prefWidth="252.0" />
-                           </content>
-                        </ScrollPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="212.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="85.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <StackPane maxHeight="42.0" maxWidth="302.0" prefHeight="38.0" prefWidth="302.0">
+                                 <children>
+                                    <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="39.0" prefWidth="172.0">
+                                       <StackPane.margin>
+                                          <Insets bottom="1.0" />
+                                       </StackPane.margin>
+                                    </Button>
+                                    <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="36.0" prefWidth="157.0" styleClass="stack-button">
+                                       <StackPane.margin>
+                                          <Insets left="-38.0" />
+                                       </StackPane.margin>
+                                    </Button>
+                                    <TextField fx:id="searchInputTextField" maxWidth="100.0" promptText="Type words here...">
+                                       <StackPane.margin>
+                                          <Insets right="14.0" />
+                                       </StackPane.margin>
+                                    </TextField>
+                                    <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/search%20magnifying%20glass.png" />
+                                       </image>
+                                       <StackPane.margin>
+                                          <Insets left="130.0" />
+                                       </StackPane.margin>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <Button fx:id="spaceButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="81.0" text="Space" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                        <ListView fx:id="searchDictionaryWordsListView" maxWidth="300.0" prefHeight="105.0" prefWidth="286.0" />
                      </children>
                   </VBox>
                   <GridPane id="decryptionManagerGridPane" GridPane.rowIndex="1">
@@ -247,18 +264,18 @@
                               <Insets left="4.0" />
                            </padding>
                         </TextFlow>
-                        <Button minHeight="77.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+                        <Button fx:id="setDMProperties" minHeight="77.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
                            <GridPane.margin>
                               <Insets top="30.0" />
                            </GridPane.margin>
                         </Button>
                      </children>
                   </GridPane>
-                  <VBox id="decryptionManagerVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox id="decryptionManagerVBox" alignment="CENTER" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Resume Decryption Manager" wrapText="true" />
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Pause Decryption Manager" wrapText="true" />
-                        <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Stop Decryption Manager" wrapText="true" />
+                        <Button fx:id="startResumeDM" mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Start Decryption Manager" wrapText="true" />
+                        <Button fx:id="pauseDM" mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Pause Decryption Manager" wrapText="true" />
+                        <Button fx:id="stopDM" mnemonicParsing="false" prefHeight="42.0" prefWidth="249.0" text="Stop Decryption Manager" wrapText="true" />
                      </children>
                   </VBox>
                </children>

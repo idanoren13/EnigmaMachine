@@ -18,6 +18,15 @@ public class WordsDictionary {
         this.words.forEach(word -> this.words.add(word.replaceAll(_excludedCharacters, "")));
     }
 
+    public WordsDictionary(Set<String> words, Set<Character> excludedCharacters) {
+        this.words = words.stream().map(String::toUpperCase).collect(Collectors.toSet());
+        this.excludedCharacters = excludedCharacters.stream().map(Character::toUpperCase).collect(Collectors.toSet());
+    }
+
+    public Set<String> getWords() {
+        return words;
+    }
+
     public List<String> candidateWords(String processedText) {
         List<String> cleanedProcessedText = cleanText(processedText.toUpperCase());
         return words.stream().filter(cleanedProcessedText::contains).collect(Collectors.toList());
@@ -25,7 +34,15 @@ public class WordsDictionary {
 
     private List<String> cleanText(String processedText) {
         return Arrays.stream(processedText.split(" ")).
-                map(word -> word.replaceAll("[" + excludedCharacters + "]", "")).
+                map(word -> word.replaceAll(excludedCharacters.toString(), "")).
                 collect(Collectors.toList());
+    }
+
+    public boolean isCandidateString(String processedText) {
+        return words.containsAll(cleanText(processedText.toUpperCase()));
+    }
+
+    public WordsDictionary cloneWordsDictionary() {
+        return new WordsDictionary(this.words, this.excludedCharacters);
     }
 }

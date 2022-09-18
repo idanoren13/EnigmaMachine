@@ -1,5 +1,7 @@
 package desktopApp.impl;
 
+import automateDecryption.Difficulty;
+import automateDecryption.TasksManager;
 import desktopApp.InitCode;
 import desktopApp.exceptions.NoMachineGeneratedException;
 import desktopApp.historyAndStatistics.MachineCodeData;
@@ -30,11 +32,14 @@ public class Console implements Input {
     private EnigmaEngine engine;
     private XMLLoader xmlLoader;
 
+    private TasksManager bruteForceTaskManager;
+    Difficulty difficulty;
     private MachineHistoryAndStatistics machineHistoryAndStatistics;
 
     public Console() {
         this.engine = null;
         this.machineHistoryAndStatistics = new MachineHistoryAndStatistics();
+        this.bruteForceTaskManager = new TasksManager();
     }
 
     @Override
@@ -86,7 +91,7 @@ public class Console implements Input {
                     .stream().map(CTEReflector::getId).collect(Collectors.toList());
             List<Character> ABCFromXML = xmlFile.getCTEMachine()
                     .getABC().trim()
-                    .chars().mapToObj(e -> (char)e).collect(Collectors.toList());
+                    .chars().mapToObj(e -> (char) e).collect(Collectors.toList());
 
             Collections.sort(rotorsFromXML);
             Collections.sort(reflectorsFromXML);
@@ -101,7 +106,8 @@ public class Console implements Input {
             }
             List<String> dictionaryWords = new ArrayList<>(Arrays.asList(nonSeparatedDictionaryWordsValid.split(" ")));
             xmlLoader = new XMLLoaderImpl(rotorsFromXML, reflectorsFromXML, ABCFromXML, dictionaryWords, decipher.getAgents()); // TODO: if agents smaller than 2
-        } catch (Exception e) { } // Irrelevant
+        } catch (Exception e) {
+        } // Irrelevant
     }
 
     @Override
@@ -208,10 +214,12 @@ public class Console implements Input {
         }
         return selectedRotorsDeque;
     }
+
     private void getStartingPositionsFromUserInput(List<Integer> selectedRotorsDeque, String startingPositions) throws InvalidCharactersException, InvalidRotorException {
         System.out.println("Enter all your desired rotors starting positions without separation between them.");
         this.engine.setSelectedRotors(selectedRotorsDeque, InitCode.createStartingCharactersList(startingPositions));
     }
+
     private void getReflectorFromUserInput(String reflectorID) throws InvalidReflectorException {
         int reflectorNumber;
         System.out.println("Enter your desired reflector ID. Please enter the number using one of these numerals:\n"
@@ -223,6 +231,7 @@ public class Console implements Input {
         }
         this.engine.setSelectedReflector(Reflector.ReflectorID.values()[reflectorNumber - 1]);
     }
+
     private void getPlugBoardPairsFromUserInput(String plugBoardPairs) throws InvalidPlugBoardException {
         System.out.println("Enter all your desired plug board pairs without separation between them.");
         this.engine.setPlugBoard(InitCode.createPlugBoard(plugBoardPairs));
@@ -241,18 +250,19 @@ public class Console implements Input {
         System.out.println(message + " initialized code: " + machineHistoryAndStatistics.getCurrentMachineCode());
     }
 
-    @Override // TODO: to idan: <rotor_position(rotor distance from notch)> - you think rotor_starting_position is valid after each message encryption?
+    @Override
+    // TODO: to idan: <rotor_position(rotor distance from notch)> - you think rotor_starting_position is valid after each message encryption?
     public String getMessageAndProcessIt(String messageInput, boolean bool) throws InvalidCharactersException {
         int timeStart, timeEnd;
         String messageOutput;
-        if (bool == true) {
+        if (bool) {
             System.out.println("Enter your message to process.");
         }
         timeStart = (int) System.nanoTime();
-        messageOutput = this.engine.processMessage(messageInput, bool);
+        messageOutput = this.engine.processMessage(messageInput);
         timeEnd = (int) System.nanoTime();
 
-        if (bool == true) {
+        if (bool) {
             machineHistoryAndStatistics.addActivateDataToCurrentMachineCode(messageInput, messageOutput, timeEnd - timeStart);
         }
         return messageOutput;
@@ -280,94 +290,31 @@ public class Console implements Input {
         System.out.println("Goodbye!");
     }
 
-/*    @Override
-    public void saveGame() {
-        try {
-            if (machineHistoryAndStatistics.isEmpty()) {
-                throw new NoMachineGeneratedException("no machine was generated.");
-            }
-            System.out.println("You are about to save Enigma engine code to a file.");
+    public Set<String> getWordsDictionary() {
+        return engine.getWordsDictionary().getWords();
+    }
 
-            String fileNameIncludingFullPath = getFilePathFromUser();
-            saveFileInPath(fileNameIncludingFullPath + ".slz");
-        } catch (NoMachineGeneratedException e) {
-            System.out.println("Exception: " + e.getLocalizedMessage());
+    public void setDMProperties(int agents, int missionSize, Difficulty difficulty) {
+        if (bruteForceTaskManager.isRunning()) {
+            System.out.println("Cannot change DM properties while running.");
+        } else {
+            bruteForceTaskManager.setNumberOfAgents(agents);
+            bruteForceTaskManager.setTaskSize(missionSize);
+            bruteForceTaskManager.setDifficulty(difficulty);
         }
     }
 
-    private String getFilePathFromUser() {
-        boolean nullString;
-        String fileNameIncludingFullPath;
-        do {
-            System.out.println("Enter a valid full path to your file, including file name ONLY and EXCLUDING its file extension.");
-            fileNameIncludingFullPath = this.scanner.nextLine();
-            nullString = (fileNameIncludingFullPath.equals(""));
-            if (nullString) {
-                System.out.println("No input was entered.");
-            }
-        } while (nullString);
-        return fileNameIncludingFullPath;
-    }
-
-    private void saveFileInPath(String fileNameIncludingFullPath) {
-        try {
-            Path path = Paths.get(fileNameIncludingFullPath);
-            if (Files.exists(path)) {
-                System.out.println("There is already a file with this name in the given path.");
-                System.out.println("Do you want to proceed and save your new file? Type Y/N.");
-                boolean validInput;
-                String proceedOrNot;
-                do {
-                    proceedOrNot = this.scanner.nextLine().toUpperCase();
-                    if (proceedOrNot.equals("Y") || proceedOrNot.equals("N")) {
-                        validInput = true;
-                    }
-                    else {
-                        System.out.println("The input given is not Y nor N.");
-                        validInput = false;
-                    }
-                } while (!validInput);
-                if (proceedOrNot.equals("N")) {
-                    System.out.println("The file was not saved.");
-                    return;
-                }
-            }
-            ObjectOutputStream fileToSerialize = new ObjectOutputStream(
-                    Files.newOutputStream(path)
-            );
-            fileToSerialize.writeObject(this.engine);
-            fileToSerialize.writeObject(this.machineHistoryAndStatistics);
-            fileToSerialize.flush();
-
-            System.out.println("File has been successfully saved!");
-        } catch (IOException e) {
-            System.out.println("Exception: " + e.getLocalizedMessage());
+    public void startResumeDM() {
+        if (bruteForceTaskManager.isRunning()) {
+            System.out.println("Cannot start DM while running.");
+        } else {
+//            bruteForceTaskManager.setTextToCrack();
+            bruteForceTaskManager.initialize(engine, Difficulty.EASY);
+            new Thread(bruteForceTaskManager).start();
         }
     }
 
-    @Override
-    public void loadGame() {
-        System.out.println("You are about to load Enigma engine code from a file.");
-
-        String fileNameIncludingFullPath = getFilePathFromUser();
-        loadFileInPath(fileNameIncludingFullPath + ".slz");
+    public void setEncryptedText(String text) {
+        bruteForceTaskManager.setEncryptedText(text);
     }
-
-    private void loadFileInPath(String fileNameIncludingFullPath) {
-        try {
-            Path path = Paths.get(fileNameIncludingFullPath);
-            if (Files.notExists(path)) {
-                throw new FileNotFoundException("the given file name '" + fileNameIncludingFullPath + "' not found.");
-            }
-            ObjectInputStream fileToDeserialize = new ObjectInputStream(Files.newInputStream(path));
-            this.engine = (EnigmaEngine)fileToDeserialize.readObject();
-            this.machineHistoryAndStatistics = (MachineHistoryAndStatistics)fileToDeserialize.readObject();
-
-            System.out.println("File has been successfully loaded!");
-        } catch (IOException e) {
-            System.out.println("Exception: " + e.getLocalizedMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception: there is a problem with loading the file.");
-        }
-    }*/
 }

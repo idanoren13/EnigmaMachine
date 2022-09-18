@@ -36,4 +36,5 @@ public class MachineStateConsole {
     public void setCurrentMachineState(String currentMachineState) {
         this.currentMachineState.set(currentMachineState);
     }
+
 }

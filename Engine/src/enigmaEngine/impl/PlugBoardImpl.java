@@ -63,4 +63,9 @@ public class PlugBoardImpl implements PlugBoard, Serializable {
     public List<Pair<Character, Character>> getPairList() {
         return this.pairList;
     }
+
+    @Override
+    public PlugBoard clonePlugBoard() {
+        return new PlugBoardImpl(new ArrayList<>(this.pairList));
+    }
 }

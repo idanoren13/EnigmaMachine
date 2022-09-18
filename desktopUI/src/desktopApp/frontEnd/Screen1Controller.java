@@ -12,12 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -77,9 +78,9 @@ public class Screen1Controller implements Initializable {
             rotorsStartingPosTextField.textProperty().addListener(new ClearStatusListener());
             plugBoardPairsTextField.textProperty().addListener(new ClearStatusListener());
             // Website add-on
-            WebEngine engine = enigmaTermWebView.getEngine();
-            enigmaTermWebView.setZoom(0.66);
-            engine.load("https://en.wikipedia.org/wiki/Enigma_machine");
+//            WebEngine engine = enigmaTermWebView.getEngine();
+//            enigmaTermWebView.setZoom(0.66);
+//            engine.load("https://en.wikipedia.org/wiki/Enigma_machine");
             // Model
             specs = new Specifications();
             maxRotorsInMachineLabel.textProperty().bind(specs.rotorsAmountInMachineXMLProperty());
@@ -120,10 +121,7 @@ public class Screen1Controller implements Initializable {
             stage.setTitle("New Window");
             stage.setScene(scene);
             stage.show();
-        } catch (LoadException | NullPointerException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        } catch (IOException e) {
+        } catch (NullPointerException | IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
@@ -155,6 +153,8 @@ public class Screen1Controller implements Initializable {
                 startingPositions = rotorsStartingPosTextField.getText();
                 plugBoardPairs = plugBoardPairsTextField.getText();
                 reflectorID = reflectorChoiceBox.getValue();
+
+                startingPositions = new StringBuilder(startingPositions).reverse().toString();
 
                 try {
                     AppController.getConsoleApp().initializeEnigmaCodeManually(rotors, startingPositions, plugBoardPairs, reflectorID);

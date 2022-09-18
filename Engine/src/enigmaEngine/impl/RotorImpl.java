@@ -4,6 +4,7 @@ import enigmaEngine.interfaces.Rotatable;
 import enigmaEngine.interfaces.Rotor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,10 +45,18 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
 
     @Override
     public int getOutputIndex(int inputIndex, Direction dir) {
-        if (dir == Direction.RIGHT) {
-            return rightSide.indexOf(leftSide.get(inputIndex));
-        } else {
-            return leftSide.indexOf(rightSide.get(inputIndex));
+        try {
+            if (dir == Direction.RIGHT) {
+                return rightSide.indexOf(leftSide.get(inputIndex));
+            } else {
+                return leftSide.indexOf(rightSide.get(inputIndex));
+            }
+        } catch (Exception e) {
+//            System.out.println("inputIndex: " + inputIndex);
+//            System.out.println("dir: " + dir);
+//            System.out.println("rightSide: " + rightSide);
+//            System.out.println("leftSide: " + leftSide);
+            throw e;
         }
     }
 
@@ -89,5 +98,15 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
 
         startIndex = 0;
         countRotations = 0;
+    }
+
+    @Override
+    public Rotor cloneRotor() {
+        ArrayList<Character> rightSideClone = new ArrayList<>();
+        ArrayList<Character> leftSideClone = new ArrayList<>();
+        rightSideClone = rightSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        leftSideClone = leftSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+        return new RotorImpl(id, notch, rightSideClone, leftSideClone);
     }
 }

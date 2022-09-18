@@ -1,5 +1,6 @@
 package desktopApp.frontEnd;
 
+import automateDecryption.Difficulty;
 import desktopApp.impl.models.MachineStateConsole;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import javafx.event.ActionEvent;
@@ -16,36 +17,63 @@ import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 
 public class Screen3Controller implements Initializable {
+    public Button startResumeDM;
+    public Button pauseDM;
+    public Button stopDM;
+    public Button spaceButton;
     // TODO: implement all logic for screen 3 after implementing screens 1 and 2
     // Main component
     private AppController mainController;
     // Models
     private MachineStateConsole machineStatesConsole;
     //
-    @FXML private VBox bruteForceVBox;
+    @FXML
+    private VBox bruteForceVBox;
     // Machine states
-    @FXML private Label firstMachineStateLabel;
-    @FXML private Label currentMachineStateLabel;
+    @FXML
+    private Label firstMachineStateLabel;
+    @FXML
+    private Label currentMachineStateLabel;
     // Search for words
-    @FXML private TextField searchInputTextField;
-    @FXML private ListView<String> searchDictionaryWordsListView;
+    @FXML
+    private TextField searchInputTextField;
+    @FXML
+    private ListView<String> searchDictionaryWordsListView;
     // Input to encrypt / decrypt
-    @FXML private VBox keyboardInputVBox; // Only for binding the ENTER key to the input text field
-    @FXML private TextField inputToEncryptDecryptInput;
-    @FXML private TextField enigmaOutputTextField;
-    @FXML private Button enterCurrentKeyboardInputButton;
+    @FXML
+    private VBox keyboardInputVBox; // Only for binding the ENTER key to the input text field
+    @FXML
+    private TextField inputToEncryptDecryptInput;
+    @FXML
+    private TextField enigmaOutputTextField;
+    @FXML
+    private Button enterCurrentKeyboardInputButton;
+    //    @FXML private Button InitMachine;
     // DM input
-    @FXML private Label totalAgentsLabel;
-    @FXML private Slider agentsSliderInput;
-    @FXML private ChoiceBox<String> difficultyLevelInput;
-    @FXML private Label difficultyLevelLabel;
-    @FXML private Label missionSizeLabel;
-    @FXML private TextField missionSizeInput;
-    @FXML private Label totalMissionsLabel;
+    @FXML
+    private Label totalAgentsLabel;
+    @FXML
+    private Slider agentsSliderInput;
+    @FXML
+    private ChoiceBox<String> difficultyLevelInput;
+    @FXML
+    private Label difficultyLevelLabel;
+    @FXML
+    private Label missionSizeLabel;
+    @FXML
+    private TextField missionSizeInput;
+    @FXML
+    private Label totalMissionsLabel;
+
+    @FXML
+    private Button setDMProperties;
 
     private int dmTotalAgents;
+    private int dmMissionSize;
+    private Difficulty dmDifficultyLevel;
     // DM Output
-    @FXML private ListView<String> finalCandidatesListView;
+    @FXML
+    private ListView<String> finalCandidatesListView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,17 +85,143 @@ public class Screen3Controller implements Initializable {
                 ev.consume();
             }
         });
+//        InitMachine.setOnAction(this::InitMachineActionListener);
+
         // Updates total agents
         setBruteForceDisability(true);
         agentsSliderInput.valueProperty().addListener((observable, oldValue, newValue) -> {
-            dmTotalAgents = (int)agentsSliderInput.getValue();
+            dmTotalAgents = (int) agentsSliderInput.getValue();
             totalAgentsLabel.setText(Integer.toString(dmTotalAgents));
         });
+
+        // Updates mission size
+        missionSizeInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                dmMissionSize = Integer.parseInt(newValue);
+                missionSizeLabel.setText(Integer.toString(dmMissionSize));
+            } catch (NumberFormatException e) {
+                missionSizeLabel.setText("Invalid input");
+            }
+        });
+
+        // Updates difficulty level
+        difficultyLevelInput.getItems().addAll("Easy", "Medium", "Hard", "Impossible");
+        difficultyLevelInput.setValue("Easy");
+        difficultyLevelInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue.intValue()) {
+                case 0:
+                    dmDifficultyLevel = Difficulty.EASY;
+                    break;
+                case 1:
+                    dmDifficultyLevel = Difficulty.MEDIUM;
+                    break;
+                case 2:
+                    dmDifficultyLevel = Difficulty.HARD;
+                    break;
+                case 3:
+                    dmDifficultyLevel = Difficulty.IMPOSSIBLE;
+                    break;
+            }
+
+            String difficultyLevel = dmDifficultyLevel.toString().toLowerCase();
+            difficultyLevelLabel.setText(difficultyLevel.substring(0, 1).toUpperCase() + difficultyLevel.substring(1));
+        });
+
+
+        setDMProperties.setOnAction(this::setDMPropertiesActionListener);
+//        setDMProperties.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+//            if (ev.getCode() == KeyCode.ENTER) {
+//                setDMProperties.fire();
+//                ev.consume();
+//            }
+//        });
+
+        startResumeDM.setOnAction(this::StartResumeDMActionListener);
+
+        pauseDM.setOnAction(this::PauseDMActionListener);
+
+        stopDM.setOnAction(this::StopDMActionListener);
+
+        startResumeDM.setDisable(true);
+        pauseDM.setDisable(true);
+        stopDM.setDisable(true);
+
+        // Updates search dictionary
+        searchInputTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchDictionaryWordsListView.getItems().clear();
+            searchDictionaryWordsListView.getItems().addAll(mainController.getDictionary());
+        });
+
+        searchDictionaryWordsListView.onMousePressedProperty().addListener((observable, oldValue, newValue) -> {
+            String selectedWord = searchDictionaryWordsListView.getSelectionModel().getSelectedItem();
+            if (selectedWord != null) {
+                inputToEncryptDecryptInput.setText(selectedWord);
+            }
+        });
+//        searchDictionaryWordsListView.getItems().addAll(mainController.getDictionary());
+
+        searchDictionaryWordsListView.editableProperty().setValue(false);
+        searchDictionaryWordsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            String selectedWord = searchDictionaryWordsListView.getSelectionModel().getSelectedItem();
+            if (selectedWord != null) {
+                inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + selectedWord);
+            }
+        });
+
+        spaceButton.setOnAction((event) -> {
+            inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " ");
+        });
+
         // Model
         machineStatesConsole = new MachineStateConsole();
         firstMachineStateLabel.textProperty().bind(machineStatesConsole.firstMachineStateProperty());
         currentMachineStateLabel.textProperty().bind(machineStatesConsole.currentMachineStateProperty());
 
+    }
+
+    private void StopDMActionListener(ActionEvent actionEvent) {
+        startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
+        stopDM.setDisable(true);
+        pauseDM.setDisable(true);
+        setDMProperties.setDisable(false);
+        startResumeDM.setDisable(false);
+
+    }
+
+    private void PauseDMActionListener(ActionEvent actionEvent) {
+//        startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
+        setDMProperties.setDisable(false);
+        startResumeDM.setDisable(false);
+        pauseDM.setDisable(true);
+    }
+
+    private void StartResumeDMActionListener(ActionEvent actionEvent) {
+        if (startResumeDM.getText().contains("Start")) {
+            startResumeDM.setText(startResumeDM.getText().replace("Start", "Resume"));
+        }
+        setDMProperties.setDisable(true);
+        startResumeDM.setDisable(true);
+        stopDM.setDisable(false);
+        pauseDM.setDisable(false);
+        if (!enigmaOutputTextField.getText().isEmpty()) {
+            mainController.setEncryptedText(enigmaOutputTextField.getText());
+            mainController.startResumeDM();
+        }
+
+    }
+
+    private void setDMPropertiesActionListener(ActionEvent event) {
+        try {
+            mainController.setDMProperties(dmTotalAgents, dmMissionSize, dmDifficultyLevel);
+            setBruteForceDisability(false);
+            startResumeDM.setDisable(false);
+        } catch (InputMismatchException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid input");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     public void setBruteForceDisability(boolean bool) {
@@ -100,9 +254,9 @@ public class Screen3Controller implements Initializable {
         machineStatesConsole.setFirstMachineState(machineStateConsoleString);
         machineStatesConsole.setCurrentMachineState(machineStateConsoleString);
 
-        TextFields.bindAutoCompletion(searchInputTextField, AppController.getConsoleApp().getXmlLoader().getDictionaryWordsFromXML()
-                .stream().toArray(String[]::new));
+        TextFields.bindAutoCompletion(searchInputTextField, AppController.getConsoleApp().getXmlLoader().getDictionaryWordsFromXML().toArray(new String[0]));
     }
+
     public void setMainController(AppController mainController) {
         this.mainController = mainController;
     }
@@ -116,6 +270,7 @@ public class Screen3Controller implements Initializable {
     public void updateMachineState(String currentMachineState) {
         machineStatesConsole.setCurrentMachineState(currentMachineState);
     }
+
     public void resetMachineStateAndEnigmaOutput(boolean bool, Object controller) {
         if (bool && controller == null) {
             new Alert(Alert.AlertType.INFORMATION, "Machine state has been successfully reset.").show();

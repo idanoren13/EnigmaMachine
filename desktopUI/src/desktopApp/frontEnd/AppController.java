@@ -1,10 +1,12 @@
 package desktopApp.frontEnd;
 
+import automateDecryption.Difficulty;
 import desktopApp.impl.Console;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 
 import java.util.List;
+import java.util.Set;
 
 public class AppController {
     static private Console consoleApp;
@@ -80,5 +82,22 @@ public class AppController {
     }
     public void changeToScreen3() {
         screen3Component.toFront();
+    }
+
+
+    public Set<String> getDictionary() {
+        return consoleApp.getWordsDictionary();
+    }
+
+    public void setDMProperties(int agents, int missionSize, Difficulty difficulty) {
+        consoleApp.setDMProperties(agents, missionSize, difficulty);
+    }
+
+    public void startResumeDM() {
+        consoleApp.startResumeDM();
+    }
+
+    public void setEncryptedText(String text) {
+        consoleApp.setEncryptedText(text);
     }
 }

@@ -1,6 +1,6 @@
 package enigmaEngine.impl;
 
-import enigmaEngine.MachineCodeDTO;
+import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
@@ -15,6 +15,7 @@ import javafx.util.Pair;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
@@ -97,7 +98,12 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         StringBuilder output = new StringBuilder();
         messagesSentCounter++;
         for (int i = 0; i < input.length(); i++) {
-            output.append(activate(input.charAt(i)));
+            try {
+                output.append(activate(input.charAt(i)));
+            } catch (Exception e) {
+                System.out.println("Thread: " + Thread.currentThread().getName());
+                throw new RuntimeException(e);
+            }
         }
 
         return output.toString();
@@ -166,8 +172,8 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public MachineCodeDTO getMachineCodeDTO() {
-        return new MachineCodeDTO(selectedRotors,startingCharacters,selectedReflector.getReflectorID(),plugBoard.getPairList());
+    public MachineCode getMachineCodeDTO() {
+        return new MachineCode(selectedRotors, startingCharacters, selectedReflector.getReflectorID(), plugBoard.getPairList(), machineABC);
     }
 
     private List<Character> charsAtWindows() {
@@ -205,7 +211,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public void setEngineConfiguration(MachineCodeDTO machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException {
+    public void setEngineConfiguration(MachineCode machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException {
         setSelectedRotors(machineCode.getRotorsIDInorder(), machineCode.getStartingPositions());
         setSelectedReflector(machineCode.getSelectedReflectorID());
         setPlugBoard(machineCode.getPlugBoard());
@@ -213,12 +219,18 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     @Override
     public EnigmaEngine cloneMachine() {
-        EnigmaEngine clone = new EnigmaEngineImpl(this.rotors, this.reflectors, this.plugBoard, this.machineABC);
+        HashMap<Integer, Rotor> rotorsClones = new HashMap<>();
+        rotorsClones = rotors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().cloneRotor(), (e1, e2) -> e2, HashMap::new));
+        HashMap<Reflector.ReflectorID, Reflector> reflectorsClones = reflectors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new));
+        String ABCClone = this.machineABC;
+        EnigmaEngine clone = new EnigmaEngineImpl(rotorsClones, reflectorsClones, this.plugBoard.clonePlugBoard(), ABCClone);
         try {
-            clone.setSelectedRotors(this.selectedRotors, this.startingCharacters);
+            clone.setSelectedRotors(new ArrayList<>(this.selectedRotors), new ArrayList<>(this.startingCharacters));
             clone.setSelectedReflector(this.selectedReflector.getReflectorID());
         } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException ignored) {
+            throw new RuntimeException(ignored);
         }
+        clone.setWordsDictionary(this.wordsDictionary.cloneWordsDictionary());
 
         return clone;
     }
@@ -240,9 +252,13 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         } else {
             for (Rotor rotor : selectedRotorsListLeftToRight) {
                 outputIndex = rotor.getOutputIndex(outputIndex, dir);
+
+
             }
         }
-
+        if (outputIndex == -1) {
+            return 0;
+        }
         return outputIndex;
     }
 
@@ -314,6 +330,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         return wordsDictionary;
     }
 
+    @Override
     public void setWordsDictionary(WordsDictionary wordsDictionary) {
         this.wordsDictionary = wordsDictionary;
     }

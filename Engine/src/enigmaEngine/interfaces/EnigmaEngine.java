@@ -1,6 +1,6 @@
 package enigmaEngine.interfaces;
 
-import enigmaEngine.MachineCodeDTO;
+import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
@@ -37,13 +37,14 @@ public interface EnigmaEngine {
 
     EngineDTO getEngineDTO();
 
-    MachineCodeDTO getMachineCodeDTO();
+    MachineCode getMachineCodeDTO();
 
     void randomSelectedComponents();
 
-    void setEngineConfiguration(MachineCodeDTO machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
+    void setEngineConfiguration(MachineCode machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
 
     EnigmaEngine cloneMachine();
 
     WordsDictionary getWordsDictionary();
+    void setWordsDictionary(WordsDictionary wordsDictionary);
 }

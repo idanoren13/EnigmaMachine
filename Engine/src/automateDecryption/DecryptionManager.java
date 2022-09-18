@@ -1,6 +1,6 @@
 package automateDecryption;
 
-import enigmaEngine.MachineCodeDTO;
+import enigmaEngine.MachineCode;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
 import immutables.engine.EngineDTO;
@@ -13,15 +13,22 @@ public class DecryptionManager implements Runnable {
 
     private final EnigmaEngine enigmaEngine;
     private long combination;
-    BlockingQueue<MachineCodeDTO> queue;
+    private final BlockingQueue<MachineCode> queue;
+    //    private final BlockingQueue<Runnable> taskPoolQueue;
     private final Difficulty difficulty;
-    private MachineCodeDTO machineCode;
+    private final String encryptedText;
+    private MachineCode machineCode;
+//    private final ExecutorService executor;
+
     private long taskSize;
 
-    public DecryptionManager(EnigmaEngine enigmaEngine, BlockingQueue<MachineCodeDTO> MachineCodeDTOQueue, Difficulty difficulty, long taskSize) {
+    public DecryptionManager(EnigmaEngine enigmaEngine, BlockingQueue<MachineCode> MachineCodeDTOQueue, Difficulty difficulty, String encryptedText, long taskSize) {
         this.enigmaEngine = enigmaEngine;
         this.queue = MachineCodeDTOQueue;
+//        this.taskPoolQueue = taskPoolQueue;
         this.difficulty = difficulty;
+        this.encryptedText = encryptedText;
+//        this.executor = executor;
         this.taskSize = taskSize;
     }
 
@@ -54,13 +61,13 @@ public class DecryptionManager implements Runnable {
     }
 
     public void initializeMachineCode() {
-        MachineCodeDTO tempMachineCode = this.enigmaEngine.getMachineCodeDTO();
+        MachineCode tempMachineCode = this.enigmaEngine.getMachineCodeDTO();
         switch (difficulty) {
             case EASY:
-                machineCode = new MachineCodeDTO(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), tempMachineCode.getSelectedReflectorID(), tempMachineCode.getPlugBoard());
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), tempMachineCode.getSelectedReflectorID(), tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case MEDIUM:
-                machineCode = new MachineCodeDTO(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard());
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case HARD:
                 machineCode = tempMachineCode;
@@ -104,32 +111,27 @@ public class DecryptionManager implements Runnable {
 
     }
 
-    private void advanceMachineCodeEasy() {//TODO: rotate the stats taskSize times
-        List<Character> startingPositions = machineCode.getStartingPositions();
-        int ABCSize = enigmaEngine.getABCSize();
-        int i = startingPositions.size() - 1;
-        while (i >= 0) {
-            if (startingPositions.get(i) == enigmaEngine.getABC().charAt(ABCSize - 1)) {
-                startingPositions.set(i, enigmaEngine.getABC().charAt(0));
-                i--;
-            } else {
-                startingPositions.set(i, enigmaEngine.getABC().charAt(enigmaEngine.getABC().indexOf(startingPositions.get(i)) + 1));
-                break;
-            }
+    synchronized private void advanceMachineCodeEasy() {
+        for (int i = 0; i < taskSize; i++) {
+            machineCode.increment();
+//            System.out.println(machineCode.getStartingPositions());
+            combination--;
         }
-
-        machineCode = new MachineCodeDTO(machineCode.getRotorsIDInorder(), startingPositions, machineCode.getSelectedReflectorID(), machineCode.getPlugBoard());
+        System.out.println("Remaining combination: " + combination);
     }
 
     @Override
     public void run() {
-        try {
-            if (queue.offer(machineCode)) {
+        while (combination > 0) {
+            System.out.println("Combination: " + combination);
+            System.out.println("MachineCode: " + machineCode.getStartingPositions());
+            System.out.println("Thread: " + Thread.currentThread().getName());
+            try {
+                queue.put(machineCode);
                 advanceMachineCode();
-                combination--;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
