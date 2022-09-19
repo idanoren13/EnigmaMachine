@@ -10,25 +10,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Screen1Controller implements Initializable {
     // Main component
@@ -50,7 +43,6 @@ public class Screen1Controller implements Initializable {
     @FXML private Label setCodeLabel;
     // Screen buttons
     @FXML private Button setCodeButton;
-    @FXML private Button dragAndDropSetCodeButton;
     // User configuration input section
     @FXML private TextField rotorsAndOrderTextField;
     @FXML private TextField rotorsStartingPosTextField;
@@ -104,27 +96,6 @@ public class Screen1Controller implements Initializable {
     private void initializeMachineState() {
         machineStatesConsole.setFirstMachineState("NaN");
         machineStatesConsole.setCurrentMachineState("NaN");
-    }
-
-    @FXML
-    void dragAndDropSetCodeButtonActionListener() {
-        // TODO: implement drag and drop
-        configurationInputWindowController = new ConfigurationInputWindowController(AppController.getConsoleApp().getXmlLoader(), this);
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/desktopApp/frontEnd/fxml/configurationInputWindow.fxml"));
-            URL url = getClass().getResource("/desktopApp/frontEnd/fxml/configurationInputWindow.fxml");
-            fxmlLoader.setLocation(url);
-            Parent root = fxmlLoader.load(url.openStream());
-
-            Scene scene = new Scene(root, 600, 400);
-            Stage stage = new Stage();
-            stage.setTitle("New Window");
-            stage.setScene(scene);
-            stage.show();
-        } catch (NullPointerException | IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
     }
 
     @FXML

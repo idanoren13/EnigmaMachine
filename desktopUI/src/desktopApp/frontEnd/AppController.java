@@ -105,5 +105,6 @@ public class AppController {
 
     public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {
         screen3ComponentController.setTasksManagerLogic(decryptionManagerLogic);
+        consoleApp.getBruteForceTaskManager().setOnCandidateWordsFound(screen3ComponentController::updateCandidateWords);
     }
 }

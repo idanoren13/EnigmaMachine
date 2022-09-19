@@ -249,7 +249,7 @@ public class Screen2Controller implements Initializable {
     public void updateLabelTextsToEmpty(Object component) {
         setCodeLabel.setText("");
         inputToEncryptDecryptInput.setText("");
-        if (!component.getClass().getSimpleName().equals("ClearStatusListener")) {
+        if (!component.getClass().getSimpleName().equals("ClearStatusListener") && !component.getClass().getSimpleName().equals("Screen3Controller")) {
             lastOutputButton.getStyleClass().remove("pressed-keyboard-button-output");
         }
         mouseInputTextField.setText("");

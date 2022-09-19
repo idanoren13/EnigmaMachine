@@ -25,10 +25,8 @@ public class TasksManager extends Task<Boolean> {
     private EnigmaEngine enigmaEngine;
     private WordsDictionary wordsDictionary;
     private Difficulty difficulty;
-
-
-
     private Consumer<Runnable> onCancel;
+    private Consumer<String> onCandidateWordsFound;
 
 
     public TasksManager() {
@@ -62,21 +60,31 @@ public class TasksManager extends Task<Boolean> {
         decryptionManager.initializeMachineCode();
         Thread decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
-        if (decryptionManagerThread.isAlive()) {
-            System.out.println("DecryptionManager is alive");
-        } else {
-            System.out.println("DecryptionManager is dead");
-        }
+
+        List<Future<?>> futures = new CopyOnWriteArrayList<>();
+
         for (int i = 0; i < numberOfAgents; i++) {
-            tasksPool.execute(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize));
+            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
         }
+
+
+        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
+        candidateWordsOutputThread.start();
 
         tasksPool.shutdown();
         if (tasksPool.isShutdown()) {
             System.out.println("ExecutorService is shutdown");
         }
-        new Thread(new CandidateWords(outputQueue)).start();
 
+        while (!tasksPool.isTerminated()) {
+            try {
+                Thread.sleep(200);  //TODO: very bad practice
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        candidateWordsOutputThread.interrupt();
         return true;
     }
 
@@ -95,7 +103,7 @@ public class TasksManager extends Task<Boolean> {
         }
 
 
-        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue));
+        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
         candidateWordsOutputThread.start();
 
         tasksPool.shutdown();
@@ -138,5 +146,7 @@ public class TasksManager extends Task<Boolean> {
     public boolean isPaused() {
         return false;//TODO
     }
-}
 
+    public void setOnCandidateWordsFound(Consumer<String> onCandidateWordsFound) {
+        this.onCandidateWordsFound = onCandidateWordsFound; }
+}
