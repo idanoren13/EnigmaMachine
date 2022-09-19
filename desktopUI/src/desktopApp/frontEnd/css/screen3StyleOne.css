@@ -123,6 +123,19 @@
     -fx-font-weight: Bold;
 }
 
+#decryptionManagerGridPane .choice-box .label {
+    -fx-font-size: 14px;
+    -fx-font-weight: Normal;
+    -fx-text-fill: #505050;
+}
+
+#decryptionManagerGridPane .choice-box .label:focused {
+    -fx-text-fill: #505050;
+    -fx-highlight-fill: #505050;
+    -fx-highlight-text-fill: #ffffff;
+    -fx-accent: #505050;
+}
+
 #decryptionManagerGridPane #operationalLabel {
     -fx-font-size: 30px;
 }

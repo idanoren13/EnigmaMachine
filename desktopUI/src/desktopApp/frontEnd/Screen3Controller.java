@@ -15,9 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Screen3Controller implements Initializable {
     public Button startResumeDM;
@@ -78,6 +77,7 @@ public class Screen3Controller implements Initializable {
     @FXML private TextArea finalCandidatesTextArea;
     StringProperty finalCandidates;
     TasksManager tasksManagerLogic;
+    boolean existingInput = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -133,8 +133,6 @@ public class Screen3Controller implements Initializable {
             difficultyLevelLabel.setText(difficultyLevel.substring(0, 1).toUpperCase() + difficultyLevel.substring(1));
         });
 
-
-        setDMProperties.setOnAction(this::setDMPropertiesActionListener);
 //        setDMProperties.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
 //            if (ev.getCode() == KeyCode.ENTER) {
 //                setDMProperties.fire();
@@ -153,7 +151,9 @@ public class Screen3Controller implements Initializable {
         // Updates search dictionary
         searchInputTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchDictionaryWordsListView.getItems().clear();
-            searchDictionaryWordsListView.getItems().addAll(mainController.getDictionary());
+            searchDictionaryWordsListView.getItems().addAll( // Sorted dictionary list view
+                    mainController.getDictionary().stream().map((word) -> word.trim())
+                            .sorted().collect(Collectors.toList()));
         });
 
         searchDictionaryWordsListView.onMousePressedProperty().addListener((observable, oldValue, newValue) -> {
@@ -167,8 +167,8 @@ public class Screen3Controller implements Initializable {
         searchDictionaryWordsListView.editableProperty().setValue(false);
         searchDictionaryWordsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             String selectedWord = searchDictionaryWordsListView.getSelectionModel().getSelectedItem();
-            if (selectedWord != null) {
-                inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " " + selectedWord); // Added " "
+            if (selectedWord != null && inputToEncryptDecryptInput.getText() != null) {
+                inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + selectedWord + " "); // Added " "
             }
         });
 
@@ -215,8 +215,10 @@ public class Screen3Controller implements Initializable {
         }
     }
 
-    private void setDMPropertiesActionListener(ActionEvent event) {
+    @FXML
+    void setDMPropertiesActionListener(ActionEvent event) {
         try {
+            // totalMissionsLabel.setText
             mainController.setDMProperties(dmTotalAgents, dmMissionSize, dmDifficultyLevel);
             setBruteForceDisability(false);
             startResumeDM.setDisable(false);
@@ -244,12 +246,16 @@ public class Screen3Controller implements Initializable {
             if (messageInput.equals("")) {
                 throw new InputMismatchException("No encryption message was written.");
             }
+            if (messageInput.charAt(messageInput.length() - 1) == ' ') {
+                messageInput = messageInput.substring(0, messageInput.length() - 1);
+            }
             messageOutput = AppController.getConsoleApp().getMessageAndProcessIt(messageInput, true);
 
             new Alert(Alert.AlertType.CONFIRMATION, "Processed message: " + messageInput + " -> " + messageOutput).show();
             enigmaOutputTextField.setText(messageOutput);
             mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineState());
             mainController.updateLabelTextsToEmpty(this);
+            existingInput = true;
         } catch (InvalidCharactersException | InputMismatchException e) {
             new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
         }

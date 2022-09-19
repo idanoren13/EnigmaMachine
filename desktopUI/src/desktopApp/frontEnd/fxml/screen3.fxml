@@ -266,7 +266,7 @@
                               <Insets left="4.0" />
                            </padding>
                         </TextFlow>
-                        <Button fx:id="setDMProperties" minHeight="77.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+                        <Button fx:id="setDMProperties" minHeight="77.0" mnemonicParsing="false" onAction="#setDMPropertiesActionListener" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
                            <GridPane.margin>
                               <Insets top="30.0" />
                            </GridPane.margin>

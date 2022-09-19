@@ -12,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
 public class DecryptionManager implements Runnable {
 
     private final EnigmaEngine enigmaEngine;
-    private long combination;
+    private long totalMissions, currentProgress;
     private final BlockingQueue<MachineCode> queue;
     //    private final BlockingQueue<Runnable> taskPoolQueue;
     private final Difficulty difficulty;
@@ -30,23 +30,26 @@ public class DecryptionManager implements Runnable {
         this.encryptedText = encryptedText;
 //        this.executor = executor;
         this.taskSize = taskSize;
+        currentProgress = 0;
+
+        calculateMissionsNumber();
     }
 
-    public void calculateCombinationNumber() {
+    private void calculateMissionsNumber() {
         EngineDTO engineDTO = enigmaEngine.getEngineDTO();
         int ABCSize = enigmaEngine.getABCSize();
         switch (difficulty) {
             case EASY:
-                combination = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size());
+                totalMissions = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size());
                 break;
             case MEDIUM:
-                combination = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors();
+                totalMissions = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors();
                 break;
             case HARD:
-                combination = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors() * factorial(engineDTO.getSelectedRotors().size());
+                totalMissions = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors() * factorial(engineDTO.getSelectedRotors().size());
                 break;
             case IMPOSSIBLE:
-                combination = 1000000000000L;
+                totalMissions = 1_000_000_000_000L;
                 break;
             default:
         }
@@ -114,13 +117,14 @@ public class DecryptionManager implements Runnable {
     synchronized private void advanceMachineCodeEasy() {
         for (int i = 0; i < taskSize; i++) {
             machineCode.increment();
-            combination--;
+            currentProgress++;
+            // totalMissions--;
         }
     }
 
     @Override
     public void run() {
-        while (combination > 0) {
+        while (currentProgress < totalMissions) { // (0 < totalMissions) {
 //            System.out.println("Combination: " + combination);
 //            System.out.println("MachineCode: " + machineCode.getStartingPositions());
 //            System.out.println("Thread: " + Thread.currentThread().getName());
@@ -128,5 +132,9 @@ public class DecryptionManager implements Runnable {
                 advanceMachineCode();
             }
         }
+    }
+
+    public long getTotalMissions() {
+        return totalMissions;
     }
 }
