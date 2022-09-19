@@ -7,6 +7,7 @@ import javafx.concurrent.Task;
 import javafx.util.Pair;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.*;
 
 public class TasksManager extends Task<Boolean> {
@@ -16,7 +17,7 @@ public class TasksManager extends Task<Boolean> {
 
     private int numberOfAgents;
     private final BlockingQueue<MachineCode> machineCodeBlockingQueue;
-    private final BlockingQueue<Pair<List<String>, MachineCode>> outputBlockingQueue;
+    private final Queue<Pair<List<String>, MachineCode>> outputQueue;
     private String encryptedText;
     private final ExecutorService tasksPool;
     private long taskSize = 100;
@@ -28,7 +29,7 @@ public class TasksManager extends Task<Boolean> {
     public TasksManager() {
         this.numberOfAgents = 10;
         this.machineCodeBlockingQueue = new ArrayBlockingQueue<>(BLOCKINGQUEUE_SIZE);
-        this.outputBlockingQueue = new ArrayBlockingQueue<>(BLOCKINGQUEUE_SIZE);
+        this.outputQueue = new ConcurrentLinkedQueue<>();
         this.encryptedText = null;
         this.tasksPool = Executors.newFixedThreadPool(numberOfAgents);
     }
@@ -36,7 +37,7 @@ public class TasksManager extends Task<Boolean> {
     public TasksManager(int numberOfAgents, String encryptedText) {
         this.numberOfAgents = numberOfAgents;
         this.machineCodeBlockingQueue = new ArrayBlockingQueue<>(BLOCKINGQUEUE_SIZE);
-        this.outputBlockingQueue = new ArrayBlockingQueue<>(BLOCKINGQUEUE_SIZE);
+        this.outputQueue = new ConcurrentLinkedQueue<>();
         this.encryptedText = encryptedText;
         tasksPool = Executors.newFixedThreadPool(numberOfAgents);
     }
@@ -58,18 +59,18 @@ public class TasksManager extends Task<Boolean> {
         decryptionManagerThread.start();
         if (decryptionManagerThread.isAlive()) {
             System.out.println("DecryptionManager is alive");
-        }
-        else {
+        } else {
             System.out.println("DecryptionManager is dead");
         }
         for (int i = 0; i < numberOfAgents; i++) {
-            tasksPool.execute(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize));
+            tasksPool.execute(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize));
         }
 
         tasksPool.shutdown();
         if (tasksPool.isShutdown()) {
             System.out.println("ExecutorService is shutdown");
         }
+        new Thread(new CandidateWords(outputQueue)).start();
 
         return true;
     }
@@ -81,25 +82,32 @@ public class TasksManager extends Task<Boolean> {
         decryptionManager.initializeMachineCode();
         Thread decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
-//        for (int i = 0; i < numberOfAgents; i++) {
-//            tasksPool.execute(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize));
-//        }
-//        tasksPool.execute(new Agent(0, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize));
-//
-//        tasksPool.execute(new Agent(1, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize));
-//        tasksPool.execute(new Agent(2, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize));
-//        for(int i = 0; i < numberOfAgents; i++){
-//            new Thread(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize)).start();
-//        }
-        new Thread(new Agent(0, enigmaEngine.cloneMachine(), machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize)).start();
-        new Thread(new Agent(1, enigmaEngine.cloneMachine(), machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize)).start();
-        new Thread(new Agent(2, enigmaEngine.cloneMachine(), machineCodeBlockingQueue, encryptedText, outputBlockingQueue, taskSize)).start();
 
+        List<Future<?>> futures = new CopyOnWriteArrayList<>();
+
+        for (int i = 0; i < numberOfAgents; i++) {
+            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
+        }
+
+
+        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue));
+        candidateWordsOutputThread.start();
 
         tasksPool.shutdown();
         if (tasksPool.isShutdown()) {
             System.out.println("ExecutorService is shutdown");
         }
+
+
+        while (!tasksPool.isTerminated()) {
+            try {
+                Thread.sleep(200);  //TODO: very bad practice
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        candidateWordsOutputThread.interrupt();
     }
 
     public void setNumberOfAgents(int numberOfAgents) {

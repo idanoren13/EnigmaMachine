@@ -52,6 +52,24 @@ public class MachineCode {
         }
     }
 
+//    public static void main(String[] args) {
+//        List<Integer> rotorsIDInorder = new ArrayList<>();
+//        rotorsIDInorder.add(1);
+//        rotorsIDInorder.add(2);
+//        rotorsIDInorder.add(3);
+//        List<Character> startingPositions = new ArrayList<>();
+//        startingPositions.add('A');
+//        startingPositions.add('A');
+//        startingPositions.add('A');
+//        Reflector.ReflectorID selectedReflectorID = Reflector.ReflectorID.I;
+//        List<Pair<Character, Character>> plugBoard = new ArrayList<>();
+//        MachineCode mc = new MachineCode(rotorsIDInorder, startingPositions, selectedReflectorID, plugBoard, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+//        for (int i = 0; i < 400; i++) {
+//            System.out.println(mc.toString());
+//            mc.increment();
+//        }
+//    }
+
     @Override
     public String toString() {
         return "rotorsIDInorder=" + rotorsIDInorder +

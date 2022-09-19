@@ -14,7 +14,7 @@ public class Test {
 
     public static void main(String[] args) {
         try {
-            String message = "yellow sea see noon";
+            String message = "yellow";
             String encryptedMessage;
             InitializeEnigmaEngine initializeEnigmaEngine = new InitializeEnigmaEngine();
             EnigmaEngine engine = initializeEnigmaEngine.initializeEngine(InitializeEnigmaEngine.SourceMode.XML, "C:\\Users\\idano\\IdeaProjects\\EnigmaMachine\\Engine\\src\\Resources\\ex2-basic.xml");
@@ -23,9 +23,9 @@ public class Test {
             rotors.add(2);
             rotors.add(3);
             List<Character> startingPositions = new ArrayList<>();
-            startingPositions.add('G');
-            startingPositions.add('\'');
-            startingPositions.add('R');
+            startingPositions.add('T');
+            startingPositions.add('A');
+            startingPositions.add('F');
             engine.setSelectedRotors(rotors, startingPositions);
             engine.setSelectedReflector(Reflector.ReflectorID.II);
 

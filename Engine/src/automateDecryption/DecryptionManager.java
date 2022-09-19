@@ -114,23 +114,18 @@ public class DecryptionManager implements Runnable {
     synchronized private void advanceMachineCodeEasy() {
         for (int i = 0; i < taskSize; i++) {
             machineCode.increment();
-//            System.out.println(machineCode.getStartingPositions());
             combination--;
         }
-        System.out.println("Remaining combination: " + combination);
     }
 
     @Override
     public void run() {
         while (combination > 0) {
-            System.out.println("Combination: " + combination);
-            System.out.println("MachineCode: " + machineCode.getStartingPositions());
-            System.out.println("Thread: " + Thread.currentThread().getName());
-            try {
-                queue.put(machineCode);
+//            System.out.println("Combination: " + combination);
+//            System.out.println("MachineCode: " + machineCode.getStartingPositions());
+//            System.out.println("Thread: " + Thread.currentThread().getName());
+            if(queue.offer(machineCode)) {
                 advanceMachineCode();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

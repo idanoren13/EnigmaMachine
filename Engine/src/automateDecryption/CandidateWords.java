@@ -4,35 +4,55 @@ import enigmaEngine.MachineCode;
 import javafx.util.Pair;
 
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
+import java.util.Queue;
 
-public class CandidateWords implements Runnable {
-    private final BlockingQueue<Pair<List<String>, MachineCode>> outputQueue;
+public class CandidateWords extends Task<Boolean> {
+    private final Queue<Pair<List<String>, MachineCode>> outputQueue;
 
-    public CandidateWords(BlockingQueue<Pair<List<String>, MachineCode>> outputQueue) {
+    public CandidateWords(Queue<Pair<List<String>, MachineCode>> outputQueue) {
         this.outputQueue = outputQueue;
     }
 
-//    @Override
-//    protected Pair<List<String>, MachineCode> call() throws Exception {
-////        System.out.println("Candidate Words: " + outputQueue.peek().getKey());
-//        return outputQueue.poll();
+//        @Override
+//    public void run() {
+//        while (true) {
+//            Pair<List<String>, MachineCode> pair = null;
+//            pair = outputQueue.poll();
+//            if (pair != null) {
+//                System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());
+//                Pair<List<String>, MachineCode> finalPair = pair;
+//                System.out.println("Candidate Words: " +
+//                            finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
+//            }
+//
+//            if (Thread.currentThread().isInterrupted()) {
+//                System.out.println("Candidate Words Thread is Terminated");
+//                break;
+//            }
+////            System.out.println("candidate words thread is running");
+//        }
 //    }
 
     @Override
-    public void run() {
-        while(true) {
+    protected Boolean call() {
+        while (true) {
             Pair<List<String>, MachineCode> pair = null;
-            try {
-                pair = outputQueue.poll(5000, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            pair = outputQueue.poll();
+            if (pair != null) {
+                System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());
+                Pair<List<String>, MachineCode> finalPair = pair;
+                Platform.runLater(() -> {
+                    System.out.println("Candidate Words: " +
+                            finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
+
+                });
             }
-            if (pair == null) {
+
+            if (Thread.currentThread().isInterrupted()) {
+                System.out.println("Candidate Words Thread is Terminated");
                 break;
             }
-            System.out.println("Candidate Words: " + pair.getKey()+ "\nMachine Code: " + pair.getValue().toString());
-        }
+//            System.out.println("candidate words thread is running");
+        }        return Boolean.TRUE;
     }
 }
