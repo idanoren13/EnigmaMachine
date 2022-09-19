@@ -75,15 +75,14 @@ public class Screen3Controller implements Initializable {
     private int dmMissionSize;
     private Difficulty dmDifficultyLevel;
     // DM Output
-    @FXML
-    private TextArea finalCandidatesListView;
+    @FXML private TextArea finalCandidatesTextArea;
     StringProperty finalCandidates;
     TasksManager tasksManagerLogic;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         finalCandidates = new SimpleStringProperty("");
-        finalCandidatesListView.textProperty().bind(finalCandidates);
+        finalCandidatesTextArea.textProperty().bind(finalCandidates);
         // Only for binding the ENTER key to the input text field
         enterCurrentKeyboardInputButton.setOnAction(this::enterCurrentKeyboardInputButtonActionListener);
         keyboardInputVBox.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {

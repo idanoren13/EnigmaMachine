@@ -44,6 +44,7 @@ public class CandidateWords extends Task<Boolean> {
                 System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());
                 Pair<List<String>, MachineCode> finalPair = pair;
                 Platform.runLater(() -> {
+
                     System.out.println("Candidate Words: " +
                             finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
 

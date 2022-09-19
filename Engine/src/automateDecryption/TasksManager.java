@@ -9,6 +9,7 @@ import javafx.util.Pair;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 
 public class TasksManager extends Task<Boolean> {
     private static final int MIN_NUMBER_OF_AGENTS = 2;
@@ -24,6 +25,10 @@ public class TasksManager extends Task<Boolean> {
     private EnigmaEngine enigmaEngine;
     private WordsDictionary wordsDictionary;
     private Difficulty difficulty;
+
+
+
+    private Consumer<Runnable> onCancel;
 
 
     public TasksManager() {
