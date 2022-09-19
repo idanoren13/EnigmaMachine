@@ -1,6 +1,8 @@
 package automateDecryption;
 
 import enigmaEngine.MachineCode;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.util.Pair;
 
 import java.util.List;

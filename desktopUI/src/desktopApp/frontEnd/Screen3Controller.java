@@ -73,7 +73,7 @@ public class Screen3Controller implements Initializable {
     private Difficulty dmDifficultyLevel;
     // DM Output
     @FXML
-    private ListView<String> finalCandidatesListView;
+    private ListView<Label> finalCandidatesListView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
