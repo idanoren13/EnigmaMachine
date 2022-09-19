@@ -13,9 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 
@@ -111,7 +111,7 @@ public class Screen3Controller implements Initializable {
         });
 
         // Updates difficulty level
-        difficultyLevelInput.getItems().addAll("Easy", "Medium", "Hard", "Impossible");
+        difficultyLevelInput.getItems().addAll(Arrays.stream(Difficulty.values()).map(Enum::name).toArray(String[]::new));
         difficultyLevelInput.setValue("Easy");
         difficultyLevelInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             switch (newValue.intValue()) {
@@ -168,7 +168,7 @@ public class Screen3Controller implements Initializable {
         searchDictionaryWordsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             String selectedWord = searchDictionaryWordsListView.getSelectionModel().getSelectedItem();
             if (selectedWord != null) {
-                inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + selectedWord);
+                inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " " + selectedWord); // Added " "
             }
         });
 
@@ -258,8 +258,6 @@ public class Screen3Controller implements Initializable {
     public void initializeMachineStates(String machineStateConsoleString) {
         machineStatesConsole.setFirstMachineState(machineStateConsoleString);
         machineStatesConsole.setCurrentMachineState(machineStateConsoleString);
-
-        TextFields.bindAutoCompletion(searchInputTextField, AppController.getConsoleApp().getXmlLoader().getDictionaryWordsFromXML().toArray(new String[0]));
     }
 
     public void setMainController(AppController mainController) {
@@ -291,5 +289,9 @@ public class Screen3Controller implements Initializable {
 
     public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {
         this.tasksManagerLogic = decryptionManagerLogic;
+    }
+
+    public void updateCandidateWords(String s) {
+        finalCandidates.setValue(s);
     }
 }

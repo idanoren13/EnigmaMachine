@@ -251,11 +251,6 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </TextFlow>
-                  <Button id="dragAndDropSetCodeButton" fx:id="dragAndDropSetCodeButton" mnemonicParsing="false" onAction="#dragAndDropSetCodeButtonActionListener" prefHeight="41.0" prefWidth="270.0" text="Drag And Drop Set Code">
-                     <VBox.margin>
-                        <Insets bottom="4.0" left="23.0" />
-                     </VBox.margin>
-                  </Button>
                   <FlowPane hgap="30.0">
                      <children>
                         <Button id="generateRandomCodeButton" maxHeight="41.0" maxWidth="212.0" minHeight="41.0" minWidth="212.0" mnemonicParsing="false" onAction="#setConfigurationRandomly" prefHeight="41.0" prefWidth="212.0" text="Generate Random Code" textFill="GAINSBORO">
@@ -286,12 +281,12 @@
             </VBox>
          </left>
          <center>
-            <ScrollPane BorderPane.alignment="CENTER">
+            <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" BorderPane.alignment="TOP_CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
                <content>
-                  <VBox alignment="CENTER" prefHeight="0.0" spacing="3.0" styleClass="machine-state-vbox">
+                  <VBox alignment="CENTER" prefHeight="256.0" prefWidth="472.0" spacing="3.0" styleClass="machine-state-vbox">
                      <children>
                         <fx:include fx:id="firstMachineStateComponent" source="firstMachineState.fxml" />
                         <fx:include fx:id="currentMachineStateComponent" source="currentMachineState.fxml" />
