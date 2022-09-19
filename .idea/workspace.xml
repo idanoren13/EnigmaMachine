@@ -12,17 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="new machine clone. multiThreads test works">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_08_2022_13_22__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_08_2022_19_34__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" afterDir="false" />
     </list>
-    <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="">
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" afterDir="false" />
-    </list>
+    <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +49,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="EX2Merged" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,22 +57,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="5" changelist="18f19e7a-ce37-4849-a726-ede127dca6ac" />
-        <range start1="6" end1="8" start2="8" end2="9" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="9" end1="11" start2="10" end2="12" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="12" end1="13" start2="13" end2="14" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="17" end1="23" start2="18" end2="18" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="24" end1="25" start2="19" end2="20" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="26" end1="30" start2="21" end2="30" changelist="18f19e7a-ce37-4849-a726-ede127dca6ac" />
-        <range start1="31" end1="32" start2="31" end2="34" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="34" end1="35" start2="36" end2="37" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-        <range start1="37" end1="37" start2="39" end2="45" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -90,28 +72,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TODO_SCOPE": "All Places",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "create.test.in.the.same.root": "true",
-    "extract.method.default.visibility": "private",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
-    "last_opened_file_path": "C:/Users/idano/Desktop/08. Java FX",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "project.scopes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/idano/Desktop/08. Java FX&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="consoleApp" />
@@ -495,6 +477,12 @@
           <properties class="java.util.ConcurrentModificationException" package="java.util" />
           <option name="timeStamp" value="28" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java</url>
+          <line>13</line>
+          <properties field="MIN_NUMBER_OF_AGENTS" class="automateDecryption.TasksManager" />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

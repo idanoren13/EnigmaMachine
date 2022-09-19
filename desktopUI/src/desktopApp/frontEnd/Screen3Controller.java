@@ -1,8 +1,11 @@
 package desktopApp.frontEnd;
 
 import automateDecryption.Difficulty;
+import automateDecryption.TasksManager;
 import desktopApp.impl.models.MachineStateConsole;
 import enigmaEngine.exceptions.InvalidCharactersException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,10 +76,14 @@ public class Screen3Controller implements Initializable {
     private Difficulty dmDifficultyLevel;
     // DM Output
     @FXML
-    private ListView<Label> finalCandidatesListView;
+    private TextArea finalCandidatesListView;
+    StringProperty finalCandidates;
+    TasksManager tasksManagerLogic;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        finalCandidates = new SimpleStringProperty("");
+        finalCandidatesListView.textProperty().bind(finalCandidates);
         // Only for binding the ENTER key to the input text field
         enterCurrentKeyboardInputButton.setOnAction(this::enterCurrentKeyboardInputButtonActionListener);
         keyboardInputVBox.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
@@ -136,8 +143,6 @@ public class Screen3Controller implements Initializable {
 //            }
 //        });
 
-        startResumeDM.setOnAction(this::StartResumeDMActionListener);
-
         pauseDM.setOnAction(this::PauseDMActionListener);
 
         stopDM.setOnAction(this::StopDMActionListener);
@@ -195,8 +200,10 @@ public class Screen3Controller implements Initializable {
         pauseDM.setDisable(true);
     }
 
-    private void StartResumeDMActionListener(ActionEvent actionEvent) {
+    @FXML
+    void StartResumeDMActionListener(ActionEvent actionEvent) {
         if (startResumeDM.getText().contains("Start")) {
+
             startResumeDM.setText(startResumeDM.getText().replace("Start", "Resume"));
         }
         setDMProperties.setDisable(true);
@@ -207,7 +214,6 @@ public class Screen3Controller implements Initializable {
             mainController.setEncryptedText(enigmaOutputTextField.getText());
             mainController.startResumeDM();
         }
-
     }
 
     private void setDMPropertiesActionListener(ActionEvent event) {
@@ -281,5 +287,10 @@ public class Screen3Controller implements Initializable {
 
     public void updateLabelTextsToEmpty() {
         inputToEncryptDecryptInput.setText("");
+        finalCandidates.setValue("");
+    }
+
+    public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {
+        this.tasksManagerLogic = decryptionManagerLogic;
     }
 }

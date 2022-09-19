@@ -1,6 +1,7 @@
 package desktopApp.frontEnd;
 
 import automateDecryption.Difficulty;
+import automateDecryption.TasksManager;
 import desktopApp.impl.Console;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -27,6 +28,7 @@ public class AppController {
             screen1ComponentController.setMainController(this);
             screen2ComponentController.setMainController(this);
             screen3ComponentController.setMainController(this);
+            setTasksManagerLogic(consoleApp.getBruteForceTaskManager());
         }
     }
 
@@ -99,5 +101,9 @@ public class AppController {
 
     public void setEncryptedText(String text) {
         consoleApp.setEncryptedText(text);
+    }
+
+    public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {
+        screen3ComponentController.setTasksManagerLogic(decryptionManagerLogic);
     }
 }

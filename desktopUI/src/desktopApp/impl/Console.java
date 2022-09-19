@@ -52,6 +52,10 @@ public class Console implements Input {
         return xmlLoader;
     }
 
+    public TasksManager getBruteForceTaskManager() {
+        return bruteForceTaskManager;
+    }
+
     @Override
     public int getMessageCounter() {
         EngineDTO DTO = engine.getEngineDTO();
