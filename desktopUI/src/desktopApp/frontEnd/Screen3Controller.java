@@ -23,7 +23,6 @@ public class Screen3Controller implements Initializable {
     public Button startResumeDM;
     public Button pauseDM;
     public Button stopDM;
-    public Button spaceButton;
     // TODO: implement all logic for screen 3 after implementing screens 1 and 2
     // Main component
     private AppController mainController;
@@ -78,7 +77,7 @@ public class Screen3Controller implements Initializable {
     @FXML private TextArea finalCandidatesTextArea;
     StringProperty finalCandidates;
     TasksManager tasksManagerLogic;
-    boolean existingInput = false;
+    @FXML Label progressLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -181,19 +180,18 @@ public class Screen3Controller implements Initializable {
             }
         });
 
-        spaceButton.setOnAction((event) -> {
-            inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " ");
-        });
-
         // Model
         machineStatesConsole = new MachineStateConsole();
         firstMachineStateLabel.textProperty().bind(machineStatesConsole.firstMachineStateProperty());
         currentMachineStateLabel.textProperty().bind(machineStatesConsole.currentMachineStateProperty());
 
+        //progressLabel.setText(Double.toString(tasksManagerLogic.getProgress() * 100));
     }
 
     private void updateMissionsLabel() {
-        if (totalMissionsLabel.equals("NaN")) {
+        try {
+            int i = Integer.parseInt(missionSizeLabel.getText());
+        } catch (NumberFormatException e) {
             totalMissionsLabel.setText("0");
         }
         totalMissionsLabel.setText(Long.toString(
@@ -249,8 +247,7 @@ public class Screen3Controller implements Initializable {
         pauseDM.setDisable(true);
         setDMProperties.setDisable(false);
         startResumeDM.setDisable(false);
-        tasksManagerLogic.stop();
-
+        tasksManagerLogic.cancel();
     }
 
     private void PauseDMActionListener(ActionEvent actionEvent) {
@@ -316,7 +313,6 @@ public class Screen3Controller implements Initializable {
             enigmaOutputTextField.setText(messageOutput);
             mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineState());
             mainController.updateLabelTextsToEmpty(this);
-            existingInput = true;
         } catch (InvalidCharactersException | InputMismatchException e) {
             new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
         }
@@ -352,10 +348,6 @@ public class Screen3Controller implements Initializable {
     public void updateLabelTextsToEmpty() {
         inputToEncryptDecryptInput.setText("");
         finalCandidates.setValue("");
-    }
-
-    public void setTotalMissions(long totalMissionsLabel) {
-        this.totalMissionsLabel.setText(Long.toString(totalMissionsLabel));
     }
 
     public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {

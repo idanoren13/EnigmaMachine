@@ -10,38 +10,21 @@ import java.util.Queue;
 import java.util.function.Consumer;
 
 public class CandidateWords extends Task<Boolean> {
+    private static int currentProgress;
     private final Queue<Pair<List<String>, MachineCode>> outputQueue;
     private Consumer<String> onCandidateWordsFound;
 
     public CandidateWords(Queue<Pair<List<String>, MachineCode>> outputQueue, Consumer<String> onCandidateWordsFound) {
+        currentProgress = 0;
+
         this.outputQueue = outputQueue;
         this.onCandidateWordsFound = onCandidateWordsFound;
     }
 
-//        @Override
-//    public void run() {
-//        while (true) {
-//            Pair<List<String>, MachineCode> pair = null;
-//            pair = outputQueue.poll();
-//            if (pair != null) {
-//                System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());
-//                Pair<List<String>, MachineCode> finalPair = pair;
-//                System.out.println("Candidate Words: " +
-//                            finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
-//            }
-//
-//            if (Thread.currentThread().isInterrupted()) {
-//                System.out.println("Candidate Words Thread is Terminated");
-//                break;
-//            }
-////            System.out.println("candidate words thread is running");
-//        }
-//    }
-
     @Override
-    protected Boolean call() {
+    protected synchronized Boolean call() {
         while (true) {
-            Pair<List<String>, MachineCode> pair = null;
+            Pair<List<String>, MachineCode> pair;
             pair = outputQueue.poll();
             if (pair != null) {
 //                System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());

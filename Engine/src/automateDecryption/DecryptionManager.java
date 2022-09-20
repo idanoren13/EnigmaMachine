@@ -50,7 +50,9 @@ public class DecryptionManager implements Runnable {
                 totalMissions = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors() * factorial(engineDTO.getSelectedRotors().size());
                 break;
             case IMPOSSIBLE:
-                totalMissions = 1_000_000_000_000L;
+                totalMissions = (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors()
+                        * factorial(engineDTO.getSelectedRotors().size()
+                        * binomial(engineDTO.getSelectedRotors().size(), engineDTO.getTotalNumberOfRotors()));
                 break;
             default:
         }
@@ -62,6 +64,20 @@ public class DecryptionManager implements Runnable {
             result *= i;
         }
         return result;
+    }
+
+    private int binomial(int n, int k)
+    {
+
+        // Base Cases
+        if (k > n)
+            return 0;
+        if (k == 0 || k == n)
+            return 1;
+
+        // Recur
+        return binomial(n - 1, k - 1)
+                + binomial(n - 1, k);
     }
 
     public void initializeMachineCode() {
