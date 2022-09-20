@@ -15,14 +15,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class Screen3Controller implements Initializable {
     public Button startResumeDM;
     public Button pauseDM;
     public Button stopDM;
-    public Button spaceButton;
     // TODO: implement all logic for screen 3 after implementing screens 1 and 2
     // Main component
     private AppController mainController;
@@ -172,9 +173,6 @@ public class Screen3Controller implements Initializable {
             }
         });
 
-        spaceButton.setOnAction((event) -> {
-            inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " ");
-        });
 
         // Model
         machineStatesConsole = new MachineStateConsole();
@@ -298,6 +296,56 @@ public class Screen3Controller implements Initializable {
     }
 
     public void updateCandidateWords(String s) {
-        finalCandidates.setValue(s);
+        if (!finalCandidates.getValue().equals("")) {
+            finalCandidates.setValue(finalCandidates.getValue() + "\n" + s);
+        } else {
+            finalCandidates.setValue(s);
+        }
     }
+
+
+
+    /*private UIAdapter createUIAdapter() {
+        return new UIAdapter(
+                dmData -> {
+                    DecryptionManagerUtils.log("EDT: CREATE new tile for [" + dmData.toString() + "]");
+                    createTile(dmData.getWordsDictionary(), dmData.getMachineCode());
+                },
+                histogramData -> {
+                    DecryptionManagerUtils.log("EDT: UPDATE tile for [" + histogramData.toString() + "]");
+                    SingleAgentController singleWordController = wordToTileController.get(histogramData.getWord());
+                    if (singleWordController != null && singleWordController.getCount() != histogramData.getCount()) {
+                        singleWordController.setCount(histogramData.getCount());
+                    } else {
+                        DecryptionManagerUtils.log("ERROR ! Can't find tile for [" + histogramData.getWord() + "] with count " + histogramData.getCount());
+                    }
+                },
+                () -> {
+                    DecryptionManagerUtils.log("EDT: INCREASE total distinct words");
+                    totalDistinctWords.set(totalDistinctWords.get() + 1);
+                },
+                (delta) -> {
+                    DecryptionManagerUtils.log("EDT: INCREASE total processed words");
+                    totalProcessedWords.set(totalProcessedWords.get() + delta);
+                }
+        );
+        return null;
+    }
+
+    private void createTile(List<String> dictionaryWords, String machineCode) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HistogramResourcesConstants.MAIN_FXML_RESOURCE);
+            Node singleWordTile = loader.load();
+
+            SingleAgentController singleWordController = loader.getController();
+            singleWordController.setWordsDictionary(dictionaryWords);
+            singleWordController.setMachineCode(machineCode);
+
+            finalCandidatesTextArea.getChildren().add(singleWordTile);
+            missionToTileController.put(machineCode, singleWordController);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 }

@@ -76,7 +76,6 @@ public class Agent implements Runnable {
                 if (wordsDictionary.isCandidateString(processedText)) {
                     outputQueue.add(new Pair<>(wordsDictionary.candidateWords(processedText), machineCode));
                 }
-
                 machineCode.increment();
             }
         }

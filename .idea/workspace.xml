@@ -11,12 +11,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="all changes together">
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="up to now">
+      <change afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManagerUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AgentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/BasicAgentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/SingleAgentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/UIAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/UIAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
@@ -106,6 +109,9 @@
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\header" />
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\consoleUI\src\consoleApp" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="desktopApp.frontEnd" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Program">
     <configuration name="MSCDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -113,7 +119,7 @@
       <module name="desktopUI" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="desktopApp.*" />
+          <option name="PATTERN" value="automateDecryption.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,7 +147,7 @@
       <module name="desktopUI" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="desktopApp.*" />
+          <option name="PATTERN" value="automateDecryption.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -444,7 +450,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1663620553900</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎-00030" summary="up to now">
+      <created>1663624078408</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL‎-00030" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1663624078408</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +533,8 @@
     <MESSAGE value="changes to text" />
     <MESSAGE value="text" />
     <MESSAGE value="all changes together" />
-    <option name="LAST_COMMIT_MESSAGE" value="all changes together" />
+    <MESSAGE value="up to now" />
+    <option name="LAST_COMMIT_MESSAGE" value="up to now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -534,11 +548,6 @@
           <line>14</line>
           <properties field="MIN_NUMBER_OF_AGENTS" class="automateDecryption.TasksManager" />
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
