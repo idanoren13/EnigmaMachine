@@ -66,8 +66,7 @@ public class DecryptionManager implements Runnable {
         return result;
     }
 
-    private int binomial(int n, int k)
-    {
+    private int binomial(int n, int k) {
 
         // Base Cases
         if (k > n)
@@ -215,17 +214,20 @@ public class DecryptionManager implements Runnable {
 
     @Override
     public void run() {
-        while (currentProgress < totalMissions) { // (0 < totalMissions) {
-//            System.out.println("Combination: " + combination);
-//            System.out.println("MachineCode: " + machineCode.getStartingPositions());
-//            System.out.println("Thread: " + Thread.currentThread().getName());
-            if (queue.offer(machineCode.clone())) {
-//                System.out.println("currentProgress = " + currentProgress + " " + machineCode.toString());
-                advanceMachineCode();
-            } else {
-//                System.out.println("queue is full next machine code: " + machineCode.toString());
+        try {
+            while (currentProgress < totalMissions) { // (0 < totalMissions) {
+                System.out.println("currentProgress = " + currentProgress);
+                if (queue.offer(machineCode.clone())) {
+                    advanceMachineCode();
+                }
+                if (Thread.currentThread().isInterrupted()) {
+                    System.out.println("Thread: " + Thread.currentThread().getName() + " is interrupted");
+                    queue.clear();
+                    throw new InterruptedException();
+                }
             }
-
+        } catch (InterruptedException e) {
+            return;
         }
     }
 

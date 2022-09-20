@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.TextFlow?>
-
+<?import java.net.URL?>
 <ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen3Controller">
    <opaqueInsets>
       <Insets />
@@ -269,45 +256,57 @@
                   </VBox>
                </children>
             </GridPane>
-            <HBox id="decryptionManagerStatusHBox" prefHeight="90.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+            <GridPane VBox.vgrow="SOMETIMES">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <Label id="statusHeader" alignment="TOP_LEFT" prefWidth="232.0" text="DM Progress Status" wrapText="true" HBox.hgrow="SOMETIMES">
-                     <HBox.margin>
-                        <Insets left="20.0" top="28.0" />
-                     </HBox.margin>
-                  </Label>
-                  <VBox alignment="TOP_CENTER" spacing="20.0">
-                     <HBox.margin>
-                        <Insets bottom="20.0" />
-                     </HBox.margin>
+                  <HBox id="decryptionManagerStatusHBox" prefHeight="90.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" prefWidth="140.0" text="Final Candidates:" wrapText="true" />
-                        <HBox spacing="8.0">
+                        <Label id="statusHeader" alignment="TOP_LEFT" prefWidth="232.0" text="DM Progress Status" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                           <HBox.margin>
+                              <Insets left="20.0" top="28.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox alignment="TOP_CENTER" spacing="20.0">
+                           <HBox.margin>
+                              <Insets bottom="20.0" />
+                           </HBox.margin>
                            <children>
-                              <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" text="Progress:" wrapText="true" />
-                              <Label id="finalCandidates" fx:id="progressLabel" alignment="TOP_LEFT" contentDisplay="TOP" text="0" wrapText="true">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets right="-6.0" />
-                                 </padding>
-                              </Label>
-                              <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" text="\%" wrapText="true" />
+                              <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" prefWidth="140.0" text="Final Candidates:" wrapText="true" />
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" text="Progress:" wrapText="true" />
+                                    <Label id="finalCandidates"  fx:id="progressLabel" alignment="TOP_LEFT" contentDisplay="TOP" text="0" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets right="-6.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" text="\%" wrapText="true" />
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="50.0" top="10.0" />
+                           </HBox.margin>
+                           <content>
+                              <TextArea fx:id="finalCandidatesTextArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="67.0" prefWidth="398.0" />
+                           </content>
+                        </ScrollPane>
                      </children>
-                  </VBox>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="400.0" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets bottom="10.0" right="50.0" top="10.0" />
-                     </HBox.margin>
-                     <content>
-                        <TextArea fx:id="finalCandidatesTextArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="67.0" prefWidth="398.0" />
-                     </content>
-                  </ScrollPane>
+                  </HBox>
+                  <ProgressBar fx:id="progressBar" prefHeight="49.0" prefWidth="897.0" progress="0.0" GridPane.rowIndex="1" />
                </children>
-            </HBox>
+            </GridPane>
          </children>
       </VBox>
    </content>

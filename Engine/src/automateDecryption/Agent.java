@@ -7,12 +7,14 @@ import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.interfaces.EnigmaEngine;
+import javafx.application.Platform;
 import javafx.util.Pair;
 
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 public class Agent implements Runnable {
 
@@ -22,10 +24,11 @@ public class Agent implements Runnable {
     private final WordsDictionary wordsDictionary;
     private final BlockingQueue<MachineCode> machineCodeInputQueue;
     private final Queue<Pair<List<String>, MachineCode>> outputQueue;
+    private final Consumer<Integer> onProgressChanged;
     private final long taskSize;
 
 
-    public Agent(int id, EnigmaEngine enigmaEngine, BlockingQueue<MachineCode> machineCodeBlockingQueue, String encryptedText, Queue<Pair<List<String>, MachineCode>> outputQueue, long taskSize) {
+    public Agent(int id, EnigmaEngine enigmaEngine, BlockingQueue<MachineCode> machineCodeBlockingQueue, String encryptedText, Queue<Pair<List<String>, MachineCode>> outputQueue, long taskSize, Consumer<Integer> onProgressChanged) {
         this.wordsDictionary = enigmaEngine.getWordsDictionary();
         this.outputQueue = outputQueue;
         this.taskSize = taskSize;
@@ -33,7 +36,8 @@ public class Agent implements Runnable {
         this.encryptedText = encryptedText;
         this.enigmaEngine = enigmaEngine.deepClone();
         this.machineCodeInputQueue = machineCodeBlockingQueue;
-//        System.out.println("Agent " + id + " is created "+ machineCodeInputQueue.toString());
+        this.onProgressChanged = onProgressChanged;
+
     }
 
 
@@ -53,7 +57,7 @@ public class Agent implements Runnable {
                          InvalidPlugBoardException ignored) {
                     System.out.println("Invalid machine code");
                 }
-//                System.out.println("Agent " + id + " is processing " + machineCode.toString());
+                System.out.println("Agent " + id + " is processing " + machineCode.toString());
 
                 if (machineCode.getStartingPositions().get(0) == Test.firstRotorStartingPosition
                         && machineCode.getStartingPositions().get(1) == Test.secondRotorStartingPosition
@@ -76,6 +80,9 @@ public class Agent implements Runnable {
 
 
                 machineCode.increment();
+                Platform.runLater(() -> {
+                    onProgressChanged.accept(1);
+                });
                 enigmaEngine.reset();
             }
         }
@@ -85,8 +92,10 @@ public class Agent implements Runnable {
     public void run() {
         try {
             call();
+        } catch (InterruptedException e) {
+            return;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

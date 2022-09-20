@@ -17,6 +17,7 @@ import enigmaEngine.schemaBinding.CTEEnigma;
 import enigmaEngine.schemaBinding.CTEReflector;
 import enigmaEngine.schemaBinding.CTERotor;
 import immutables.engine.EngineDTO;
+import javafx.beans.value.ObservableValue;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBContext;
@@ -209,7 +210,7 @@ public class Console implements Input {
         }
         List<Integer> finalSelectedRotorsDeque = InitCode.createSelectedRotorsList(rotors);
         Integer invalidRotorID = InitCode.createSelectedRotorsList(rotors)
-                .stream().filter(rotorID -> rotorID > finalSelectedRotorsDeque.size() || rotorID < 1)
+                .stream().filter(rotorID -> rotorID > engine.getRotors().size() || rotorID < 1)
                 .findFirst().orElse(null); // Now we can track the wrong input instead of just getting an exception.
 
         if (invalidRotorID != null) {
@@ -320,5 +321,18 @@ public class Console implements Input {
 
     public void setEncryptedText(String text) {
         bruteForceTaskManager.setEncryptedText(text);
+    }
+
+    public void stopDM() {
+        bruteForceTaskManager.stop();
+    }
+
+    public ObservableValue<? extends Number> getProgressProperty() {
+        return bruteForceTaskManager.getProgressProperty();
+    }
+
+    public void startDM() {
+        bruteForceTaskManager.initialize(engine, difficulty);
+        new Thread(bruteForceTaskManager).start();
     }
 }

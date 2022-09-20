@@ -24,6 +24,8 @@ public class Screen3Controller implements Initializable {
     public Button pauseDM;
     public Button stopDM;
     public Button spaceButton;
+    public Label progressLabel;
+//    public ProgressBar progressBar;
     // TODO: implement all logic for screen 3 after implementing screens 1 and 2
     // Main component
     private AppController mainController;
@@ -252,7 +254,7 @@ public class Screen3Controller implements Initializable {
         pauseDM.setDisable(true);
         setDMProperties.setDisable(false);
         startResumeDM.setDisable(false);
-//        tasksManagerLogic.stop();
+        mainController.stopDM();
 
     }
 
@@ -266,8 +268,8 @@ public class Screen3Controller implements Initializable {
     @FXML
     void StartResumeDMActionListener(ActionEvent actionEvent) {
         if (startResumeDM.getText().contains("Start")) {
-
             startResumeDM.setText(startResumeDM.getText().replace("Start", "Resume"));
+//            mainController.startDM();
         }
         setDMProperties.setDisable(true);
         startResumeDM.setDisable(true);
@@ -277,6 +279,7 @@ public class Screen3Controller implements Initializable {
             mainController.setEncryptedText(enigmaOutputTextField.getText());
             mainController.startResumeDM();
         }
+//        progressBar.progressProperty().bind(mainController.getProgressProperty());
     }
 
     @FXML
@@ -368,4 +371,6 @@ public class Screen3Controller implements Initializable {
     public void updateCandidateWords(String s) {
         finalCandidates.setValue(finalCandidatesTextArea.getText() +'\n' + s );
     }
+
+
 }

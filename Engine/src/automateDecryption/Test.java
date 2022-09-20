@@ -51,7 +51,7 @@ public class Test {
             tasksManager.initialize(engine, Difficulty.EASY);
 //            new Thread(tasksManager).start();
 
-            tasksManager.test();
+//            tasksManager.test();
 
         } catch (InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException | IOException |
                  UnknownSourceException | InvalidMachineException | InvalidCharactersException e) {

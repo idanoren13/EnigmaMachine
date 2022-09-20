@@ -39,11 +39,11 @@ public class Program extends Application {
         }
         // runMachine();
 }
-
     public static void main(String[] args) {
         Thread.currentThread().setName("main");
         Application.launch(args);
     }
+
 
     /*private static void runMachine() {
         Console consoleApp = new Console();

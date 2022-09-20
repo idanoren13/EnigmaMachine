@@ -4,31 +4,31 @@
     <artifacts-to-build>
       <artifact name="DTO:jar" />
       <artifact name="Engine:jar" />
-      <artifact name="consoleUI:jar" />
+      <artifact name="desktopUI:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="fixed screen 3">
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DTO_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Engine_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/desktopUI_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/test2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/test2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/WordsDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/WordsDictionary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/MSCDebug.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,28 +82,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/idano/Desktop/08. Java FX&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TODO_SCOPE": "All Places",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "create.test.in.the.same.root": "true",
+    "extract.method.default.visibility": "private",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
+    "last_opened_file_path": "C:/Users/idano/Desktop/08. Java FX",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "project.scopes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="enigmaEngine.exceptions" />
@@ -472,7 +472,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1663634198156</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fix cloning threads works good">
+      <created>1663642829221</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1663642829221</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java">
+      <created>1663642855297</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1663642855298</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,7 +553,9 @@
     <MESSAGE value="all changes together" />
     <MESSAGE value="up to now" />
     <MESSAGE value="fixed screen 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed screen 3" />
+    <MESSAGE value="fix cloning threads works good" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

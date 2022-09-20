@@ -3,6 +3,7 @@ package desktopApp.frontEnd;
 import automateDecryption.Difficulty;
 import automateDecryption.TasksManager;
 import desktopApp.impl.Console;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 
@@ -18,6 +19,7 @@ public class AppController {
     @FXML private Screen1Controller screen1ComponentController;
     @FXML private Screen2Controller screen2ComponentController;
     @FXML private Screen3Controller screen3ComponentController;
+    private ObservableValue<? extends Number> progressProperty;
 
     @FXML
     public void initialize() {
@@ -97,14 +99,39 @@ public class AppController {
 
     public void startResumeDM() {
         consoleApp.startResumeDM();
+//        progressProperty = consoleApp.getProgressProperty();
+
+    }
+
+    private void setProgressProperty(ObservableValue<String> progressProperty) {
+
     }
 
     public void setEncryptedText(String text) {
         consoleApp.setEncryptedText(text);
+        consoleApp.getBruteForceTaskManager().setOnProgressChanged((progress) -> {
+//            screen3ComponentController.updateProgress(progress);
+        });
     }
 
     public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {
         screen3ComponentController.setTasksManagerLogic(decryptionManagerLogic);
         consoleApp.getBruteForceTaskManager().setOnCandidateWordsFound(screen3ComponentController::updateCandidateWords);
     }
+
+    public void stopDM() {
+        consoleApp.stopDM();
+    }
+
+    public ObservableValue<? extends Number> getProgressProperty() {
+        return progressProperty;
+    }
+
+    public void startDM() {
+        consoleApp.startDM();
+    }
+
+//    public void setProgressProperty(ObservableValue<String> progressProperty) {
+//        this.progressProperty = progressProperty;
+//    }
 }

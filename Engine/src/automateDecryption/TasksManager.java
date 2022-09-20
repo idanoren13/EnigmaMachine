@@ -3,6 +3,8 @@ package automateDecryption;
 import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.interfaces.EnigmaEngine;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.util.Pair;
 
@@ -31,7 +33,11 @@ public class TasksManager extends Task<Boolean> {
     private Difficulty difficulty;
     private Consumer<Runnable> onCancel;
     private Consumer<String> onCandidateWordsFound;
-    private Consumer<String> onTotalMissions;
+    private Consumer<? extends Number> onProgressChanged;
+    private SimpleDoubleProperty progressProperty;
+
+    Thread decryptionManagerThread;
+    Thread candidateWordsOutputThread;
     private boolean paused = false;
     private Object pauseLock = new Object();
 
@@ -58,6 +64,7 @@ public class TasksManager extends Task<Boolean> {
         this.wordsDictionary = enigmaEngine.getWordsDictionary();
         this.difficulty = difficulty;
         System.out.println("Number of agents: " + numberOfAgents);
+        progressProperty = new SimpleDoubleProperty(0);
     }
 
     @Override
@@ -66,16 +73,18 @@ public class TasksManager extends Task<Boolean> {
         DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine, machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
         decryptionManager.initializeMachineCode();
         this.totalMissions = decryptionManager.getTotalMissions();
-        Thread decryptionManagerThread = new Thread(decryptionManager);
+        decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
+
+
 
         List<Future<?>> futures = new CopyOnWriteArrayList<>();
 
         for (int i = 0; i < numberOfAgents; i++) {
-            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
+            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize, (Consumer<Integer>) onProgressChanged)));
         }
 
-        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
+        candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
         candidateWordsOutputThread.start();
 
         tasksPool.shutdown();
@@ -85,7 +94,7 @@ public class TasksManager extends Task<Boolean> {
 
         while (!tasksPool.isTerminated()) {
             try {
-                Thread.sleep(200);  //TODO: very bad practice
+                Thread.sleep(1);  //TODO: very bad practice
             } catch (InterruptedException e) {
                 halt = true;
                 System.out.println("Stopped");
@@ -96,53 +105,53 @@ public class TasksManager extends Task<Boolean> {
         return true;
     }
 
-    public void test() {
-        System.out.println("Starting TasksManager");
-        DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine.deepClone(), machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
-        decryptionManager.initializeMachineCode();
-        Thread decryptionManagerThread = new Thread(decryptionManager);
-        decryptionManagerThread.start();
-
-        List<Future<?>> futures = new CopyOnWriteArrayList<>();
-
-        for (int i = 0; i < numberOfAgents; i++) {
-            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
-        }
-
-
-        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
-        candidateWordsOutputThread.start();
-
-        tasksPool.shutdown();
-        if (tasksPool.isShutdown()) {
-            System.out.println("ExecutorService is shutdown");
-        }
-
-        if (isPaused()) {
-            synchronized (pauseLock) {
-                if (isPaused()) {
-                    try {
-                        this.wait();
-                    } catch (InterruptedException e) {
-                        halt = true;
-                        // e.printStackTrace();
-                    }
-                }
-            }
-        }
-
-
-        while (!tasksPool.isTerminated()) {
-            try {
-                Thread.sleep(200);  //TODO: very bad practice
-            } catch (InterruptedException e) {
-                halt = true;
-                System.out.println("DM Stopped");
-            }
-        }
-
-        candidateWordsOutputThread.interrupt();
-    }
+//    public void test() {
+//        System.out.println("Starting TasksManager");
+//        DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine.deepClone(), machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
+//        decryptionManager.initializeMachineCode();
+//        Thread decryptionManagerThread = new Thread(decryptionManager);
+//        decryptionManagerThread.start();
+//
+//        List<Future<?>> futures = new CopyOnWriteArrayList<>();
+//
+//        for (int i = 0; i < numberOfAgents; i++) {
+//            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
+//        }
+//
+//
+//        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
+//        candidateWordsOutputThread.start();
+//
+//        tasksPool.shutdown();
+//        if (tasksPool.isShutdown()) {
+//            System.out.println("ExecutorService is shutdown");
+//        }
+//
+//        if (isPaused()) {
+//            synchronized (pauseLock) {
+//                if (isPaused()) {
+//                    try {
+//                        this.wait();
+//                    } catch (InterruptedException e) {
+//                        halt = true;
+//                        // e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//        while (!tasksPool.isTerminated()) {
+//            try {
+//                Thread.sleep(200);  //TODO: very bad practice
+//            } catch (InterruptedException e) {
+//                halt = true;
+//                System.out.println("DM Stopped");
+//            }
+//        }
+//
+//        candidateWordsOutputThread.interrupt();
+//    }
 
     public void setNumberOfAgents(int numberOfAgents) {
         this.numberOfAgents = numberOfAgents;
@@ -170,4 +179,30 @@ public class TasksManager extends Task<Boolean> {
 
     public void setOnCandidateWordsFound(Consumer<String> onCandidateWordsFound) {
         this.onCandidateWordsFound = onCandidateWordsFound; }
+
+    public void setOnProgressChanged(Consumer<? extends Number> onProgressChanged) {
+        this.onProgressChanged = onProgressChanged;
+    }
+
+    public void stop() {
+        halt = true;
+        decryptionManagerThread.interrupt();
+        candidateWordsOutputThread.interrupt();
+        tasksPool.shutdownNow();
+        resetTaskManager();
+        System.out.println("TasksManager stopped");
+    }
+
+    private void resetTaskManager() {
+        this.machineCodeBlockingQueue.clear();
+        this.outputQueue.clear();
+        this.encryptedText = null;
+//        this.tasksPool.shutdownNow();
+        this.totalMissions = 0;
+        this.progressProperty.set(0);
+    }
+
+    public ObservableValue<? extends Number> getProgressProperty() {
+        return progressProperty;
+    }
 }
