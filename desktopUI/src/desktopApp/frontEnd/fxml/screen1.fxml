@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen1Controller">
+<ScrollPane fx:id="mainScrollPane" cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen1Controller">
    <content>
       <BorderPane styleClass="grid-pane">
          <top>
@@ -224,7 +224,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <ChoiceBox fx:id="reflectorChoiceBox" maxWidth="166.0" minHeight="30.0" minWidth="166.0" prefHeight="30.0" prefWidth="166.0" stylesheets="@../css/general.css">
+                              <ChoiceBox fx:id="reflectorChoiceBox" maxWidth="166.0" minHeight="30.0" minWidth="166.0" prefHeight="30.0" prefWidth="166.0" stylesheets="@../css/generalStyleOne.css">
                                  <VBox.margin>
                                     <Insets top="1.0" />
                                  </VBox.margin>
@@ -305,6 +305,6 @@
    </opaqueInsets>
    <stylesheets>
       <URL value="@../css/screen1StyleOne.css" />
-      <URL value="@../css/general.css" />
+      <URL value="@../css/generalStyleOne.css" />
    </stylesheets>
 </ScrollPane>
