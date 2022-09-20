@@ -37,7 +37,7 @@ public interface EnigmaEngine {
 
     EngineDTO getEngineDTO();
 
-    MachineCode getMachineCodeDTO();
+    MachineCode getMachineCode();
 
     void randomSelectedComponents();
 

@@ -44,7 +44,7 @@ public class CandidateWords extends Task<Boolean> {
             Pair<List<String>, MachineCode> pair = null;
             pair = outputQueue.poll();
             if (pair != null) {
-                System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());
+//                System.out.println("Candidate Words: " + pair.getKey() + "\nMachine Code: " + pair.getValue().toString());
                 Pair<List<String>, MachineCode> finalPair = pair;
                 Platform.runLater(() -> {
                     onCandidateWordsFound.accept("Candidate Words: " +

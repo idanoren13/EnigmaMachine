@@ -4,6 +4,7 @@ import enigmaEngine.interfaces.Reflector;
 import javafx.util.Pair;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MachineCode {
     private final List<Integer> rotorsIDInorder;
@@ -69,6 +70,13 @@ public class MachineCode {
 //            mc.increment();
 //        }
 //    }
+
+    public MachineCode clone() {
+        List<Integer> rotorsIDInorderClone = rotorsIDInorder.stream().map(i -> i).collect(Collectors.toList());
+        List<Character> startingPositionsClone = startingPositions.stream().map(i -> i).collect(Collectors.toList());
+        List<Pair<Character, Character>> plugBoardClone = plugBoard.stream().map(i -> new Pair<>(i.getKey(), i.getValue())).collect(Collectors.toList());
+        return new MachineCode(rotorsIDInorderClone, startingPositionsClone, selectedReflectorID, plugBoardClone, ABC);
+    }
 
     @Override
     public String toString() {

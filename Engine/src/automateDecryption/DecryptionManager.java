@@ -20,7 +20,7 @@ public class DecryptionManager implements Runnable {
     private MachineCode machineCode;
 //    private final ExecutorService executor;
 
-    private long taskSize;
+    private final long taskSize;
 
     public DecryptionManager(EnigmaEngine enigmaEngine, BlockingQueue<MachineCode> MachineCodeDTOQueue, Difficulty difficulty, String encryptedText, long taskSize) {
         this.enigmaEngine = enigmaEngine;
@@ -64,10 +64,11 @@ public class DecryptionManager implements Runnable {
     }
 
     public void initializeMachineCode() {
-        MachineCode tempMachineCode = this.enigmaEngine.getMachineCodeDTO();
+        MachineCode tempMachineCode = this.enigmaEngine.getMachineCode();
         switch (difficulty) {
             case EASY:
                 machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), tempMachineCode.getSelectedReflectorID(), tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
+                System.out.println("machineCode = " + machineCode);
                 break;
             case MEDIUM:
                 machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
@@ -114,11 +115,13 @@ public class DecryptionManager implements Runnable {
 
     }
 
-    synchronized private void advanceMachineCodeEasy() {
-        for (int i = 0; i < taskSize; i++) {
-            machineCode.increment();
-            currentProgress++;
-            // totalMissions--;
+    private void advanceMachineCodeEasy() {
+        synchronized (this) {
+            for (int i = 0; i < taskSize; i++) {
+                machineCode.increment();
+                currentProgress++;
+                // totalMissions--;
+            }
         }
     }
 
@@ -128,9 +131,13 @@ public class DecryptionManager implements Runnable {
 //            System.out.println("Combination: " + combination);
 //            System.out.println("MachineCode: " + machineCode.getStartingPositions());
 //            System.out.println("Thread: " + Thread.currentThread().getName());
-            if(queue.offer(machineCode)) {
+            if (queue.offer(machineCode.clone())) {
+//                System.out.println("currentProgress = " + currentProgress + " " + machineCode.toString());
                 advanceMachineCode();
+            } else {
+//                System.out.println("queue is full next machine code: " + machineCode.toString());
             }
+
         }
     }
 

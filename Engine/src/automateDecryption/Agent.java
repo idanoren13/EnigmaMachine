@@ -25,17 +25,6 @@ public class Agent implements Runnable {
     private final long taskSize;
 
 
-//    public Agent(int id, String encryptedText, EnigmaEngine enigmaEngine, WordsDictionary wordsDictionary, BlockingQueue<MachineCode> queue, BlockingQueue<Pair<List<String>, MachineCode>> outputQueue, long taskSize) {
-//        this.wordsDictionary = wordsDictionary;
-//        this.outputQueue = outputQueue;
-//        this.taskSize = taskSize;
-//        this.id = id;
-//        this.encryptedText = encryptedText;
-//        this.enigmaEngine = enigmaEngine.cloneMachine();
-//        this.machineCodeInputQueue = queue;
-//
-//    }
-
     public Agent(int id, EnigmaEngine enigmaEngine, BlockingQueue<MachineCode> machineCodeBlockingQueue, String encryptedText, Queue<Pair<List<String>, MachineCode>> outputQueue, long taskSize) {
         this.wordsDictionary = enigmaEngine.getWordsDictionary();
         this.outputQueue = outputQueue;
@@ -44,12 +33,7 @@ public class Agent implements Runnable {
         this.encryptedText = encryptedText;
         this.enigmaEngine = enigmaEngine.cloneMachine();
         this.machineCodeInputQueue = machineCodeBlockingQueue;
-//        try {
-//            this.enigmaEngine.setEngineConfiguration(machineCodeBlockingQueue);
-//        } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException |
-//                 InvalidPlugBoardException e) {
-//            throw new RuntimeException(e);
-//        }
+//        System.out.println("Agent " + id + " is created "+ machineCodeInputQueue.toString());
     }
 
 
@@ -57,14 +41,12 @@ public class Agent implements Runnable {
     protected void call() throws Exception {
         while (true) {
             boolean isFound = false;
-            MachineCode machineCode = machineCodeInputQueue.poll(5000, TimeUnit.MILLISECONDS);
+            MachineCode machineCode = machineCodeInputQueue.poll(2000, TimeUnit.MILLISECONDS);
             String processedText = "";
             if (machineCode == null) {
                 break;
             }
             for (int i = 0; i < taskSize; i++) {
-//            this.enigmaEngine.reset();
-//                this.enigmaEngine = enigmaEngine.cloneMachine();
                 try {
                     this.enigmaEngine.setEngineConfiguration(machineCode);
                 } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException |
@@ -72,12 +54,29 @@ public class Agent implements Runnable {
                     System.out.println("Invalid machine code");
                 }
 //                System.out.println("Agent " + id + " is processing " + machineCode.toString());
+
+                if (machineCode.getStartingPositions().get(0) == Test.firstRotorStartingPosition
+                        && machineCode.getStartingPositions().get(1) == Test.secondRotorStartingPosition
+                        && machineCode.getStartingPositions().get(2) == Test.thirdRotorStartingPosition
+                        && machineCode.getSelectedReflectorID() == Test.selectedReflectorID) {
+
+//                    System.out.println("Agent " + id + " found the solution " + " " + machineCode.toString());
+
+                    isFound = true;
+//                    break;
+                }
+                enigmaEngine.reset();
+                enigmaEngine.setEngineConfiguration(machineCode);
                 processedText = enigmaEngine.processMessage(encryptedText);
+
                 if (wordsDictionary.isCandidateString(processedText)) {
                     outputQueue.add(new Pair<>(wordsDictionary.candidateWords(processedText), machineCode));
+                    System.out.println("Agent " + id + " found a candidate " + processedText + " " + machineCode.toString());
                 }
 
+
                 machineCode.increment();
+                enigmaEngine.reset();
             }
         }
     }

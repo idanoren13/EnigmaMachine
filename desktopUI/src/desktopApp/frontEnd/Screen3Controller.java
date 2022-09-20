@@ -189,6 +189,7 @@ public class Screen3Controller implements Initializable {
         pauseDM.setDisable(true);
         setDMProperties.setDisable(false);
         startResumeDM.setDisable(false);
+        tasksManagerLogic.stop();
 
     }
 
@@ -298,6 +299,6 @@ public class Screen3Controller implements Initializable {
     }
 
     public void updateCandidateWords(String s) {
-        finalCandidates.setValue(s);
+        finalCandidates.setValue(finalCandidatesTextArea.getText() +'\n' + s );
     }
 }

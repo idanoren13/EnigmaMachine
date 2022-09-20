@@ -93,17 +93,12 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     public String processMessage(String input) throws InvalidCharactersException {
         input = input.toUpperCase();
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
-            throw new InvalidCharactersException("Starting characters must be in the machine ABC.");
+            throw new InvalidCharactersException("Starting characters must be in the machine ABC");
         }
         StringBuilder output = new StringBuilder();
         messagesSentCounter++;
         for (int i = 0; i < input.length(); i++) {
-            try {
-                output.append(activate(input.charAt(i)));
-            } catch (Exception e) {
-                System.out.println("Thread: " + Thread.currentThread().getName());
-                throw new RuntimeException(e);
-            }
+            output.append(activate(input.charAt(i)));
         }
 
         return output.toString();
@@ -172,7 +167,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public MachineCode getMachineCodeDTO() {
+    public MachineCode getMachineCode() {
         return new MachineCode(selectedRotors, startingCharacters, selectedReflector.getReflectorID(), plugBoard.getPairList(), machineABC);
     }
 
@@ -252,15 +247,12 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         } else {
             for (Rotor rotor : selectedRotorsListLeftToRight) {
                 outputIndex = rotor.getOutputIndex(outputIndex, dir);
-
-
             }
         }
-        if (outputIndex == -1) {
-            return 0;
-        }
+
         return outputIndex;
     }
+
 
     private void connectRotors() {
         disconnectAllRotors();

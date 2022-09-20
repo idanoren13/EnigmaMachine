@@ -34,6 +34,16 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
     }
 
     @Override
+    public int getNumberOfRotations() {
+        return this.countRotations;
+    }
+
+    @Override
+    public int getStartIndex() {
+        return this.startIndex;
+    }
+
+    @Override
     public Character peekWindow() {
         return this.rightSide.get(0);
     }
@@ -45,18 +55,10 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
 
     @Override
     public int getOutputIndex(int inputIndex, Direction dir) {
-        try {
-            if (dir == Direction.RIGHT) {
-                return rightSide.indexOf(leftSide.get(inputIndex));
-            } else {
-                return leftSide.indexOf(rightSide.get(inputIndex));
-            }
-        } catch (Exception e) {
-//            System.out.println("inputIndex: " + inputIndex);
-//            System.out.println("dir: " + dir);
-//            System.out.println("rightSide: " + rightSide);
-//            System.out.println("leftSide: " + leftSide);
-            throw e;
+        if (dir == Direction.RIGHT) {
+            return rightSide.indexOf(leftSide.get(inputIndex));
+        } else {
+            return leftSide.indexOf(rightSide.get(inputIndex));
         }
     }
 
@@ -68,7 +70,7 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
             rotate();
         }
     }
-    
+
     @Override
     public void rotate() {
         Collections.rotate(rightSide, -1);
@@ -102,8 +104,8 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
 
     @Override
     public Rotor cloneRotor() {
-        ArrayList<Character> rightSideClone = new ArrayList<>();
-        ArrayList<Character> leftSideClone = new ArrayList<>();
+        List<Character> rightSideClone = new ArrayList<>();
+        List<Character> leftSideClone = new ArrayList<>();
         rightSideClone = rightSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         leftSideClone = leftSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 

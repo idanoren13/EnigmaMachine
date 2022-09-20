@@ -1,7 +1,6 @@
 package automateDecryption;
 
 import enigmaEngine.MachineCode;
-import enigmaEngine.WordsDictionary;
 import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.concurrent.Task;
 import javafx.util.Pair;
@@ -21,12 +20,14 @@ public class TasksManager extends Task<Boolean> {
     private final Queue<Pair<List<String>, MachineCode>> outputQueue;
     private String encryptedText;
     private final ExecutorService tasksPool;
-    private long taskSize = 100;
+    private long taskSize = 30;
     private EnigmaEngine enigmaEngine;
-    private WordsDictionary wordsDictionary;
+    private EnigmaEngine enigmaEngineClone;
     private Difficulty difficulty;
-    private Consumer<Runnable> onCancel;
+    private boolean isFinished = false;
     private Consumer<String> onCandidateWordsFound;
+    private Thread decryptionManagerThread;
+    private Thread candidateWordsOutputThread;
 
     public TasksManager() {
         this.numberOfAgents = 10;
@@ -46,17 +47,20 @@ public class TasksManager extends Task<Boolean> {
 
     public void initialize(EnigmaEngine enigmaEngine, Difficulty difficulty) {
         this.enigmaEngine = enigmaEngine;
-        this.wordsDictionary = enigmaEngine.getWordsDictionary();
         this.difficulty = difficulty;
         System.out.println("Number of agents: " + numberOfAgents);
     }
 
     @Override
     protected Boolean call() throws Exception {
+        enigmaEngineClone = enigmaEngine.cloneMachine();
+        System.out.println("Enigma engine clone: " + enigmaEngine.processMessage(encryptedText) + " " + enigmaEngine.getMachineCode().toString());
+        enigmaEngineClone.reset();
+        isFinished = false;
         System.out.println("Starting TasksManager");
         DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine, machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
         decryptionManager.initializeMachineCode();
-        Thread decryptionManagerThread = new Thread(decryptionManager);
+        decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
 
         updateProgress(0, decryptionManager.getTotalMissions());
@@ -64,11 +68,11 @@ public class TasksManager extends Task<Boolean> {
         List<Future<?>> futures = new CopyOnWriteArrayList<>();
 
         for (int i = 0; i < numberOfAgents; i++) {
-            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
+            futures.add(tasksPool.submit(new Agent(i, enigmaEngineClone.cloneMachine(), machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
         }
 
 
-        Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
+        candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
         candidateWordsOutputThread.start();
 
         tasksPool.shutdown();
@@ -85,14 +89,26 @@ public class TasksManager extends Task<Boolean> {
         }
 
         candidateWordsOutputThread.interrupt();
+
+        isFinished = true;
+
         return true;
     }
 
     public void test() {
+//        try {
+//            enigmaEngineClone = enigmaEngine.cloneMachine();
+//            System.out.println("Enigma clone: "+ enigmaEngineClone.getMachineCodeDTO().toString());
+//            System.out.println("Enigma engine: "+ enigmaEngine.getMachineCodeDTO().toString());
+//            enigmaEngineClone.reset();
+//            System.out.println("Enigma engine clone: " + enigmaEngineClone.processMessage(encryptedText) + " " + enigmaEngineClone.getMachineCodeDTO().toString());
+//        } catch (InvalidCharactersException e) {
+//            throw new RuntimeException(e);
+//        }
         System.out.println("Starting TasksManager");
         DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine, machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
         decryptionManager.initializeMachineCode();
-        Thread decryptionManagerThread = new Thread(decryptionManager);
+        decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
 
         List<Future<?>> futures = new CopyOnWriteArrayList<>();
@@ -147,5 +163,19 @@ public class TasksManager extends Task<Boolean> {
     }
 
     public void setOnCandidateWordsFound(Consumer<String> onCandidateWordsFound) {
-        this.onCandidateWordsFound = onCandidateWordsFound; }
+        this.onCandidateWordsFound = onCandidateWordsFound;
+    }
+
+    public void stop() {
+        tasksPool.shutdownNow();
+        decryptionManagerThread.interrupt();
+        candidateWordsOutputThread.interrupt();
+        initialize(enigmaEngine, difficulty);
+        System.out.println("TasksManager stopped");
+        isFinished = true;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
 }
