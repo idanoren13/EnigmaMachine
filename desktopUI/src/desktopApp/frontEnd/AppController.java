@@ -107,4 +107,17 @@ public class AppController {
         screen3ComponentController.setTasksManagerLogic(decryptionManagerLogic);
         consoleApp.getBruteForceTaskManager().setOnCandidateWordsFound(screen3ComponentController::updateCandidateWords);
     }
+
+
+
+    public void updateStylesheet(Number num) {
+        headerComponentController.updateStylesheet(num);
+        screen1ComponentController.updateStylesheet(num);
+        screen2ComponentController.updateStylesheet(num);
+        screen3ComponentController.updateStylesheet(num);
+    }
+
+    public void updateAnimation(Number num) {
+        screen2ComponentController.updateAnimation(num);
+    }
 }

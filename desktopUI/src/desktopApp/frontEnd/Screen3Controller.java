@@ -80,6 +80,8 @@ public class Screen3Controller implements Initializable {
     TasksManager tasksManagerLogic;
     boolean existingInput = false;
 
+    @FXML private ScrollPane mainScrollPane;
+
     EventListener onXMLLoaded;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -367,5 +369,20 @@ public class Screen3Controller implements Initializable {
 
     public void updateCandidateWords(String s) {
         finalCandidates.setValue(finalCandidatesTextArea.getText() +'\n' + s );
+    }
+
+
+    public void updateStylesheet(Number num) {
+        mainScrollPane.getStylesheets().remove(0, 2);
+        if (num.equals(0)) {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen3StyleOne.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else if (num.equals(1)) {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen3StyleTwo.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen3StyleThree.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        }
     }
 }

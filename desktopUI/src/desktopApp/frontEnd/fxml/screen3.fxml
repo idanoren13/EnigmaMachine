@@ -20,12 +20,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen3Controller">
+<ScrollPane fx:id="mainScrollPane" cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen3Controller">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <stylesheets>
-      <URL value="@../css/general.css" />
+      <URL value="@../css/generalStyleOne.css" />
       <URL value="@../css/screen3StyleOne.css" />
    </stylesheets>
    <content>

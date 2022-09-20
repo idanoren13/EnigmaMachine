@@ -2,6 +2,7 @@ package desktopApp.frontEnd;
 
 import desktopApp.impl.models.MachineStateConsole;
 import enigmaEngine.exceptions.InvalidCharactersException;
+import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -9,10 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -20,6 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.InputMismatchException;
@@ -55,6 +55,19 @@ public class Screen2Controller implements Initializable {
     @FXML private FlowPane mouseOutputFlowPane; // Dynamic component of XML Enigma buttons (all ABC letters), for output (non-clickable button-nodes)
     Button lastOutputButton = null;
 
+    @FXML private ScrollPane mainScrollPane;
+    @FXML private Label machineEntireStatisticsAndHistoryLabel;
+
+
+
+    boolean isAnimation = false;
+    private RotateTransition rotate = new RotateTransition(Duration.millis(500));
+    private ScaleTransition scale = new ScaleTransition(Duration.millis(500));
+    private FillTransition fill = new FillTransition(Duration.millis(500));
+    FadeTransition fade = new FadeTransition(Duration.millis(500), resetMachineStateButton);
+    private ParallelTransition pt = new ParallelTransition(rotate, scale);
+    private static int numOfClicks = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (firstMachineStateComponentController != null && currentMachineStateComponentController != null) {
@@ -78,6 +91,16 @@ public class Screen2Controller implements Initializable {
             machineStatesConsole = new MachineStateConsole();
 /*            firstMachineStateLabel.textProperty().bind(machineStatesConsole.firstMachineStateProperty());
             currentMachineStateLabel.textProperty().bind(machineStatesConsole.currentMachineStateProperty());*/
+
+
+            rotate.setCycleCount(1);
+            rotate.setInterpolator(Interpolator.LINEAR);
+            rotate.setByAngle(360);
+            rotate.setAxis(Rotate.X_AXIS);
+            scale.setByX(1.5f);
+            scale.setByY(1.5f);
+            scale.setCycleCount(4);
+            scale.setAutoReverse(true);
         }
     }
 
@@ -102,6 +125,24 @@ public class Screen2Controller implements Initializable {
         setCodeLabel.setText("Processed message: " + messageInput + " -> " + AppController.getConsoleApp().getMessageAndProcessIt(messageInput, true));
         mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineState());
         mainController.updateLabelTextsToEmpty(this);
+
+        if (isAnimation) {
+            fade.setNode(resetMachineStateButton);
+            if (numOfClicks % 3 == 0) {
+                fade.setFromValue(1);
+                fade.setFromValue(0.5);
+            }
+            if (numOfClicks % 3 == 1) {
+                fade.setFromValue(0.5);
+                fade.setFromValue(0);
+            }
+            if (numOfClicks % 3 == 2) {
+                fade.setFromValue(0);
+                fade.setFromValue(1);
+            }
+            numOfClicks++;
+            fade.play();
+        }
     }
 
     public void mouseEndOfInputButtonActionListener() {
@@ -147,18 +188,26 @@ public class Screen2Controller implements Initializable {
             if (MouseButton.PRIMARY.equals(event.getButton()) || MouseButton.SECONDARY.equals(event.getButton())) {
                 mouseInputTextField.setText(mouseInputTextField.getText() + ((Button)event.getSource()).getText()); // Updates input text
                 try {
-                    // TODO: handle with 'clear input'
-                    String outputLetter = AppController.getConsoleApp().getMessageAndProcessIt(((Button)event.getSource()).getText(), true); // Creates output
+                    String outputLetter = AppController.getConsoleApp().getMessageAndProcessIt(((Button)event.getSource()).getText(), false); // Creates output
                     mouseOutputTextField.setText(mouseOutputTextField.getText() + outputLetter); // Updates output text
                     for (Node node : mouseOutputFlowPane.getChildren()) {
                         if (node instanceof Button) {
                             Button button = (Button)node;
                             if (button.getText().equalsIgnoreCase(outputLetter)) {
+                                rotate.setNode((Button)event.getSource());
                                 node.getStyleClass().add("pressed-keyboard-button-output");
                                 if (lastOutputButton != null) {
                                     lastOutputButton.getStyleClass().remove("pressed-keyboard-button-output");
                                 }
                                 lastOutputButton = button;
+
+                                if (isAnimation) {
+                                    scale.setNode(button);
+
+                                    pt.setCycleCount(1);
+                                    pt.setAutoReverse(true);
+                                    pt.play();
+                                }
                             }
                         }
                     }
@@ -249,10 +298,29 @@ public class Screen2Controller implements Initializable {
     public void updateLabelTextsToEmpty(Object component) {
         setCodeLabel.setText("");
         inputToEncryptDecryptInput.setText("");
-        if (!component.getClass().getSimpleName().equals("ClearStatusListener") && !component.getClass().getSimpleName().equals("Screen3Controller")) {
+        if (!component.getClass().getSimpleName().equals("ClearStatusListener") && lastOutputButton != null) {
             lastOutputButton.getStyleClass().remove("pressed-keyboard-button-output");
         }
         mouseInputTextField.setText("");
         mouseOutputTextField.setText("");
+    }
+
+
+    public void updateStylesheet(Number num) {
+        mainScrollPane.getStylesheets().remove(0, 2);
+        if (num.equals(0)) {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen2StyleOne.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else if (num.equals(1)) {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen2StyleTwo.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen2StyleThree.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        }
+    }
+
+    public void updateAnimation(Number num) {
+        isAnimation = num.equals(1);
     }
 }

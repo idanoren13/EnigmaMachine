@@ -11,10 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
@@ -51,6 +48,8 @@ public class Screen1Controller implements Initializable {
 
     // Web view - miscellaneous
     @FXML private WebView enigmaTermWebView;
+
+    @FXML ScrollPane mainScrollPane;
 
     public void setMainController(AppController mainController) {
         this.mainController = mainController;
@@ -223,6 +222,19 @@ public class Screen1Controller implements Initializable {
         setCodeLabel.setText("");
     }
 
-}
 
-// TODO: make labels selectable and clickable: https://stackoverflow.com/a/44182371/3598990
+
+    public void updateStylesheet(Number num) {
+        mainScrollPane.getStylesheets().remove(0, 2);
+        if (num.equals(0)) {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen1StyleOne.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else if (num.equals(1)) {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen1StyleTwo.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else {
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/screen1StyleThree.css");
+            mainScrollPane.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        }
+    }
+}

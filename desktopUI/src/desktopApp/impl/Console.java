@@ -255,7 +255,6 @@ public class Console implements Input {
     }
 
     @Override
-    // TODO: to idan: <rotor_position(rotor distance from notch)> - you think rotor_starting_position is valid after each message encryption?
     public String getMessageAndProcessIt(String messageInput, boolean bool) throws InvalidCharactersException {
         int timeStart, timeEnd;
         String messageOutput;

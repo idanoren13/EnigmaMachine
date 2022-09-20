@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
 import javax.xml.bind.JAXBException;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 public class HeaderController implements Initializable {
     private AppController mainController;
+    @FXML private HBox headerHBox;
     private String currXMLFilePath = "";
 
     // private final IntegerProperty chosenButton = new SimpleIntegerProperty();
@@ -56,6 +58,14 @@ public class HeaderController implements Initializable {
         styleChoiceBox.setValue("Style #1");
         animationChoiceBox.getItems().addAll("No Animation", "Animation");
         animationChoiceBox.setValue("No Animation");
+
+        styleChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
+            mainController.updateStylesheet(number2);
+        });
+
+        animationChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
+            mainController.updateAnimation(number2);
+        });
     }
 
     @FXML
@@ -131,5 +141,19 @@ public class HeaderController implements Initializable {
         loadXMLErrorLabel.setText("");
     }
 
-    // TODO: Implement bonus method 1 (change CSS of screen) and bonus method 2 (add animations)
+
+
+    public void updateStylesheet(Number num) {
+        headerHBox.getStylesheets().remove(0, 2);
+        if (num.equals(0)) {
+            headerHBox.getStylesheets().add("/desktopApp/frontEnd/css/headerStyleOne.css");
+            headerHBox.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else if (num.equals(1)) {
+            headerHBox.getStylesheets().add("/desktopApp/frontEnd/css/headerStyleTwo.css");
+            headerHBox.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        } else {
+            headerHBox.getStylesheets().add("/desktopApp/frontEnd/css/headerStyleThree.css");
+            headerHBox.getStylesheets().add("/desktopApp/frontEnd/css/generalStyleOne.css");
+        }
+    }
 }
