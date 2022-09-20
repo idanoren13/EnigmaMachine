@@ -6,12 +6,14 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.concurrent.Task;
 import javafx.util.Pair;
 
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 public class TasksManager extends Task<Boolean> {
+    volatile boolean halt = false;
     private static final int MIN_NUMBER_OF_AGENTS = 2;
     private static final int MAX_NUMBER_OF_AGENTS = 50;
     private static final int BLOCKINGQUEUE_SIZE = 50;
@@ -30,6 +32,10 @@ public class TasksManager extends Task<Boolean> {
     private Consumer<Runnable> onCancel;
     private Consumer<String> onCandidateWordsFound;
     private Consumer<String> onTotalMissions;
+    private boolean paused = false;
+    private Object pauseLock = new Object();
+
+    private PropertyChangeSupport progress = new PropertyChangeSupport(this);
 
     public TasksManager() {
         this.numberOfAgents = 10;
@@ -63,14 +69,11 @@ public class TasksManager extends Task<Boolean> {
         Thread decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
 
-        updateProgress(0, decryptionManager.getTotalMissions());
-
         List<Future<?>> futures = new CopyOnWriteArrayList<>();
 
         for (int i = 0; i < numberOfAgents; i++) {
             futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize)));
         }
-
 
         Thread candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
         candidateWordsOutputThread.start();
@@ -84,7 +87,8 @@ public class TasksManager extends Task<Boolean> {
             try {
                 Thread.sleep(200);  //TODO: very bad practice
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                halt = true;
+                System.out.println("Stopped");
             }
         }
 
@@ -114,12 +118,26 @@ public class TasksManager extends Task<Boolean> {
             System.out.println("ExecutorService is shutdown");
         }
 
+        if (isPaused()) {
+            synchronized (pauseLock) {
+                if (isPaused()) {
+                    try {
+                        this.wait();
+                    } catch (InterruptedException e) {
+                        halt = true;
+                        // e.printStackTrace();
+                    }
+                }
+            }
+        }
+
 
         while (!tasksPool.isTerminated()) {
             try {
                 Thread.sleep(200);  //TODO: very bad practice
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                halt = true;
+                System.out.println("DM Stopped");
             }
         }
 
@@ -147,7 +165,7 @@ public class TasksManager extends Task<Boolean> {
     }
 
     public boolean isPaused() {
-        return false;//TODO
+        return paused;
     }
 
     public void setOnCandidateWordsFound(Consumer<String> onCandidateWordsFound) {
