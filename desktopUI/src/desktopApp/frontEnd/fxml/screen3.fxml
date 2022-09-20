@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
 <ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="desktopApp.frontEnd.Screen3Controller">
@@ -160,52 +159,40 @@
                      <children>
                         <Label maxWidth="300.0" styleClass="header-label" text="Search For Dictionary Words:">
                            <VBox.margin>
-                              <Insets top="14.0" />
+                              <Insets left="10.0" top="14.0" />
                            </VBox.margin>
                         </Label>
-                        <GridPane>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="212.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="85.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
+                        <StackPane maxHeight="42.0" maxWidth="302.0" prefHeight="38.0" prefWidth="302.0">
                            <children>
-                              <StackPane maxHeight="42.0" maxWidth="302.0" prefHeight="38.0" prefWidth="302.0">
-                                 <children>
-                                    <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="39.0" prefWidth="172.0">
-                                       <StackPane.margin>
-                                          <Insets bottom="1.0" />
-                                       </StackPane.margin>
-                                    </Button>
-                                    <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="36.0" prefWidth="157.0" styleClass="stack-button">
-                                       <StackPane.margin>
-                                          <Insets left="-38.0" />
-                                       </StackPane.margin>
-                                    </Button>
-                                    <TextField fx:id="searchInputTextField" maxWidth="100.0" promptText="Type words here...">
-                                       <StackPane.margin>
-                                          <Insets right="14.0" />
-                                       </StackPane.margin>
-                                    </TextField>
-                                    <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/search%20magnifying%20glass.png" />
-                                       </image>
-                                       <StackPane.margin>
-                                          <Insets left="130.0" />
-                                       </StackPane.margin>
-                                    </ImageView>
-                                 </children>
-                              </StackPane>
-                              <Button fx:id="spaceButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="81.0" text="Space" GridPane.columnIndex="1" />
+                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="39.0" prefWidth="172.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="1.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="36.0" prefWidth="157.0" styleClass="stack-button">
+                                 <StackPane.margin>
+                                    <Insets left="-38.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <TextField fx:id="searchInputTextField" maxHeight="28.0" maxWidth="125.0" promptText="Type words here...">
+                                 <StackPane.margin>
+                                    <Insets right="14.0" />
+                                 </StackPane.margin>
+                              </TextField>
+                              <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/search%20magnifying%20glass.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="143.0" />
+                                 </StackPane.margin>
+                              </ImageView>
                            </children>
-                        </GridPane>
-                        <ListView fx:id="searchDictionaryWordsListView" maxWidth="300.0" prefHeight="105.0" prefWidth="286.0" />
+                        </StackPane>
+                        <ListView fx:id="searchDictionaryWordsListView" maxWidth="300.0" prefHeight="105.0" prefWidth="286.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" />
+                           </VBox.margin></ListView>
                      </children>
                   </VBox>
                   <GridPane id="decryptionManagerGridPane" GridPane.rowIndex="1">
@@ -294,15 +281,12 @@
                         <Insets bottom="50.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ScrollPane hbarPolicy="ALWAYS" prefWidth="400.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="400.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" right="50.0" top="10.0" />
                      </HBox.margin>
                      <content>
-                        <TextArea fx:id="finalCandidatesTextArea" editable="false" style="-fx-border-color: white; -fx-background-color: white; -fx-prompt-text-fill: black;" text="words" wrapText="true">
-                           <font>
-                              <Font name="Arial" size="12.0" />
-                           </font></TextArea>
+                        <TextArea fx:id="finalCandidatesTextArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="67.0" prefWidth="398.0" />
                      </content>
                   </ScrollPane>
                </children>

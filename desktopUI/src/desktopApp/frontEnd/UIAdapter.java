@@ -6,20 +6,20 @@ import java.util.function.Consumer;
 
 public class UIAdapter {
 
-    private Consumer<String> concatenatedString;
+    private Consumer<AgentData> concatenatedString;
     private Runnable updateDistinct;
     private Consumer<Integer> updateTotalProcessedMissions;
 
-    public UIAdapter(Consumer<String> introduceNewWord, Runnable updateDistinct, Consumer<Integer> updateTotalProcessedWords) {
-        this.concatenatedString = introduceNewWord;
+    public UIAdapter(Consumer<AgentData> introduceNewAgent, Runnable updateDistinct, Consumer<Integer> updateTotalProcessedMissions) {
+        this.concatenatedString = introduceNewAgent;
         this.updateDistinct = updateDistinct;
-        this.updateTotalProcessedMissions = updateTotalProcessedWords;
+        this.updateTotalProcessedMissions = updateTotalProcessedMissions;
     }
 
-    public void addNewWord(String histogramData) {
+    public void addNewWord(AgentData agentData) {
         Platform.runLater(
                 () -> {
-                    concatenatedString.accept(histogramData);
+                    concatenatedString.accept(agentData);
                     updateDistinct.run();
                 }
         );
