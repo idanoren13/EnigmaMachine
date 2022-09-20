@@ -16,6 +16,8 @@ public class TasksManager extends Task<Boolean> {
     private static final int MAX_NUMBER_OF_AGENTS = 50;
     private static final int BLOCKINGQUEUE_SIZE = 50;
 
+    private long totalMissions = -1;
+
     private int numberOfAgents;
     private final BlockingQueue<MachineCode> machineCodeBlockingQueue;
     private final Queue<Pair<List<String>, MachineCode>> outputQueue;
@@ -27,6 +29,7 @@ public class TasksManager extends Task<Boolean> {
     private Difficulty difficulty;
     private Consumer<Runnable> onCancel;
     private Consumer<String> onCandidateWordsFound;
+    private Consumer<String> onTotalMissions;
 
     public TasksManager() {
         this.numberOfAgents = 10;
@@ -56,6 +59,7 @@ public class TasksManager extends Task<Boolean> {
         System.out.println("Starting TasksManager");
         DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine, machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
         decryptionManager.initializeMachineCode();
+        this.totalMissions = decryptionManager.getTotalMissions();
         Thread decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();
 

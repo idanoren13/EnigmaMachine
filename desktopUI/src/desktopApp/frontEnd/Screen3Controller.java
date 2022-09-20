@@ -4,6 +4,7 @@ import automateDecryption.Difficulty;
 import automateDecryption.TasksManager;
 import desktopApp.impl.models.MachineStateConsole;
 import enigmaEngine.exceptions.InvalidCharactersException;
+import immutables.engine.EngineDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -99,6 +100,9 @@ public class Screen3Controller implements Initializable {
         agentsSliderInput.valueProperty().addListener((observable, oldValue, newValue) -> {
             dmTotalAgents = (int) agentsSliderInput.getValue();
             totalAgentsLabel.setText(Integer.toString(dmTotalAgents));
+            if (!missionSizeLabel.equals("")) {
+                updateMissionsLabel();
+            }
         });
 
         // Updates mission size
@@ -106,11 +110,12 @@ public class Screen3Controller implements Initializable {
             try {
                 dmMissionSize = Integer.parseInt(newValue);
                 missionSizeLabel.setText(Integer.toString(dmMissionSize));
+                updateMissionsLabel();
             } catch (NumberFormatException e) {
+                totalMissionsLabel.setText("NaN");
                 missionSizeLabel.setText("Invalid input");
             }
         });
-
         // Updates difficulty level
         difficultyLevelInput.getItems().addAll(Arrays.stream(Difficulty.values()).map(Enum::name).toArray(String[]::new));
         difficultyLevelInput.setValue("Easy");
@@ -118,15 +123,19 @@ public class Screen3Controller implements Initializable {
             switch (newValue.intValue()) {
                 case 0:
                     dmDifficultyLevel = Difficulty.EASY;
+                    updateMissionsLabel();
                     break;
                 case 1:
                     dmDifficultyLevel = Difficulty.MEDIUM;
+                    updateMissionsLabel();
                     break;
                 case 2:
                     dmDifficultyLevel = Difficulty.HARD;
+                    updateMissionsLabel();
                     break;
                 case 3:
                     dmDifficultyLevel = Difficulty.IMPOSSIBLE;
+                    updateMissionsLabel();
                     break;
             }
 
@@ -179,6 +188,57 @@ public class Screen3Controller implements Initializable {
         firstMachineStateLabel.textProperty().bind(machineStatesConsole.firstMachineStateProperty());
         currentMachineStateLabel.textProperty().bind(machineStatesConsole.currentMachineStateProperty());
 
+    }
+
+    private void updateMissionsLabel() {
+        if (totalMissionsLabel.equals("NaN")) {
+            totalMissionsLabel.setText("0");
+        }
+        totalMissionsLabel.setText(Long.toString(
+                translateDifficultyLevelToMissions()
+                        / (Long.parseLong(missionSizeLabel.getText())
+                        * (long)agentsSliderInput.getValue())));
+    }
+
+    private Long translateDifficultyLevelToMissions() {
+        EngineDTO engineDTO = AppController.getConsoleApp().getEngine().getEngineDTO();
+        int ABCSize = AppController.getConsoleApp().getEngine().getABCSize();
+        switch (difficultyLevelInput.getValue().toUpperCase()) {
+            case "EASY":
+                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size());
+            case "MEDIUM":
+                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors();
+            case "HARD":
+                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors() * factorial(engineDTO.getSelectedRotors().size());
+            case "IMPOSSIBLE":
+                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors()
+                        * factorial(engineDTO.getSelectedRotors().size()
+                        * binomial(engineDTO.getSelectedRotors().size(), engineDTO.getTotalNumberOfRotors()));
+            default:
+                return (long)0;
+        }
+    }
+
+    private long factorial(int size) {
+        long result = 1;
+        for (int i = 1; i <= size; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    private int binomial(int n, int k)
+    {
+
+        // Base Cases
+        if (k > n)
+            return 0;
+        if (k == 0 || k == n)
+            return 1;
+
+        // Recur
+        return binomial(n - 1, k - 1)
+                + binomial(n - 1, k);
     }
 
     private void StopDMActionListener(ActionEvent actionEvent) {
@@ -289,6 +349,10 @@ public class Screen3Controller implements Initializable {
     public void updateLabelTextsToEmpty() {
         inputToEncryptDecryptInput.setText("");
         finalCandidates.setValue("");
+    }
+
+    public void setTotalMissions(long totalMissionsLabel) {
+        this.totalMissionsLabel.setText(Long.toString(totalMissionsLabel));
     }
 
     public void setTasksManagerLogic(TasksManager decryptionManagerLogic) {

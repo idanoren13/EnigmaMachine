@@ -20,7 +20,8 @@ public class DecryptionManager implements Runnable {
     private MachineCode machineCode;
 //    private final ExecutorService executor;
 
-    private long taskSize;
+    private final long taskSize;
+    private final EngineDTO engineDTO;
 
     public DecryptionManager(EnigmaEngine enigmaEngine, BlockingQueue<MachineCode> MachineCodeDTOQueue, Difficulty difficulty, String encryptedText, long taskSize) {
         this.enigmaEngine = enigmaEngine;
@@ -31,12 +32,12 @@ public class DecryptionManager implements Runnable {
 //        this.executor = executor;
         this.taskSize = taskSize;
         currentProgress = 0;
+        this.engineDTO = enigmaEngine.getEngineDTO();
 
         calculateMissionsNumber();
     }
 
     private void calculateMissionsNumber() {
-        EngineDTO engineDTO = enigmaEngine.getEngineDTO();
         int ABCSize = enigmaEngine.getABCSize();
         switch (difficulty) {
             case EASY:
@@ -64,7 +65,7 @@ public class DecryptionManager implements Runnable {
     }
 
     public void initializeMachineCode() {
-        MachineCode tempMachineCode = this.enigmaEngine.getMachineCodeDTO();
+        MachineCode tempMachineCode = this.enigmaEngine.getMachineCode();
         switch (difficulty) {
             case EASY:
                 machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), tempMachineCode.getSelectedReflectorID(), tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
@@ -73,13 +74,15 @@ public class DecryptionManager implements Runnable {
                 machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case HARD:
-                machineCode = tempMachineCode;
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case IMPOSSIBLE:
-                machineCode = tempMachineCode;
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             default:
         }
+        System.out.println("machineCode = " + machineCode);
+
     }
 
     private List<Character> setStartingPositions(List<Character> tempStartingPositions) {
@@ -101,24 +104,96 @@ public class DecryptionManager implements Runnable {
                 advanceMachineCodeMedium();
                 break;
             case HARD:
-//                advanceMachineCodeHard();
+                advanceMachineCodeHard();
                 break;
             case IMPOSSIBLE:
-//                advanceMachineCodeImpossible();
+                advanceMachineCodeImpossible();
                 break;
             default:
         }
     }
 
-    private void advanceMachineCodeMedium() {
+    private void advanceMachineCodeImpossible() {
+        List<List<Integer>> subsets = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 1; i <= engineDTO.getTotalNumberOfRotors(); i++) {
+            temp.add(i);
+        }
+        subsets = getSubsets(temp, engineDTO.getSelectedRotors().size());
+        for (List<Integer> subset : subsets) {
+            machineCode = new MachineCode(subset, setStartingPositions(machineCode.getStartingPositions()), machineCode.getSelectedReflectorID(), machineCode.getPlugBoard(), enigmaEngine.getABC());
+            advanceMachineCodeHard();
+        }
+    }
+
+    private List<List<Integer>> getSubsets(List<Integer> temp, int size) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (size == 0) {
+            res.add(new ArrayList<>());
+            return res;
+        }
+        if (temp.isEmpty()) {
+            return res;
+        }
+        int first = temp.get(0);
+        List<Integer> rest = temp.subList(1, temp.size());
+        List<List<Integer>> subsetsWithoutFirst = getSubsets(rest, size);
+        List<List<Integer>> subsetsWithFirst = getSubsets(rest, size - 1);
+        for (List<Integer> subset : subsetsWithFirst) {
+            subset.add(first);
+        }
+        res.addAll(subsetsWithoutFirst);
+        res.addAll(subsetsWithFirst);
+        return res;
+    }
+
+    private void advanceMachineCodeHard() {
+        List<List<Integer>> permutations = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 1; i <= machineCode.getRotorsIDInorder().size(); i++) {
+            temp.add(i);
+        }
+        permutations = permute(temp);
+
+        for (int i = 0; i < permutations.size(); i++) {
+            machineCode = new MachineCode(permutations.get(i), machineCode.getStartingPositions(), machineCode.getSelectedReflectorID(), machineCode.getPlugBoard(), enigmaEngine.getABC());
+            advanceMachineCodeMedium();
+        }
 
     }
 
-    synchronized private void advanceMachineCodeEasy() {
-        for (int i = 0; i < taskSize; i++) {
-            machineCode.increment();
-            currentProgress++;
-            // totalMissions--;
+    private List<List<Integer>> permute(List<Integer> temp) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (temp.size() == 1) {
+            res.add(temp);
+            return res;
+        }
+        for (int i = 0; i < temp.size(); i++) {
+            List<Integer> temp2 = new ArrayList<>(temp);
+            temp2.remove(i);
+            List<List<Integer>> temp3 = permute(temp2);
+            for (List<Integer> integers : temp3) {
+                integers.add(0, temp.get(i));
+            }
+            res.addAll(temp3);
+        }
+        return res;
+    }
+
+    private void advanceMachineCodeMedium() {
+        for (int i = 0; i < engineDTO.getTotalReflectors(); i++) {
+            machineCode = new MachineCode(machineCode.getRotorsIDInorder(), machineCode.getStartingPositions(), Reflector.ReflectorID.values()[i], machineCode.getPlugBoard(), enigmaEngine.getABC());
+            advanceMachineCodeEasy();
+        }
+    }
+
+    private void advanceMachineCodeEasy() {
+        synchronized (this) {
+            for (int i = 0; i < taskSize; i++) {
+                machineCode.increment();
+                currentProgress++;
+                // totalMissions--;
+            }
         }
     }
 
@@ -128,9 +203,13 @@ public class DecryptionManager implements Runnable {
 //            System.out.println("Combination: " + combination);
 //            System.out.println("MachineCode: " + machineCode.getStartingPositions());
 //            System.out.println("Thread: " + Thread.currentThread().getName());
-            if(queue.offer(machineCode)) {
+            if (queue.offer(machineCode.clone())) {
+//                System.out.println("currentProgress = " + currentProgress + " " + machineCode.toString());
                 advanceMachineCode();
+            } else {
+//                System.out.println("queue is full next machine code: " + machineCode.toString());
             }
+
         }
     }
 

@@ -172,7 +172,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public MachineCode getMachineCodeDTO() {
+    public MachineCode getMachineCode() {
         return new MachineCode(selectedRotors, startingCharacters, selectedReflector.getReflectorID(), plugBoard.getPairList(), machineABC);
     }
 
