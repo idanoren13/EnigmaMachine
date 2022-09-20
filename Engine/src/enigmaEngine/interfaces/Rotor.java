@@ -1,6 +1,9 @@
 package enigmaEngine.interfaces;
 
-public interface Rotor extends Rotatable {
+import java.io.IOException;
+import java.io.Serializable;
+
+public interface Rotor extends Rotatable, Serializable {
     int getNumberOfRotations();
 
     Character peekWindow();
@@ -20,5 +23,5 @@ public interface Rotor extends Rotatable {
 
     void resetRotor();
 
-    Rotor cloneRotor();
+    Rotor cloneRotor() throws IOException, ClassNotFoundException;
 }

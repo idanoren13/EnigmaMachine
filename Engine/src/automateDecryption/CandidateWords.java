@@ -50,8 +50,8 @@ public class CandidateWords extends Task<Boolean> {
                     onCandidateWordsFound.accept("Candidate Words: " +
                             finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
                 });
-//                System.out.println("Candidate Words: " +
-//                        finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
+                System.out.println("Candidate Words: " +
+                        finalPair.getKey() + "\nMachine Code: " + finalPair.getValue().toString());
             }
 
             if (Thread.currentThread().isInterrupted()) {

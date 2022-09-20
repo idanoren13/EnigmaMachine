@@ -3,8 +3,7 @@ package enigmaEngine.impl;
 import enigmaEngine.interfaces.Rotatable;
 import enigmaEngine.interfaces.Rotor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -102,13 +101,23 @@ public class RotorImpl implements Rotor, Rotatable, Serializable {
         countRotations = 0;
     }
 
-    @Override
-    public Rotor cloneRotor() {
-        List<Character> rightSideClone = new ArrayList<>();
-        List<Character> leftSideClone = new ArrayList<>();
-        rightSideClone = rightSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-        leftSideClone = leftSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
-        return new RotorImpl(id, notch, rightSideClone, leftSideClone);
+//    public Rotor cloneRotor() {
+//        List<Character> rightSideClone = new ArrayList<>();
+//        List<Character> leftSideClone = new ArrayList<>();
+//        rightSideClone = rightSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+//        leftSideClone = leftSide.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+//
+//        return new RotorImpl(id, notch, rightSideClone, leftSideClone);
+//    }
+    @Override
+    public Rotor cloneRotor() throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(bos);
+        out.writeObject(this);
+
+        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(bis);
+        return (Rotor) in.readObject();
     }
 }

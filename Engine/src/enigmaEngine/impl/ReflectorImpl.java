@@ -2,7 +2,7 @@ package enigmaEngine.impl;
 
 import enigmaEngine.interfaces.Reflector;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,5 +38,34 @@ public class ReflectorImpl implements Reflector, Serializable {
 
     private HashMap<Integer, Integer> getIndexPairs() {
         return indexPairs;
+    }
+
+    @Override
+    public Reflector clone()  {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(baos);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            oos.writeObject(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(bais);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            return (Reflector) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -94,7 +94,7 @@ public class TasksManager extends Task<Boolean> {
 
     public void test() {
         System.out.println("Starting TasksManager");
-        DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine, machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
+        DecryptionManager decryptionManager = new DecryptionManager(enigmaEngine.deepClone(), machineCodeBlockingQueue, difficulty, encryptedText, taskSize);
         decryptionManager.initializeMachineCode();
         Thread decryptionManagerThread = new Thread(decryptionManager);
         decryptionManagerThread.start();

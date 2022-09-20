@@ -9,10 +9,11 @@ import enigmaEngine.exceptions.InvalidRotorException;
 import immutables.engine.EngineDTO;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public interface EnigmaEngine {
+public interface EnigmaEngine extends Serializable {
     HashMap<Integer, Rotor> getRotors();
 
     int getABCSize();
@@ -47,4 +48,6 @@ public interface EnigmaEngine {
 
     WordsDictionary getWordsDictionary();
     void setWordsDictionary(WordsDictionary wordsDictionary);
+
+    EnigmaEngine deepClone();
 }

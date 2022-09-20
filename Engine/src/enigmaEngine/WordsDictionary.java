@@ -1,12 +1,13 @@
 package enigmaEngine;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class WordsDictionary {
+public class WordsDictionary implements Serializable {
     private final Set<String> words;
     private final Set<Character> excludedCharacters;
 

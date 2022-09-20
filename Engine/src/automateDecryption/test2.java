@@ -18,7 +18,7 @@ public class test2 {
 
     public static void main(String[] args) {
         try {
-            String message = "URXQJEYJTI!TZDDTM";
+            String message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             String encryptedMessage;
             InitializeEnigmaEngine initializeEnigmaEngine = new InitializeEnigmaEngine();
             EnigmaEngine engine = initializeEnigmaEngine.initializeEngine(InitializeEnigmaEngine.SourceMode.XML, "C:\\Users\\idano\\IdeaProjects\\EnigmaMachine\\Engine\\src\\Resources\\ex2-basic.xml");
@@ -33,11 +33,14 @@ public class test2 {
             engine.setSelectedRotors(rotors, startingPositions);
             engine.setSelectedReflector(_selectedReflectorID);
 
-            encryptedMessage = engine.processMessage(message);
-            System.out.println(encryptedMessage);
-            engine.reset();
-            System.out.println(engine.processMessage(encryptedMessage));
-//
+            for(int i = 0 ;i < 1000;i++) {
+                engine.reset();
+                encryptedMessage = engine.processMessage(message);
+                System.out.println(encryptedMessage);
+                engine.reset();
+                System.out.println(engine.processMessage(encryptedMessage));
+            }
+            //
 //            TasksManager tasksManager = new TasksManager(1, encryptedMessage);
 //            tasksManager.initialize(engine, Difficulty.EASY);
 //            new Thread(tasksManager).start();

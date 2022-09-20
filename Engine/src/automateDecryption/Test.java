@@ -18,7 +18,7 @@ public class Test {
 
     public static void main(String[] args) {
         try {
-            String message = "dolphine then sea";
+            String message = "dolphine then it am quality eye moon system folder light letter";
             String encryptedMessage;
             InitializeEnigmaEngine initializeEnigmaEngine = new InitializeEnigmaEngine();
             EnigmaEngine engine = initializeEnigmaEngine.initializeEngine(InitializeEnigmaEngine.SourceMode.XML, "C:\\Users\\idano\\IdeaProjects\\EnigmaMachine\\Engine\\src\\Resources\\ex2-basic.xml");
@@ -47,9 +47,9 @@ public class Test {
             engine.reset();
             System.out.println("machine code: " + engine.getMachineCode().toString());
 
-            TasksManager tasksManager = new TasksManager(3, encryptedMessage);
+            TasksManager tasksManager = new TasksManager(10, encryptedMessage);
             tasksManager.initialize(engine, Difficulty.EASY);
-            new Thread(tasksManager).start();
+//            new Thread(tasksManager).start();
 
             tasksManager.test();
 

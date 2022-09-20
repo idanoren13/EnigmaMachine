@@ -1,6 +1,8 @@
 package enigmaEngine.interfaces;
 
-public interface Reflector {
+import java.io.Serializable;
+
+public interface Reflector extends Serializable {
 
     enum ReflectorID {
         I,

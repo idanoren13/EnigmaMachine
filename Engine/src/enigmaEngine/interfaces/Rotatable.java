@@ -1,5 +1,7 @@
 package enigmaEngine.interfaces;
 
-public interface Rotatable {
+import java.io.Serializable;
+
+public interface Rotatable  extends Serializable {
     void rotate();
 }

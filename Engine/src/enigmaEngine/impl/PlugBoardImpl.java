@@ -3,7 +3,7 @@ package enigmaEngine.impl;
 import enigmaEngine.interfaces.PlugBoard;
 import javafx.util.Pair;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,5 +67,34 @@ public class PlugBoardImpl implements PlugBoard, Serializable {
     @Override
     public PlugBoard clonePlugBoard() {
         return new PlugBoardImpl(new ArrayList<>(this.pairList));
+    }
+
+    @Override
+    public PlugBoard clone() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(baos);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            oos.writeObject(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(bais);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            return (PlugBoard) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -80,6 +80,7 @@ public class Screen3Controller implements Initializable {
     TasksManager tasksManagerLogic;
     boolean existingInput = false;
 
+    EventListener onXMLLoaded;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         finalCandidates = new SimpleStringProperty("");
@@ -165,6 +166,8 @@ public class Screen3Controller implements Initializable {
                             .sorted().collect(Collectors.toList()));
         });
 
+
+
         searchDictionaryWordsListView.onMousePressedProperty().addListener((observable, oldValue, newValue) -> {
             String selectedWord = searchDictionaryWordsListView.getSelectionModel().getSelectedItem();
             if (selectedWord != null) {
@@ -181,9 +184,9 @@ public class Screen3Controller implements Initializable {
             }
         });
 
-        spaceButton.setOnAction((event) -> {
-            inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " ");
-        });
+//        spaceButton.setOnAction((event) -> {
+//            inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + " ");
+//        });
 
         // Model
         machineStatesConsole = new MachineStateConsole();
@@ -249,7 +252,7 @@ public class Screen3Controller implements Initializable {
         pauseDM.setDisable(true);
         setDMProperties.setDisable(false);
         startResumeDM.setDisable(false);
-        tasksManagerLogic.stop();
+//        tasksManagerLogic.stop();
 
     }
 

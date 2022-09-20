@@ -2,6 +2,7 @@ package desktopApp.frontEnd;
 
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.Reflector;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -38,6 +39,9 @@ public class HeaderController implements Initializable {
     @FXML private Button decryptInputWithEnigmaButton;
 
     @FXML private Button bruteForceButton;
+
+    Event OnLoadXML;
+
 
     public void setMainController(AppController mainController) {
         this.mainController = mainController;
@@ -108,6 +112,7 @@ public class HeaderController implements Initializable {
                 mainController.updateDynamicKeyboardsAndAmountAgents(AppController.getConsoleApp().getXmlLoader().getTotalAgents());
 
                 loadXMLErrorLabel.setText("Machine XML file successfully loaded.");
+
             }
         } catch (NullPointerException e) { // If a user exits XML file search
             // Continue...

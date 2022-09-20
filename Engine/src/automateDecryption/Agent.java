@@ -31,7 +31,7 @@ public class Agent implements Runnable {
         this.taskSize = taskSize;
         this.id = id;
         this.encryptedText = encryptedText;
-        this.enigmaEngine = enigmaEngine.cloneMachine();
+        this.enigmaEngine = enigmaEngine.deepClone();
         this.machineCodeInputQueue = machineCodeBlockingQueue;
 //        System.out.println("Agent " + id + " is created "+ machineCodeInputQueue.toString());
     }

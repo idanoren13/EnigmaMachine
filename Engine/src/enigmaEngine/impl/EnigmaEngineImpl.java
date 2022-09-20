@@ -13,7 +13,7 @@ import enigmaEngine.interfaces.Rotor;
 import immutables.engine.EngineDTO;
 import javafx.util.Pair;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -90,7 +90,8 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public String processMessage(String input) throws InvalidCharactersException {
+    public synchronized String processMessage(String input) throws InvalidCharactersException {
+
         input = input.toUpperCase();
         if (stringToList(input).stream().anyMatch(c -> !machineABCMap.containsKey(c))) {
             throw new InvalidCharactersException("Starting characters must be in the machine ABC");
@@ -215,7 +216,13 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public EnigmaEngine cloneMachine() {
         HashMap<Integer, Rotor> rotorsClones = new HashMap<>();
-        rotorsClones = rotors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().cloneRotor(), (e1, e2) -> e2, HashMap::new));
+        rotorsClones = rotors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> {
+            try {
+                return e.getValue().cloneRotor();
+            } catch (IOException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }, (e1, e2) -> e2, HashMap::new));
         HashMap<Reflector.ReflectorID, Reflector> reflectorsClones = reflectors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new));
         String ABCClone = this.machineABC;
         EnigmaEngine clone = new EnigmaEngineImpl(rotorsClones, reflectorsClones, this.plugBoard.clonePlugBoard(), ABCClone);
@@ -226,6 +233,33 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
             throw new RuntimeException(ignored);
         }
         clone.setWordsDictionary(this.wordsDictionary.cloneWordsDictionary());
+
+        return clone;
+    }
+
+    public EnigmaEngine deepClone() {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(bos);
+            out.writeObject(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(bis);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        EnigmaEngine clone = null;
+        try {
+            clone = (EnigmaEngine) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         return clone;
     }
