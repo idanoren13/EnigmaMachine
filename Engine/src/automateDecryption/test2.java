@@ -10,15 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
-    public static Reflector.ReflectorID selectedReflectorID = Reflector.ReflectorID.II;
-    static char firstRotorStartingPosition = 'B';
-    static char secondRotorStartingPosition = 'U';
-    static char thirdRotorStartingPosition = 'G';
+public class test2 {
+    public static Reflector.ReflectorID _selectedReflectorID = Reflector.ReflectorID.II;
+    static char _firstRotorStartingPosition = 'B';
+    static char _secondRotorStartingPosition = 'U';
+    static char _thirdRotorStartingPosition = 'G';
 
     public static void main(String[] args) {
         try {
-            String message = "dolphine then sea";
+            String message = "URXQJEYJTI!TZDDTM";
             String encryptedMessage;
             InitializeEnigmaEngine initializeEnigmaEngine = new InitializeEnigmaEngine();
             EnigmaEngine engine = initializeEnigmaEngine.initializeEngine(InitializeEnigmaEngine.SourceMode.XML, "C:\\Users\\idano\\IdeaProjects\\EnigmaMachine\\Engine\\src\\Resources\\ex2-basic.xml");
@@ -27,32 +27,23 @@ public class Test {
             rotors.add(2);
             rotors.add(3);
             List<Character> startingPositions = new ArrayList<>();
-            startingPositions.add(firstRotorStartingPosition);
-            startingPositions.add(secondRotorStartingPosition);
-            startingPositions.add(thirdRotorStartingPosition);
+            startingPositions.add(_firstRotorStartingPosition);
+            startingPositions.add(_secondRotorStartingPosition);
+            startingPositions.add(_thirdRotorStartingPosition);
             engine.setSelectedRotors(rotors, startingPositions);
-            engine.setSelectedReflector(selectedReflectorID);
+            engine.setSelectedReflector(_selectedReflectorID);
 
-            System.out.println("machine code: " + engine.getMachineCode().toString());
             encryptedMessage = engine.processMessage(message);
-            System.out.println("machine code: " + engine.getMachineCode().toString());
-
             System.out.println(encryptedMessage);
             engine.reset();
-            System.out.println("machine code: " + engine.getMachineCode().toString());
-
             System.out.println(engine.processMessage(encryptedMessage));
-            System.out.println("machine code: " + engine.getMachineCode().toString());
-
-            engine.reset();
-            System.out.println("machine code: " + engine.getMachineCode().toString());
-
-            TasksManager tasksManager = new TasksManager(3, encryptedMessage);
-            tasksManager.initialize(engine, Difficulty.EASY);
-            new Thread(tasksManager).start();
-
-            tasksManager.test();
-
+//
+//            TasksManager tasksManager = new TasksManager(1, encryptedMessage);
+//            tasksManager.initialize(engine, Difficulty.EASY);
+//            new Thread(tasksManager).start();
+//
+//            tasksManager.test();
+//
         } catch (InvalidRotorException | InvalidABCException | InvalidReflectorException | JAXBException | IOException |
                  UnknownSourceException | InvalidMachineException | InvalidCharactersException e) {
             throw new RuntimeException(e);
