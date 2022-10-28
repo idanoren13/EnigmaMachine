@@ -41,12 +41,12 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         xmlOutput = (CTEEnigma) jaxbUnmarshaller.unmarshal(xmlFile);
 
         assert xmlOutput != null;
-        return getEnigmaEngine(path, xmlOutput);
+        return getEnigmaEngine(xmlOutput);
     }
 
 
-    @SuppressWarnings("unchecked")
-    private EnigmaEngineImpl getEnigmaEngine(String path, CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
+//    @SuppressWarnings("unchecked")
+    public EnigmaEngineImpl getEnigmaEngine(CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
 
         String cteMachineABC;
         int cteRotorsCount;

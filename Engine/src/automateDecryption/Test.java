@@ -4,6 +4,7 @@ import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
+import immutables.engine.Difficulty;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;

@@ -11,24 +11,152 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DTO_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Engine_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/desktopUI_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/GUI.java" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/okhttp_4_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonClientUtilities/CommonClientUtilities.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Servlets/Servlets.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Servlets/src/servlets/UploadFileServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThirdParty/ThirdParty.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThirdParty/okHttp/annotations-13.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThirdParty/okHttp/kotlin-stdlib-1.4.10.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThirdParty/okHttp/kotlin-stdlib-common-1.4.10.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThirdParty/okHttp/okhttp-4.9.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ThirdParty/okHttp/okio-2.8.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/UBoatClient.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/MachineStateConsole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/MachineStateGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/Program.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/Specifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatServletsPaths.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/exceptions/NoMachineGeneratedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/exceptions/UserQuitsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AgentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/BasicAgentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ConfigurationInputWindowController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ConstestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineConfigurationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateConsole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/SingleAgentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/Specifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/UIAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/XMLLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/XMLLoaderImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/general.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/generalStyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/generalStyleThree.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/generalStyleTwo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/headerStyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/headerStyleThree.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/headerStyleTwo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/machineStateCSS.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/machineStateComponentStyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/machineStateComponentStyleThree.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/machineStateComponentStyleTwo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen1StyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen1StyleThree.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen1StyleTwo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen2StyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen2StyleThree.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen2StyleTwo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen3StyleThree.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/css/screen3StyleTwo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/Machine.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/app.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/configurationInputWindow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/contest.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/currentMachineState.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/firstMachineState.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/graphicConfiguration.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/header.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/images/keyboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/images/kifli.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/images/search magnifying glass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/impl/XMLLoaderImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/HttpClientUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/SimpleCookieManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/desktopUI_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/desktopUI_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/DTO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/DTO.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/Difficulty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/MSCDebug.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EnigmaMachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EnigmaMachine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestFiles/Test1_in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestFiles/Test1_out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/desktopUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/LogicManager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/InitCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/exceptions/NoMachineGeneratedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/exceptions/NoMachineGeneratedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/exceptions/UserQuitsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/exceptions/UserQuitsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AgentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/AgentData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/BasicAgentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/BasicAgentData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/ConfigurationInputWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/ConfigurationInputWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/MachineStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/MachineStateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/SingleAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/SingleAgentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/UIAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/UIAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/generalStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/generalStyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/generalStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/generalStyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/generalStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/generalStyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/headerStyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/headerStyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/headerStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/headerStyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/machineStateCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/machineStateComponentStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateComponentStyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/machineStateComponentStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateComponentStyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/machineStateComponentStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateComponentStyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen1StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen1StyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen1StyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen1StyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen2StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen2StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen2StyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen2StyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen2StyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen2StyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen3StyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/css/screen3StyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen3StyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/app.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/configurationInputWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/configurationInputWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/currentMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/currentMachineState.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/firstMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/firstMachineState.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/graphicConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/graphicConfiguration.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/screen1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/screen2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/images/keyboard.png" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/images/keyboard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/images/kifli.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/images/kifli.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/images/search magnifying glass.png" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/images/search magnifying glass.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineActivateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/historyAndStatistics/MachineActivateData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/historyAndStatistics/MachineCodeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/XMLLoaderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/XMLLoaderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/models/MachineStateConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/models/MachineStateConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/models/MachineStateGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/models/MachineStateGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/impl/models/Specifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/models/Specifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/interfaces/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/desktopUI/src/desktopApp/interfaces/XMLLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/interfaces/XMLLoader.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +193,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/frontEnd/AppController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/desktopUI/src/desktopApp/impl/Console.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/AppController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogicManager/src/desktopApp/impl/Console.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -95,9 +223,9 @@
     "extract.method.default.visibility": "private",
     "jdk.selected.JAVA_MODULE": "1.8",
     "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
-    "last_opened_file_path": "C:/Users/idano/Desktop/08. Java FX",
+    "last_opened_file_path": "C:/Users/idano/IdeaProjects/EnigmaMachineServer/UBoatClient/src/uBoatApp",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -110,31 +238,24 @@
       <recent name="consoleApp" />
       <recent name="enigmaEngine" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachineServer\UBoatClient\src\uBoatApp" />
+      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachineServer\UBoatClient\src\uBoatApp\frontEnd" />
+      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachineServer" />
+      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachineServer\ThirdParty" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\idano\IdeaProjects\EnigmaMachineServer\UBoatClient" />
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\fxml" />
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\css" />
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\body" />
       <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\desktopUI\src\desktopApp\frontEnd\header" />
-      <recent name="C:\Users\guybe\IdeaProjects\EnigmaMachine\consoleUI\src\consoleApp" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="desktopApp.frontEnd" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Program">
-    <configuration name="MSCDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="desktopApp.MSCDebug" />
-      <module name="desktopUI" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="automateDecryption.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MachineCode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="enigmaEngine.MachineCode" />
       <module name="Engine" />
@@ -149,13 +270,11 @@
       </method>
     </configuration>
     <configuration name="Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="desktopApp.Program" />
-      <module name="desktopUI" />
+      <option name="MAIN_CLASS_NAME" value="uBoatApp.Program" />
+      <module name="UBoatClient" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="automateDecryption.*" />
+          <option name="PATTERN" value="uBoatApp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -163,12 +282,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="automateDecryption.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="automateDecryption.Test" />
       <module name="Engine" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="automateDecryption.*" />
+          <option name="PATTERN" value="immutables.engine.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -176,28 +295,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="enigmaEngine.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="enigmaEngine.Main" />
-      <module name="EnigmaMachine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="enigmaEngine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="automateDecryption.test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="automateDecryption.test2" />
       <module name="Engine" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="automateDecryption.*" />
+          <option name="PATTERN" value="immutables.engine.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="desktopApp.Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="desktopApp.Program" />
+      <module name="LogicManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="immutables.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="LogicManager" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="LogicManager" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -205,10 +339,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Program" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.test2" />
+        <item itemvalue="Application.desktopApp.Program" />
+        <item itemvalue="Application.automateDecryption.Test" />
+        <item itemvalue="Application.automateDecryption.test2" />
         <item itemvalue="Application.MachineCode" />
-        <item itemvalue="Application.MSCDebug" />
       </list>
     </recent_temporary>
   </component>
@@ -265,6 +399,9 @@
       <workItem from="1662498915756" duration="3403000" />
       <workItem from="1662503122395" duration="4525000" />
       <workItem from="1662507709585" duration="2613000" />
+      <workItem from="1664276166587" duration="417000" />
+      <workItem from="1666435060504" duration="4763000" />
+      <workItem from="1666914023500" duration="13640000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -486,7 +623,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663642855298</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="final Idan Push - stop added but no restart">
+      <created>1663650872584</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1663650872584</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml">
+      <created>1663650900646</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1663650900646</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,8 +681,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
-    <MESSAGE value="update rotor test" />
     <MESSAGE value="added initialization of the stacks" />
     <MESSAGE value="Added reset Engine" />
     <MESSAGE value="Added:&#10;UI, fully tested engine, JAR files with bat&#10;needs Some work:&#10;Choice 2, not fully implemented,check TODOs&#10;Choice 4, auto selection&#10;Choice 7, statistics" />
@@ -555,7 +704,9 @@
     <MESSAGE value="fixed screen 3" />
     <MESSAGE value="fix cloning threads works good" />
     <MESSAGE value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" />
+    <MESSAGE value="final Idan Push - stop added but no restart" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -564,14 +715,6 @@
           <properties class="java.util.ConcurrentModificationException" package="java.util" />
           <option name="timeStamp" value="28" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java</url>
-          <line>218</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

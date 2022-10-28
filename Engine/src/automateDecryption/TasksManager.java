@@ -3,6 +3,7 @@ package automateDecryption;
 import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.interfaces.EnigmaEngine;
+import immutables.engine.Difficulty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;

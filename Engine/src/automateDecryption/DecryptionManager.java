@@ -3,6 +3,7 @@ package automateDecryption;
 import enigmaEngine.MachineCode;
 import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.Reflector;
+import immutables.engine.Difficulty;
 import immutables.engine.EngineDTO;
 
 import java.util.ArrayList;

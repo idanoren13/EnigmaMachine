@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.ConstestController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <stylesheets>
+      <URL value="@../css/general.css" />
+      <URL value="@../css/screen3StyleOne.css" />
+   </stylesheets>
+   <content>
+      <VBox fx:id="bruteForceVBox">
+         <children>
+            <GridPane id="main" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="410.0" VBox.vgrow="SOMETIMES">
+              <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" maxWidth="742.0" minWidth="450.0" prefWidth="534.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="436.0" minWidth="144.0" prefWidth="352.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="198.0" prefHeight="216.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="270.0" minHeight="212.0" prefHeight="270.0" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+                  <VBox id="keyboardInputVBox" fx:id="keyboardInputVBox" prefHeight="201.0" prefWidth="447.0">
+                     <children>
+                        <HBox prefHeight="66.0" prefWidth="588.0">
+                           <children>
+                              <VBox prefWidth="300.0" styleClass="machine-state-vbox">
+                                 <children>
+                                    <Label styleClass="header-label" text="Current Machine State:" />
+                                    <ScrollPane>
+                                       <content>
+                                          <Label fx:id="currentMachineStateLabel" styleClass="information-label" text="NaN">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="50.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <Button fx:id="enterCurrentKeyboardInputButton" alignment="CENTER" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="42.0" prefWidth="97.0" text="Encrypt!" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="70.0" top="25.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="67.0" spacing="20.0">
+                           <children>
+                              <VBox>
+                                 <HBox.margin>
+                                    <Insets top="9.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets top="6.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox>
+                                 <children>
+                                    <Label styleClass="header-label" text="Input to Encrypt\Decrypt:">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="inputToEncryptDecryptInput" maxWidth="203.0" prefHeight="30.0" promptText="Enter keyboard input...">
+                                       <VBox.margin>
+                                          <Insets top="6.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="67.0">
+                           <children>
+                              <VBox id="outputEncryptedText">
+                                 <children>
+                                    <Label styleClass="header-label" text="Your Enigma Output:">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="enigmaOutputTextField" editable="false" maxWidth="203.0" prefHeight="30.0" promptText="NaN">
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets top="-3.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </VBox>
+                              <Button fx:id="enterCurrentKeyboardInputButton1" alignment="CENTER" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="42.0" prefWidth="97.0" text="Log Out" textAlignment="CENTER" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="115.0" top="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" spacing="12.0" styleClass="search-dictionary-words-vbox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Label maxWidth="300.0" styleClass="header-label" text="Search For Dictionary Words:">
+                           <VBox.margin>
+                              <Insets left="10.0" top="14.0" />
+                           </VBox.margin>
+                        </Label>
+                        <StackPane maxHeight="42.0" maxWidth="302.0" prefHeight="38.0" prefWidth="302.0">
+                           <children>
+                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="39.0" prefWidth="172.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="1.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="36.0" prefWidth="157.0" styleClass="stack-button">
+                                 <StackPane.margin>
+                                    <Insets left="-38.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <TextField fx:id="searchInputTextField" maxHeight="28.0" maxWidth="125.0" promptText="Type words here...">
+                                 <StackPane.margin>
+                                    <Insets right="14.0" />
+                                 </StackPane.margin>
+                              </TextField>
+                           </children>
+                        </StackPane>
+                        <ListView fx:id="searchDictionaryWordsListView" maxWidth="300.0" prefHeight="105.0" prefWidth="286.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                  </VBox>
+                  <TableView fx:id="candidatesTable" prefHeight="248.0" prefWidth="535.0" GridPane.rowIndex="1">
+                    <columns>
+                      <TableColumn prefWidth="185.0" text="Candidate String" />
+                      <TableColumn minWidth="0.0" prefWidth="165.0" text="Ally Team" />
+                        <TableColumn prefWidth="184.0" text="Encrypted Code" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="alliesDetailsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columns>
+                      <TableColumn prefWidth="81.0" text="Ally Team" />
+                      <TableColumn prefWidth="148.0" text="Number Of Agents" />
+                        <TableColumn prefWidth="122.0" text="Mission Size" />
+                    </columns>
+                  </TableView>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

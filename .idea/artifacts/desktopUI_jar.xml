@@ -2,7 +2,7 @@
   <artifact type="jar" name="desktopUI:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/desktopUI_jar</output-path>
     <root id="archive" name="desktopUI.jar">
-      <element id="module-output" name="desktopUI" />
+      <element id="module-output" name="LogicManager" />
       <element id="module-output" name="DTO" />
       <element id="module-output" name="Engine" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Engine/src/Resources/controlsfx-8.40.14.jar" path-in-jar="/" />

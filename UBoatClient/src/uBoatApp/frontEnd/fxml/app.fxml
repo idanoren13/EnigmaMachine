@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<ScrollPane fitToHeight="true" fitToWidth="true" minHeight="600.0" minWidth="900.0" prefHeight="602.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.AppController">
+   <content>
+      <BorderPane>
+         <top>
+            <fx:include fx:id="headerComponent" source="header.fxml" BorderPane.alignment="TOP_CENTER" />
+         </top>
+         <center>
+            <StackPane fx:id="stackPaneContainer" BorderPane.alignment="CENTER">
+               <children>
+                  <fx:include fx:id="screen3Component" source="contest.fxml" BorderPane.alignment="BOTTOM_CENTER" />
+                  <fx:include fx:id="screen1Component" source="Machine.fxml" BorderPane.alignment="BOTTOM_CENTER" />
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </content>
+</ScrollPane>
