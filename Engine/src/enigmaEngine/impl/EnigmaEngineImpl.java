@@ -36,6 +36,20 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     private int agentsNumber;
 
+    public EnigmaEngineImpl() {
+        this.rotors = new HashMap<>();
+        this.reflectors = new HashMap<>();
+        this.machineABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        this.machineABCMap = IntStream.range(0, machineABC.length())
+                .boxed()
+                .collect(Collectors.toMap(machineABC::charAt, machineABC::charAt));
+        this.selectedRotors = new ArrayList<>();
+        this.selectedRotorsListRightToLeft = new ArrayList<>();
+        this.selectedRotorsListLeftToRight = new ArrayList<>();
+        this.startingCharacters = new ArrayList<>();
+        this.messagesSentCounter = 0;
+        this.agentsNumber = 0;
+    }
 
     public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
         this.rotors = rotors;

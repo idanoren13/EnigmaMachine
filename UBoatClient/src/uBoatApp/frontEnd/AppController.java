@@ -41,7 +41,7 @@ public class AppController {
     }
     public void resetScreens(boolean bool, Object controller) {
 //        screen1ComponentController.resetMachineStateAndStatus();
-        constestController.resetMachineStateAndEnigmaOutput(bool, controller);
+//        constestController.resetMachineStateAndEnigmaOutput(bool, controller);
     }
 
 

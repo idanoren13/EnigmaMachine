@@ -24,6 +24,7 @@ import static utils.Constants.UPLOAD_FILE;
 
 public class HeaderController implements Initializable {
     public Button contestButton;
+    public Button loadXMLButton;
     private AppController mainController;
     @FXML
     private HBox headerHBox;
@@ -87,11 +88,7 @@ public class HeaderController implements Initializable {
             File newXMLFile = fc.showOpenDialog(null);
             String filePath = newXMLFile.getAbsolutePath();
 
-            if (newXMLFile == null) {
-                System.out.println("No file was chosen.");
-            }
-
-//            MediaType mediaType = MediaType.parse("application/xml");
+            //            MediaType mediaType = MediaType.parse("application/xml");
             RequestBody body = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("file", newXMLFile.getName(), RequestBody.create(MediaType.parse("application/xml"), newXMLFile))
@@ -102,32 +99,27 @@ public class HeaderController implements Initializable {
                     .post(body)
                     .build();
 
-//            Call call = HTTP_CLIENT.newCall(request);
-
             Response response = HTTP_CLIENT.newCall(request).execute();
-
             String responseString = response.body().string();
-
             System.out.println(responseString);
-
             currXMLFilePath = filePath;
 
             Gson gson = new Gson();
             EngineDTO engineDTO = gson.fromJson(responseString, EngineDTO.class);
 
-
             //create a list of all reflectors in size of the number of reflectors in the engine DTO
             List<ReflectorID> reflectors = new ArrayList<>(Arrays.asList(ReflectorID.values()).subList(0, engineDTO.getTotalReflectors()));
-
-            Collections.sort(reflectors);
             mainController.updateMachineStats(
                     reflectors.stream().map(String::valueOf).collect(Collectors.toList()),
                     Integer.toString(engineDTO.getTotalNumberOfRotors()),
                     Integer.toString(engineDTO.getTotalReflectors())
             );
-
             mainController.initializeMachineStates("NaN");
             mainController.updateScreensDisability(true);
+
+            loadXMLButton.setDisable(true);
+
+
         } catch (Exception e) {
             loadXMLErrorLabel.setText("Error loading XML file.");
         }

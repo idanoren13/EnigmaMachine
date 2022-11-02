@@ -1,8 +1,6 @@
 package servlets;
 
 import com.google.gson.Gson;
-import enigmaEngine.EnigmaMachineFromXML;
-import enigmaEngine.interfaces.EnigmaEngine;
 import immutables.engine.EngineDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -11,8 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import utils.ServletUtils;
 
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -29,24 +27,15 @@ public class FileUploadServlet extends HttpServlet {
 
 
         try {
-            EnigmaEngine engine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(part.getInputStream());
-            EngineDTO engineDTO = engine.getEngineDTO();
-
-            StringBuilder fileContent = new StringBuilder();
-
-//            printPart(part, out);
-
-            //to write the content of the file to an actual file in the system (will be created at c:\samplefile)
-//        part.write("samplefile");
-
-            //to write the content of the file to a string
-//            fileContent.append(readFromInputStream(part.getInputStream()));
+            ServletUtils.getEnigmaEngine(getServletContext()).setEnigmaEngineFromInputStream((part.getInputStream()));
+//            EnigmaEngine engine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(part.getInputStream());
+            EngineDTO engineDTO =   ServletUtils.getEnigmaEngine(getServletContext()).getEnigmaEngine().getEngineDTO();
 
             Gson gson = new Gson();
             String json = gson.toJson(engineDTO);
 
             printFileContent(json, out);
-        } catch (JAXBException e) {
+        } catch (ClassNotFoundException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }

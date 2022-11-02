@@ -1,5 +1,8 @@
 package uBoatApp.frontEnd;
 
+import com.google.gson.Gson;
+import immutables.engine.EngineDTO;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -8,13 +11,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
 import uBoatApp.MachineStateConsole;
 import uBoatApp.Specifications;
+import uBoatApp.util.HttpClientUtil;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static utils.Constants.SET_MACHINE_CONFIG_AUTO;
 
 public class MachineConfigurationController implements Initializable {
     // Main component
@@ -105,11 +117,50 @@ public class MachineConfigurationController implements Initializable {
 
     @FXML
     void setConfigurationRandomly() {
+
+
         if (initializeEnigmaCode(false)) {
             updateConfigurationFieldsAndMachineStateDisability();
-            mainController.resetScreens(false, null);
+            updateConfigurationFieldsRandomly();
+//            mainController.resetScreens(false, null);
         }
     }
+
+    private void updateConfigurationFieldsRandomly() {
+        String url = HttpUrl.parse(SET_MACHINE_CONFIG_AUTO).newBuilder()
+                .build().toString();
+
+        HttpClientUtil.runAsync(url, new Callback(){
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.code() == 200) {
+                    String responseString = response.body().string();
+                    System.out.println(responseString);
+                    Platform.runLater(() -> {
+                        Gson gson = new Gson();
+                        EngineDTO engineDTO = gson.fromJson(responseString, EngineDTO.class);
+
+                        firstMachineStateComponentController.setInitializedControllerComponents(engineDTO);
+                        currentMachineStateComponentController.setInitializedControllerComponents(engineDTO);
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error while setting machine configuration");
+                    alert.setContentText("Please check your internet connection and try again.");
+                    alert.showAndWait();
+                });
+            }
+        });
+
+    }
+
     private boolean initializeEnigmaCode(boolean isManual) {
         String rotors, startingPositions, plugBoardPairs, reflectorID;
         if (isManual) {

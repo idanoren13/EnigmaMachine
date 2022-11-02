@@ -9,57 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Server_Exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/annotations_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/okio_2_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ally/Ally.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/engine/ReflectorID.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/battlefield/Ally.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/battlefield/BattlefieldInformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEBattlefield.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ThirdParty/gson/gson-2.8.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UBoatClient/resources/ex3-basic.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/FileUploadServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/HelloWorldServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="upload xml works">
+      <change afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaEngineManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/SetMachineConfigAuto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommonClientUtilities/CommonClientUtilities.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClientUtilities/CommonClientUtilities.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DTO/DTO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/DTO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/test2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/test2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCodeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCodeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCodeDTO.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EnigmaMachine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EnigmaMachine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/LogicManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/LogicManager.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servlets/Servlets.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/Web-Demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servlets/src/servlets/UploadFileServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThirdParty/ThirdParty.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ThirdParty/ThirdParty.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/UBoatClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/UBoatClient.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatServletsPaths.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ConstestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ConstestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineConfigurationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/HttpClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/HttpClientUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/FileUploadServlet.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,8 +41,8 @@
         <option value="Interface" />
         <option value="HTML File" />
         <option value="Tag Library Descriptor" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -137,7 +102,7 @@
     "extract.method.default.visibility": "private",
     "jdk.selected.JAVA_MODULE": "1.8",
     "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
-    "last_opened_file_path": "C:/Users/idano/IdeaProjects/EnigmaMachineServer/ThirdParty/okHttp/kotlin-stdlib-common-1.4.10.jar",
+    "last_opened_file_path": "C:/Users/idano/Documents/HomeWork/Summer/Java/server/Packaging & Common Pitfalls",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -415,7 +380,7 @@
       <workItem from="1662507709585" duration="2613000" />
       <workItem from="1664276166587" duration="417000" />
       <workItem from="1666435060504" duration="4763000" />
-      <workItem from="1666914023500" duration="42120000" />
+      <workItem from="1666914023500" duration="50575000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -658,7 +623,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666958626113</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="upload xml works">
+      <created>1667403093402</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1667403093402</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +674,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added initialization of the stacks" />
     <MESSAGE value="Added reset Engine" />
     <MESSAGE value="Added:&#10;UI, fully tested engine, JAR files with bat&#10;needs Some work:&#10;Choice 2, not fully implemented,check TODOs&#10;Choice 4, auto selection&#10;Choice 7, statistics" />
     <MESSAGE value="not completed&#10;Choice 7, statistics" />
@@ -727,7 +698,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java" />
     <MESSAGE value="final Idan Push - stop added but no restart" />
     <MESSAGE value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" />
+    <MESSAGE value="upload xml works" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload xml works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -741,14 +713,24 @@
           <option name="timeStamp" value="32" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="37" />
+          <url>file://$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/MachineStateController.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/MachineStateController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/MachineStateController.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
