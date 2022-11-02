@@ -1,48 +1,44 @@
 package uBoatApp.frontEnd;
 
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import com.google.gson.Gson;
+import immutables.engine.EngineDTO;
+import immutables.engine.ReflectorID;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import okhttp3.*;
-import uBoatApp.util.HttpClientUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import static uBoatApp.util.HttpClientUtil.HTTP_CLIENT;
 import static utils.Constants.UPLOAD_FILE;
 
 
 public class HeaderController implements Initializable {
+    public Button contestButton;
     private AppController mainController;
-    @FXML private HBox headerHBox;
+    @FXML
+    private HBox headerHBox;
     private String currXMLFilePath = "";
 
     // private final IntegerProperty chosenButton = new SimpleIntegerProperty();
-    @FXML private TextField xmlFilePathTextField;
+    @FXML
+    private TextField xmlFilePathTextField;
 
-    @FXML private Label loadXMLErrorLabel;
-
-    @FXML private ChoiceBox<String> styleChoiceBox;
-
-    @FXML private ChoiceBox<String> animationChoiceBox;
-
-    @FXML private Button machineButton;
-
-    @FXML private Button decryptInputWithEnigmaButton;
-
-    @FXML private Button constestButton;
+    @FXML
+    private Label loadXMLErrorLabel;
 
 
+    @FXML
+    private Button machineButton;
 
 
     public void setMainController(AppController mainController) {
@@ -69,9 +65,15 @@ public class HeaderController implements Initializable {
     @FXML
     void machineDetailsButtonActionListener() {
         machineButton.getStyleClass().add("chosen-button");
-        decryptInputWithEnigmaButton.getStyleClass().remove("chosen-button");
-        constestButton.getStyleClass().remove("chosen-button");
+        contestButton.getStyleClass().remove("chosen-button");
         mainController.changeToScreen1();
+    }
+
+    @FXML
+    void contestButtonActionListener() {
+        contestButton.getStyleClass().add("chosen-button");
+        machineButton.getStyleClass().remove("chosen-button");
+        mainController.changeToScreen3();
     }
 
 
@@ -85,63 +87,55 @@ public class HeaderController implements Initializable {
             File newXMLFile = fc.showOpenDialog(null);
             String filePath = newXMLFile.getAbsolutePath();
 
-            MediaType mediaType = MediaType.parse("application/xml");
-//            RequestBody body = new MultipartBody.Builder()
-//                    .setType(MultipartBody.FORM)
-//                    .addFormDataPart("file", filePath, RequestBody.create(mediaType, new File(filePath)))
-//                    .build();
+            if (newXMLFile == null) {
+                System.out.println("No file was chosen.");
+            }
 
-            HttpClientUtil.runAsync(UPLOAD_FILE, new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Platform.runLater(() -> {
-                        loadXMLErrorLabel.setText("Error: " + e.getMessage());
-                    });
-                }
+//            MediaType mediaType = MediaType.parse("application/xml");
+            RequestBody body = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("file", newXMLFile.getName(), RequestBody.create(MediaType.parse("application/xml"), newXMLFile))
+                    .build();
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    Platform.runLater(() -> {
-                        if (response.isSuccessful()) {
-                            loadXMLErrorLabel.setText("XML file loaded successfully.");
-                            currXMLFilePath = filePath;
-                            xmlFilePathTextField.setText(currXMLFilePath);
-                        } else {
-                            loadXMLErrorLabel.setText("Error: " + response.message());
-                        }
-                    });
-                }
-            });
+            Request request = new Request.Builder()
+                    .url(UPLOAD_FILE)
+                    .post(body)
+                    .build();
 
-//            Request request =new Request.Builder()
-//                    .url(UPLOAD_FILE)
-//                    .post(body)
-//                    .build();
-//
-//            Callback callback = new Callback() {
-//                @Override
-//                public void onFailure(Call call, IOException e) {
-//
-//                }
-//
-//                @Override
-//                public void onResponse(Call call, Response response) throws IOException {
-//                    if (response.isSuccessful()) {
-//                        Platform.runLater(() -> {
-//
-//                        });
-//                    }
-//                }
-//            };
+//            Call call = HTTP_CLIENT.newCall(request);
 
+            Response response = HTTP_CLIENT.newCall(request).execute();
+
+            String responseString = response.body().string();
+
+            System.out.println(responseString);
+
+            currXMLFilePath = filePath;
+
+            Gson gson = new Gson();
+            EngineDTO engineDTO = gson.fromJson(responseString, EngineDTO.class);
+
+
+            //create a list of all reflectors in size of the number of reflectors in the engine DTO
+            List<ReflectorID> reflectors = new ArrayList<>(Arrays.asList(ReflectorID.values()).subList(0, engineDTO.getTotalReflectors()));
+
+            Collections.sort(reflectors);
+            mainController.updateMachineStats(
+                    reflectors.stream().map(String::valueOf).collect(Collectors.toList()),
+                    Integer.toString(engineDTO.getTotalNumberOfRotors()),
+                    Integer.toString(engineDTO.getTotalReflectors())
+            );
+
+            mainController.initializeMachineStates("NaN");
+            mainController.updateScreensDisability(true);
         } catch (Exception e) {
             loadXMLErrorLabel.setText("Error loading XML file.");
         }
     }
+
     public void updateLabelTextsToEmpty() {
         loadXMLErrorLabel.setText("");
     }
-
 
 
     public void updateStylesheet(Number num) {
@@ -156,9 +150,5 @@ public class HeaderController implements Initializable {
             headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/headerStyleThree.css");
             headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/generalStyleOne.css");
         }
-    }
-
-    public void contestButtonActionListener(ActionEvent actionEvent) {
-
     }
 }

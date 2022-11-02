@@ -10,10 +10,10 @@ import java.util.function.Consumer;
 public class HttpClientUtil {
 
     private final static SimpleCookieManager simpleCookieManager = new SimpleCookieManager();
-    private final static OkHttpClient HTTP_CLIENT =
+    public final static OkHttpClient HTTP_CLIENT =
             new OkHttpClient.Builder()
-                    .cookieJar(simpleCookieManager)
-                    .followRedirects(false)
+//                    .cookieJar(simpleCookieManager)
+//                    .followRedirects(false)
                     .build();
 
     public static void setCookieManagerLoggingFacility(Consumer<String> logConsumer) {

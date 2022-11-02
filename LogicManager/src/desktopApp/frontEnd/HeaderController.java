@@ -1,7 +1,7 @@
 package desktopApp.frontEnd;
 
 import enigmaEngine.exceptions.*;
-import enigmaEngine.interfaces.Reflector;
+import immutables.engine.ReflectorID;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -108,7 +108,7 @@ public class HeaderController implements Initializable {
                 currXMLFilePath = filePath;
 
                 // Update reflector choice box options
-                List<Reflector.ReflectorID> unsortedReflectors = AppController.getConsoleApp().getEngine().getReflectors();
+                List<ReflectorID> unsortedReflectors = AppController.getConsoleApp().getEngine().getReflectors();
                 Collections.sort(unsortedReflectors);
                 mainController.updateScreenOne(
                         unsortedReflectors.stream().map(String::valueOf).collect(Collectors.toList()),

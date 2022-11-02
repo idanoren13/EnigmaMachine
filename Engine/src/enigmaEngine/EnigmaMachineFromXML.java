@@ -10,6 +10,7 @@ import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import enigmaEngine.schemaBinding.*;
+import immutables.engine.ReflectorID;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBContext;
@@ -44,6 +45,23 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         return getEnigmaEngine(xmlOutput);
     }
 
+    public EnigmaEngineImpl getEnigmaEngineFromInputStream(InputStream xmlFile) throws JAXBException, RuntimeException  {
+    try {
+
+        CTEEnigma xmlOutput;
+
+        JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        xmlOutput = (CTEEnigma) jaxbUnmarshaller.unmarshal(xmlFile);
+
+
+        assert xmlOutput != null;
+        return getEnigmaEngine(xmlOutput);
+    } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException e) {
+        throw new RuntimeException(e);
+    }
+
+    }
 
 //    @SuppressWarnings("unchecked")
     public EnigmaEngineImpl getEnigmaEngine(CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
@@ -54,7 +72,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         CTEMachine machine;
         List<CTEReflector> cteReflectors;
         HashMap<Integer, Rotor> rotors;
-        HashMap<Reflector.ReflectorID, Reflector> reflectors;
+        HashMap<ReflectorID, Reflector> reflectors;
         CTEDecipher decipher;
         CTEDictionary dictionary;
 
@@ -89,7 +107,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
             throw new InvalidReflectorException("In the given XML, there are no reflectors.");
         }
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
-        reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
+        reflectors = (HashMap<ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
         EnigmaEngineImpl newEnigmaEngine = new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
@@ -132,7 +150,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
 
     private HashMap<?, ?> importCTEReflectors(List<CTEReflector> cteReflectors, HashMap<Object, Object> reflectors) throws InvalidReflectorException {
         for (CTEReflector reflector : cteReflectors) {
-            Reflector.ReflectorID id = getCTEReflectorID(reflector.getId().toUpperCase());
+            ReflectorID id = getCTEReflectorID(reflector.getId().toUpperCase());
             Pair<List<Integer>, List<Integer>> inputAndOutput = getCTEReflectorInputAndOutputPairs(reflector);
 
             if (reflectors.containsKey(id)) {
@@ -143,14 +161,14 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         return reflectors;
     }
 
-    private Reflector.ReflectorID getCTEReflectorID(String stringID) {
+    private ReflectorID getCTEReflectorID(String stringID) {
         try {
-            return Reflector.ReflectorID.valueOf(stringID);
+            return ReflectorID.valueOf(stringID);
         } catch (IllegalArgumentException e) {
             throw new RuntimeException("Invalid ID for enum "
-                    + enigmaEngine.interfaces.Reflector.ReflectorID.class.getSimpleName()
+                    + ReflectorID.class.getSimpleName()
                     + " of a given reflector: " + stringID
-                    + ". Valid IDs are only: " + Arrays.toString(Reflector.ReflectorID.values()));
+                    + ". Valid IDs are only: " + Arrays.toString(ReflectorID.values()));
         }
     }
 

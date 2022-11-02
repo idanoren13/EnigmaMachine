@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
-public class Program extends Application {
+public class UBoatClientApp extends Application {
 
     private static String APP_FXML_INCLUDE_RESOURCE = "/uBoatApp/frontEnd/fxml/app.fxml";
     private static String APP_ICON_FOR_AVIAD = "/uBoatApp/frontEnd/images/kifli.jpg";

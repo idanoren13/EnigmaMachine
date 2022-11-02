@@ -8,6 +8,7 @@ import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.CreateAndValidateEnigmaComponents;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
+import immutables.engine.ReflectorID;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -38,7 +39,7 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     }
 
     @Override
-    public Reflector createReflector(List<Integer> input, List<Integer> output, Reflector.ReflectorID id) throws InvalidReflectorException {
+    public Reflector createReflector(List<Integer> input, List<Integer> output, ReflectorID id) throws InvalidReflectorException {
         for (int i = 0; i < input.size(); i++) {
             input.set(i, input.get(i) - 1);
             output.set(i, output.get(i) - 1);
@@ -57,7 +58,7 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     }
 
     @Override
-    public void validateReflectorsIDs(Map<Reflector.ReflectorID, Reflector> reflectorsMap) throws InvalidReflectorException {
+    public void validateReflectorsIDs(Map<ReflectorID, Reflector> reflectorsMap) throws InvalidReflectorException {
         if (reflectorsMap.keySet().stream().anyMatch(id -> id.ordinal() >= reflectorsMap.size())) {
             throw new InvalidReflectorException("All reflector IDs must be sequential, from 1 to " + reflectorsMap.size() + ".");
         }

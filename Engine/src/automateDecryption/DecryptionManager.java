@@ -2,9 +2,9 @@ package automateDecryption;
 
 import enigmaEngine.MachineCode;
 import enigmaEngine.interfaces.EnigmaEngine;
-import enigmaEngine.interfaces.Reflector;
 import immutables.engine.Difficulty;
 import immutables.engine.EngineDTO;
+import immutables.engine.ReflectorID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,13 +87,13 @@ public class DecryptionManager implements Runnable {
                 machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), tempMachineCode.getSelectedReflectorID(), tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case MEDIUM:
-                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case HARD:
-                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             case IMPOSSIBLE:
-                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), Reflector.ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
+                machineCode = new MachineCode(tempMachineCode.getRotorsIDInorder(), setStartingPositions(tempMachineCode.getStartingPositions()), ReflectorID.I, tempMachineCode.getPlugBoard(), enigmaEngine.getABC());
                 break;
             default:
         }
@@ -198,7 +198,7 @@ public class DecryptionManager implements Runnable {
 
     private void advanceMachineCodeMedium() {
         for (int i = 0; i < engineDTO.getTotalReflectors(); i++) {
-            machineCode = new MachineCode(machineCode.getRotorsIDInorder(), machineCode.getStartingPositions(), Reflector.ReflectorID.values()[i], machineCode.getPlugBoard(), enigmaEngine.getABC());
+            machineCode = new MachineCode(machineCode.getRotorsIDInorder(), machineCode.getStartingPositions(), ReflectorID.values()[i], machineCode.getPlugBoard(), enigmaEngine.getABC());
             advanceMachineCodeEasy();
         }
     }

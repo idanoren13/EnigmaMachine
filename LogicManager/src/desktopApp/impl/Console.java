@@ -1,6 +1,5 @@
 package desktopApp.impl;
 
-import immutables.engine.Difficulty;
 import automateDecryption.TasksManager;
 import desktopApp.InitCode;
 import desktopApp.exceptions.NoMachineGeneratedException;
@@ -12,11 +11,12 @@ import enigmaEngine.EnigmaMachineFromXML;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
-import enigmaEngine.interfaces.Reflector;
+import immutables.engine.ReflectorID;
 import enigmaEngine.schemaBinding.CTEDecipher;
 import enigmaEngine.schemaBinding.CTEEnigma;
 import enigmaEngine.schemaBinding.CTEReflector;
 import enigmaEngine.schemaBinding.CTERotor;
+import immutables.engine.Difficulty;
 import immutables.engine.EngineDTO;
 import javafx.beans.value.ObservableValue;
 import javafx.util.Pair;
@@ -240,11 +240,11 @@ public class Console implements Input {
         System.out.println("Enter your desired reflector ID. Please enter the number using one of these numerals:\n"
                 + "1. For reflector I\n" + "2. For reflector II\n" + "3. For reflector III\n" + "4. For reflector IV\n" + "5. For reflector V\n");
         System.out.println("If you are willing to go back to main menu, type '-1'.");
-        reflectorNumber = Reflector.ReflectorID.valueOf(reflectorID).ordinal() + 1;
+        reflectorNumber = ReflectorID.valueOf(reflectorID).ordinal() + 1;
         if (reflectorNumber < 1 || reflectorNumber > 5) {
             throw new InvalidReflectorException(reflectorNumber + " is an invalid reflector ID.");
         }
-        this.engine.setSelectedReflector(Reflector.ReflectorID.values()[reflectorNumber - 1]);
+        this.engine.setSelectedReflector(ReflectorID.values()[reflectorNumber - 1]);
     }
 
     private void getPlugBoardPairsFromUserInput(String plugBoardPairs) throws InvalidPlugBoardException {

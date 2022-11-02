@@ -7,6 +7,7 @@ import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import immutables.engine.EngineDTO;
+import immutables.engine.ReflectorID;
 import javafx.util.Pair;
 
 import java.io.Serializable;
@@ -28,9 +29,9 @@ public interface EnigmaEngine extends Serializable {
 
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;
 
-    List<Reflector.ReflectorID> getReflectors();
+    List<ReflectorID> getReflectors();
 
-    void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) throws InvalidReflectorException;
+    void setSelectedReflector(ReflectorID selectedReflectorID) throws InvalidReflectorException;
 
     void setPlugBoard(List<Pair<Character,Character>> plugBoard) throws InvalidPlugBoardException;
 

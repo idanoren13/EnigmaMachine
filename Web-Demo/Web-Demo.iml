@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -12,5 +24,9 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="module" module-name="Engine" />
     <orderEntry type="module" module-name="LogicManager" />
+    <orderEntry type="library" name="gson-2.8.8" level="project" />
+    <orderEntry type="library" name="okio-2.8.0" level="project" />
+    <orderEntry type="library" name="annotations-13.0" level="project" />
+    <orderEntry type="module" module-name="DTO" />
   </component>
 </module>

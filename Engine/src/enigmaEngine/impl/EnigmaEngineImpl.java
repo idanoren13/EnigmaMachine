@@ -11,6 +11,7 @@ import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.engine.EngineDTO;
+import immutables.engine.ReflectorID;
 import javafx.util.Pair;
 
 import java.io.*;
@@ -20,7 +21,7 @@ import java.util.stream.IntStream;
 
 public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private final HashMap<Integer, Rotor> rotors;
-    private final HashMap<Reflector.ReflectorID, Reflector> reflectors;
+    private final HashMap<ReflectorID, Reflector> reflectors;
     private PlugBoard plugBoard;
     private final String machineABC;
     private final Map<Character, Character> machineABCMap;
@@ -36,7 +37,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private int agentsNumber;
 
 
-    public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
+    public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
         this.rotors = rotors;
         this.reflectors = reflectors;
         this.plugBoard = plugBoard;
@@ -68,7 +69,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public List<Reflector.ReflectorID> getReflectors() {
+    public List<ReflectorID> getReflectors() {
         return new ArrayList<>(this.reflectors.keySet());
     }
 
@@ -133,7 +134,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     @Override
     // Added more details if a reflector doesn't exist in Enigma machine's XML file.
-    public void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) throws InvalidReflectorException {
+    public void setSelectedReflector(ReflectorID selectedReflectorID) throws InvalidReflectorException {
         if (!reflectors.containsKey(selectedReflectorID)) {
             throw new InvalidReflectorException(String.format("Reflector '%s' not found.", selectedReflectorID.name()));
         }
@@ -194,7 +195,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
             throw new RuntimeException(e);
         }
 
-        this.selectedReflector = this.reflectors.get(Reflector.ReflectorID.values()[random.nextInt(this.reflectors.size())]);
+        this.selectedReflector = this.reflectors.get(ReflectorID.values()[random.nextInt(this.reflectors.size())]);
         this.plugBoard = new PlugBoardImpl();
         List<Character> plugBoardPairs = new ArrayList<>(this.machineABCMap.keySet());
         Collections.shuffle(plugBoardPairs);
@@ -223,7 +224,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
                 throw new RuntimeException(ex);
             }
         }, (e1, e2) -> e2, HashMap::new));
-        HashMap<Reflector.ReflectorID, Reflector> reflectorsClones = reflectors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new));
+        HashMap<ReflectorID, Reflector> reflectorsClones = reflectors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new));
         String ABCClone = this.machineABC;
         EnigmaEngine clone = new EnigmaEngineImpl(rotorsClones, reflectorsClones, this.plugBoard.clonePlugBoard(), ABCClone);
         try {

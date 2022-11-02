@@ -3,8 +3,8 @@ package automateDecryption;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
-import enigmaEngine.interfaces.Reflector;
 import immutables.engine.Difficulty;
+import immutables.engine.ReflectorID;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
-    public static Reflector.ReflectorID selectedReflectorID = Reflector.ReflectorID.II;
+    public static ReflectorID selectedReflectorID = ReflectorID.II;
     static char firstRotorStartingPosition = 'B';
     static char secondRotorStartingPosition = 'U';
     static char thirdRotorStartingPosition = 'G';

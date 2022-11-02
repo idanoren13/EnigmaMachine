@@ -1,6 +1,6 @@
 package enigmaEngine;
 
-import enigmaEngine.interfaces.Reflector;
+import immutables.engine.ReflectorID;
 import javafx.util.Pair;
 
 import java.util.List;
@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
 public class MachineCode {
     private final List<Integer> rotorsIDInorder;
     private final List<Character> startingPositions;
-    private final Reflector.ReflectorID selectedReflectorID;
+    private final ReflectorID selectedReflectorID;
     private final List<Pair<Character, Character>> plugBoard;
     private final int ABCSize;
     private final String ABC;
 
-    public MachineCode(List<Integer> rotorsIDInorder, List<Character> startingPositions, Reflector.ReflectorID selectedReflectorID, List<Pair<Character, Character>> plugBoard, String abc) {
+    public MachineCode(List<Integer> rotorsIDInorder, List<Character> startingPositions, ReflectorID selectedReflectorID, List<Pair<Character, Character>> plugBoard, String abc) {
         this.rotorsIDInorder = rotorsIDInorder;
         this.startingPositions = startingPositions;
         this.selectedReflectorID = selectedReflectorID;
@@ -31,7 +31,7 @@ public class MachineCode {
         return rotorsIDInorder;
     }
 
-    public Reflector.ReflectorID getSelectedReflectorID() {
+    public ReflectorID getSelectedReflectorID() {
         return selectedReflectorID;
     }
 

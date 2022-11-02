@@ -1,6 +1,7 @@
 package enigmaEngine.impl;
 
 import enigmaEngine.interfaces.Reflector;
+import immutables.engine.ReflectorID;
 
 import java.io.*;
 import java.util.HashMap;

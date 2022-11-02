@@ -7,6 +7,7 @@ import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
+import immutables.engine.ReflectorID;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class EnigmaMachineToDebug implements InitializeEnigma {
     public EnigmaEngineImpl getEnigmaEngineFromSource(String source) {
         String abc = "ABCDEFGHIJKL";
         HashMap<Integer, Rotor> rotors = new HashMap<>();
-        HashMap<Reflector.ReflectorID, Reflector> reflectors = new HashMap<>();
+        HashMap<ReflectorID, Reflector> reflectors = new HashMap<>();
 
         enigmaEngine.interfaces.PlugBoard plugBoard = new PlugBoardImpl();
         plugBoard.addPair('C', 'B');
@@ -55,8 +56,8 @@ public class EnigmaMachineToDebug implements InitializeEnigma {
         Pairs2.put(10, 11);
         Pairs2.put(11, 10);
 
-        reflectors.put(Reflector.ReflectorID.I, new ReflectorImpl(Pairs1, Reflector.ReflectorID.I));
-        reflectors.put(Reflector.ReflectorID.II, new ReflectorImpl(Pairs2, Reflector.ReflectorID.II));
+        reflectors.put(ReflectorID.I, new ReflectorImpl(Pairs1, ReflectorID.I));
+        reflectors.put(ReflectorID.II, new ReflectorImpl(Pairs2, ReflectorID.II));
 
         return new EnigmaEngineImpl(rotors, reflectors, plugBoard, abc);
     }
