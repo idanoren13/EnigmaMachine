@@ -11,6 +11,7 @@ public class Constants {
 
     public final static String UPLOAD_FILE = FULL_SERVER_PATH + "/upload-file";
     public final static String SET_MACHINE_CONFIG_AUTO = FULL_SERVER_PATH + "/set-machine-config";
+    public final static String GET_WORDS_DICTIONARY = FULL_SERVER_PATH + "/get-words-dictionary";
     public final static String JOIN_BATTLE = FULL_SERVER_PATH + "/join";
 
     public final static String GET_ALLIES = FULL_SERVER_PATH + "/allies";

@@ -1,14 +1,15 @@
-package uBoatApp.frontEnd;
+package uBoatApp.frontEnd.machineState;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.TableView;
 
 public class MachineStateConsole {
     // Screens 1 + 2 + 3
     private final StringProperty firstMachineState;
     private final StringProperty currentMachineState;
 
-    public MachineStateConsole() {
+    public MachineStateConsole(TableView candidatesTable, TableView alliesDetailsTable) {
         this.firstMachineState = new SimpleStringProperty(this, "firstMachineState", "NaN");
         this.currentMachineState = new SimpleStringProperty(this, "currentMachineState", "NaN");
     }

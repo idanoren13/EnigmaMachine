@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<HBox id="screen1HBox" fx:id="mainHBox" alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="505.0" spacing="5.0" stylesheets="@../css/machineStateCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.MachineStateController">
+<HBox id="screen1HBox" fx:id="mainHBox" alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="505.0" spacing="5.0" stylesheets="@../css/machineStateCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.machineState.MachineStateController">
    <children>
       <Label id="headerLabel" minWidth="98.0" prefWidth="98.0" text="First Machine State" wrapText="true">
          <HBox.margin>

@@ -9,22 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="upload xml works">
-      <change afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaEngineManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/SetMachineConfigAuto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="set machine state automatically works">
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetWordsDictionaryServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCodeDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/UBoatClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AgentData.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/BasicAgentData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ConfigurationInputWindowController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ConstestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/ContestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/HeaderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineConfigurationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/util/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/FileUploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/FileUploadServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/machineState/MachineStateConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/machineState/MachineStateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/machineState/MachineStateGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/SingleAgentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/Specifications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/UIAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/XMLLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/XMLLoaderImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/configurationInputWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/contest.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/contest.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/currentMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/currentMachineState.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/firstMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/firstMachineState.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/graphicConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/graphicConfiguration.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/impl/XMLLoaderImpl.java" beforeDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -380,7 +390,7 @@
       <workItem from="1662507709585" duration="2613000" />
       <workItem from="1664276166587" duration="417000" />
       <workItem from="1666435060504" duration="4763000" />
-      <workItem from="1666914023500" duration="50575000" />
+      <workItem from="1666914023500" duration="58792000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -630,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667403093402</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="set machine state automatically works">
+      <created>1667426490735</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1667426490735</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -674,7 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added reset Engine" />
     <MESSAGE value="Added:&#10;UI, fully tested engine, JAR files with bat&#10;needs Some work:&#10;Choice 2, not fully implemented,check TODOs&#10;Choice 4, auto selection&#10;Choice 7, statistics" />
     <MESSAGE value="not completed&#10;Choice 7, statistics" />
     <MESSAGE value="all added, notch distance from window is not correct" />
@@ -699,7 +715,8 @@
     <MESSAGE value="final Idan Push - stop added but no restart" />
     <MESSAGE value="Merge remote-tracking branch 'origin/EX2Merged' into EX2Merged&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;desktopUI/src/desktopApp/frontEnd/AppController.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/Screen3Controller.java&#10;#&#9;desktopUI/src/desktopApp/frontEnd/fxml/screen3.fxml" />
     <MESSAGE value="upload xml works" />
-    <option name="LAST_COMMIT_MESSAGE" value="upload xml works" />
+    <MESSAGE value="set machine state automatically works" />
+    <option name="LAST_COMMIT_MESSAGE" value="set machine state automatically works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -728,9 +745,24 @@
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/MachineStateController.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="49" />
+          <url>file://$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/HeaderController.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen3Controller.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/AppController.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -738,10 +770,16 @@
       <pinned-members>
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngineImpl" memberName="selectedRotorsListRightToLeft" />
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngine" memberName="rotorStackRightToLeft" />
+        <PinnedItemInfo parentTag="uBoatApp.frontEnd.AppController" memberName="contestController" />
         <PinnedItemInfo parentTag="enigmaEngine.impl.RotorImpl" memberName="countRotations" />
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngineImpl" memberName="selectedRotorsListLeftToRight" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="this" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,4 +1,4 @@
-package uBoatApp.frontEnd;
+package uBoatApp.frontEnd.machineState;
 
 import immutables.engine.EngineDTO;
 import javafx.beans.property.IntegerProperty;

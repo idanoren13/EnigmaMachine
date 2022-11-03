@@ -18,6 +18,7 @@ import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
 import uBoatApp.MachineStateConsole;
 import uBoatApp.Specifications;
+import uBoatApp.frontEnd.machineState.MachineStateController;
 import uBoatApp.util.HttpClientUtil;
 
 import java.io.IOException;
@@ -117,8 +118,6 @@ public class MachineConfigurationController implements Initializable {
 
     @FXML
     void setConfigurationRandomly() {
-
-
         if (initializeEnigmaCode(false)) {
             updateConfigurationFieldsAndMachineStateDisability();
             updateConfigurationFieldsRandomly();
@@ -143,6 +142,7 @@ public class MachineConfigurationController implements Initializable {
 
                         firstMachineStateComponentController.setInitializedControllerComponents(engineDTO);
                         currentMachineStateComponentController.setInitializedControllerComponents(engineDTO);
+                        mainController.enableContestScreen();
                     });
                 }
             }

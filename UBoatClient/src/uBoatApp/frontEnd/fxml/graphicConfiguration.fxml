@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ListSelectionView?>
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.MachineStateController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.machineState.MachineStateController">
    <children>
       <Label alignment="CENTER" prefWidth="436.0" text="Select Rotors">
          <font>

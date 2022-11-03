@@ -11,7 +11,7 @@ public class AppController {
     @FXML private ScrollPane screen3Component;
     @FXML private HeaderController headerComponentController;
     @FXML private MachineConfigurationController screen1ComponentController;
-    @FXML private ConstestController constestController;
+    @FXML private ContestController contestController;
     private ObservableValue<? extends Number> progressProperty;
 
     public static void initializeEnigmaCodeManually(String rotors, String startingPositions, String plugBoardPairs, String reflectorID) {
@@ -24,24 +24,18 @@ public class AppController {
         if (headerComponentController != null && screen1ComponentController != null){
             headerComponentController.setMainController(this);
             screen1ComponentController.setMainController(this);
-
-//            constestController.setMainController(this);
-//            setTasksManagerLogic(consoleApp.getBruteForceTaskManager());
         }
     }
 
 
     public void updateScreens(String currentMachineState) {
-//        screen1ComponentController.updateMachineStateAndStatus(currentMachineState);
-        constestController.updateMachineState(currentMachineState);
+        contestController.updateMachineState(currentMachineState);
     }
 
     public void reset() {
         screen1ComponentController.reset();
     }
     public void resetScreens(boolean bool, Object controller) {
-//        screen1ComponentController.resetMachineStateAndStatus();
-//        constestController.resetMachineStateAndEnigmaOutput(bool, controller);
     }
 
 
@@ -49,17 +43,17 @@ public class AppController {
         screen1ComponentController.updateScreenOne(choiceBoxItems, numberOfRotors, numberOfReflectors);
     }
     public void initializeMachineStates(String machineStateConsoleString) {
-        constestController.initializeMachineStates(machineStateConsoleString);
+        contestController.initializeMachineStates(machineStateConsoleString);
     }
 
     public void updateScreensDisability(boolean bool) {
-        constestController.setBruteForceDisability(bool);
+        contestController.setBruteForceDisability(bool);
     }
 
     public void updateLabelTextsToEmpty(Object component) {
         headerComponentController.updateLabelTextsToEmpty();
         screen1ComponentController.updateLabelTextsToEmpty();
-        constestController.updateLabelTextsToEmpty();
+        contestController.updateLabelTextsToEmpty();
     }
 
     // Swap screens
@@ -70,4 +64,16 @@ public class AppController {
         screen3Component.toFront();
     }
 
+    public void enableContestScreen() {
+        headerComponentController.enableContestScreen();
+//        constestController = new ConstestController();
+//        constestController.setMainController(this);
+        try {
+            contestController.getWordsDictionary();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

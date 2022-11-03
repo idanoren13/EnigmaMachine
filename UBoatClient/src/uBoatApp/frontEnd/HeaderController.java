@@ -48,19 +48,8 @@ public class HeaderController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Default values are added in certain screen places. This is called after constructor and after FXML variables are created.
         machineButton.getStyleClass().add("chosen-button");
-
-//        styleChoiceBox.getItems().addAll("Style #1", "Style #2", "Style #3");
-//        styleChoiceBox.setValue("Style #1");
-//        animationChoiceBox.getItems().addAll("No Animation", "Animation");
-//        animationChoiceBox.setValue("No Animation");
-
-//        styleChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
-//        });
-//
-//        animationChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
-//        });
+        contestButton.setDisable(true);
     }
 
     @FXML
@@ -117,9 +106,6 @@ public class HeaderController implements Initializable {
             mainController.initializeMachineStates("NaN");
             mainController.updateScreensDisability(true);
 
-            loadXMLButton.setDisable(true);
-
-
         } catch (Exception e) {
             loadXMLErrorLabel.setText("Error loading XML file.");
         }
@@ -129,18 +115,7 @@ public class HeaderController implements Initializable {
         loadXMLErrorLabel.setText("");
     }
 
-
-    public void updateStylesheet(Number num) {
-        headerHBox.getStylesheets().remove(0, 2);
-        if (num.equals(0)) {
-            headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/headerStyleOne.css");
-            headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/generalStyleOne.css");
-        } else if (num.equals(1)) {
-            headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/headerStyleTwo.css");
-            headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/generalStyleOne.css");
-        } else {
-            headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/headerStyleThree.css");
-            headerHBox.getStylesheets().add("/uBoatApp/frontEnd/css/generalStyleOne.css");
-        }
+    public void enableContestScreen() {
+        contestButton.setDisable(false);
     }
 }
