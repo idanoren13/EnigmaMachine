@@ -210,14 +210,14 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         }
 
         this.selectedReflector = this.reflectors.get(ReflectorID.values()[random.nextInt(this.reflectors.size())]);
-        this.plugBoard = new PlugBoardImpl();
-        List<Character> plugBoardPairs = new ArrayList<>(this.machineABCMap.keySet());
-        Collections.shuffle(plugBoardPairs);
-        int abcPairs = random.nextInt((machineABC.length() / 2) + 1);
-        plugBoardPairs = new ArrayList<>(plugBoardPairs.subList(0, abcPairs * 2));
-        for (int i = 0; i < plugBoardPairs.size(); i += 2) {
-            this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
-        }
+//        this.plugBoard = new PlugBoardImpl();
+//        List<Character> plugBoardPairs = new ArrayList<>(this.machineABCMap.keySet());
+//        Collections.shuffle(plugBoardPairs);
+//        int abcPairs = random.nextInt((machineABC.length() / 2) + 1);
+//        plugBoardPairs = new ArrayList<>(plugBoardPairs.subList(0, abcPairs * 2));
+//        for (int i = 0; i < plugBoardPairs.size(); i += 2) {
+//            this.plugBoard.addPair(plugBoardPairs.get(i), plugBoardPairs.get(i + 1));
+//        }
 
     }
 

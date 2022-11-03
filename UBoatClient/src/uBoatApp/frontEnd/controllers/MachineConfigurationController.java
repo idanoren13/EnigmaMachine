@@ -1,4 +1,4 @@
-package uBoatApp.frontEnd;
+package uBoatApp.frontEnd.controllers;
 
 import com.google.gson.Gson;
 import immutables.engine.EngineDTO;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import uBoatApp.MachineStateConsole;
 import uBoatApp.Specifications;
 import uBoatApp.frontEnd.machineState.MachineStateController;
-import uBoatApp.util.HttpClientUtil;
+import utils.HttpClientUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -127,6 +127,7 @@ public class MachineConfigurationController implements Initializable {
 
     private void updateConfigurationFieldsRandomly() {
         String url = HttpUrl.parse(SET_MACHINE_CONFIG_AUTO).newBuilder()
+                .addQueryParameter("name", mainController.getName())
                 .build().toString();
 
         HttpClientUtil.runAsync(url, new Callback(){

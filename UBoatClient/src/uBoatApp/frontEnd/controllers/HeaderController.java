@@ -1,4 +1,4 @@
-package uBoatApp.frontEnd;
+package uBoatApp.frontEnd.controllers;
 
 
 import com.google.gson.Gson;
@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -18,13 +19,14 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static uBoatApp.util.HttpClientUtil.HTTP_CLIENT;
+import static utils.HttpClientUtil.HTTP_CLIENT;
 import static utils.Constants.UPLOAD_FILE;
 
 
 public class HeaderController implements Initializable {
     public Button contestButton;
     public Button loadXMLButton;
+    public TextArea name;
     private AppController mainController;
     @FXML
     private HBox headerHBox;
@@ -83,8 +85,12 @@ public class HeaderController implements Initializable {
                     .addFormDataPart("file", newXMLFile.getName(), RequestBody.create(MediaType.parse("application/xml"), newXMLFile))
                     .build();
 
+            HttpUrl url = HttpUrl.parse(UPLOAD_FILE).newBuilder()
+                    .addQueryParameter("name", name.getText())
+                    .build();
+
             Request request = new Request.Builder()
-                    .url(UPLOAD_FILE)
+                    .url(url)
                     .post(body)
                     .build();
 
@@ -103,6 +109,7 @@ public class HeaderController implements Initializable {
                     Integer.toString(engineDTO.getTotalNumberOfRotors()),
                     Integer.toString(engineDTO.getTotalReflectors())
             );
+
             mainController.initializeMachineStates("NaN");
             mainController.updateScreensDisability(true);
 
@@ -117,5 +124,14 @@ public class HeaderController implements Initializable {
 
     public void enableContestScreen() {
         contestButton.setDisable(false);
+    }
+
+    public void updateName(String i_name) {
+        name.setText(i_name);
+    }
+
+
+    public void setLoadXMLButtonDisable(boolean b) {
+        loadXMLButton.setDisable(b);
     }
 }

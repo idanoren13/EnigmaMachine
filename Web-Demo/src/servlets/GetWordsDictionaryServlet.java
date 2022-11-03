@@ -15,7 +15,9 @@ public class GetWordsDictionaryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
-        String json = gson.toJson(ServletUtils.getEnigmaEngine(getServletContext()).getEnigmaEngine().getWordsDictionary().getWords());
+        String json = gson.toJson(ServletUtils.getUBoatManager(getServletContext())
+                .getUBoat(request.getParameter("name"))
+                .getEnigmaEngine().getWordsDictionary().getWords());
         response.setContentType("application/json");
         response.getWriter().println(json);
     }
