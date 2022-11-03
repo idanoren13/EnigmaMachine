@@ -1,11 +1,10 @@
 package battlefield;
 
 import enigmaEngine.schemaBinding.CTEBattlefield;
-import immutables.engine.Difficulty;
+import immutables.Difficulty;
 
 public class BattlefieldInformation {
     private String name;
-    private String uBoatName;
     private int numberOfAllies;
     private int currentNumberOfAllies;
     private Difficulty difficulty;
@@ -24,10 +23,6 @@ public class BattlefieldInformation {
         return name;
     }
 
-    public String getuBoatName() {
-        return uBoatName;
-    }
-
     public int getNumberOfAllies() {
         return numberOfAllies;
     }
@@ -40,7 +35,4 @@ public class BattlefieldInformation {
         return difficulty;
     }
 
-    public void setuBoatName(String uBoatName) {
-        this.uBoatName = uBoatName;
-    }
 }

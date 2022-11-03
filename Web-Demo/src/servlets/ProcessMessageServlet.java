@@ -2,7 +2,6 @@ package servlets;
 
 import Entities.UBoatEntity;
 import com.google.gson.Gson;
-import enigmaEngine.exceptions.InvalidCharactersException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,16 +23,12 @@ public class ProcessMessageServlet extends HttpServlet {
         UBoatManager uBoatManager = ServletUtils.getUBoatManager(getServletContext());
         UBoatEntity uBoat = uBoatManager.getUBoat(name);
 
-        try {
-            String processedMessage = uBoat.getEnigmaEngine().processMessage(message);
-            response.setStatus(HttpServletResponse.SC_OK);
-            Gson gson = new Gson();
-            String json = gson.toJson(processedMessage);
-            response.getWriter().print(json);
-            response.getWriter().flush();
-        } catch (InvalidCharactersException e) {
-            e.printStackTrace();
-        }
+        String processedMessage = uBoat.EncryptMessage(message);
+        response.setStatus(HttpServletResponse.SC_OK);
+        Gson gson = new Gson();
+        String json = gson.toJson(processedMessage);
+        response.getWriter().print(json);
+        response.getWriter().flush();
     }
 
 }

@@ -1,10 +1,10 @@
 package desktopApp.frontEnd;
 
-import immutables.engine.Difficulty;
+import immutables.Difficulty;
 import automateDecryption.TasksManager;
 import desktopApp.impl.models.MachineStateConsole;
 import enigmaEngine.exceptions.InvalidCharactersException;
-import immutables.engine.EngineDTO;
+import immutables.EngineDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;

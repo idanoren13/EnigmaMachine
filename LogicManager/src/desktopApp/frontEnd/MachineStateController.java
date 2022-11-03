@@ -1,7 +1,7 @@
 package desktopApp.frontEnd;
 
 import desktopApp.impl.models.MachineStateGUI;
-import immutables.engine.EngineDTO;
+import immutables.EngineDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

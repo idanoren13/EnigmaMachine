@@ -2,9 +2,9 @@ package automateDecryption;
 
 import enigmaEngine.MachineCode;
 import enigmaEngine.interfaces.EnigmaEngine;
-import immutables.engine.Difficulty;
-import immutables.engine.EngineDTO;
-import immutables.engine.ReflectorID;
+import immutables.Difficulty;
+import immutables.EngineDTO;
+import immutables.ReflectorID;
 
 import java.util.ArrayList;
 import java.util.List;

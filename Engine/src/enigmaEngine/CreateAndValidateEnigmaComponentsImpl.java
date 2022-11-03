@@ -8,7 +8,7 @@ import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.CreateAndValidateEnigmaComponents;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 
 import java.util.HashMap;
 import java.util.HashSet;

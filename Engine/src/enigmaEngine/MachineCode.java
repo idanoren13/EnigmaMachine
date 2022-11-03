@@ -1,6 +1,6 @@
 package enigmaEngine;
 
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 import javafx.util.Pair;
 
 import java.util.List;

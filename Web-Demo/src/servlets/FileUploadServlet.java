@@ -2,7 +2,9 @@ package servlets;
 
 import Entities.UBoatEntity;
 import com.google.gson.Gson;
-import immutables.engine.EngineDTO;
+import immutables.BattlefieldDTO;
+import immutables.EngineDTO;
+import immutables.UBoatDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -35,18 +37,17 @@ public class FileUploadServlet extends HttpServlet {
                 uBoatManager.addUBoat(name, uBoat);
 
                 EngineDTO engineDTO = uBoat.getEnigmaEngine().getEngineDTO();
+                BattlefieldDTO battlefieldDTO = uBoat.getEnigmaEngine().getBattlefieldDTO();
 
                 Gson gson = new Gson();
-                String json = gson.toJson(engineDTO);
+                String json = gson.toJson(new UBoatDTO(battlefieldDTO, engineDTO));
                 printFileContent(json, out);
+
+
             }
             else{
                 out.println("UBoat already exists!");
             }
-
-//            ServletUtils.getEnigmaEngine(getServletContext()).setEnigmaEngineFromInputStream((part.getInputStream()));
-////            EnigmaEngine engine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(part.getInputStream());
-//            EngineDTO engineDTO = ServletUtils.getEnigmaEngine(getServletContext()).getEnigmaEngine().getEngineDTO();
 
         } catch (ClassNotFoundException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

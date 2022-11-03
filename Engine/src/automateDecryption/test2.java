@@ -3,7 +3,7 @@ package automateDecryption;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;

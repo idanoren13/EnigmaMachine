@@ -6,8 +6,9 @@ import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import immutables.engine.EngineDTO;
-import immutables.engine.ReflectorID;
+import immutables.BattlefieldDTO;
+import immutables.EngineDTO;
+import immutables.ReflectorID;
 import javafx.util.Pair;
 
 import java.io.Serializable;
@@ -51,4 +52,5 @@ public interface EnigmaEngine extends Serializable {
     void setWordsDictionary(WordsDictionary wordsDictionary);
 
     EnigmaEngine deepClone();
+    public BattlefieldDTO getBattlefieldDTO();
 }

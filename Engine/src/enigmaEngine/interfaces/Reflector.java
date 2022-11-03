@@ -1,6 +1,6 @@
 package enigmaEngine.interfaces;
 
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 
 import java.io.Serializable;
 

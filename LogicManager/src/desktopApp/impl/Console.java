@@ -11,13 +11,13 @@ import enigmaEngine.EnigmaMachineFromXML;
 import enigmaEngine.InitializeEnigmaEngine;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.EnigmaEngine;
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 import enigmaEngine.schemaBinding.CTEDecipher;
 import enigmaEngine.schemaBinding.CTEEnigma;
 import enigmaEngine.schemaBinding.CTEReflector;
 import enigmaEngine.schemaBinding.CTERotor;
-import immutables.engine.Difficulty;
-import immutables.engine.EngineDTO;
+import immutables.Difficulty;
+import immutables.EngineDTO;
 import javafx.beans.value.ObservableValue;
 import javafx.util.Pair;
 

@@ -1,6 +1,6 @@
 package desktopApp.frontEnd;
 
-import immutables.engine.Difficulty;
+import immutables.Difficulty;
 import automateDecryption.TasksManager;
 import desktopApp.impl.Console;
 import javafx.beans.value.ObservableValue;

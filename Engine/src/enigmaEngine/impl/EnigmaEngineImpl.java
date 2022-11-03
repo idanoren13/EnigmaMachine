@@ -1,5 +1,7 @@
 package enigmaEngine.impl;
 
+import battlefield.Battlefield;
+import battlefield.BattlefieldInformation;
 import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
@@ -10,8 +12,9 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
-import immutables.engine.EngineDTO;
-import immutables.engine.ReflectorID;
+import immutables.BattlefieldDTO;
+import immutables.EngineDTO;
+import immutables.ReflectorID;
 import javafx.util.Pair;
 
 import java.io.*;
@@ -31,6 +34,8 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private int messagesSentCounter;
     private final List<Rotor> selectedRotorsListRightToLeft;
     private final List<Rotor> selectedRotorsListLeftToRight;
+
+    private Battlefield battlefield;
 
     private WordsDictionary wordsDictionary;
 
@@ -382,5 +387,18 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     public void setAgentsNumber(int agentsNumber) {
         this.agentsNumber = agentsNumber;
+    }
+
+    public void setBattlefield(Battlefield battlefield) {
+        this.battlefield = battlefield;
+    }
+
+    public BattlefieldDTO getBattlefieldDTO() {
+        BattlefieldInformation battlefieldInfo = battlefield.getBattlefieldInformation();
+        return new BattlefieldDTO(
+                battlefieldInfo.getName(),
+                battlefieldInfo.getNumberOfAllies(),
+                battlefieldInfo.getCurrentNumberOfAllies(),
+                battlefieldInfo.getDifficulty());
     }
 }

@@ -3,7 +3,7 @@ package enigmaEngine.interfaces;
 import enigmaEngine.exceptions.InvalidABCException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 
 import java.util.List;
 import java.util.Map;

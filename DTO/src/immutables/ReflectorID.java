@@ -1,4 +1,4 @@
-package immutables.engine;
+package immutables;
 
 public enum ReflectorID {
         I,

@@ -1,5 +1,6 @@
 package enigmaEngine;
 
+import battlefield.Battlefield;
 import enigmaEngine.exceptions.InvalidABCException;
 import enigmaEngine.exceptions.InvalidMachineException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -10,7 +11,7 @@ import enigmaEngine.interfaces.InitializeEnigma;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import enigmaEngine.schemaBinding.*;
-import immutables.engine.ReflectorID;
+import immutables.ReflectorID;
 import javafx.util.Pair;
 
 import javax.xml.bind.JAXBContext;
@@ -75,6 +76,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
         HashMap<ReflectorID, Reflector> reflectors;
         CTEDecipher decipher;
         CTEDictionary dictionary;
+        CTEBattlefield battlefield;
 
         // Machine
         machine = xmlOutput.getCTEMachine();
@@ -121,6 +123,10 @@ public class EnigmaMachineFromXML implements InitializeEnigma {
                 }
             }
         }
+
+        battlefield = xmlOutput.getCTEBattlefield();
+        Battlefield newBattlefield = new Battlefield(battlefield);
+        newEnigmaEngine.setBattlefield(newBattlefield);
 
         return newEnigmaEngine;
     }

@@ -1,4 +1,4 @@
-package immutables.engine;
+package immutables;
 
 import javafx.util.Pair;
 

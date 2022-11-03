@@ -1,7 +1,7 @@
 package uBoatApp.frontEnd.controllers;
 
 import com.google.gson.Gson;
-import immutables.engine.EngineDTO;
+import immutables.EngineDTO;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -2,8 +2,10 @@ package uBoatApp.frontEnd.controllers;
 
 
 import com.google.gson.Gson;
-import immutables.engine.EngineDTO;
-import immutables.engine.ReflectorID;
+import immutables.BattlefieldDTO;
+import immutables.EngineDTO;
+import immutables.ReflectorID;
+import immutables.UBoatDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,7 +36,7 @@ public class HeaderController implements Initializable {
 
     // private final IntegerProperty chosenButton = new SimpleIntegerProperty();
     @FXML
-    private TextField xmlFilePathTextField;
+    private TextField battlefieldStatus;
 
     @FXML
     private Label loadXMLErrorLabel;
@@ -100,7 +102,11 @@ public class HeaderController implements Initializable {
             currXMLFilePath = filePath;
 
             Gson gson = new Gson();
-            EngineDTO engineDTO = gson.fromJson(responseString, EngineDTO.class);
+            UBoatDTO uBoatDTO = gson.fromJson(responseString, UBoatDTO.class);
+            EngineDTO engineDTO = uBoatDTO.getEngine();
+            BattlefieldDTO battlefieldDTO = uBoatDTO.getBattlefield();
+
+            battlefieldStatus.setText(battlefieldDTO.toString());
 
             //create a list of all reflectors in size of the number of reflectors in the engine DTO
             List<ReflectorID> reflectors = new ArrayList<>(Arrays.asList(ReflectorID.values()).subList(0, engineDTO.getTotalReflectors()));

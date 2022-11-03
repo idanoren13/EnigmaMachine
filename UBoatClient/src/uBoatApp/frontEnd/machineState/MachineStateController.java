@@ -1,7 +1,7 @@
 package uBoatApp.frontEnd.machineState;
 
 
-import immutables.engine.EngineDTO;
+import immutables.EngineDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

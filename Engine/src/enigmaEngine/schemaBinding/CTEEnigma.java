@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -32,13 +32,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "cteMachine",
-    "cteDecipher"
+        "cteMachine",
+        "cteDecipher",
+        "cteBattlefield"
 })
 @XmlRootElement(name = "CTE-Enigma")
 public class CTEEnigma {
@@ -47,14 +46,14 @@ public class CTEEnigma {
     protected CTEMachine cteMachine;
     @XmlElement(name = "CTE-Decipher", required = true)
     protected CTEDecipher cteDecipher;
+    @XmlElement(name = "CTE-Battlefield", required = true)
+    protected CTEBattlefield cteBattlefield;
 
     /**
      * Gets the value of the cteMachine property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CTEMachine }
-     *     
+     *
+     * @return possible object is
+     * {@link CTEMachine }
      */
     public CTEMachine getCTEMachine() {
         return cteMachine;
@@ -62,11 +61,9 @@ public class CTEEnigma {
 
     /**
      * Sets the value of the cteMachine property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CTEMachine }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CTEMachine }
      */
     public void setCTEMachine(CTEMachine value) {
         this.cteMachine = value;
@@ -74,11 +71,9 @@ public class CTEEnigma {
 
     /**
      * Gets the value of the cteDecipher property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CTEDecipher }
-     *     
+     *
+     * @return possible object is
+     * {@link CTEDecipher }
      */
     public CTEDecipher getCTEDecipher() {
         return cteDecipher;
@@ -86,14 +81,35 @@ public class CTEEnigma {
 
     /**
      * Sets the value of the cteDecipher property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CTEDecipher }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CTEDecipher }
      */
     public void setCTEDecipher(CTEDecipher value) {
         this.cteDecipher = value;
     }
 
+    /**
+     * Gets the value of the cteBattlefield property.
+     *
+     * @return
+     *     possible object is
+     *     {@link CTEBattlefield }
+     *
+     */
+    public CTEBattlefield getCTEBattlefield() {
+        return cteBattlefield;
+    }
+
+    /**
+     * Sets the value of the cteBattlefield property.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link CTEBattlefield }
+     *
+     */
+    public void setCTEBattlefield(CTEBattlefield value) {
+        this.cteBattlefield = value;
+    }
 }
