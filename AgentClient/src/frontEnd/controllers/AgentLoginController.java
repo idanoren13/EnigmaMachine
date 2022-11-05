@@ -9,10 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -31,12 +28,16 @@ import java.util.Timer;
 
 import static utils.Constants.REFTESH_RATE;
 
-public class LoginController implements Initializable {
+public class AgentLoginController implements Initializable {
 
     @FXML
-    public TextField userNameTextField;
+    private TextField missionSizeCol;
     @FXML
-    public Label errorMessageLabel;
+    private TextField userNameTextField;
+    @FXML
+    private Label errorMessageLabel;
+    @FXML
+    private ChoiceBox threadsNumber;
     @FXML
     private TableView<AllyDTO> alliesTable;
     @FXML
@@ -44,7 +45,7 @@ public class LoginController implements Initializable {
     @FXML
     private TableColumn<AllyDTO, Boolean> isAvialableCol;
 
-    private AppController mainController;
+    private AgentAppController mainController;
     private Timer timer;
     private AlliesRefresher alliesRefresher;
 
@@ -53,8 +54,14 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         errorMessageLabel.textProperty().bind(errorMessageProperty);
+        initThreadsNumberChoiceBox();
         initAlliesTable();
         startAlliesRefresher();
+    }
+
+    private void initThreadsNumberChoiceBox() {
+        threadsNumber.getItems().addAll(1, 2, 3, 4);
+        threadsNumber.setValue(2);
     }
 
     public void userNameKeyTyped(KeyEvent keyEvent) {
@@ -67,9 +74,13 @@ public class LoginController implements Initializable {
             errorMessageProperty.set("User name is empty. You can't login with empty user name");
             return;
         }
+        mainController.setName(userName);
+        mainController.setThreadsNumber((Integer) threadsNumber.getValue());
+        mainController.setMissionSize(Integer.parseInt(missionSizeCol.getText()));
 
         addUser(userName);
-        signUpAlly(userName);
+        signUpAgent(userName);
+        mainController.endLogin();
     }
 
     private void addUser(String userName) {
@@ -107,11 +118,12 @@ public class LoginController implements Initializable {
         });
     }
 
-    private void signUpAlly(String userName) {
+    private void signUpAgent(String userName) {
         String finalUrl = HttpUrl
-                .parse(Constants.ADD_ALLY)
+                .parse(Constants.ADD_AGENT)
                 .newBuilder()
-                .addQueryParameter("allyName", userName)
+                .addQueryParameter("agentName", userName)
+                .addQueryParameter("allyName", alliesTable.getSelectionModel().getSelectedItem().getAllyName())
                 .build()
                 .toString();
 
@@ -139,11 +151,15 @@ public class LoginController implements Initializable {
         Platform.exit();
     }
 
-    public void setMainController(AppController mainScene) {
+    public void setMainController(AgentAppController mainScene) {
         this.mainController = mainScene;
     }
 
     public void selectAllyTeam(MouseEvent mouseEvent) {
+        AllyDTO selectedAlly = alliesTable.getSelectionModel().getSelectedItem();
+        if (selectedAlly != null) {
+            mainController.setAllyTeam(selectedAlly);
+        }
 
     }
 
@@ -165,7 +181,7 @@ public class LoginController implements Initializable {
     }
 
     private void initAlliesTable() {
-        allyCol.setCellValueFactory(new PropertyValueFactory<AllyDTO,String>("allyName"));
-        isAvialableCol.setCellValueFactory(new PropertyValueFactory<AllyDTO,Boolean>("isAvailable"));
+        allyCol.setCellValueFactory(new PropertyValueFactory<AllyDTO, String>("allyName"));
+        isAvialableCol.setCellValueFactory(new PropertyValueFactory<AllyDTO, Boolean>("isAvailable"));
     }
 }

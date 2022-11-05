@@ -35,12 +35,6 @@ public class AllyClientApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-//            FXMLLoader fxmlLoader2 = new FXMLLoader();
-//            URL url2 = getClass().getResource("/login/LoginWindow.fxml");
-//            fxmlLoader2.setLocation(url2);
-//            ScrollPane root2 = fxmlLoader2.load(url2.openStream());
-//            Scene scene2 = new Scene(root2, 902, 602);
-//            primaryStage.setScene(scene2);
 
         } catch (LoadException | NullPointerException e) {
             e.printStackTrace();

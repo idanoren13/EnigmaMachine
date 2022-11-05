@@ -12,11 +12,11 @@ public class AgentManager {
         agents = new HashMap<>();
     }
 
-    public void addAlly(String allyName) {
-        agents.put(allyName, new AgentEntity(allyName));
+    public void addAgent(AgentEntity agent) {
+        agents.put(agent.getAgentName(), agent);
     }
 
-    public AgentEntity getAlly(String allyName) {
+    public AgentEntity getAgent(String allyName) {
         return agents.get(allyName);
     }
 }

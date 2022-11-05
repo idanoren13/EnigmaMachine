@@ -1,8 +1,8 @@
 package frontEnd.controllers;
 
 public class ContestScreenController {
-    private AppController mainController;
-    public void setMainController(AppController appController) {
+    private AgentAppController mainController;
+    public void setMainController(AgentAppController appController) {
         this.mainController = appController;
     }
 }

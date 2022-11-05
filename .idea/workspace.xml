@@ -9,169 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="added Battlefield DTO">
-      <change afterPath="$PROJECT_DIR$/Agent/Agent.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/AgentApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/AppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/ContestScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/ContestScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/MainSceneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/app.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/mainScene.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Agent/src/frontEnd/refreshers/AlliesRefresher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/AgentClient.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/AgentClientApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/general.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/generalStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/generalStyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/generalStyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/headerStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/headerStyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/headerStyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/machineStateCSS.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/machineStateComponentStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/machineStateComponentStyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/machineStateComponentStyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen1StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen1StyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen1StyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen2StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen2StyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen2StyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen3StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen3StyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/css/screen3StyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/app.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/images/kifli.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/refreshers/AlliesRefresher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ally/src/frontEnd/refreshers/BattlefieldsRefresher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/AllyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/ContestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/general.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/generalStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/generalStyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/generalStyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/headerStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/headerStyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/headerStyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/machineStateCSS.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/machineStateComponentStyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/machineStateComponentStyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/machineStateComponentStyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen1StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen1StyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen1StyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen2StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen2StyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen2StyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen3StyleOne.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen3StyleThree.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/css/screen3StyleTwo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/images/kifli.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/refreshers/AlliesRefresher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetBattlefieldsContestsServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetSignedUpAlliesServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/JoinContestServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/NewAllyServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Server_Exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Server_Exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/desktopUI_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/desktopUI_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="Added Agent App">
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/AddAgentServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetAlliesServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/Ally.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/Ally.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/UBoatClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/AllyClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/DashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/dashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/dashBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/app.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/AllyClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/AllyClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/app.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/battlefield/BattlefieldInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/battlefield/BattlefieldInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/managers/UBoatManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/UBoatManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/LogicManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/GUIManager.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/InitCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/Program.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/exceptions/NoMachineGeneratedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/exceptions/NoMachineGeneratedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/exceptions/UserQuitsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/exceptions/UserQuitsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/AgentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/AgentData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/BasicAgentData.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/BasicAgentData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/ConfigurationInputWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/ConfigurationInputWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/MachineStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/MachineStateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/Screen1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/Screen2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/Screen3Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/Screen3Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/SingleAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/SingleAgentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/UIAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/UIAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/general.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/generalStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/generalStyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/generalStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/generalStyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/generalStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/generalStyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/headerStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/headerStyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/headerStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/headerStyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/headerStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/headerStyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/machineStateCSS.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateComponentStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/machineStateComponentStyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateComponentStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/machineStateComponentStyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/machineStateComponentStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/machineStateComponentStyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen1StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen1StyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen1StyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen1StyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen1StyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen1StyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen2StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen2StyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen2StyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen2StyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen2StyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen2StyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen3StyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen3StyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen3StyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen3StyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/css/screen3StyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/css/screen3StyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/app.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/configurationInputWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/configurationInputWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/currentMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/currentMachineState.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/firstMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/firstMachineState.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/graphicConfiguration.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/graphicConfiguration.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/header.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/screen1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/screen1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/screen2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/screen2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/fxml/screen3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/fxml/screen3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/images/keyboard.png" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/images/keyboard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/images/kifli.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Agent/src/frontEnd/images/kifli.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/frontEnd/images/search magnifying glass.png" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/images/search magnifying glass.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/historyAndStatistics/MachineActivateData.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/historyAndStatistics/MachineActivateData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/historyAndStatistics/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/historyAndStatistics/MachineCodeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/impl/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/XMLLoaderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/impl/XMLLoaderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/models/MachineStateConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/impl/models/MachineStateConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/models/MachineStateGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/impl/models/MachineStateGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/impl/models/Specifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/impl/models/Specifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/interfaces/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicManager/src/desktopApp/interfaces/XMLLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUIManager/src/desktopApp/interfaces/XMLLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/MachineConfigurationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/MachineConfigurationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Demo/Web-Demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/Web-Demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetSignedUpAlliesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetSignedUpAlliesServlet.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -290,15 +144,14 @@
       <recent name="managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AgentClientApp (1)">
-    <configuration name="AgentApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.uBoatApp.UBoatClientApp">
+    <configuration name="AgentApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AgentApp" />
-      <module name="Agent" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AgentClientApp (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="AgentClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AgentClientApp" />
       <module name="AgentClient" />
       <method v="2">
@@ -443,7 +296,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.AgentApp" />
-      <item itemvalue="Application.AgentClientApp (1)" />
+      <item itemvalue="Application.AgentClientApp" />
       <item itemvalue="Application.AllyClientApp" />
       <item itemvalue="Application.uBoatApp.UBoatClientApp" />
       <item itemvalue="Application.desktopApp.Program" />
@@ -451,10 +304,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AgentClientApp (1)" />
+        <item itemvalue="Application.uBoatApp.UBoatClientApp" />
+        <item itemvalue="Application.AgentClientApp" />
         <item itemvalue="Application.AllyClientApp" />
         <item itemvalue="Application.AgentApp" />
-        <item itemvalue="Application.uBoatApp.UBoatClientApp" />
         <item itemvalue="Application.desktopApp.Program" />
       </list>
     </recent_temporary>
@@ -515,7 +368,7 @@
       <workItem from="1664276166587" duration="417000" />
       <workItem from="1666435060504" duration="4763000" />
       <workItem from="1666914023500" duration="58792000" />
-      <workItem from="1667507135396" duration="44663000" />
+      <workItem from="1667507135396" duration="49743000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -786,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667519872240</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Added Agent App">
+      <created>1667635967750</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1667635967750</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -830,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="all added, notch distance from window is not correct" />
     <MESSAGE value="UI guidelines implemented in the engine" />
     <MESSAGE value="some TODOs" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads.&#10;Mainly what is needed is to get rid of console and delete useless lines with println, printf, whatever" />
@@ -855,7 +714,8 @@
     <MESSAGE value="set machine state automatically works" />
     <MESSAGE value="uboat Client App works" />
     <MESSAGE value="added Battlefield DTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Battlefield DTO" />
+    <MESSAGE value="Added Agent App" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Agent App" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -907,11 +767,6 @@
           <url>file://$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java</url>
           <line>249</line>
           <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AppController.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="130" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
