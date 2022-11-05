@@ -10,12 +10,13 @@ import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.ReflectorID;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateEnigmaComponents {
+public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateEnigmaComponents , Serializable {
 
     private final String abc;
     private final HashMap<Character, Character> abcMap;

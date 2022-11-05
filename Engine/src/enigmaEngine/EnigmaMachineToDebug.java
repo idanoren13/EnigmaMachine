@@ -9,11 +9,12 @@ import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.ReflectorID;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class EnigmaMachineToDebug implements InitializeEnigma {
+public class EnigmaMachineToDebug implements InitializeEnigma , Serializable {
     @Override
     public EnigmaEngineImpl getEnigmaEngineFromSource(String source) {
         String abc = "ABCDEFGHIJKL";

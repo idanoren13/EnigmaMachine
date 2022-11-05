@@ -6,8 +6,9 @@ import enigmaEngine.interfaces.InitializeEnigma;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class InitializeEnigmaEngine {
+public class InitializeEnigmaEngine implements Serializable {
     public enum SourceMode{
         XML,
         DEBUG,

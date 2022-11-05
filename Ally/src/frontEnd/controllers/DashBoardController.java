@@ -4,6 +4,7 @@ import frontEnd.refreshers.BattlefieldsRefresher;
 import immutables.ContestDTO;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -44,7 +45,7 @@ public class DashBoardController implements Initializable {
 
     private AppController mainController;
     private BattlefieldsRefresher battlefieldsRefresher;
-    private ContestDTO[] contests;
+    private ContestDTO contest;
     private Timer timer;
 
     @Override
@@ -83,53 +84,57 @@ public class DashBoardController implements Initializable {
     }
 
     public void selcetContest(MouseEvent mouseEvent) {
-        if (mouseEvent.getClickCount() == 2) {
-            ContestDTO selectedContest = contestsDataTable.getSelectionModel().getSelectedItem();
-            if (selectedContest.getStatus().equals("open")) {
-                if (!selectedContest.isFull()){
-                    joinContest(selectedContest);
-                }
-                else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Contest is full");
-                    alert.setContentText("Contest is full, please try again later");
-                    alert.showAndWait();
-                }
-            }
-            else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Contest is closed");
-                alert.setContentText("Contest is closed, please try again later");
-                alert.showAndWait();
-            }
-        }
+
+        contest = contestsDataTable.getSelectionModel().getSelectedItem();
+//        if (contest.getStatus().equals("open")) {
+//            if (!contest.isFull()) {
+////                joinContest(contest);
+//            } else {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error");
+//                alert.setHeaderText("Contest is full");
+//                alert.setContentText("Contest is full, please try again later");
+//                alert.showAndWait();
+//            }
+//        } else {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Contest is closed");
+//            alert.setContentText("Contest is closed, please try again later");
+//            alert.showAndWait();
+//        }
+
     }
 
     private void joinContest(ContestDTO selectedContest) {
-        mainController.setSelectedContest(selectedContest);
+        synchronized (this) {
+            mainController.setSelectedContest(selectedContest);
 
-        String url = HttpUrl.parse(JOIN_CONTEST).newBuilder()
-                .addQueryParameter("uboatName", selectedContest.getUBoatName())
-                .addQueryParameter("allyName",mainController.getAllyName())
-                .build().toString();
+            String url = HttpUrl.parse(JOIN_CONTEST).newBuilder()
+                    .addQueryParameter("uboatName", selectedContest.getUBoatName())
+                    .addQueryParameter("allyName", mainController.getAllyName())
+                    .build().toString();
 
-        HttpClientUtil.runAsync(url, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Failed to join contest").showAndWait();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    Platform.runLater(() -> {
-                        mainController.loadBattlefield();
-                    });
+            HttpClientUtil.runAsync(url, new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    new Alert(Alert.AlertType.ERROR, "Failed to join contest").showAndWait();
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        Platform.runLater(() -> {
+                            mainController.loadBattlefield();
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+    public void onJoinContest(ActionEvent actionEvent) {
+        joinContest(contest);
     }
 }
 

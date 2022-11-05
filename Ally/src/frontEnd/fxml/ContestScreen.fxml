@@ -95,7 +95,7 @@
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <HBox fillHeight="false" prefHeight="93.0" prefWidth="135.0" />
-                                    <Button fx:id="enterCurrentKeyboardInputButton" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="37.0" prefWidth="161.0" text="READY!" wrapText="true" />
+                                    <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReadyButton" prefHeight="37.0" prefWidth="161.0" text="READY!" wrapText="true" />
                                  </children>
                               </HBox>
                            </children>

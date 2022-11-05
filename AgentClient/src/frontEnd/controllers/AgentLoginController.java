@@ -81,6 +81,7 @@ public class AgentLoginController implements Initializable {
         addUser(userName);
         signUpAgent(userName);
         mainController.endLogin();
+        timer.cancel();
     }
 
     private void addUser(String userName) {

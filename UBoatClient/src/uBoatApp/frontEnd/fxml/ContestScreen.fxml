@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.controllers.AgentContestScreenController">
+<ScrollPane cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uBoatApp.frontEnd.controllers.ContestScreenController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -130,7 +130,7 @@
                                           <Insets left="50.0" top="10.0" />
                                        </padding>
                                        <children>
-                                          <Button fx:id="startContest" mnemonicParsing="false" onAction="#startContest" prefHeight="32.0" prefWidth="188.0" text="Start Contest" />
+                                          <Button fx:id="startContestButton" mnemonicParsing="false" onAction="#startContest" prefHeight="32.0" prefWidth="188.0" text="Start Contest" />
                                        </children>
                                     </VBox>
                                  </children>

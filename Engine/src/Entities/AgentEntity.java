@@ -1,6 +1,8 @@
 package Entities;
 
-public class AgentEntity {
+import java.io.Serializable;
+
+public class AgentEntity  implements Serializable {
     private final String agentName;
     private final String allyName;
 

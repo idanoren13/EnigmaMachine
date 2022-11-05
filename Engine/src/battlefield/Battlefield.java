@@ -34,4 +34,14 @@ public class Battlefield implements Serializable {
         }
         return allyDTOList;
     }
+
+    public Boolean isAlliesReady() {
+        for (AllyEntity ally : Allies) {
+            if (!ally.getIsReady()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

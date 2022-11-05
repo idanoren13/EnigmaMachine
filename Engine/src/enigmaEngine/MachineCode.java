@@ -3,10 +3,11 @@ package enigmaEngine;
 import immutables.ReflectorID;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MachineCode {
+public class MachineCode implements Serializable {
     private final List<Integer> rotorsIDInorder;
     private final List<Character> startingPositions;
     private final ReflectorID selectedReflectorID;

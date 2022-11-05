@@ -11,10 +11,11 @@ import immutables.ContestDTO;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-public class UBoatEntity {
+public class UBoatEntity implements Serializable {
 
     private String name;
     private EnigmaEngine enigmaEngine;
@@ -25,6 +26,9 @@ public class UBoatEntity {
     private String status = "open";
     private InputStream xmlFile;
     private List<CandidateDTO> candidateDTOList;
+    private Boolean isReady = false;
+
+    private Boolean isContestStarted = false;
 
     public EnigmaEngine getEnigmaEngine() {
         return enigmaEngine;
@@ -49,12 +53,13 @@ public class UBoatEntity {
 
     public String EncryptMessage(String message) {
         OriginalMessage = message;
-        dummyEngine = enigmaEngine.deepClone();
+//        dummyEngine = enigmaEngine.deepClone();
         try {
             encryptedMessage = enigmaEngine.processMessage(message);
         } catch (InvalidCharactersException e) {
             throw new RuntimeException(e);
         }
+        enigmaEngine.reset();
 
         return encryptedMessage;
     }
@@ -95,6 +100,21 @@ public class UBoatEntity {
                 stopContest();
             }
         }
+    }
+
+    public void checkIfAllReady() {
+        if(isReady && battlefield.isAlliesReady()){
+            startContest();
+        }
+    }
+
+    private void startContest() {
+        isContestStarted = true;
+        status = "closed, in progress";
+    }
+
+    public void setReady(Boolean isReady){
+        this.isReady = isReady;
     }
 
     private void stopContest() {

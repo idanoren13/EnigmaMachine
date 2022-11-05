@@ -31,6 +31,7 @@ import static utils.Constants.*;
 
 public class ContestScreenController implements Initializable {
 
+    public Button startContestButton;
     @FXML
     private TableView<AllyDTO> alliesDataTable;
     @FXML
@@ -92,7 +93,7 @@ public class ContestScreenController implements Initializable {
                 inputToEncryptDecryptInput.setText(inputToEncryptDecryptInput.getText() + selectedWord + " "); // Added " "
             }
         });
-
+        startContestButton.setDisable(true);
         initializeAlliesData();
     }
 
@@ -114,11 +115,12 @@ public class ContestScreenController implements Initializable {
                 messageInput = messageInput.substring(0, messageInput.length() - 1);
             }
 
-            new Alert(Alert.AlertType.CONFIRMATION, "Processed message: " + messageInput + " -> ");
+//            new Alert(Alert.AlertType.CONFIRMATION, "Processed message: " + messageInput + " -> ");
             mainController.updateLabelTextsToEmpty(this);
             existingInput = true;
 
             encryptInput(messageInput);
+            startContestButton.setDisable(false);
 
         } catch (InputMismatchException e) {
             new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
@@ -257,6 +259,31 @@ public class ContestScreenController implements Initializable {
 
 
     public void startContest(ActionEvent actionEvent) {
-        //TODO: Start contest
+        String url = HttpUrl.parse(READY).newBuilder()
+                .addQueryParameter("name", mainController.getName())
+                .addQueryParameter("entity", "uboat")
+                .build().toString();
+
+        HttpClientUtil.runAsync(url, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() -> {
+                    new Alert(Alert.AlertType.ERROR, "Failed to start contest.").show();
+                });
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.code() == 200) {
+                    Platform.runLater(() -> {
+                        new Alert(Alert.AlertType.INFORMATION, "Contest started.").show();
+                    });
+                } else {
+                    Platform.runLater(() -> {
+                        new Alert(Alert.AlertType.ERROR, "Failed to start contest.").show();
+                    });
+                }
+            }
+        });
     }
 }
