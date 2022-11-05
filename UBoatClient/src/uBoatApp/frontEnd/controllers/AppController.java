@@ -95,6 +95,8 @@ public class AppController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        screen3ComponentController.startAlliesRefresher();
     }
 
     public void setName(String name) {

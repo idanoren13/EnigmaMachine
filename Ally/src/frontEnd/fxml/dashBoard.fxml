@@ -13,64 +13,64 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <ScrollPane fx:id="mainScrollPane" cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontEnd.controllers.DashBoardController">
-   <content>
-      <BorderPane styleClass="grid-pane">
-         <center>
-         </center>
-         <right>
-            <HBox prefHeight="498.0" prefWidth="443.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TableView fx:id="contestsDataTable" prefHeight="398.0" prefWidth="445.0">
-                    <columns>
-                      <TableColumn prefWidth="133.0" text="Battlefield" />
-                      <TableColumn prefWidth="63.0" text="UBoat" />
-                        <TableColumn prefWidth="88.0" text="Difficulty" />
-                        <TableColumn prefWidth="83.0" text="Allies" />
-                        <TableColumn prefWidth="75.0" text="status" />
-                    </columns>
-                  </TableView>
-               </children>
-            </HBox>
-         </right>
-         <top>
-            <GridPane prefHeight="74.0" prefWidth="897.0" BorderPane.alignment="CENTER">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="109.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="381.0" minWidth="10.0" prefWidth="287.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="549.0" minWidth="10.0" prefWidth="219.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="719.0" minWidth="10.0" prefWidth="251.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="818.0" minWidth="10.0" prefWidth="35.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="898.0" GridPane.columnIndex="4" />
-                  <Label prefHeight="100.0" prefWidth="354.0" text="Contests Data" GridPane.columnIndex="3" />
-                  <Label prefHeight="103.0" prefWidth="466.0" text="Team's Agents" GridPane.columnIndex="1" />
-               </children>
-            </GridPane>
-         </top>
-         <left>
-            <HBox prefHeight="398.0" prefWidth="424.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TableView fx:id="teamAgentsDataTable" prefHeight="398.0" prefWidth="433.0">
-                    <columns>
-                      <TableColumn prefWidth="140.0" text="Agent" />
-                      <TableColumn prefWidth="129.0" text="Threads" />
-                        <TableColumn prefWidth="154.0" text="Mission Size" />
-                    </columns>
-                  </TableView>
-               </children>
-            </HBox>
-         </left>
-      </BorderPane>
-   </content>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <stylesheets>
-      <URL value="@../css/screen1StyleOne.css" />
-      <URL value="@../css/generalStyleOne.css" />
-   </stylesheets>
+    <content>
+        <BorderPane styleClass="grid-pane">
+            <center>
+            </center>
+            <right>
+                <HBox prefHeight="498.0" prefWidth="443.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <TableView fx:id="contestsDataTable" onMouseClicked="#selcetContest" prefHeight="398.0" prefWidth="445.0">
+                            <columns>
+                                <TableColumn fx:id="battleCol" prefWidth="133.0" text="Battlefield" />
+                                <TableColumn fx:id="uboatNameCol" prefWidth="63.0" text="UBoat" />
+                                <TableColumn fx:id="difficultyCol" prefWidth="88.0" text="Difficulty" />
+                                <TableColumn fx:id="alliesCol" prefWidth="83.0" text="Allies" />
+                                <TableColumn fx:id="statusCol" prefWidth="75.0" text="status" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </HBox>
+            </right>
+            <top>
+                <GridPane prefHeight="74.0" prefWidth="897.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="109.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="381.0" minWidth="10.0" prefWidth="287.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="549.0" minWidth="10.0" prefWidth="219.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="719.0" minWidth="10.0" prefWidth="251.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="818.0" minWidth="10.0" prefWidth="35.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <HBox prefHeight="100.0" prefWidth="898.0" GridPane.columnIndex="4" />
+                        <Label prefHeight="100.0" prefWidth="354.0" text="Contests Data" GridPane.columnIndex="3" />
+                        <Label prefHeight="103.0" prefWidth="466.0" text="Team's Agents" GridPane.columnIndex="1" />
+                    </children>
+                </GridPane>
+            </top>
+            <left>
+                <HBox prefHeight="398.0" prefWidth="424.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <TableView fx:id="teamAgentsDataTable" prefHeight="398.0" prefWidth="433.0">
+                            <columns>
+                                <TableColumn prefWidth="140.0" text="Agent" />
+                                <TableColumn prefWidth="129.0" text="Threads" />
+                                <TableColumn prefWidth="154.0" text="Mission Size" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </HBox>
+            </left>
+        </BorderPane>
+    </content>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <stylesheets>
+        <URL value="@../css/screen1StyleOne.css" />
+        <URL value="@../css/generalStyleOne.css" />
+    </stylesheets>
 </ScrollPane>

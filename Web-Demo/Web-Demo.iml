@@ -23,7 +23,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 10.0.26" level="application_server_libraries" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="module" module-name="Engine" />
-    <orderEntry type="module" module-name="LogicManager" />
+    <orderEntry type="module" module-name="GUIManager" />
     <orderEntry type="library" name="gson-2.8.8" level="project" />
     <orderEntry type="library" name="okio-2.8.0" level="project" />
     <orderEntry type="library" name="annotations-13.0" level="project" />

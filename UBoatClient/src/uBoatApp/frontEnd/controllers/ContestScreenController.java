@@ -2,14 +2,14 @@ package uBoatApp.frontEnd.controllers;
 
 
 import com.google.gson.Gson;
+import immutables.AllyDTO;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -19,20 +19,26 @@ import okhttp3.HttpUrl;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
 import uBoatApp.MachineStateConsole;
+import uBoatApp.refreshers.AlliesRefresher;
 import utils.HttpClientUtil;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EventListener;
-import java.util.InputMismatchException;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static utils.Constants.*;
 
 public class ContestScreenController implements Initializable {
 
+    @FXML
+    private TableView<AllyDTO> alliesDataTable;
+    @FXML
+    private TableColumn<AllyDTO, String> allyNameCol;
+    @FXML
+    private TableColumn<AllyDTO, Integer> agentsNumberCol;
+    @FXML
+    private TableColumn<AllyDTO, Integer> missionSizeCol;
     private AppController mainController;
     // Models
     //
@@ -57,6 +63,9 @@ public class ContestScreenController implements Initializable {
 
     EventListener onXMLLoaded;
     private MachineStateConsole machineStatesConsole;
+
+    private AlliesRefresher alliesRefresher;
+    private Timer timer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,6 +93,7 @@ public class ContestScreenController implements Initializable {
             }
         });
 
+        initializeAlliesData();
     }
 
     public void setBruteForceDisability(boolean bool) {
@@ -219,5 +229,34 @@ public class ContestScreenController implements Initializable {
                 }
             }
         });
+    }
+
+    private void initializeAlliesData() {
+        allyNameCol.setCellValueFactory(new PropertyValueFactory<AllyDTO, String>("allyName"));
+        agentsNumberCol.setCellValueFactory(new PropertyValueFactory<AllyDTO, Integer>("numberOfAgents"));
+        missionSizeCol.setCellValueFactory(new PropertyValueFactory<AllyDTO, Integer>("missionSize"));
+
+    }
+
+    public void startAlliesRefresher() {
+        alliesRefresher = new AlliesRefresher(this::updateAlliesTable, mainController.getName());
+        timer = new Timer();
+        timer.schedule(alliesRefresher, REFTESH_RATE, REFTESH_RATE);
+    }
+
+    private void updateAlliesTable(AllyDTO[] allies) {
+        Platform.runLater(() -> {
+            alliesDataTable.getItems().clear();
+            for (AllyDTO contest : allies) {
+                ObservableList<AllyDTO> items = alliesDataTable.getItems();
+                items.add(contest);
+                alliesDataTable.setItems(items);
+            }
+        });
+    }
+
+
+    public void startContest(ActionEvent actionEvent) {
+        //TODO: Start contest
     }
 }

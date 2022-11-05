@@ -111,8 +111,8 @@
                         </Label>
                         <TableView prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn prefWidth="193.0" text="Ally" />
-                            <TableColumn prefWidth="117.0" text="Agents Number" />
+                            <TableColumn prefWidth="179.0" text="Ally" />
+                            <TableColumn prefWidth="131.0" text="Agents Number" />
                               <TableColumn fx:id="candidatesDelivered" prefWidth="131.0" text="Mission Size" />
                           </columns>
                         </TableView>

@@ -249,6 +249,8 @@ public class MachineConfigurationController implements Initializable {
         specs.setMessagesProcessed("NaN");
     }
 
+
+
 //    public void updateMachineStateAndStatus(String currentMachineState) {
 //        specs.setMessagesProcessed(Integer.toString(AppController.getConsoleApp().getMessageCounter()));
 //        machineStatesConsole.setCurrentMachineState(currentMachineState);

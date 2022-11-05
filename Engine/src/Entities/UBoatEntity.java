@@ -4,10 +4,13 @@ import battlefield.Battlefield;
 import enigmaEngine.EnigmaMachineFromXML;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.interfaces.EnigmaEngine;
+import immutables.AllyDTO;
+import immutables.ContestDTO;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class UBoatEntity {
 
@@ -17,6 +20,8 @@ public class UBoatEntity {
     private String encryptedMessage;
     private String OriginalMessage;
     private EnigmaEngine dummyEngine;
+    private String status = "open";
+    private InputStream xmlFile;
 
     public EnigmaEngine getEnigmaEngine() {
         return enigmaEngine;
@@ -26,11 +31,13 @@ public class UBoatEntity {
         try {
             this.enigmaEngine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(inputStream);
 //            battlefield = new Battlefield(inputStream);
+            xmlFile = inputStream;
 
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
 
+        battlefield = enigmaEngine.getBattlefield();
     }
 
     public void setUBoatName(String name) {
@@ -49,11 +56,31 @@ public class UBoatEntity {
         return encryptedMessage;
     }
 
+    public void StartBattle() {
+        status = "closed, in progress";
+    }
+
     public void setRandomConfig() {
         enigmaEngine.randomSelectedComponents();
     }
 
     public void setBattlefield(Battlefield battlefield) {
         this.battlefield = battlefield;
+    }
+
+    public ContestDTO getContest() {
+        return new ContestDTO(enigmaEngine.getBattlefieldDTO(),name, status);
+    }
+
+    public void addAlly(AllyEntity ally) {
+        battlefield.addAlly(ally);
+    }
+
+    public List<AllyDTO> getAllies() {
+        return battlefield.getAllies();
+    }
+
+    public InputStream getXmlFile() {
+        return xmlFile;
     }
 }

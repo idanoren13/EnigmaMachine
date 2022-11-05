@@ -1,12 +1,18 @@
 package utils;
 
 import jakarta.servlet.ServletContext;
+import managers.AgentManager;
+import managers.AlliesManager;
 import managers.UBoatManager;
 import managers.UserManager;
 
 public class ServletUtils {
     public static final String ENGINE_MANAGER_ATTRIBUTE_NAME = "engineManager";
     public static final String UBOATS_MANAGER_ATTRIBUTE_NAME = "uboatsManager";
+    public static final String ALLIES_MANAGER_ATTRIBUTE_NAME = "alliesManager";
+    public static final String AGENT_MANAGER_ATTRIBUTE_NAME = "agentManager";
+
+
     private static final String USER_MANAGER_ATTRIBUTE_NAME = "userManager";
 
     public static final String GAME_ATTRIBUTE_NAME = "game";
@@ -17,16 +23,6 @@ public class ServletUtils {
     private static final Object alliesManagerLock = new Object();
     private static  final Object agentsManagerLock = new Object();
 
-//    public static UBoatEntity getEnigmaEngine(ServletContext i_ServletContext) {
-//        synchronized (engineLock) {
-//            UBoatEntity engineManager = (UBoatEntity) i_ServletContext.getAttribute(ENGINE_MANAGER_ATTRIBUTE_NAME);
-//            if (engineManager == null) {
-//                engineManager = new UBoatEntity();
-//                i_ServletContext.setAttribute(ENGINE_MANAGER_ATTRIBUTE_NAME, engineManager);
-//            }
-//            return engineManager;
-//        }
-//    }
 
     public static UBoatManager getUBoatManager(ServletContext i_ServletContext) {
         synchronized (uBoatManagerLock) {
@@ -39,6 +35,17 @@ public class ServletUtils {
         }
     }
 
+    public static AlliesManager getAlliesManager(ServletContext i_ServletContext) {
+        synchronized (alliesManagerLock) {
+            AlliesManager alliesManager = (AlliesManager) i_ServletContext.getAttribute(ALLIES_MANAGER_ATTRIBUTE_NAME);
+            if (alliesManager == null) {
+                alliesManager = new AlliesManager();
+                i_ServletContext.setAttribute(ALLIES_MANAGER_ATTRIBUTE_NAME, alliesManager);
+            }
+            return alliesManager;
+        }
+    }
+
     public static UserManager getUserManager(ServletContext servletContext) {
 
         synchronized (userManagerLock) {
@@ -46,9 +53,20 @@ public class ServletUtils {
                 servletContext.setAttribute(USER_MANAGER_ATTRIBUTE_NAME, new UserManager());
             }
         }
+
         return (UserManager) servletContext.getAttribute(USER_MANAGER_ATTRIBUTE_NAME);
     }
 
+    public static AgentManager getAgentManager(ServletContext i_ServletContext) {
+        synchronized (agentsManagerLock) {
+            AgentManager agentManager = (AgentManager) i_ServletContext.getAttribute(AGENT_MANAGER_ATTRIBUTE_NAME);
+            if (agentManager == null) {
+                agentManager = new AgentManager();
+                i_ServletContext.setAttribute(ALLIES_MANAGER_ATTRIBUTE_NAME, agentManager);
+            }
 
+            return agentManager;
+        }
+    }
 
 }

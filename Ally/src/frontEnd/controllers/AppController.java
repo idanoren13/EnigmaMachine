@@ -1,5 +1,6 @@
 package frontEnd.controllers;
 
+import immutables.ContestDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 
@@ -21,6 +22,8 @@ public class AppController {
     private LoginController loginController;
 
     private String allyName;
+
+    private ContestDTO selectedContest;
 
     @FXML
     public void initialize() {
@@ -44,10 +47,24 @@ public class AppController {
 
     public void endLogin() {
         login.setVisible(false);
+        dashBoardComponentController.startBattlefieldsRefresher();
     }
 
     public void setName(String userName) {
         allyName = userName;
         headerComponentController.allyName.setText(allyName);
+    }
+
+    public String getAllyName() {
+        return allyName;
+    }
+
+    public void setSelectedContest(ContestDTO selectedContest) {
+        this.selectedContest = selectedContest;
+    }
+
+    public void loadBattlefield() {
+        changeToContest();
+        dashBoardComponent.setDisable(true);
     }
 }

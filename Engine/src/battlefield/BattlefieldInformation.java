@@ -35,4 +35,8 @@ public class BattlefieldInformation {
         return difficulty;
     }
 
+    public void incrementCurrentNumberOfAllies(){
+        currentNumberOfAllies++;
+    }
+
 }

@@ -1,5 +1,6 @@
 package enigmaEngine.interfaces;
 
+import battlefield.Battlefield;
 import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
@@ -53,4 +54,6 @@ public interface EnigmaEngine extends Serializable {
 
     EnigmaEngine deepClone();
     public BattlefieldDTO getBattlefieldDTO();
+
+    Battlefield getBattlefield();
 }

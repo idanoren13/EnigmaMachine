@@ -117,11 +117,24 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </VBox>
-                              <VBox prefWidth="300.0" styleClass="machine-state-vbox">
-                                 <padding>
-                                    <Insets left="50.0" top="10.0" />
-                                 </padding>
-                              </VBox>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <VBox prefWidth="300.0" styleClass="machine-state-vbox">
+                                       <padding>
+                                          <Insets left="50.0" top="10.0" />
+                                       </padding>
+                                       <children>
+                                          <Button fx:id="startContest" mnemonicParsing="false" onAction="#startContest" prefHeight="32.0" prefWidth="188.0" text="Start Contest" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </GridPane>
                            </children>
                            <padding>
                               <Insets left="30.0" />
@@ -131,7 +144,7 @@
                            <children>
                               <Button fx:id="enterCurrentKeyboardInputButton" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="62.0" prefWidth="208.0" text="End of Keyboard Input" wrapText="true" />
                               <HBox fillHeight="false" prefHeight="93.0" prefWidth="135.0" />
-                              <Button fx:id="clearEncryption" mnemonicParsing="false" prefHeight="57.0" prefWidth="175.0" text="Clear Encryption" HBox.hgrow="NEVER" />
+                              <Button fx:id="clearEncryption" mnemonicParsing="false" prefHeight="38.0" prefWidth="163.0" text="Clear Encryption" HBox.hgrow="NEVER" />
                            </children>
                         </HBox>
                      </children>
@@ -175,11 +188,11 @@
                         <TableColumn prefWidth="143.0" text="Encrypted Code" />
                     </columns>
                   </TableView>
-                  <TableView prefHeight="206.0" prefWidth="328.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView fx:id="alliesDataTable" prefHeight="206.0" prefWidth="328.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="83.0" text="Ally Team" />
-                      <TableColumn prefWidth="140.0" text="Number Of Agents" />
-                        <TableColumn prefWidth="131.0" text="Mission Size" />
+                      <TableColumn fx:id="allyNameCol" prefWidth="83.0" text="Ally Team" />
+                      <TableColumn fx:id="agentsNumberCol" prefWidth="140.0" text="Number Of Agents" />
+                        <TableColumn fx:id="missionSizeCol" prefWidth="131.0" text="Mission Size" />
                     </columns>
                   </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../css/general.css" GridPane.columnIndex="1" GridPane.rowIndex="2">

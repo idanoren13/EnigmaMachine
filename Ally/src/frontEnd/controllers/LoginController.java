@@ -47,6 +47,12 @@ public class LoginController implements Initializable {
             errorMessageProperty.set("User name is empty. You can't login with empty user name");
             return;
         }
+
+        addUser(userName);
+        signUpAlly(userName);
+    }
+
+    private void addUser(String userName) {
         String finalUrl = HttpUrl
                 .parse(Constants.LOGIN_PAGE)
                 .newBuilder()
@@ -76,6 +82,34 @@ public class LoginController implements Initializable {
                         mainController.setName(userName);
                         mainController.endLogin();
                     });
+                }
+            }
+        });
+    }
+
+    private void signUpAlly(String userName) {
+        String finalUrl = HttpUrl
+                .parse(Constants.ADD_ALLY)
+                .newBuilder()
+                .addQueryParameter("allyName", userName)
+                .build()
+                .toString();
+
+        HttpClientUtil.runAsync(finalUrl, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Platform.runLater(() ->
+                        errorMessageProperty.set("Something went wrong: " + e.getMessage())
+                );
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.code() != 200) {
+                    String responseBody = response.body().string();
+                    Platform.runLater(() ->
+                            errorMessageProperty.set("Something went wrong: " + responseBody)
+                    );
                 }
             }
         });

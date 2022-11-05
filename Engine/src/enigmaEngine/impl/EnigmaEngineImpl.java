@@ -401,4 +401,9 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
                 battlefieldInfo.getCurrentNumberOfAllies(),
                 battlefieldInfo.getDifficulty());
     }
+
+    @Override
+    public Battlefield getBattlefield() {
+        return battlefield;
+    }
 }

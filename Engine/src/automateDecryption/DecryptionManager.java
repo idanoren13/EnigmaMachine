@@ -12,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class DecryptionManager implements Runnable {
 
-    private final EnigmaEngine enigmaEngine;
+    private EnigmaEngine enigmaEngine;
     private long totalMissions, currentProgress;
     private final BlockingQueue<MachineCode> queue;
     //    private final BlockingQueue<Runnable> taskPoolQueue;
@@ -37,6 +37,7 @@ public class DecryptionManager implements Runnable {
 
         calculateMissionsNumber();
     }
+
 
     private void calculateMissionsNumber() {
         int ABCSize = enigmaEngine.getABCSize();
