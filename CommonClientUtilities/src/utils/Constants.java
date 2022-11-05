@@ -15,16 +15,14 @@ public static final int REFTESH_RATE = 1500;
     public final static String RESET_ENIGMA = FULL_SERVER_PATH + "/reset-enigma";
     public final static String GET_BATTLEFIELDS = FULL_SERVER_PATH + "/battlefields";
     public final static String JOIN_CONTEST = FULL_SERVER_PATH + "/join";
-
     public final static String ADD_ALLY = FULL_SERVER_PATH + "/ally";
-
     public final static String GET_SIGNED_UP_ALLIES = FULL_SERVER_PATH + "/uboat-allies";
     public final static String GET_ALLIES = FULL_SERVER_PATH + "/allies";
+    public final static String GET_CONTEST_STATUS = FULL_SERVER_PATH + "/contest-status";
 
-
-    public final static String GET_ENTITIES = FULL_SERVER_PATH + "/entities";
-
-    public final static String UNJOIN_BATTLE = FULL_SERVER_PATH + "/unjoin";
+    public final static String GET_ENIGMA_ENGINE = FULL_SERVER_PATH + "/get-enigma-engine";
+    public final static String GET_MISSION = FULL_SERVER_PATH + "/get-mission";
+    public final static String SEND_CANDIDATES = FULL_SERVER_PATH + "/send-candidates";
     public final static String ADD_AGENT = FULL_SERVER_PATH + "/add-agent";
     public final static String GET_AGENTS = FULL_SERVER_PATH + "/agents";
     public final static String READY = FULL_SERVER_PATH + "/ready";

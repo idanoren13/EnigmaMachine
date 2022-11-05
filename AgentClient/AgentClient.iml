@@ -15,5 +15,6 @@
     <orderEntry type="library" name="okio-2.8.0" level="project" />
     <orderEntry type="module" module-name="CommonClientUtilities" />
     <orderEntry type="module" module-name="DTO" />
+    <orderEntry type="module" module-name="Engine" />
   </component>
 </module>

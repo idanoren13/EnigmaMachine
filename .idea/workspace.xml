@@ -9,23 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="Added Agent App">
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/AddAgentServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetAlliesServlet.java" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="all logins works">
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/TaskController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/TasksManager2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentContestScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/refreshers/UpdateContestRefresher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/CandidateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/ContestDataDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetMissionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/SendCandidatesServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/app.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/AllyClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/AllyClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/app.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/AgentClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/AgentClient.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/ContestScreenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetSignedUpAlliesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetSignedUpAlliesServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +106,7 @@
     "extract.method.default.visibility": "private",
     "jdk.selected.JAVA_MODULE": "1.8",
     "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
-    "last_opened_file_path": "C:/Users/idano/IdeaProjects/EnigmaMachineServer/AgentClient/src",
+    "last_opened_file_path": "C:/Users/idano/Desktop/EnigmaMachine",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -137,14 +139,14 @@
       <recent name="desktopApp.frontEnd" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="frontEnd.refreshers" />
       <recent name="" />
+      <recent name="frontEnd.refreshers" />
       <recent name="frontEnd" />
       <recent name="frontEnd.controllers" />
       <recent name="managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.uBoatApp.UBoatClientApp">
+  <component name="RunManager" selected="Application.AgentClientApp">
     <configuration name="AgentApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AgentApp" />
       <method v="2">
@@ -304,9 +306,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.uBoatApp.UBoatClientApp" />
         <item itemvalue="Application.AgentClientApp" />
         <item itemvalue="Application.AllyClientApp" />
+        <item itemvalue="Application.uBoatApp.UBoatClientApp" />
         <item itemvalue="Application.AgentApp" />
         <item itemvalue="Application.desktopApp.Program" />
       </list>
@@ -368,7 +370,7 @@
       <workItem from="1664276166587" duration="417000" />
       <workItem from="1666435060504" duration="4763000" />
       <workItem from="1666914023500" duration="58792000" />
-      <workItem from="1667507135396" duration="49743000" />
+      <workItem from="1667507135396" duration="69910000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -646,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667635967750</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="all logins works">
+      <created>1667641500946</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1667641500946</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +699,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="UI guidelines implemented in the engine" />
     <MESSAGE value="some TODOs" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads.&#10;Mainly what is needed is to get rid of console and delete useless lines with println, printf, whatever" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads" />
@@ -715,7 +723,8 @@
     <MESSAGE value="uboat Client App works" />
     <MESSAGE value="added Battlefield DTO" />
     <MESSAGE value="Added Agent App" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Agent App" />
+    <MESSAGE value="all logins works" />
+    <option name="LAST_COMMIT_MESSAGE" value="all logins works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

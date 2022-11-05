@@ -5,11 +5,13 @@ import enigmaEngine.EnigmaMachineFromXML;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.interfaces.EnigmaEngine;
 import immutables.AllyDTO;
+import immutables.CandidateDTO;
 import immutables.ContestDTO;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 
 public class UBoatEntity {
@@ -22,6 +24,7 @@ public class UBoatEntity {
     private EnigmaEngine dummyEngine;
     private String status = "open";
     private InputStream xmlFile;
+    private List<CandidateDTO> candidateDTOList;
 
     public EnigmaEngine getEnigmaEngine() {
         return enigmaEngine;
@@ -82,5 +85,19 @@ public class UBoatEntity {
 
     public InputStream getXmlFile() {
         return xmlFile;
+    }
+
+    public void sendCandidates(CandidateDTO[] candidates) {
+        Collections.addAll(candidateDTOList, candidates);
+        for(CandidateDTO candidate : candidateDTOList){
+            if(candidate.getCandidateString().equals(OriginalMessage)){
+                status = "open";
+                stopContest();
+            }
+        }
+    }
+
+    private void stopContest() {
+
     }
 }
