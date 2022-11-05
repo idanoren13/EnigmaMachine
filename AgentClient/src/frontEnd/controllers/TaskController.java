@@ -3,7 +3,6 @@ package frontEnd.controllers;
 import automateDecryption.Agent;
 import automateDecryption.CandidateWords;
 import com.google.gson.Gson;
-import enigmaEngine.EnigmaMachineFromXML;
 import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.interfaces.EnigmaEngine;
@@ -19,11 +18,9 @@ import okhttp3.HttpUrl;
 import okhttp3.Response;
 import utils.HttpClientUtil;
 
-import javax.xml.bind.JAXBException;
 import java.beans.PropertyChangeSupport;
 import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -74,18 +71,18 @@ public class TaskController extends Thread implements Closeable {
 //    public frontEnd.controllers.TaskController() {
 //    }
 
-    public void initialize(InputStream xml, Difficulty difficulty, String encryptedText) {
+    public void initialize(Difficulty difficulty, String encryptedText) {
         this.encryptedText = encryptedText;
 
-        try {
-            this.enigmaEngine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(xml);
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
-        }
-        this.wordsDictionary = enigmaEngine.getWordsDictionary();
         this.difficulty = difficulty;
         System.out.println("Number of agents: " + numberOfAgents);
         progressProperty = new SimpleDoubleProperty(0);
+    }
+
+    public void setEnigmaEngine(EnigmaEngine enigmaEngine) {
+        this.enigmaEngine = enigmaEngine;
+        this.wordsDictionary = enigmaEngine.getWordsDictionary();
+
     }
 
     @Override

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CommonClientUtilities:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CommonClientUtilities_jar</output-path>
+    <root id="archive" name="CommonClientUtilities.jar">
+      <element id="module-output" name="CommonClientUtilities" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/okhttp-4.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/kotlin-stdlib-1.4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/gson/gson-2.8.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/okio-2.8.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

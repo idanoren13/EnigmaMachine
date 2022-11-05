@@ -25,6 +25,7 @@ public class AgentContestScreenController implements Initializable {
     private List<Pair<List<String>, MachineCode>> candidatesList;
     private Timer timer;
     ContestDataDTO contestDataDTO;
+    private Boolean isContestStarted = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,15 +51,17 @@ public class AgentContestScreenController implements Initializable {
 
     public void startContestRefresher() {
         UpdateContestRefresher updateContestRefresher = new UpdateContestRefresher(this::getContestDTO);
+        updateContestRefresher.setAllyName(mainController.getAllyName());
         timer = new Timer();
         timer.schedule(updateContestRefresher,REFTESH_RATE, REFTESH_RATE);
     }
 
     private void getContestDTO(ContestDataDTO contestDataDTO) {
-        if (contestDataDTO.getIsStarted()){
+        if (contestDataDTO.getIsStarted() && !isContestStarted) {
             mainController.startContest(contestDataDTO);
+            isContestStarted = true;
         }
-        else {
+        if (!contestDataDTO.getIsStarted() && isContestStarted) {
             mainController.stopContest();
         }
     }

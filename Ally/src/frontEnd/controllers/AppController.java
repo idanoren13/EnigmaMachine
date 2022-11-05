@@ -67,4 +67,8 @@ public class AppController {
         changeToContest();
         dashBoardComponent.setDisable(true);
     }
+
+    public ContestDTO getSelectedContest() {
+        return selectedContest;
+    }
 }

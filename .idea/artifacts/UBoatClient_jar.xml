@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="UBoatClient:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/UBoatClient_jar</output-path>
+    <root id="archive" name="UBoatClient.jar">
+      <element id="module-output" name="UBoatClient" />
+      <element id="module-output" name="CommonClientUtilities" />
+      <element id="module-output" name="DTO" />
+      <element id="module-output" name="Engine" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/okhttp-4.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/kotlin-stdlib-1.4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/gson/gson-2.8.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Engine/src/Resources/controlsfx-8.40.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/okHttp/okio-2.8.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

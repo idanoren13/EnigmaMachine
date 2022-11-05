@@ -2,32 +2,43 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="AgentClient:jar" />
+      <artifact name="Ally:jar" />
+      <artifact name="CommonClientUtilities:jar" />
+      <artifact name="DTO:jar" />
+      <artifact name="Engine:jar" />
       <artifact name="Server-Exploded" />
+      <artifact name="Server-Exploded archive" />
+      <artifact name="ThirdParty:jar" />
+      <artifact name="UBoatClient:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="added engine to Agent">
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/ReadyServlet.java" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="needs to add table refreshers">
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ally/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetContestStatusServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentContestScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/refreshers/UpdateContestRefresher.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/refreshers/UpdateContestRefresher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/DashBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/dashBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/dashBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/ContestDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/ContestDataDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/MachineCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/JoinContestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/JoinContestServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/ReadyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/ReadyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +119,7 @@
     "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
     "last_opened_file_path": "C:/Users/idano/Desktop/EnigmaMachine",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -146,7 +157,7 @@
       <recent name="managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AgentClientApp">
+  <component name="RunManager" selected="Compound.Debug">
     <configuration name="AgentApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AgentApp" />
       <method v="2">
@@ -160,7 +171,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AllyClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+    <configuration name="AllyClientApp" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AllyClientApp" />
       <module name="Ally" />
       <method v="2">
@@ -182,7 +193,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="uBoatApp.UBoatClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+    <configuration name="uBoatApp.UBoatClientApp" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uBoatApp.UBoatClientApp" />
       <module name="UBoatClient" />
       <extension name="coverage">
@@ -194,6 +205,11 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="Debug" type="CompoundRunConfigurationType">
+      <toRun name="AllyClientApp" type="Application" />
+      <toRun name="uBoatApp.UBoatClientApp" type="Application" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="GUIManager" />
@@ -297,18 +313,17 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.AgentApp" />
-      <item itemvalue="Application.AgentClientApp" />
       <item itemvalue="Application.AllyClientApp" />
       <item itemvalue="Application.uBoatApp.UBoatClientApp" />
+      <item itemvalue="Application.AgentApp" />
+      <item itemvalue="Application.AgentClientApp" />
       <item itemvalue="Application.desktopApp.Program" />
+      <item itemvalue="Compound.Debug" />
       <item itemvalue="Tomcat Server.Tomcat 10.0.26" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.AgentClientApp" />
-        <item itemvalue="Application.uBoatApp.UBoatClientApp" />
-        <item itemvalue="Application.AllyClientApp" />
         <item itemvalue="Application.desktopApp.Program" />
         <item itemvalue="Application.AgentApp" />
       </list>
@@ -370,7 +385,7 @@
       <workItem from="1664276166587" duration="417000" />
       <workItem from="1666435060504" duration="4763000" />
       <workItem from="1666914023500" duration="58792000" />
-      <workItem from="1667507135396" duration="76275000" />
+      <workItem from="1667507135396" duration="86958000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -662,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667664987525</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="needs to add table refreshers">
+      <created>1667671408961</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1667671408961</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,7 +728,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads.&#10;Mainly what is needed is to get rid of console and delete useless lines with println, printf, whatever" />
     <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads" />
     <MESSAGE value="added FXML file" />
     <MESSAGE value="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)" />
@@ -731,18 +752,19 @@
     <MESSAGE value="Added Agent App" />
     <MESSAGE value="all logins works" />
     <MESSAGE value="added engine to Agent" />
-    <option name="LAST_COMMIT_MESSAGE" value="added engine to Agent" />
+    <MESSAGE value="needs to add table refreshers" />
+    <option name="LAST_COMMIT_MESSAGE" value="needs to add table refreshers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <breakpoint enabled="true" type="java-exception">
-          <properties class="java.util.ConcurrentModificationException" package="java.util" />
-          <option name="timeStamp" value="28" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="32" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalThreadStateException" package="java.lang" />
+          <option name="timeStamp" value="187" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java</url>
@@ -750,19 +772,9 @@
           <option name="timeStamp" value="149" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/TaskController.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="150" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/TaskController.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="152" />
+          <line>26</line>
+          <option name="timeStamp" value="191" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -776,6 +788,9 @@
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="xmlFile" />
+      </configuration>
       <configuration name="Application">
         <watch expression="this" />
       </configuration>

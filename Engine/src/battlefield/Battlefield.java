@@ -3,6 +3,7 @@ package battlefield;
 import Entities.AllyEntity;
 import enigmaEngine.schemaBinding.CTEBattlefield;
 import immutables.AllyDTO;
+import immutables.Difficulty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,5 +44,10 @@ public class Battlefield implements Serializable {
         }
 
         return true;
+    }
+
+
+    public Difficulty getDifficulty() {
+        return battlefieldInformation.getDifficulty();
     }
 }

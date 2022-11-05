@@ -50,6 +50,7 @@ public class AgentLoginController implements Initializable {
     private AlliesRefresher alliesRefresher;
 
     private final StringProperty errorMessageProperty = new SimpleStringProperty();
+    private String allyName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,11 +78,12 @@ public class AgentLoginController implements Initializable {
         mainController.setName(userName);
         mainController.setThreadsNumber((Integer) threadsNumber.getValue());
         mainController.setMissionSize(Integer.parseInt(missionSizeCol.getText()));
-
+//        allyName = alliesTable.getSelectionModel().getSelectedItem().getAllyName();
         addUser(userName);
         signUpAgent(userName);
         mainController.endLogin();
         timer.cancel();
+        mainController.startContestDataRefresher();
     }
 
     private void addUser(String userName) {
@@ -124,7 +126,7 @@ public class AgentLoginController implements Initializable {
                 .parse(Constants.ADD_AGENT)
                 .newBuilder()
                 .addQueryParameter("agentName", userName)
-                .addQueryParameter("allyName", alliesTable.getSelectionModel().getSelectedItem().getAllyName())
+                .addQueryParameter("allyName", allyName)
                 .build()
                 .toString();
 
@@ -160,6 +162,7 @@ public class AgentLoginController implements Initializable {
         AllyDTO selectedAlly = alliesTable.getSelectionModel().getSelectedItem();
         if (selectedAlly != null) {
             mainController.setAllyTeam(selectedAlly);
+            allyName = selectedAlly.getAllyName();
         }
 
     }

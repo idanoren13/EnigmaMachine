@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class EnigmaMachineFromXML implements InitializeEnigma , Serializable {
+public class EnigmaMachineFromXML implements InitializeEnigma, Serializable {
     private CreateAndValidateEnigmaComponentsImpl createAndValidateEnigmaComponents;
 
     @Override
@@ -47,25 +47,27 @@ public class EnigmaMachineFromXML implements InitializeEnigma , Serializable {
         return getEnigmaEngine(xmlOutput);
     }
 
-    public EnigmaEngineImpl getEnigmaEngineFromInputStream(InputStream xmlFile) throws JAXBException, RuntimeException  {
-    try {
+    public EnigmaEngineImpl getEnigmaEngineFromInputStream(InputStream xmlFile) throws JAXBException, RuntimeException {
+        try {
 
-        CTEEnigma xmlOutput;
+            CTEEnigma xmlOutput;
 
-        JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        xmlOutput = (CTEEnigma) jaxbUnmarshaller.unmarshal(xmlFile);
+            JAXBContext jaxbContext = JAXBContext.newInstance("enigmaEngine.schemaBinding");
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            xmlOutput = (CTEEnigma) jaxbUnmarshaller.unmarshal(xmlFile);
 
 
-        assert xmlOutput != null;
-        return getEnigmaEngine(xmlOutput);
-    } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException e) {
-        throw new RuntimeException(e);
+            assert xmlOutput != null;
+            return getEnigmaEngine(xmlOutput);
+        } catch (InvalidMachineException | InvalidRotorException | InvalidABCException | InvalidReflectorException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    }
 
-//    @SuppressWarnings("unchecked")
+
+    //    @SuppressWarnings("unchecked")
     public EnigmaEngineImpl getEnigmaEngine(CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
 
         String cteMachineABC;
@@ -102,7 +104,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma , Serializable {
         if (cteRotorsCount > cteRotors.getCTERotor().size()) {
             throw new InvalidRotorException("In the given XML, rotors count is larger than actual rotors.");
         }
-        rotors = (HashMap<Integer, Rotor>)importCTERotors(cteRotors, new HashMap<>());
+        rotors = (HashMap<Integer, Rotor>) importCTERotors(cteRotors, new HashMap<>());
         createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
 
         // Reflectors
@@ -110,7 +112,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma , Serializable {
             throw new InvalidReflectorException("In the given XML, there are no reflectors.");
         }
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
-        reflectors = (HashMap<ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
+        reflectors = (HashMap<ReflectorID, Reflector>) importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
         EnigmaEngineImpl newEnigmaEngine = new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);

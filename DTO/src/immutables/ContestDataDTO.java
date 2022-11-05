@@ -1,15 +1,11 @@
 package immutables;
 
-import java.io.InputStream;
-
 public class ContestDataDTO {
-    private final InputStream xmlEnigma;
     private final String encryptedText;
     private final Difficulty difficulty;
     private final Boolean isStarted;
 
-    public ContestDataDTO(InputStream xmlEnigma, String encryptedText, Difficulty difficulty, Boolean isStarted) {
-        this.xmlEnigma = xmlEnigma;
+    public ContestDataDTO( String encryptedText, Difficulty difficulty, Boolean isStarted) {
         this.encryptedText = encryptedText;
         this.difficulty = difficulty;
         this.isStarted = isStarted;
@@ -21,10 +17,6 @@ public class ContestDataDTO {
 
     public String getEncryptedText() {
         return encryptedText;
-    }
-
-    public InputStream getXmlEnigma() {
-        return xmlEnigma;
     }
 
     public Boolean getIsStarted() {

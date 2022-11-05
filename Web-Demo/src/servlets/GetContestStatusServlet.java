@@ -2,6 +2,7 @@ package servlets;
 
 import Entities.AllyEntity;
 import Entities.UBoatEntity;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,24 +13,22 @@ import managers.UBoatManager;
 import utils.ServletUtils;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet(name = "JoinContestServlet", urlPatterns = {"/join"})
-public class JoinContestServlet extends HttpServlet {
+@WebServlet(name = "GetContestStatusServlet", value = "/contest-status")
+public class GetContestStatusServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain");
-        PrintWriter out = response.getWriter();
-        String uBoatName = request.getParameter("uboatName");
-        String allyName = request.getParameter("allyName");
+
+        String name = request.getParameter("allyName");
+        AlliesManager alliesManager = ServletUtils.getAlliesManager(getServletContext());
+        AllyEntity ally = alliesManager.getAlly(name);
 
         UBoatManager uBoatManager = ServletUtils.getUBoatManager(getServletContext());
-        AlliesManager alliesManager = ServletUtils.getAlliesManager(getServletContext());
+        UBoatEntity uBoat = uBoatManager.getUBoat(ally.getUBoatName());
 
-        AllyEntity ally = alliesManager.getAlly(allyName);
-        UBoatEntity uBoat = uBoatManager.getUBoat(uBoatName);
-
-        ally.setUBoatName(uBoatName);
-        uBoat.addAlly(ally);
+        Gson gson = new Gson();
+        String json = gson.toJson(uBoat.getCOntestDataDTO());
+        response.getWriter().print(json);
+        response.getWriter().flush();
     }
 }

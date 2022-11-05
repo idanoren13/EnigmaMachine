@@ -1,14 +1,25 @@
 package frontEnd.controllers;
 
+import enigmaEngine.EnigmaMachineFromXML;
 import enigmaEngine.MachineCode;
 import immutables.AllyDTO;
 import immutables.ContestDataDTO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.util.Pair;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
+import utils.HttpClientUtil;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import static utils.Constants.GET_ENIGMA_ENGINE;
 
 public class AgentAppController {
     @FXML
@@ -75,8 +86,37 @@ public class AgentAppController {
     }
 
     public void startContest(ContestDataDTO contestDataDTO) {
-        taskController.initialize(contestDataDTO.getXmlEnigma(),contestDataDTO.getDifficulty(),contestDataDTO.getEncryptedText());
-        taskController.start();
+        getXmlEnigma();
+        taskController.initialize(contestDataDTO.getDifficulty(),contestDataDTO.getEncryptedText());
+//        taskController.start();
+    }
+
+    private void getXmlEnigma() {
+        String url = HttpUrl.parse(GET_ENIGMA_ENGINE).newBuilder()
+                .addQueryParameter("allyName", selectedAlly.getAllyName())
+                .build()
+                .toString();
+
+        InputStream res = null;
+
+        HttpClientUtil.runAsync(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                new Alert(Alert.AlertType.ERROR, "Failed to join contest").showAndWait();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    InputStream responseString = response.body().byteStream();
+                    try {
+                        taskController.setEnigmaEngine(new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(responseString));
+                    } catch (JAXBException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
     }
 
     public void stopContest() {
@@ -85,5 +125,9 @@ public class AgentAppController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void startContestDataRefresher() {
+        contestComponentController.startContestRefresher();
     }
 }

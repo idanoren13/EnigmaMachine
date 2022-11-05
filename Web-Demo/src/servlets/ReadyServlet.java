@@ -24,11 +24,12 @@ public class ReadyServlet extends HttpServlet {
             case "uboat":
                 UBoatEntity uBoatEntity = uBoatManager.getUBoat(name);
                 uBoatEntity.setReady(true);
+                uBoatEntity.checkIfAllReady();
                 break;
             case "ally":
                 AlliesManager alliesManager = ServletUtils.getAlliesManager(getServletContext());
                 alliesManager.getAlly(name).setReady(true);
-                uBoatManager.getUBoat(name).checkIfAllReady();
+                uBoatManager.getUBoat(request.getParameter("uboatName")).checkIfAllReady();
                 break;
         }
     }

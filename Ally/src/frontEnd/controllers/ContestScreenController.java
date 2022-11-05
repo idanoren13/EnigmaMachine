@@ -24,6 +24,7 @@ public class ContestScreenController {
         String url = HttpUrl.parse(READY).newBuilder()
                 .addQueryParameter("name", mainController.getAllyName())
                 .addQueryParameter("entity", "ally")
+                .addQueryParameter("uboatName", mainController.getSelectedContest().getUBoatName())
                 .build().toString();
 
         HttpClientUtil.runAsync(url, new Callback() {

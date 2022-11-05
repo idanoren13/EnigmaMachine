@@ -19,6 +19,7 @@ public class AllyEntity implements Serializable {
     private int missionSize;
     private DecryptionManager decryptionManager;
     BlockingQueue<MachineCode> MachineCodeDTOQueue;
+    private String uBoatName;
 
     public AllyEntity(String allyName) {
         this.allyName = allyName;
@@ -58,5 +59,14 @@ public class AllyEntity implements Serializable {
 
     public Boolean getIsReady() {
         return isReady;
+    }
+
+
+    public void setUBoatName(String uBoatName) {
+        this.uBoatName = uBoatName;
+    }
+
+    public String getUBoatName() {
+        return uBoatName;
     }
 }

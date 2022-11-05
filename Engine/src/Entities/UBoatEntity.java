@@ -7,6 +7,7 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import immutables.AllyDTO;
 import immutables.CandidateDTO;
 import immutables.ContestDTO;
+import immutables.ContestDataDTO;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class UBoatEntity implements Serializable {
 
@@ -36,15 +38,20 @@ public class UBoatEntity implements Serializable {
 
     public void setEnigmaEngineFromInputStream(InputStream inputStream) throws IOException, ClassNotFoundException {
         try {
+            xmlFile = inputStream;
             this.enigmaEngine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(inputStream);
 //            battlefield = new Battlefield(inputStream);
-            xmlFile = inputStream;
+            inputStream.reset();
 
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
 
         battlefield = enigmaEngine.getBattlefield();
+    }
+
+    private String readFromInputStream(InputStream inputStream) {
+        return new Scanner(inputStream).useDelimiter("\\Z").next();
     }
 
     public void setUBoatName(String name) {
@@ -119,5 +126,9 @@ public class UBoatEntity implements Serializable {
 
     private void stopContest() {
 
+    }
+
+    public ContestDataDTO getCOntestDataDTO() {
+        return new ContestDataDTO(encryptedMessage,battlefield.getDifficulty(),isContestStarted);
     }
 }

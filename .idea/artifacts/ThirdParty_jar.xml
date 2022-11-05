@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ThirdParty:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ThirdParty_jar</output-path>
+    <root id="archive" name="ThirdParty.jar">
+      <element id="module-output" name="ThirdParty" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/ThirdParty/gson/gson-2.8.8.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

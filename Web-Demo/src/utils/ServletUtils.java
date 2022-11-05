@@ -62,7 +62,7 @@ public class ServletUtils {
             AgentManager agentManager = (AgentManager) i_ServletContext.getAttribute(AGENT_MANAGER_ATTRIBUTE_NAME);
             if (agentManager == null) {
                 agentManager = new AgentManager();
-                i_ServletContext.setAttribute(ALLIES_MANAGER_ATTRIBUTE_NAME, agentManager);
+                i_ServletContext.setAttribute(AGENT_MANAGER_ATTRIBUTE_NAME, agentManager);
             }
 
             return agentManager;

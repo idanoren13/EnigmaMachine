@@ -16,14 +16,17 @@ import static utils.Constants.GET_CONTEST_STATUS;
 
 public class UpdateContestRefresher extends TimerTask {
     private Consumer<ContestDataDTO> contestDataDTOConsumer;
+    private String allyName;
 
     public UpdateContestRefresher(Consumer<ContestDataDTO> contestDataDTOConsumer) {
         this.contestDataDTOConsumer = contestDataDTOConsumer;
+
     }
 
     @Override
     public void run() {
         String url = HttpUrl.parse(GET_CONTEST_STATUS).newBuilder()
+                .addQueryParameter("allyName", allyName)
                 .build().toString();
 
         HttpClientUtil.runAsync(url, new Callback() {
@@ -45,5 +48,9 @@ public class UpdateContestRefresher extends TimerTask {
             }
         });
 
+    }
+
+    public void setAllyName(String allyName) {
+        this.allyName = allyName;
     }
 }
