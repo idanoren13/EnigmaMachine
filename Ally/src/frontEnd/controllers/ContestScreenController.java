@@ -1,5 +1,9 @@
 package frontEnd.controllers;
 
+import frontEnd.refreshers.AgentDataRefresher;
+import frontEnd.refreshers.CandidateRefresher;
+import immutables.AgentDataDTO;
+import immutables.CandidateDTO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +20,9 @@ import org.jetbrains.annotations.NotNull;
 import utils.HttpClientUtil;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.Timer;
 
 import static utils.Constants.READY;
 import static utils.Constants.REFRESH_RATE;

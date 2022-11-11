@@ -44,6 +44,12 @@ public class AlliesRefresher extends TimerTask {
                 AllyDTO[] allies = gson.fromJson(res, AllyDTO[].class);
                 System.out.println(allies);
                 allyDTOConsumer.accept(allies);
+
+//                Gson gson = new Gson();
+//                AlliesDTO alliesList = gson.fromJson(res, AlliesDTO.class);
+//                AllyDTO[] allies = alliesList.getListOfAllies().toArray(new AllyDTO[0]);
+//                System.out.println(allies);
+//                allyDTOConsumer.accept(allies);
             }
         });
     }

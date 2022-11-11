@@ -40,6 +40,14 @@ public class ContestScreenController implements Initializable {
     private TableColumn<AllyDTO, Integer> agentsNumberCol;
     @FXML
     private TableColumn<AllyDTO, Integer> missionSizeCol;
+//    @FXML
+// private TableView<ContestDTO> candidateString;
+//    @FXM
+// private TableColumn<ContestDTO, String> allyTeamString;
+    //@FXML
+// private TableColumn<ContestDTO, String>  candidateMachineCode;
+    //@FXML
+    // private TableColumn<ContestDTO, String> candidate;
     private AppController mainController;
     // Models
     //
@@ -239,6 +247,7 @@ public class ContestScreenController implements Initializable {
         missionSizeCol.setCellValueFactory(new PropertyValueFactory<AllyDTO, Integer>("missionSize"));
 
     }
+
 
     public void startAlliesRefresher() {
         alliesRefresher = new AlliesRefresher(this::updateAlliesTable, mainController.getName());
