@@ -7,9 +7,9 @@ import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.impl.EnigmaEngineImpl;
 import enigmaEngine.impl.PlugBoardImpl;
+import enigmaEngine.impl.ReflectorImpl;
+import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.InitializeEnigma;
-import enigmaEngine.interfaces.Reflector;
-import enigmaEngine.interfaces.Rotor;
 import enigmaEngine.schemaBinding.*;
 import immutables.ReflectorID;
 import javafx.util.Pair;
@@ -75,8 +75,8 @@ public class EnigmaMachineFromXML implements InitializeEnigma, Serializable {
         CTERotors cteRotors;
         CTEMachine machine;
         List<CTEReflector> cteReflectors;
-        HashMap<Integer, Rotor> rotors;
-        HashMap<ReflectorID, Reflector> reflectors;
+        HashMap<Integer, RotorImpl> rotors;
+        HashMap<ReflectorID, ReflectorImpl> reflectors;
         CTEDecipher decipher;
         CTEDictionary dictionary;
         CTEBattlefield battlefield;
@@ -104,7 +104,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma, Serializable {
         if (cteRotorsCount > cteRotors.getCTERotor().size()) {
             throw new InvalidRotorException("In the given XML, rotors count is larger than actual rotors.");
         }
-        rotors = (HashMap<Integer, Rotor>) importCTERotors(cteRotors, new HashMap<>());
+        rotors = (HashMap<Integer, RotorImpl>) importCTERotors(cteRotors, new HashMap<>());
         createAndValidateEnigmaComponents.validateRotorsIDs(rotors);
 
         // Reflectors
@@ -112,7 +112,7 @@ public class EnigmaMachineFromXML implements InitializeEnigma, Serializable {
             throw new InvalidReflectorException("In the given XML, there are no reflectors.");
         }
         cteReflectors = new ArrayList<>(machine.getCTEReflectors().getCTEReflector());
-        reflectors = (HashMap<ReflectorID, Reflector>) importCTEReflectors(cteReflectors, new HashMap<>());
+        reflectors = (HashMap<ReflectorID, ReflectorImpl>) importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
         EnigmaEngineImpl newEnigmaEngine = new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);

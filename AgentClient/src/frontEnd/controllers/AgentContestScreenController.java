@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.stream.Collectors;
 
-import static utils.Constants.REFTESH_RATE;
+import static utils.Constants.REFRESH_RATE;
 
 public class AgentContestScreenController implements Initializable {
     public TableView<Pair<String,String>> candidatesTable;
@@ -53,10 +53,10 @@ public class AgentContestScreenController implements Initializable {
         UpdateContestRefresher updateContestRefresher = new UpdateContestRefresher(this::getContestDTO);
         updateContestRefresher.setAllyName(mainController.getAllyName());
         timer = new Timer();
-        timer.schedule(updateContestRefresher,REFTESH_RATE, REFTESH_RATE);
+        timer.schedule(updateContestRefresher, REFRESH_RATE, REFRESH_RATE);
     }
 
-    private void getContestDTO(ContestDataDTO contestDataDTO) {
+    private synchronized void getContestDTO(ContestDataDTO contestDataDTO) {
         if (contestDataDTO.getIsStarted() && !isContestStarted) {
             mainController.startContest(contestDataDTO);
             isContestStarted = true;

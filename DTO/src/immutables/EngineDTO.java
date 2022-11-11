@@ -2,12 +2,13 @@ package immutables;
 
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 // Engine->DTO->UI
-public class EngineDTO {
+public class EngineDTO implements Serializable {
     private final int totalNumberOfRotors;
     private final int totalReflectors;
     private final Map<Character, Character> plugBoard;

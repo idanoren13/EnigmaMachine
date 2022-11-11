@@ -22,9 +22,7 @@ public class InitializeEnigmaEngine implements Serializable {
             case XML:
                 enigmaEngineInitializer = new EnigmaMachineFromXML();
                 break;
-            case DEBUG:
-                enigmaEngineInitializer = new EnigmaMachineToDebug();
-                break;
+
             default:
                 throw new UnknownSourceException("Unknown file extension source is given.");
         }

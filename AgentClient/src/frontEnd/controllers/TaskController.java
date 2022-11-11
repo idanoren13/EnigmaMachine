@@ -1,35 +1,22 @@
 package frontEnd.controllers;
 
-import automateDecryption.Agent;
 import automateDecryption.CandidateWords;
-import com.google.gson.Gson;
 import enigmaEngine.MachineCode;
 import enigmaEngine.WordsDictionary;
 import enigmaEngine.interfaces.EnigmaEngine;
-import immutables.CandidateDTO;
 import immutables.Difficulty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Alert;
 import javafx.util.Pair;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.HttpUrl;
-import okhttp3.Response;
-import utils.HttpClientUtil;
 
 import java.beans.PropertyChangeSupport;
 import java.io.Closeable;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
-
-import static utils.Constants.GET_MISSION;
-import static utils.Constants.SEND_CANDIDATES;
 
 public class TaskController extends Thread implements Closeable {
 
@@ -68,6 +55,13 @@ public class TaskController extends Thread implements Closeable {
         this.agentAppController = agentAppController;
     }
 
+    public TaskController() {
+        this.numberOfAgents = 1;
+        this.machineCodeBlockingQueue = new ArrayBlockingQueue<>(1000);
+        this.outputQueue = new ConcurrentLinkedQueue<>();
+        tasksPool = Executors.newFixedThreadPool(numberOfAgents);
+    }
+
 //    public frontEnd.controllers.TaskController() {
 //    }
 
@@ -96,9 +90,8 @@ public class TaskController extends Thread implements Closeable {
 
         List<Future<?>> futures = new CopyOnWriteArrayList<>();
 
-
         for (int i = 0; i < numberOfAgents; i++) {
-            futures.add(tasksPool.submit(new Agent(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize, onProgressChanged)));
+            futures.add(tasksPool.submit(new AgentRunner(i, enigmaEngine, machineCodeBlockingQueue, encryptedText, outputQueue, taskSize, onProgressChanged, agentAppController)));
         }
 
         candidateWordsOutputThread = new Thread(new CandidateWords(outputQueue, onCandidateWordsFound));
@@ -106,10 +99,10 @@ public class TaskController extends Thread implements Closeable {
 
         tasksPool.shutdown();
 
-        while (isContestActive) {
-            sendCandidates();
-            getMissionFromServer();
-        }
+//        while (isContestActive) {
+//            sendCandidates();
+//            getMissionFromServer();
+//        }
 
         while (!tasksPool.isTerminated()) {
             try {
@@ -152,71 +145,5 @@ public class TaskController extends Thread implements Closeable {
 //        this.tasksPool.shutdownNow();
         this.totalMissions = 0;
         this.progressProperty.set(0);
-    }
-
-    private void getMissionFromServer() {
-        String url = HttpUrl.parse(GET_MISSION).newBuilder()
-                .addQueryParameter("allyName", agentAppController.getAllyName())
-                .addQueryParameter("missionSize", String.valueOf(agentAppController.getMissionSize()))
-                .build().toString();
-
-        HttpClientUtil.runAsync(url, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Failed to join contest").showAndWait();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String responseString = response.body().string();
-                    Gson gson = new Gson();
-                    MachineCode machineCode = gson.fromJson(responseString, MachineCode.class);
-                    fillQueue(machineCode);
-                }
-            }
-        });
-    }
-
-    private void fillQueue(MachineCode machineCode) {
-//        synchronized (fillQueueLock) {
-        for (int i = 0; i < agentAppController.getMissionSize(); i++) {
-            try {
-                machineCodeBlockingQueue.put(machineCode);
-                machineCode.increment();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-//        }
-    }
-
-    private void sendCandidates() {
-        Gson gson = new Gson();
-        List<Pair<List<String>, MachineCode>> candidates = new ArrayList<>(outputQueue);
-        agentAppController.showCandidates(candidates);
-        List<CandidateDTO> candidateDTOS = new ArrayList<>();
-        for (Pair<List<String>, MachineCode> candidate : candidates) {
-            candidateDTOS.add(new CandidateDTO(String.join(" ", candidate.getKey()), candidate.getValue()));
-        }
-        String url = HttpUrl.parse(SEND_CANDIDATES).newBuilder()
-                .addQueryParameter("agentName", agentAppController.getAgentName())
-                .addQueryParameter("allyName", agentAppController.getAllyName())
-                .addQueryParameter("candidates", gson.toJson(candidateDTOS))
-                .build().toString();
-
-        HttpClientUtil.runAsync(url, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Failed to join contest").showAndWait();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-
-                }
-            }
-        });
     }
 }

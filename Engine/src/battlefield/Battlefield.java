@@ -1,6 +1,8 @@
 package battlefield;
 
 import Entities.AllyEntity;
+import automateDecryption.DecryptionManager;
+import enigmaEngine.interfaces.EnigmaEngine;
 import enigmaEngine.schemaBinding.CTEBattlefield;
 import immutables.AllyDTO;
 import immutables.Difficulty;
@@ -11,11 +13,11 @@ import java.util.List;
 
 public class Battlefield implements Serializable {
     private final BattlefieldInformation battlefieldInformation;
-    private final List<AllyEntity> Allies;
+    private final List<AllyEntity> allies;
 
     public Battlefield(CTEBattlefield cteBattlefield) {
         this.battlefieldInformation = BattlefieldInformation.loadBattlefieldFromXML(cteBattlefield);
-        this.Allies = new ArrayList<>();
+        this.allies = new ArrayList<>();
 
     }
 
@@ -24,20 +26,20 @@ public class Battlefield implements Serializable {
     }
 
     public void addAlly(AllyEntity ally) {
-        Allies.add(ally);
+        allies.add(ally);
         battlefieldInformation.incrementCurrentNumberOfAllies();
     }
 
     public List<AllyDTO> getAllies() {
         List<AllyDTO> allyDTOList = new ArrayList<>();
-        for (AllyEntity ally : Allies) {
+        for (AllyEntity ally : allies) {
             allyDTOList.add(ally.getAllyDTO());
         }
         return allyDTOList;
     }
 
     public Boolean isAlliesReady() {
-        for (AllyEntity ally : Allies) {
+        for (AllyEntity ally : allies) {
             if (!ally.getIsReady()) {
                 return false;
             }
@@ -49,5 +51,18 @@ public class Battlefield implements Serializable {
 
     public Difficulty getDifficulty() {
         return battlefieldInformation.getDifficulty();
+    }
+
+    public void startContest(EnigmaEngine enigmaEngine, String encryptedMessage) {
+        for (AllyEntity ally : allies) {
+            ally.setDecryptionManager(new DecryptionManager(
+                    enigmaEngine.deepClone(),
+                    ally.getMachineCodeBlockingQueue(),
+                    battlefieldInformation.getDifficulty(),
+                    encryptedMessage,
+                    ally.getMissionSize()));
+            ally.startContest();
+        }
+
     }
 }

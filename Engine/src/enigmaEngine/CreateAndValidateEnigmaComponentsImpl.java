@@ -7,7 +7,6 @@ import enigmaEngine.impl.ReflectorImpl;
 import enigmaEngine.impl.RotorImpl;
 import enigmaEngine.interfaces.CreateAndValidateEnigmaComponents;
 import enigmaEngine.interfaces.Reflector;
-import enigmaEngine.interfaces.Rotor;
 import immutables.ReflectorID;
 
 import java.io.Serializable;
@@ -32,7 +31,7 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
      * Creations
      * */
     @Override
-    public Rotor createRotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) throws InvalidRotorException {
+    public RotorImpl createRotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) throws InvalidRotorException {
         currentRotorID = id;
         currentRotorNotch = notch;
         validateRotor(rightSide, leftSide);
@@ -52,14 +51,14 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
     }
 
     @Override
-    public void validateRotorsIDs(Map<Integer, Rotor> rotorMap) throws InvalidRotorException {
+    public void validateRotorsIDs(Map<Integer, RotorImpl> rotorMap) throws InvalidRotorException {
         if (rotorMap.keySet().stream().anyMatch(i -> i < 1 || i > rotorMap.size())) {
             throw new InvalidRotorException("All rotor IDs must be sequential, from 1 to " + rotorMap.size() + ".");
         }
     }
 
     @Override
-    public void validateReflectorsIDs(Map<ReflectorID, Reflector> reflectorsMap) throws InvalidReflectorException {
+    public void validateReflectorsIDs(Map<ReflectorID, ReflectorImpl> reflectorsMap) throws InvalidReflectorException {
         if (reflectorsMap.keySet().stream().anyMatch(id -> id.ordinal() >= reflectorsMap.size())) {
             throw new InvalidReflectorException("All reflector IDs must be sequential, from 1 to " + reflectorsMap.size() + ".");
         }

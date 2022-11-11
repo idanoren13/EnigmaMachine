@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 
 /**
@@ -40,7 +41,7 @@ import javax.xml.bind.annotation.XmlType;
         "cteBattlefield"
 })
 @XmlRootElement(name = "CTE-Enigma")
-public class CTEEnigma {
+public class CTEEnigma implements Serializable {
 
     @XmlElement(name = "CTE-Machine", required = true)
     protected CTEMachine cteMachine;

@@ -10,9 +10,7 @@ import immutables.ContestDTO;
 import immutables.ContestDataDTO;
 
 import javax.xml.bind.JAXBException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +24,7 @@ public class UBoatEntity implements Serializable {
     private String OriginalMessage;
     private EnigmaEngine dummyEngine;
     private String status = "open";
-    private InputStream xmlFile;
+    transient private InputStream xmlFile;
     private List<CandidateDTO> candidateDTOList;
     private Boolean isReady = false;
 
@@ -38,16 +36,32 @@ public class UBoatEntity implements Serializable {
 
     public void setEnigmaEngineFromInputStream(InputStream inputStream) throws IOException, ClassNotFoundException {
         try {
-            xmlFile = inputStream;
-            this.enigmaEngine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(inputStream);
-//            battlefield = new Battlefield(inputStream);
+            copyInputStream(inputStream);
             inputStream.reset();
+            this.enigmaEngine = new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(xmlFile);
+//            battlefield = new Battlefield(inputStream);
+
 
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
 
         battlefield = enigmaEngine.getBattlefield();
+    }
+
+    private void copyInputStream(InputStream inputStream) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[50000];
+        int len;
+        try {
+            while ((len = inputStream.read(buffer)) > -1 ) {
+                baos.write(buffer, 0, len);
+            }
+            baos.flush();
+            xmlFile = new ByteArrayInputStream(baos.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String readFromInputStream(InputStream inputStream) {
@@ -118,6 +132,7 @@ public class UBoatEntity implements Serializable {
     private void startContest() {
         isContestStarted = true;
         status = "closed, in progress";
+        battlefield.startContest(enigmaEngine, encryptedMessage);
     }
 
     public void setReady(Boolean isReady){
@@ -125,10 +140,15 @@ public class UBoatEntity implements Serializable {
     }
 
     private void stopContest() {
+        isContestStarted = false;
 
     }
 
-    public ContestDataDTO getCOntestDataDTO() {
+    public ContestDataDTO getContestDataDTO() {
         return new ContestDataDTO(encryptedMessage,battlefield.getDifficulty(),isContestStarted);
+    }
+
+    public boolean isContestEnded() {
+        return !isContestStarted;
     }
 }

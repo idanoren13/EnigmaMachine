@@ -1,8 +1,9 @@
 package automateDecryption;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadFactory;
 
-public class AgentFactory implements ThreadFactory {
+public class AgentFactory implements ThreadFactory, Serializable {
 
     private static AgentFactory instance;
     private int agentNumber = 0;

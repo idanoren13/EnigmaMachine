@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 
 /**
@@ -41,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
     "cteDictionary"
 })
 @XmlRootElement(name = "CTE-Decipher")
-public class CTEDecipher {
+public class CTEDecipher implements Serializable {
 
     @XmlElement(name = "CTE-Dictionary", required = true)
     protected CTEDictionary cteDictionary;

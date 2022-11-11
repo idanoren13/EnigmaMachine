@@ -4,7 +4,7 @@ import immutables.ContestDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 
-public class AppController {
+public class AllyAppController {
     @FXML
     public ScrollPane login;
     @FXML
@@ -65,6 +65,7 @@ public class AppController {
 
     public void loadBattlefield() {
         changeToContest();
+        contestComponentController.startAgentDataRefresher();
         dashBoardComponent.setDisable(true);
     }
 

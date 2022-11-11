@@ -27,7 +27,7 @@ public class GetContestStatusServlet extends HttpServlet {
         UBoatEntity uBoat = uBoatManager.getUBoat(ally.getUBoatName());
 
         Gson gson = new Gson();
-        String json = gson.toJson(uBoat.getCOntestDataDTO());
+        String json = gson.toJson(uBoat.getContestDataDTO());
         response.getWriter().print(json);
         response.getWriter().flush();
     }

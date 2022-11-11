@@ -4,12 +4,13 @@ import Entities.AgentEntity;
 import Entities.AllyEntity;
 import immutables.AllyDTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AlliesManager {
+public class AlliesManager implements Serializable {
 
     private final Map<String, AllyEntity> allies;
 

@@ -15,8 +15,10 @@ import okhttp3.Response;
 import utils.HttpClientUtil;
 
 import javax.xml.bind.JAXBException;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static utils.Constants.GET_ENIGMA_ENGINE;
@@ -50,6 +52,7 @@ public class AgentAppController {
     public void endLogin() {
         login.setVisible(false);
         taskController = new TaskController(threadsNumber,this);
+
     }
 
     public void setName(String userName) {
@@ -85,10 +88,11 @@ public class AgentAppController {
         contestComponentController.showCandidates(outputQueue);
     }
 
-    public void startContest(ContestDataDTO contestDataDTO) {
+    public synchronized void startContest(ContestDataDTO contestDataDTO) {
         getXmlEnigma();
+
         taskController.initialize(contestDataDTO.getDifficulty(),contestDataDTO.getEncryptedText());
-//        taskController.start();
+        taskController.start();
     }
 
     private void getXmlEnigma() {
@@ -97,7 +101,6 @@ public class AgentAppController {
                 .build()
                 .toString();
 
-        InputStream res = null;
 
         HttpClientUtil.runAsync(url, new Callback() {
             @Override
@@ -108,9 +111,11 @@ public class AgentAppController {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    InputStream responseString = response.body().byteStream();
+                    String responseString = response.body().string();
+//                        System.out.println("response.body().ByteStream() = " + responseString);
+                    InputStream inputStream = new ByteArrayInputStream(responseString.getBytes(StandardCharsets.UTF_8));
                     try {
-                        taskController.setEnigmaEngine(new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(responseString));
+                        taskController.setEnigmaEngine(new EnigmaMachineFromXML().getEnigmaEngineFromInputStream(inputStream));
                     } catch (JAXBException e) {
                         throw new RuntimeException(e);
                     }

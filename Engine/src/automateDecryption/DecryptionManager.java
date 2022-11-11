@@ -6,11 +6,12 @@ import immutables.Difficulty;
 import immutables.EngineDTO;
 import immutables.ReflectorID;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
-public class DecryptionManager implements Runnable {
+public class DecryptionManager implements Runnable, Serializable {
 
     private EnigmaEngine enigmaEngine;
     private long totalMissions, currentProgress;
@@ -36,7 +37,22 @@ public class DecryptionManager implements Runnable {
         this.engineDTO = enigmaEngine.getEngineDTO();
 
         calculateMissionsNumber();
+        initializeMachineCode();
     }
+
+//    public DecryptionManager(EnigmaEngine enigmaEngine, Difficulty difficulty, String encryptedText, long taskSize) {
+//        this.enigmaEngine = enigmaEngine;
+//        this.queue = new ArrayBlockingQueue<>(1000);
+////        this.taskPoolQueue = taskPoolQueue;
+//        this.difficulty = difficulty;
+//        this.encryptedText = encryptedText;
+////        this.executor = executor;
+//        this.taskSize = taskSize;
+//        currentProgress = 0;
+//        this.engineDTO = enigmaEngine.getEngineDTO();
+//
+//        calculateMissionsNumber();
+//    }
 
 
     private void calculateMissionsNumber() {
@@ -98,6 +114,7 @@ public class DecryptionManager implements Runnable {
                 break;
             default:
         }
+
         System.out.println("machineCode = " + machineCode);
 
     }

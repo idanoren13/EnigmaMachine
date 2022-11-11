@@ -1,6 +1,8 @@
 package immutables;
 
-public class ContestDataDTO {
+import java.io.Serializable;
+
+public class ContestDataDTO implements Serializable {
     private final String encryptedText;
     private final Difficulty difficulty;
     private final Boolean isStarted;

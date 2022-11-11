@@ -1,6 +1,8 @@
 package immutables;
 
-public class BattlefieldDTO {
+import java.io.Serializable;
+
+public class BattlefieldDTO implements Serializable {
     private final String name;
     private final int numberOfAllies;
     private final int currentNumberOfAllies;

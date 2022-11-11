@@ -30,6 +30,7 @@ public class JoinContestServlet extends HttpServlet {
         UBoatEntity uBoat = uBoatManager.getUBoat(uBoatName);
 
         ally.setUBoatName(uBoatName);
+        ally.setUBoatEntity(uBoat);
         uBoat.addAlly(ally);
     }
 }

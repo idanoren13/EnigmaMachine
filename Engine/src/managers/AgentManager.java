@@ -2,10 +2,11 @@ package managers;
 
 import Entities.AgentEntity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AgentManager {
+public class AgentManager implements Serializable {
     private final Map<String, AgentEntity> agents;
 
     public AgentManager() {

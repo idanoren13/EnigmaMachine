@@ -181,11 +181,11 @@
                            </VBox.margin></ListView>
                      </children>
                   </VBox>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="candidatesString" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn prefWidth="271.0" text="Candidate String" />
-                      <TableColumn prefWidth="116.0" text="Ally Team" />
-                        <TableColumn prefWidth="143.0" text="Encrypted Code" />
+                      <TableColumn fx:id="candidate" prefWidth="271.0" text="Candidate String" />
+                      <TableColumn fx:id="allyTeamString" prefWidth="116.0" text="Ally Team" />
+                        <TableColumn fx:id="candidateMachineCode" prefWidth="143.0" text="Encrypted Code" />
                     </columns>
                   </TableView>
                   <TableView fx:id="alliesDataTable" prefHeight="206.0" prefWidth="328.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

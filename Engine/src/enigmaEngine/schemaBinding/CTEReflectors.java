@@ -8,6 +8,7 @@
 
 package enigmaEngine.schemaBinding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -41,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
     "cteReflector"
 })
 @XmlRootElement(name = "CTE-Reflectors")
-public class CTEReflectors {
+public class CTEReflectors implements Serializable {
 
     @XmlElement(name = "CTE-Reflector", required = true)
     protected List<CTEReflector> cteReflector;

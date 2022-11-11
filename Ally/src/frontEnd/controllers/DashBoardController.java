@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 
 import static utils.Constants.JOIN_CONTEST;
-import static utils.Constants.REFTESH_RATE;
+import static utils.Constants.REFRESH_RATE;
 
 public class DashBoardController implements Initializable {
     @FXML
@@ -43,7 +43,7 @@ public class DashBoardController implements Initializable {
     @FXML
     private TableView teamAgentsDataTable;
 
-    private AppController mainController;
+    private AllyAppController mainController;
     private BattlefieldsRefresher battlefieldsRefresher;
     private ContestDTO contest;
     private Timer timer;
@@ -54,7 +54,7 @@ public class DashBoardController implements Initializable {
 
     }
 
-    public void setMainController(AppController appController) {
+    public void setMainController(AllyAppController appController) {
         this.mainController = appController;
     }
 
@@ -69,7 +69,7 @@ public class DashBoardController implements Initializable {
     public void startBattlefieldsRefresher() {
         battlefieldsRefresher = new BattlefieldsRefresher(this::updateContestTable);
         timer = new Timer();
-        timer.schedule(battlefieldsRefresher, REFTESH_RATE, REFTESH_RATE);
+        timer.schedule(battlefieldsRefresher, REFRESH_RATE, REFRESH_RATE);
     }
 
     private void updateContestTable(ContestDTO[] contestDetails) {
@@ -126,6 +126,7 @@ public class DashBoardController implements Initializable {
                     if (response.isSuccessful()) {
                         Platform.runLater(() -> {
                             mainController.loadBattlefield();
+
                         });
                     }
                 }

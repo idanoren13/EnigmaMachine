@@ -2,7 +2,9 @@ package immutables;
 
 import enigmaEngine.MachineCode;
 
-public class CandidateDTO {
+import java.io.Serializable;
+
+public class CandidateDTO implements Serializable {
     private final String candidateString;
     private final MachineCode machineCode;
 

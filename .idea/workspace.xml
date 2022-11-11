@@ -2,45 +2,95 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="AgentClient:jar" />
-      <artifact name="Ally:jar" />
-      <artifact name="CommonClientUtilities:jar" />
-      <artifact name="DTO:jar" />
-      <artifact name="Engine:jar" />
       <artifact name="Server-Exploded" />
-      <artifact name="Server-Exploded archive" />
-      <artifact name="ThirdParty:jar" />
-      <artifact name="UBoatClient:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="needs to add table refreshers">
-      <change afterPath="$PROJECT_DIR$/AgentClient/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ally/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetContestStatusServlet.java" afterDir="false" />
+    <list default="true" id="763acb37-7fc4-4601-aa94-b4a3f8c33f00" name="Changes" comment="for submit">
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AgentClient/src/test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ally/src/frontEnd/refreshers/AgentDataRefresher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ally/src/frontEnd/refreshers/CandidateRefresher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Clone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/AgentDataDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/AlliesDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DTO/src/immutables/EnginePartsDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetAgentDataServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetCandidatesServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentContestScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentLoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AgentClient/src/frontEnd/refreshers/UpdateContestRefresher.java" beforeDir="false" afterPath="$PROJECT_DIR$/AgentClient/src/frontEnd/refreshers/UpdateContestRefresher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/AllyAppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/DashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonClientUtilities/src/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/AllyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/AllyDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/BattlefieldDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/BattlefieldDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/CandidateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/CandidateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/ContestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/ContestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTO/src/immutables/ContestDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/ContestDataDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/Difficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/EngineDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/EngineDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/ReflectorID.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/ReflectorID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/UBoatDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/UBoatDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AgentEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/AllyEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/Entities/UBoatEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/AgentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/AgentFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/CandidateWords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/DecryptionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/TasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/automateDecryption/test2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/automateDecryption/test2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/battlefield/Battlefield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/battlefield/BattlefieldInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/battlefield/BattlefieldInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/EnigmaMachineToDebug.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/InitializeEnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/CreateAndValidateEnigmaComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEBattlefield.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEBattlefield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEDecipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEDecipher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEDictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEEnigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEPositioning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTEReflectors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/CTERotors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/enigmaEngine/schemaBinding/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/AgentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/AlliesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/managers/UBoatManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/UBoatManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engine/src/managers/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Engine/src/managers/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/fxml/ContestScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetContestStatusServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetContestStatusServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/GetMissionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/GetMissionServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/JoinContestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/JoinContestServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Demo/src/servlets/ReadyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/servlets/ReadyServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Web-Demo/src/utils/ServletUtils.java" afterDir="false" />
     </list>
     <list id="18f19e7a-ce37-4849-a726-ede127dca6ac" name="Changes by guybe" comment="" />
+    <list id="a118f2f1-1cad-4b88-91af-09f5e32b30ba" name="Changes by itamarpo" comment="">
+      <change beforePath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DTO/src/immutables/CandidateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DTO/src/immutables/CandidateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/refreshers/AlliesRefresher.java" beforeDir="false" afterPath="$PROJECT_DIR$/UBoatClient/src/uBoatApp/refreshers/AlliesRefresher.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,6 +132,34 @@
     <setting file="file://$PROJECT_DIR$/GUIManager/src/desktopApp/frontEnd/AppController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GUIManager/src/desktopApp/impl/Console.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Ally/src/frontEnd/controllers/ContestScreenController.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="6" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+        <range start1="4" end1="4" start2="8" end2="10" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+        <range start1="5" end1="5" start2="11" end2="14" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+        <range start1="13" end1="13" start2="22" end2="25" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+        <range start1="15" end1="15" start2="27" end2="56" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+        <range start1="16" end1="19" start2="57" end2="94" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+        <range start1="42" end1="42" start2="117" end2="118" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/UBoatClient/src/uBoatApp/frontEnd/controllers/ContestScreenController.java">
+      <ranges>
+        <range start1="42" end1="42" start2="42" end2="47" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+        <range start1="245" end1="246" start2="250" end2="251" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/DTO/src/immutables/CandidateDTO.java">
+      <ranges>
+        <range start1="4" end1="5" start2="4" end2="7" changelist="763acb37-7fc4-4601-aa94-b4a3f8c33f00" />
+        <range start1="7" end1="7" start2="9" end2="10" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+        <range start1="8" end1="9" start2="11" end2="12" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+        <range start1="11" end1="11" start2="14" end2="15" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+        <range start1="20" end1="20" start2="24" end2="26" changelist="a118f2f1-1cad-4b88-91af-09f5e32b30ba" />
+      </ranges>
+    </file>
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -119,7 +197,7 @@
     "last_directory_selection": "C:/Users/guybe/IdeaProjects/EnigmaMachine/UI/src/enigmaEngine/impl",
     "last_opened_file_path": "C:/Users/idano/Desktop/EnigmaMachine",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -157,14 +235,15 @@
       <recent name="managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.Debug">
-    <configuration name="AgentApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AgentApp" />
+  <component name="RunManager" selected="Application.AgentClientApp">
+    <configuration name="AgentClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AgentClientApp" />
+      <module name="AgentClient" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AgentClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+    <configuration name="AgentClientApp" type="Application" factoryName="Application" singleton="false">
       <option name="MAIN_CLASS_NAME" value="AgentClientApp" />
       <module name="AgentClient" />
       <method v="2">
@@ -193,6 +272,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="AgentClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="uBoatApp.UBoatClientApp" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uBoatApp.UBoatClientApp" />
       <module name="UBoatClient" />
@@ -209,6 +295,14 @@
     <configuration name="Debug" type="CompoundRunConfigurationType">
       <toRun name="AllyClientApp" type="Application" />
       <toRun name="uBoatApp.UBoatClientApp" type="Application" />
+      <toRun name="Tomcat 10.0.26" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run All" type="CompoundRunConfigurationType">
+      <toRun name="AgentApp" type="Application" />
+      <toRun name="AllyClientApp" type="Application" />
+      <toRun name="uBoatApp.UBoatClientApp" type="Application" />
+      <toRun name="Tomcat 10.0.26" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
@@ -315,17 +409,18 @@
     <list>
       <item itemvalue="Application.AllyClientApp" />
       <item itemvalue="Application.uBoatApp.UBoatClientApp" />
-      <item itemvalue="Application.AgentApp" />
       <item itemvalue="Application.AgentClientApp" />
+      <item itemvalue="Application.test" />
       <item itemvalue="Application.desktopApp.Program" />
+      <item itemvalue="Compound.run All" />
       <item itemvalue="Compound.Debug" />
       <item itemvalue="Tomcat Server.Tomcat 10.0.26" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.AgentClientApp" />
         <item itemvalue="Application.desktopApp.Program" />
-        <item itemvalue="Application.AgentApp" />
       </list>
     </recent_temporary>
   </component>
@@ -385,7 +480,7 @@
       <workItem from="1664276166587" duration="417000" />
       <workItem from="1666435060504" duration="4763000" />
       <workItem from="1666914023500" duration="58792000" />
-      <workItem from="1667507135396" duration="86958000" />
+      <workItem from="1667507135396" duration="117854000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1659601196558</created>
@@ -684,7 +779,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667671408961</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="for submit">
+      <created>1667683795025</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1667683795025</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -728,7 +830,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="EX2 - screen 1, including loading XML files.&#10;Need to add screen 2 and 3, make the code better and work with threads" />
     <MESSAGE value="added FXML file" />
     <MESSAGE value="1. Ex1 is implemented as GUI&#10;2. Added Ex2 xsd&#10;3. added CSS for everything&#10;4. Check all TODO: idan&#10;5. to idan - update dm&#10;6. to idan - update mouse input by user (talk with snir)" />
     <MESSAGE value="new machine clone. multiThreads test works" />
@@ -753,28 +854,53 @@
     <MESSAGE value="all logins works" />
     <MESSAGE value="added engine to Agent" />
     <MESSAGE value="needs to add table refreshers" />
-    <option name="LAST_COMMIT_MESSAGE" value="needs to add table refreshers" />
+    <MESSAGE value="for submit" />
+    <option name="LAST_COMMIT_MESSAGE" value="for submit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="32" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties class="java.lang.IllegalThreadStateException" package="java.lang" />
           <option name="timeStamp" value="187" />
         </breakpoint>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="210" />
+        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Ally/src/frontEnd/controllers/AppController.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="149" />
+          <url>file://$PROJECT_DIR$/Web-Demo/src/servlets/GetMissionServlet.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Web-Demo/src/servlets/GetEnigmaEngine.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="191" />
+          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentRunner.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/AgentClient/src/test.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/AgentClient/src/frontEnd/controllers/AgentAppController.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="238" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -785,16 +911,9 @@
         <PinnedItemInfo parentTag="uBoatApp.frontEnd.AppController" memberName="contestController" />
         <PinnedItemInfo parentTag="enigmaEngine.impl.RotorImpl" memberName="countRotations" />
         <PinnedItemInfo parentTag="enigmaEngine.impl.EnigmaEngineImpl" memberName="selectedRotorsListLeftToRight" />
+        <PinnedItemInfo parentTag="frontEnd.controllers.TaskController" memberName="enigmaEngine" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="xmlFile" />
-      </configuration>
-      <configuration name="Application">
-        <watch expression="this" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

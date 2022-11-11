@@ -9,24 +9,28 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class AllyEntity implements Serializable {
     private final String allyName;
+
     private final List<AgentEntity> agents;
     private final List<CandidateDTO> candidates;
     private Boolean isReady;
     private int missionSize;
     private DecryptionManager decryptionManager;
-    BlockingQueue<MachineCode> MachineCodeDTOQueue;
+    private BlockingQueue<MachineCode> machineCodeBlockingQueue;
     private String uBoatName;
+    private UBoatEntity uBoatEntity;
 
     public AllyEntity(String allyName) {
         this.allyName = allyName;
         this.isReady = false;
         agents = new ArrayList<>();
-        missionSize = 1000;
+        missionSize = 100;
         candidates = new ArrayList<>();
+        machineCodeBlockingQueue = new ArrayBlockingQueue<>(1000);
     }
 
     public AllyDTO getAllyDTO() {
@@ -37,6 +41,10 @@ public class AllyEntity implements Serializable {
         agents.add(agent);
     }
 
+    public List<AgentEntity> getAgents() {
+        return agents;
+    }
+
     public void setMissionSize(int missionSize) {
         this.missionSize = missionSize;
     }
@@ -45,12 +53,17 @@ public class AllyEntity implements Serializable {
         Collections.addAll(this.candidates, candidates);
     }
 
-    public MachineCode getMission(int missionSize) {
-        synchronized (this) {
-            MachineCode mission = MachineCodeDTOQueue.poll();
+    public synchronized List<MachineCode> getMissions(int missionSize) {
+        List<MachineCode> missions = new ArrayList<>();
 
-            return mission;
+        while (machineCodeBlockingQueue.size() < missionSize) {
+            if (uBoatEntity.isContestEnded()) {
+                return missions;
+            }
         }
+
+        machineCodeBlockingQueue.drainTo(missions, missionSize);
+        return missions;
     }
 
     public void setReady(Boolean isReady) {
@@ -68,5 +81,27 @@ public class AllyEntity implements Serializable {
 
     public String getUBoatName() {
         return uBoatName;
+    }
+
+    public void setDecryptionManager(DecryptionManager decryptionManager) {
+        this.decryptionManager = decryptionManager;
+    }
+
+    public int getMissionSize() {
+        return missionSize;
+    }
+
+    public BlockingQueue<MachineCode> getMachineCodeBlockingQueue() {
+        return machineCodeBlockingQueue;
+    }
+
+    public void startContest() {
+
+        Thread startContestThread = new Thread(decryptionManager);
+        startContestThread.start();
+    }
+
+    public void setUBoatEntity(UBoatEntity uBoatEntity) {
+        this.uBoatEntity = uBoatEntity;
     }
 }

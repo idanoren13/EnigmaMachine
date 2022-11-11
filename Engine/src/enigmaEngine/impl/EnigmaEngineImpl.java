@@ -9,11 +9,11 @@ import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
 import enigmaEngine.interfaces.EnigmaEngine;
-import enigmaEngine.interfaces.PlugBoard;
 import enigmaEngine.interfaces.Reflector;
 import enigmaEngine.interfaces.Rotor;
 import immutables.BattlefieldDTO;
 import immutables.EngineDTO;
+import immutables.EnginePartsDTO;
 import immutables.ReflectorID;
 import javafx.util.Pair;
 
@@ -23,17 +23,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
-    private final HashMap<Integer, Rotor> rotors;
-    private final HashMap<ReflectorID, Reflector> reflectors;
-    private PlugBoard plugBoard;
+    private final HashMap<Integer, RotorImpl> rotors;
+    private final HashMap<ReflectorID, ReflectorImpl> reflectors;
+    private PlugBoardImpl plugBoard;
     private final String machineABC;
     private final Map<Character, Character> machineABCMap;
     private List<Integer> selectedRotors;
     private Reflector selectedReflector;
     private List<Character> startingCharacters;
     private int messagesSentCounter;
-    private final List<Rotor> selectedRotorsListRightToLeft;
-    private final List<Rotor> selectedRotorsListLeftToRight;
+    private final List<RotorImpl> selectedRotorsListRightToLeft;
+    private final List<RotorImpl> selectedRotorsListLeftToRight;
 
     private Battlefield battlefield;
 
@@ -56,7 +56,7 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         this.agentsNumber = 0;
     }
 
-    public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
+    public EnigmaEngineImpl(HashMap<Integer, RotorImpl> rotors, HashMap<ReflectorID, ReflectorImpl> reflectors, PlugBoardImpl plugBoard, String abc) {
         this.rotors = rotors;
         this.reflectors = reflectors;
         this.plugBoard = plugBoard;
@@ -72,8 +72,24 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         this.selectedRotors = new ArrayList<>();
     }
 
+    public EnigmaEngineImpl(EnginePartsDTO enginePartsDTO) {
+        this.rotors = enginePartsDTO.getRotors();
+        this.reflectors = enginePartsDTO.getReflectors();
+        this.plugBoard = enginePartsDTO.getPlugBoard();
+        this.machineABC = enginePartsDTO.getAbc();
+        this.startingCharacters = new ArrayList<>();
+        this.machineABCMap = new HashMap<>();
+        this.messagesSentCounter = 0;
+        for (int i = 0; i < machineABC.length(); i++) {
+            machineABCMap.put(machineABC.charAt(i), machineABC.charAt(i));
+        }
+        this.selectedRotorsListRightToLeft = new ArrayList<>();
+        this.selectedRotorsListLeftToRight = new ArrayList<>();
+        this.selectedRotors = new ArrayList<>();
+    }
+
     @Override
-    public HashMap<Integer, Rotor> getRotors() {
+    public HashMap<Integer, RotorImpl> getRotors() {
         return this.rotors;
     }
 
@@ -233,29 +249,29 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
         setPlugBoard(machineCode.getPlugBoard());
     }
 
-    @Override
-    public EnigmaEngine cloneMachine() {
-        HashMap<Integer, Rotor> rotorsClones = new HashMap<>();
-        rotorsClones = rotors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> {
-            try {
-                return e.getValue().cloneRotor();
-            } catch (IOException | ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
-        }, (e1, e2) -> e2, HashMap::new));
-        HashMap<ReflectorID, Reflector> reflectorsClones = reflectors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new));
-        String ABCClone = this.machineABC;
-        EnigmaEngine clone = new EnigmaEngineImpl(rotorsClones, reflectorsClones, this.plugBoard.clonePlugBoard(), ABCClone);
-        try {
-            clone.setSelectedRotors(new ArrayList<>(this.selectedRotors), new ArrayList<>(this.startingCharacters));
-            clone.setSelectedReflector(this.selectedReflector.getReflectorID());
-        } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException ignored) {
-            throw new RuntimeException(ignored);
-        }
-        clone.setWordsDictionary(this.wordsDictionary.cloneWordsDictionary());
-
-        return clone;
-    }
+//    @Override
+//    public EnigmaEngine cloneMachine() {
+//        HashMap<Integer, RotorImpl> rotorsClones = new HashMap<>();
+//        rotorsClones = rotors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> {
+//            try {
+//                return e.getValue().cloneRotor();
+//            } catch (IOException | ClassNotFoundException ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        }, (e1, e2) -> e2, HashMap::new));
+//        HashMap<ReflectorID, ReflectorImpl> reflectorsClones = reflectors.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, HashMap::new));
+//        String ABCClone = this.machineABC;
+//        EnigmaEngine clone = new EnigmaEngineImpl(rotorsClones, reflectorsClones, this.plugBoard.clonePlugBoard(), ABCClone);
+//        try {
+//            clone.setSelectedRotors(new ArrayList<>(this.selectedRotors), new ArrayList<>(this.startingCharacters));
+//            clone.setSelectedReflector(this.selectedReflector.getReflectorID());
+//        } catch (InvalidCharactersException | InvalidRotorException | InvalidReflectorException ignored) {
+//            throw new RuntimeException(ignored);
+//        }
+//        clone.setWordsDictionary(this.wordsDictionary.cloneWordsDictionary());
+//
+//        return clone;
+//    }
 
     public EnigmaEngine deepClone() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -391,6 +407,10 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
 
     public void setBattlefield(Battlefield battlefield) {
         this.battlefield = battlefield;
+    }
+
+    public EnginePartsDTO getEnginePartsDTO() {
+        return new EnginePartsDTO(this.rotors, this.reflectors, this.plugBoard, this.machineABC);
     }
 
     public BattlefieldDTO getBattlefieldDTO() {

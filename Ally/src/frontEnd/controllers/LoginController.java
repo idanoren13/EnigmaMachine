@@ -28,7 +28,7 @@ public class LoginController implements Initializable {
     @FXML
     public Label errorMessageLabel;
 
-    private AppController mainController;
+    private AllyAppController mainController;
 
     private final StringProperty errorMessageProperty = new SimpleStringProperty();
 
@@ -119,7 +119,7 @@ public class LoginController implements Initializable {
         Platform.exit();
     }
 
-    public void setMainController(AppController mainScene) {
+    public void setMainController(AllyAppController mainScene) {
         this.mainController = mainScene;
     }
 

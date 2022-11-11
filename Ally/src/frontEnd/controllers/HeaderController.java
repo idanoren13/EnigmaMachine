@@ -16,7 +16,7 @@ public class HeaderController implements Initializable{
     public Button contestButton;
     public Label allyName;
 
-    AppController mainController;
+    AllyAppController mainController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,7 +37,7 @@ public class HeaderController implements Initializable{
         mainController.changeToContest();
     }
 
-    public void setMainController(AppController mainController) {
+    public void setMainController(AllyAppController mainController) {
         this.mainController = mainController;
     }
 }

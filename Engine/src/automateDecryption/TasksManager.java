@@ -10,12 +10,13 @@ import javafx.concurrent.Task;
 import javafx.util.Pair;
 
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 
-public class TasksManager extends Task<Boolean> {
+public class TasksManager extends Task<Boolean> implements Serializable {
     volatile boolean halt = false;
     private static final int MIN_NUMBER_OF_AGENTS = 2;
     private static final int MAX_NUMBER_OF_AGENTS = 50;

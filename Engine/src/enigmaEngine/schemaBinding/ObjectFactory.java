@@ -9,6 +9,7 @@
 package enigmaEngine.schemaBinding;
 
 import javax.xml.bind.annotation.XmlRegistry;
+import java.io.Serializable;
 
 
 /**
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlRegistry;
  * 
  */
 @XmlRegistry
-public class ObjectFactory {
+public class ObjectFactory implements Serializable {
 
 
     /**

@@ -8,10 +8,11 @@ import immutables.ReflectorID;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class Test implements Serializable {
     public static ReflectorID selectedReflectorID = ReflectorID.II;
     static char firstRotorStartingPosition = 'B';
     static char secondRotorStartingPosition = 'U';

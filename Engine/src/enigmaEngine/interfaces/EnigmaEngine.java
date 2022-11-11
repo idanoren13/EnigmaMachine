@@ -7,8 +7,10 @@ import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
 import enigmaEngine.exceptions.InvalidRotorException;
+import enigmaEngine.impl.RotorImpl;
 import immutables.BattlefieldDTO;
 import immutables.EngineDTO;
+import immutables.EnginePartsDTO;
 import immutables.ReflectorID;
 import javafx.util.Pair;
 
@@ -17,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface EnigmaEngine extends Serializable {
-    HashMap<Integer, Rotor> getRotors();
+    HashMap<Integer, RotorImpl> getRotors();
 
     int getABCSize();
 
@@ -47,8 +49,6 @@ public interface EnigmaEngine extends Serializable {
 
     void setEngineConfiguration(MachineCode machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
 
-    EnigmaEngine cloneMachine();
-
     WordsDictionary getWordsDictionary();
     void setWordsDictionary(WordsDictionary wordsDictionary);
 
@@ -56,4 +56,6 @@ public interface EnigmaEngine extends Serializable {
     public BattlefieldDTO getBattlefieldDTO();
 
     Battlefield getBattlefield();
+
+    EnginePartsDTO getEnginePartsDTO();
 }

@@ -243,7 +243,7 @@ public class ContestScreenController implements Initializable {
     public void startAlliesRefresher() {
         alliesRefresher = new AlliesRefresher(this::updateAlliesTable, mainController.getName());
         timer = new Timer();
-        timer.schedule(alliesRefresher, REFTESH_RATE, REFTESH_RATE);
+        timer.schedule(alliesRefresher, REFRESH_RATE, REFRESH_RATE);
     }
 
     private void updateAlliesTable(AllyDTO[] allies) {

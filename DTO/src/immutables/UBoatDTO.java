@@ -1,6 +1,8 @@
 package immutables;
 
-public class UBoatDTO {
+import java.io.Serializable;
+
+public class UBoatDTO implements Serializable {
     private final BattlefieldDTO battlefield;
     private final EngineDTO engine;
 

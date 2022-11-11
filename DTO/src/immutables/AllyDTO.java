@@ -1,6 +1,8 @@
 package immutables;
 
-public class AllyDTO {
+import java.io.Serializable;
+
+public class AllyDTO implements Serializable {
     private final String allyName;
     private final int numberOfAgents;
     private final int missionSize;

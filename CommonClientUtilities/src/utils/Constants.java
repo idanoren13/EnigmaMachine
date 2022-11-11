@@ -1,7 +1,7 @@
 package utils;
 
 public class Constants {
-public static final int REFTESH_RATE = 1500;
+public static final int REFRESH_RATE = 1500;
     public final static String BASE_DOMAIN = "localhost";
     private final static String BASE_URL = "http://" + BASE_DOMAIN + ":8080";
     private final static String CONTEXT_PATH = "/Server_Exploded";
@@ -19,12 +19,12 @@ public static final int REFTESH_RATE = 1500;
     public final static String GET_SIGNED_UP_ALLIES = FULL_SERVER_PATH + "/uboat-allies";
     public final static String GET_ALLIES = FULL_SERVER_PATH + "/allies";
     public final static String GET_CONTEST_STATUS = FULL_SERVER_PATH + "/contest-status";
-
     public final static String GET_ENIGMA_ENGINE = FULL_SERVER_PATH + "/get-enigma-engine";
-    public final static String GET_MISSION = FULL_SERVER_PATH + "/get-mission";
+    public final static String GET_MISSIONS = FULL_SERVER_PATH + "/get-missions";
     public final static String SEND_CANDIDATES = FULL_SERVER_PATH + "/send-candidates";
     public final static String ADD_AGENT = FULL_SERVER_PATH + "/add-agent";
     public final static String GET_AGENTS = FULL_SERVER_PATH + "/agents";
+    public final static String GET_CANDIDATES = FULL_SERVER_PATH + "/candidates";
     public final static String READY = FULL_SERVER_PATH + "/ready";
 
 }

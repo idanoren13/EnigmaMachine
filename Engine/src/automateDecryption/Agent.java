@@ -10,13 +10,14 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.application.Platform;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-public class Agent implements Runnable {
+public class Agent implements Runnable, Serializable {
 
     private final int id;
     private final String encryptedText;

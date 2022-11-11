@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 
 /**
@@ -45,7 +46,7 @@ import javax.xml.bind.annotation.XmlType;
     "cteReflectors"
 })
 @XmlRootElement(name = "CTE-Machine")
-public class CTEMachine {
+public class CTEMachine  implements Serializable {
 
     @XmlElement(name = "ABC", required = true)
     protected String abc;

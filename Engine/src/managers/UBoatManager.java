@@ -3,12 +3,13 @@ package managers;
 import Entities.UBoatEntity;
 import immutables.ContestDTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UBoatManager {
+public class UBoatManager implements Serializable {
     private final Map<String, UBoatEntity> UBoats = new HashMap<>();
 
     public void addUBoat(String uBoatName, UBoatEntity uBoatEntity) {

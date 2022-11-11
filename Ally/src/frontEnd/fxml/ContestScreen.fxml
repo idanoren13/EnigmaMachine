@@ -109,20 +109,20 @@
                               <Insets left="10.0" top="14.0" />
                            </VBox.margin>
                         </Label>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="otherTeamsData" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn prefWidth="179.0" text="Ally" />
-                            <TableColumn prefWidth="131.0" text="Agents Number" />
-                              <TableColumn fx:id="candidatesDelivered" prefWidth="131.0" text="Mission Size" />
+                            <TableColumn fx:id="allyName" prefWidth="179.0" text="Ally" />
+                            <TableColumn fx:id="agentsNumber" prefWidth="131.0" text="Agents Number" />
+                              <TableColumn fx:id="missionSize" prefWidth="131.0" text="Mission Size" />
                           </columns>
                         </TableView>
                      </children>
                   </VBox>
                   <TableView fx:id="agentsProgress" prefHeight="275.0" prefWidth="296.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn minWidth="0.0" prefWidth="128.0" text="Agent" />
+                      <TableColumn fx:id="agentName" minWidth="0.0" prefWidth="128.0" text="Agent" />
                       <TableColumn fx:id="progress" prefWidth="113.0" text="Progress" />
-                        <TableColumn prefWidth="202.0" text="Candidates Delivered" />
+                        <TableColumn fx:id="candidatesDelivered" prefWidth="202.0" text="Candidates Delivered" />
                     </columns>
                   </TableView>
                   <TableView fx:id="teamStringCandidates" prefHeight="206.0" prefWidth="328.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

@@ -3,7 +3,9 @@ package battlefield;
 import enigmaEngine.schemaBinding.CTEBattlefield;
 import immutables.Difficulty;
 
-public class BattlefieldInformation {
+import java.io.Serializable;
+
+public class BattlefieldInformation implements Serializable {
     private String name;
     private int numberOfAllies;
     private int currentNumberOfAllies;

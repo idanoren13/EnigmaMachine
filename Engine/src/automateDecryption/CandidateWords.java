@@ -5,11 +5,12 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.util.Pair;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Queue;
 import java.util.function.Consumer;
 
-public class CandidateWords extends Task<Boolean> {
+public class CandidateWords extends Task<Boolean> implements Serializable {
     private static int currentProgress;
     private final Queue<Pair<List<String>, MachineCode>> outputQueue;
     private Consumer<String> onCandidateWordsFound;
